@@ -1,0 +1,87 @@
+#include "SimParams.h"
+#include <math.h>
+
+void SimParams::setRe(double Re) {
+    this->Re = Re;
+    reSet = true;
+}
+
+void SimParams::setMssNx(int mssNx) {
+    this->mssNx = mssNx;
+    mssNxSet = true;
+}
+
+void SimParams::setMssNy(int mssNy) {
+    this->mssNy = mssNy;
+    mssNySet = true;
+}
+
+void SimParams::setNx(int nx) {
+    this->nx = nx;
+
+    if (!mssNxSet) {
+        mssNx = nx;
+    }
+
+    nxSet = true;
+}
+
+void SimParams::setNy(int ny) {
+    this->ny = ny;
+
+    if (!mssNySet) {
+        mssNy = ny;
+    }
+
+    nySet = true;
+}
+
+void SimParams::setDtFix(double dtFix) {
+    this->dtFix = dtFix;
+    dtFixSet = true;
+}
+
+void SimParams::setMu(double mu) {
+    this->mu = mu;
+    muSet = true;
+}
+
+bool SimParams::checkParams() {
+    return nxSet && nySet && reSet && muSet && repulseModeSet
+            && repulseDistSet && collisionStiffnessSet
+            && collisionDistSet;
+}
+
+void SimParams::setRepulseMode(int mode) {
+    this->repulseMode = mode;
+    this->repulseModeSet = true;
+}
+
+void SimParams::setRepulseDist(double dist) {
+    this->repulseDist = dist;
+    this->repulseDistSet = true;
+}
+
+void SimParams::setCollisionStiffness(double stiffness) {
+    this->collisionStiffness = stiffness;
+    this->collisionStiffnessSet = true;
+}
+
+void SimParams::setCollisionDist(double colDist) {
+    this->collisionDist = colDist;
+    this->collisionDistSet = true;
+}
+
+void SimParams::setAdmmTol(double admmTol) {
+    this->admmTol = admmTol;
+
+}
+
+void SimParams::setUpdateMode(int mode) {
+    this->updateMode = mode;
+
+}
+
+void SimParams::setElementMode(int mode) {
+    this->elementMode = mode;
+}
