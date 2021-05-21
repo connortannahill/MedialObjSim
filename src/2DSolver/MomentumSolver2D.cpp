@@ -17,7 +17,8 @@ using namespace std;
 
 MomentumSolver2D::MomentumSolver2D(Boundary &boundary,
     vector<SolidObject> &solidObjects, SimParams &params,
-    void (*initialConditions)(int,int,int,double*,double*,double**,double**))
+    void (*initialConditions)(int,int,int,double*,double*,double**,double**),
+    void (*boundaryConditions)(int,int,double**,double**))
 {
 
     // Check that the parameters object is set
@@ -106,6 +107,8 @@ MomentumSolver2D::MomentumSolver2D(Boundary &boundary,
     // TODO: make initial conditions more general and perhaps more
     //       able to handle irregular boundaries.
     initialConditions(this->nx, this->ny, this->methodOrd, this->x, this->y, this->u, this->v);
+
+    applyFluidBCs = boundaryConditions;
 
     // Create the pool object for this solver
     this->nStructs = solidObjects.size();
@@ -258,7 +261,6 @@ double MomentumSolver2D::step(double tEnd, double safetyFactor) {
         this->dt = tEnd - this->t;
     }
 
-    this->applyFluidBCs();
     this->applyInterfaceBCs();
 
     // Explicit step: advance the velocity-dependent terms using explicit time

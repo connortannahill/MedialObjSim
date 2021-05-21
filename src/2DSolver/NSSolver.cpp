@@ -17,8 +17,9 @@ using namespace std;
 NSSolver::NSSolver(Boundary &boundary,
                     vector<SolidObject> &solidObjects,
                     SimParams &params,
-                    void (*initialConditions)(int,int,int,double*,double*,double**,double**))
-                    : MomentumSolver2D(boundary, solidObjects, params, initialConditions)
+                    void (*initialConditions)(int,int,int,double*,double*,double**,double**),
+                    void (*boundaryConditions)(int,int,double**,double**))
+                    : MomentumSolver2D(boundary, solidObjects, params, initialConditions, boundaryConditions)
 {
 }
 
@@ -195,10 +196,11 @@ double NSSolver::getKinematicBoundaryLC(int i, int j, double velObj, double velN
  * Note: very much assuming no opposing boundary conditions are possible, and no singleton
  *       boundary conditions are possible. Additionally, 1-thick interfaces will fail (which may be OK).
  * 
- * TODO: make this the only function for applying boundary conditions.
  * TODO: this should not be virtual, going to be the same for all codes.
 */
 void NSSolver::applyInterfaceBCs() {
+    this->applyFluidBCs(this->nx, this->ny, this->u, this->v);
+
     int i, j, xi, yi;
     objects::FSIObject obj;
 
@@ -326,49 +328,6 @@ void NSSolver::applyInterfaceBCs() {
             } 
         }
     }
-}
-
-/**
- * Apply the boundary conditions
-*/
-void NSSolver::applyFluidBCs() {
-    int i, j;
-
-
-    // Set all the boundary conditions to 0.
-    for (j = 1; j <= this->ny; j++) {
-        this->u[j][0] = 0.0;
-        this->u[j][this->nx] = 0.0;
-
-        this->v[j][0] = -this->v[j][1];
-        this->v[j][this->nx+1] = -this->v[j][this->nx];
-    }
-
-    for (i = 1; i <= this->nx; i++) {
-        this->u[0][i] = -this->u[1][i];
-        this->u[this->ny+1][i] = -this->u[this->ny][i];
-
-        this->v[0][i] = 0.0;
-        this->v[this->ny][i] = 0.0;
-    }
-
-    // Problem-dependent boundary condition
-
-    // Lid driven cavity example
-    double ubar = 1;
-    for (int i = 1; i <= this->nx; i++) {
-        this->u[this->ny+1][i] = 2*ubar - this->u[this->ny][i];
-    }
-
-    // // // Flow past obstical
-    // for (j = 1; j <= this->ny; j++) {
-    //     // Inflow condition
-    //     this->u[j][0] = 0.1; //simutils::dmin(this->t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - this->t, 0);
-
-    //     // Outflow condition
-    //     this->u[j][this->nx] = this->u[j][this->nx-1];
-
-    // }
 }
 
 /**

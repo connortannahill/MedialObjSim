@@ -15,14 +15,14 @@ using namespace std;
 class NSSolver : MomentumSolver2D {
 private:
     void updateF(Pool2D *pool);
-    void applyFluidBCs();
     void applyInterfaceBCs();
     double getDt();
 public:
     NSSolver(Boundary &boundary,
                 vector<SolidObject> &solidObjects,
                 SimParams &params,
-                void (*initialConditions)(int,int,int,double*,double*,double**,double**));
+                void (*initialConditions)(int,int,int,double*,double*,double**,double**),
+                void (*boundaryConditions)(int,int,double**,double**));
     double getKinematicBoundaryLC(int i, int j, double velObj,
          double velNeigh, double cPnt[2], double stagPnt[2], int nDir[2]);
     NSSolver() = default;

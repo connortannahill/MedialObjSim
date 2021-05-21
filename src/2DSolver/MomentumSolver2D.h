@@ -73,12 +73,14 @@ protected:
     // The barycentric weights used for flexible interpolation.
     double *baryWeights;
 
+    // Use boundary condition callback function
+    void (*applyFluidBCs)(int,int,double**,double**);
+
     // Functions related to implementation of the explicit-implicit fluid model.
     void updateP();
     void updateU();
     void interpolateVelocities();
     virtual void updateF(Pool2D *pool) = 0;
-    virtual void applyFluidBCs() = 0;
     virtual void applyInterfaceBCs() = 0;
     virtual double getDt() = 0;
     void test_setInternal();
@@ -86,7 +88,8 @@ public:
     MomentumSolver2D(Boundary &boundary,
                      vector<SolidObject> &solidObjects,
                      SimParams &params,
-                     void (*initialConditions)(int,int,int,double*,double*,double**,double**));
+                     void (*initialConditions)(int,int,int,double*,double*,double**,double**),
+                     void (*boundaryConditions)(int,int,double**,double**));
     MomentumSolver2D() = default;
     ~MomentumSolver2D();
     double step(double tEnd, double safetyFactor);
