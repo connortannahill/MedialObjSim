@@ -41,6 +41,24 @@ void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double 
     simutils::set_constant(hg-1, wg, cons_v, v);
 }
 
+// Problem-dependent boundary condition
+void boundaryConditions(int nx, int ny, double **u, double **v) {
+    // Lid driven cavity example
+    double ubar = 1;
+    for (int i = 1; i <= nx; i++) {
+        u[ny+1][i] = 2*ubar - u[ny][i];
+    }
+
+    // // Flow past obstacle
+    // for (int j = 1; j <= ny; j++) {
+    //     // Inflow condition
+    //     u[j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+    //     // Outflow condition
+    //     u[j][nx] = u[j][nx-1];
+    // }
+}
+
 int main(int argc, char **argv) {
     // Testing the fluid solver
     double tEnd = 10.0; 
@@ -123,7 +141,7 @@ int main(int argc, char **argv) {
     params.setDtFix(dt);
 
     // Create the Solver object
-    NSSolver solver(boundary, shapes, params, initialConditions);
+    NSSolver solver(boundary, shapes, params, initialConditions, boundaryConditions);
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
