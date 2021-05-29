@@ -290,6 +290,56 @@ elif mode == 11:
 
     plt.scatter(x, y)
     plt.show()
+elif mode == 12:  # output both fluid velocity and object velocity plots
+    plots = [('Fluid Velocity', 'out'), ('Object Velocity', 'poolVel')]
+
+    cur_f_name = f_name + 'poolOut'
+    out = np.genfromtxt(cur_f_name, delimiter=',')
+
+    nx = 100
+    ny = 100
+
+    x = out[:,0]
+    y = out[:,1]
+    phi = out[:,2]
+
+    n = int(np.sqrt(phi.size))
+
+    for idx, (name, file_ext) in enumerate(plots, start=1):
+        fig, ax = plt.subplots(1)
+        img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+
+        f = plt.figure(idx)
+        for i in range(numObj):
+            mss_edges_f_name = f_name + 'MSSEdges{0}'.format(i)
+
+            out = np.genfromtxt(mss_edges_f_name, delimiter=',')
+            x = out[:,0]
+            y = out[:,1]
+
+            for i in range(0, x.size, 2):
+                plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
+            plt.xlim((0, 1))
+            plt.ylim((0, 1))
+
+        field_vels_f_name = f_name + file_ext
+        plt.title(test + ' - ' + name)
+
+        out = np.genfromtxt(field_vels_f_name, delimiter=',')
+        x = out[:,0]
+        y = out[:,1]
+        u = out[:,2]
+        v = out[:,3]
+
+        q = ax.quiver(x, y, u, v)
+        # plt.imshow(np.reshape(u, (n, n)))
+        # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
+        # plt.title('Extrapolated Speed Field')
+
+        plt.gca().set_aspect('equal')
+        plt.axis('off')
+    
+    plt.show()
 else:
     print('Invalid mode!')
     sys.exit()
