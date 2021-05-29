@@ -44,6 +44,23 @@ void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double 
 
 // Problem-dependent boundary condition
 void boundaryConditions(int nx, int ny, double **u, double **v) {
+    // Set all the boundary conditions to 0.
+    for (int j = 1; j <= ny; j++) {
+        u[j][0] = 0.0;
+        u[j][nx] = 0.0;
+
+        v[j][0] = -v[j][1];
+        v[j][nx+1] = -v[j][nx];
+    }
+
+    for (int i = 1; i <= nx; i++) {
+        u[0][i] = -u[1][i];
+        u[ny+1][i] = -u[ny][i];
+
+        v[0][i] = 0.0;
+        v[ny][i] = 0.0;
+    }
+
     // Lid driven cavity example
     double ubar = 1;
     for (int i = 1; i <= nx; i++) {
