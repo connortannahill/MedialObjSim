@@ -19,13 +19,16 @@ sol3d : main.cpp $(SRC3D) $(LIBS)
 # All Test Drivers
 #################
 
-all: test_circle_flow_2d
+all: test_circle_flow_2d test_circle_flow_display_steps_2d
 
 # 2D Test Drivers
 #################
 
 test_circle_flow_2d : $(DRIVERS2D)/circle_flow.cpp $(SRC2D) $(LIBS)
 	$(CC) $(CFLAGS) $^ -o circle_flow_2d.exe
+
+test_circle_flow_display_steps_2d : $(DRIVERS2D)/circle_flow_display_steps.cpp $(SRC2D) $(LIBS)
+	$(CC) $(CFLAGS) $^ -o circle_flow_display_steps.exe
 
 
 

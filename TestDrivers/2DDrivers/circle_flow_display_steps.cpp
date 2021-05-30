@@ -76,6 +76,42 @@ void boundaryConditions(int nx, int ny, double **u, double **v) {
     // }
 }
 
+void outputData(string f_name, NSSolver &solver) {
+    TestFormatter testFormatter(f_name.c_str());
+    std::cout << "Outputting data" << std::endl;
+
+    string outStr;
+    string outStr2;
+
+    testFormatter.genOutStr("out", outStr);
+    solver.writeToFile(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("poolOut", outStr);
+    testFormatter.genOutStr("poolVel", outStr2);
+    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
+    cout << outStr << endl;
+    cout << outStr2 << endl;
+
+    testFormatter.genOutStr("MSSEdges", outStr);
+    solver.outputAllStructures(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSNodes", outStr);
+    solver.outputAllStructureNodes(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSVels", outStr);
+    solver.outputAllStructureVels(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSTracers", outStr);
+    solver.outputTracers(outStr.c_str());
+
+    testFormatter.genOutStr("medialAxis", outStr);
+    solver.outputMedialAxis(outStr.c_str());
+}
+
 int main(int argc, char **argv) {
     // Testing the fluid solver
     double tEnd = 10.0; 
@@ -167,10 +203,18 @@ int main(int argc, char **argv) {
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstical domain
 
+    // TODO: remove all files from this folder before outputting
+    string testName = "FlowSteps2D/";
+
     int nsteps = 0;
     int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
     while (t+EPS < tEnd && nsteps < max_steps) {
         t = solver.step(tEnd, safetyFactor);
+
+        if (nsteps % 20 == 0) {
+            string f_name = testName + std::to_string(nsteps);
+            outputData(f_name, solver);
+        }
 
         nsteps++;
 
@@ -179,39 +223,9 @@ int main(int argc, char **argv) {
         std::cout << std::endl;
     }
     
+    /* Output all of the relevant data */
     std::cout << "Outputting data" << std::endl;
 
-    /* Output all of the relevant data */
-
-    TestFormatter testFormatter("CircleFlow2D");
-    string outStr;
-    string outStr2;
-
-    testFormatter.genOutStr("out", outStr);
-    solver.writeToFile(outStr.c_str());
-    cout << outStr << endl;
-
-    testFormatter.genOutStr("poolOut", outStr);
-    testFormatter.genOutStr("poolVel", outStr2);
-    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
-    cout << outStr << endl;
-    cout << outStr2 << endl;
-
-    testFormatter.genOutStr("MSSEdges", outStr);
-    solver.outputAllStructures(outStr.c_str());
-    cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSNodes", outStr);
-    solver.outputAllStructureNodes(outStr.c_str());
-    cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSVels", outStr);
-    solver.outputAllStructureVels(outStr.c_str());
-    cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSTracers", outStr);
-    solver.outputTracers(outStr.c_str());
-
-    testFormatter.genOutStr("medialAxis", outStr);
-    solver.outputMedialAxis(outStr.c_str());
+    string f_name = testName + std::to_string(nsteps);
+    outputData(f_name, solver);
 }
