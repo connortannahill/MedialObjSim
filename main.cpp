@@ -119,6 +119,7 @@ int main(int argc, char **argv) {
     params.setRe(1000);
     params.setNx(nx);
     params.setNy(ny);
+    params.setUseEno(true);
     params.setMu(1.0/params.Re);
     params.setRepulseMode(2); // This turns on the KD tree error checking
     // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );

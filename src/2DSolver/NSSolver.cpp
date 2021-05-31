@@ -238,9 +238,22 @@ double NSSolver::eno_uvy(int i, int j) {
         sten[l] = pool->isUsableU(i, check_pnts[l]);
     }
 
+    // for (int l = 0; l < 7; l++) {
+    //     cout << sten[l] << " ";
+    // }
+    // cout << endl;
+
+    // for (int l = 0; l < 7; l++) {
+    //     cout << check_pnts[l] << " ";
+    // }
+    // cout << endl;
+
+
+
     double xSten[7] = {0};
     double uVals[7] = {0};
     double vVals[7] = {0};
+
 
     // Compute center point
     if (!sten[c]) {
@@ -250,23 +263,50 @@ double NSSolver::eno_uvy(int i, int j) {
     uVals[c] = u[yi][xi];
     vVals[c] = 0.5 * (0.5*(v[yi][xi] + v[yi][xi+1]) + 0.5*(v[yi-1][xi] + v[yi-1][xi+1]));
 
+
     // Build the value and point set on the stencil
+    // cout << "(i, j) (" << i << ", " << j << ")" << endl;
     double UC[2];
     for (int l = 0; l < c; l++) {
         if (sten[l]) {
             xSten[l] = y[j-c+l]+1;
-            uVals[l] = 0.5*(u[yi-c+l+1][xi] + u[yi-c+l+1][xi]);
-            vVals[l] = 0.5*(v[yi-c+l+1][xi] + v[yi-c+l][xi+1]);
+            // cout << "checking sten " << l << endl;
+            // cout << "height = " << yi-c+l << endl;
+            // cout << "height+ = " << yi-c+l+1 << endl;
+            uVals[l] = 0.5*(u[yi-c+l][xi] + u[yi-c+l][xi]);
+            vVals[l] = 0.5*(v[yi-c+l][xi] + v[yi-c+l-1][xi+1]);
         }
     }
+    // cout << "break" << endl;
 
     for (int l = c+1; l < 7; l++) {
         if (sten[l]) {
             xSten[l+1] = y[j-c+l-1];
+            // cout << "checking sten " << l << endl;
+            // cout << "height = " << yi-c+l-2 << endl;
+            // cout << "height+ = " << yi-c+l-1 << endl;
             uVals[l+1] = 0.5*(u[yi-c+l-2][xi] + u[yi-c+l-1][xi]);
             vVals[l+1] = 0.5*(v[yi-c+l-2][xi] + v[yi-c+l-2][xi+1]);
         }
     }
+
+        // Build the value and point set on the stencil
+    // double UC[2];
+    // for (int l = 0; l < c; l++) {
+    //     if (sten[l]) {
+    //         xSten[l] = x[i-c+l];
+    //         uVals[l] = 0.5*(u[yi][xi-c+l-1] + u[yi+1][xi-c+l-1]);
+    //         vVals[l] = 0.5*(v[yi][xi-c+l-1] + v[yi][xi-c+l]);
+    //     }
+    // }
+
+    // for (int l = c+1; l < 7; l++) {
+    //     if (sten[l]) {
+    //         xSten[l+1] = x[i-c+l-1];
+    //         uVals[l] = 0.5*(u[yi][xi-c+l-2] + u[yi+1][xi-c+l-2]);
+    //         vVals[l] = 0.5*(v[yi][xi-c+l-2] + v[yi][xi-c+l-1]);
+    //     }
+    // }
 
     // Choose the upwind direction properly (or return centered result)
     int upDir;
@@ -284,13 +324,20 @@ double NSSolver::eno_uvy(int i, int j) {
         // In case where ENO stencil fails, use centered approximation
         return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
     }
+    // assert(false);
 
     // Using upwind direction, compute ENO
     double uv[7];
     for (int l = 0; l < 7; l++) {
         uv[l] = uVals[l] * vVals[l];
     }
+    // return 0;
+    // // double result = discs::thirdOrdENO(simutils::midpoint(y[j], y[j+1]), xSten, uv, upDir, sten);
+    // // double expected = -sin(x[i+1])*sin(simutils::midpoint(y[j], y[j+1]));
+    // // cout << "res = " << result << endl;
+    // // cout << "exp = " << expected << endl;
 
+    // assert(false);
     return discs::thirdOrdENO(simutils::midpoint(y[j], y[j+1]), xSten, uv, upDir, sten);
 }
 
