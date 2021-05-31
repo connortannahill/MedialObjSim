@@ -723,8 +723,6 @@ double MassSpring2D::closestBoundaryPnt(double inPnt[2], double out[2]) {
     double dmin = INFINITY;
 
     int pntIds[2];
-    int pnt1[2];
-    int pnt2[2];
 
     // Iterate through all of the boundary edges of the MSS
     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
@@ -1026,7 +1024,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2]) {
     colStress[0] /= numNear;
     colStress[1] /= numNear;
     
-    cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
+    // cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
 }
 
 /**

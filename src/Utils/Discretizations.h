@@ -155,7 +155,7 @@ namespace discs {
      * 
      * Modify so that if stencil does not have enough points, we use the less accurate method
     */
-    inline double thirdOrdENO(double evalPnt, double *sPoints, double *sY, int upDir, bool *prefStencil) {
+    inline double thirdOrdENO(double evalPnt, double *sP, double *sY, int upDir, bool *prefStencil) {
         // Current leftmost and rightmost stencil points when building up the scheme
         // int l = 3;
         // int r = 3;
@@ -174,14 +174,16 @@ namespace discs {
         }
 
         // Mesh spacing
-        double h = sPoints[1] - sPoints[0];
+        // double h = sP[1] - sP[0];
 
         // Undivided differences for comparisons
         double ul, ur, c;
 
         // First term chosen based on the upwind direction if the information is available
-        ul = (sY[k] - sY[k-1])/h;
-        ur = (sY[k+1] - sY[k])/h;
+        // ul = (sY[k] - sY[k-1])/h;
+        // ur = (sY[k+1] - sY[k])/h;
+        ul = (sY[k] - sY[k-1])/(sP[k] - sP[k-1]);
+        ur = (sY[k+1] - sY[k])/(sP[k+1] - sP[k]);
 
         if (prefStencil[k-1] && prefStencil[k+1]) {
             if (upDir == -1) {
@@ -204,26 +206,30 @@ namespace discs {
         }
 
         // Second term comparison
-        ul = sY[k+1] - 2.0*sY[k] + sY[k-1];
-        ur = sY[k+2] - 2.0*sY[k+1] + sY[k];
+        // ul = sY[k+1] - 2.0*sY[k] + sY[k-1];
+        // ur = sY[k+2] - 2.0*sY[k+1] + sY[k];
+        ul = ( (sY[k+1] - sY[k])*(sP[k] - sP[k-1]) - (sY[k] - sY[k-1])*(sP[k+1] - sP[k]) ) 
+            / ( (sP[k+1] - sP[k-1])*(sP[k+1]-sP[k])*(sP[k]-sP[k-1]) );
+        ur = ( (sY[k+2] - sY[k+1])*(sP[k+1] - sP[k]) - (sY[k+1] - sY[k])*(sP[k+2] - sP[k+1]) ) 
+            / ( (sP[k+2] - sP[k])*(sP[k+2]-sP[k+1])*(sP[k+1]-sP[k]) );
 
         if (prefStencil[k-1] && prefStencil[k+2]) {
             if (abs(ul) < abs(ur)) {
-                c = ul / (2.0*simutils::square(h));
-                n += c*((evalPnt - sPoints[k]) + (evalPnt - sPoints[k+1]));
+                c = ul; /// (2.0*simutils::square(h));
+                n += c*((evalPnt - sP[k]) + (evalPnt - sP[k+1]));
                 k--;
             } else {
-                c = ur / (2.0*simutils::square(h));
-                n += c*((evalPnt - sPoints[k]) + (evalPnt - sPoints[k+1]));
+                c = ur;// / (2.0*simutils::square(h));
+                n += c*((evalPnt - sP[k]) + (evalPnt - sP[k+1]));
             }
         } else {
             if (prefStencil[k-1]) {
-                c = ul / (2.0*simutils::square(h));
-                n += c*((evalPnt - sPoints[k]) + (evalPnt - sPoints[k+1]));
+                c = ul;// / (2.0*simutils::square(h));
+                n += c*((evalPnt - sP[k]) + (evalPnt - sP[k+1]));
                 k--;
             } else {
-                c = ur / (2.0*simutils::square(h));
-                n += c*((evalPnt - sPoints[k]) + (evalPnt - sPoints[k+1]));
+                c = ur;// / (2.0*simutils::square(h));
+                n += c*((evalPnt - sP[k]) + (evalPnt - sP[k+1]));
             }
         }
 
@@ -232,34 +238,40 @@ namespace discs {
         }
 
         // Third term comparison
-        ul = sY[k+2] - 3.0*sY[k+1] + 3.0*sY[k] - sY[k-1];
-        ur = sY[k+3] - 3.0*sY[k+2] + 3.0*sY[k+1] - sY[k];
+        // ul = sY[k+2] - 3.0*sY[k+1] + 3.0*sY[k] - sY[k-1];
+        // ur = sY[k+3] - 3.0*sY[k+2] + 3.0*sY[k+1] - sY[k];
+        ul = ( ( (sY[k+2] - sY[k+1])*(sP[k+1] - sP[k]) - (sY[k+1] - sY[k])*(sP[k+2] - sP[k+1]) ) / ( (sP[k+2] - sP[k])*(sP[k+2]-sP[k+1])*(sP[k+1]-sP[k]) )
+            - ( (sY[k+1] - sY[k])*(sP[k] - sP[k-1]) - (sY[k] - sY[k-1])*(sP[k+1] - sP[k]) ) / ( (sP[k+1] - sP[k-1])*(sP[k+1]-sP[k])*(sP[k]-sP[k-1]) ) )
+            / (sP[k+2] - sP[k-1]);
+        ur = ( ( (sY[k+3] - sY[k+2])*(sP[k+2] - sP[k+1]) - (sY[k+2] - sY[k+1])*(sP[k+3] - sP[k+2]) ) / ( (sP[k+3] - sP[k+1])*(sP[k+3]-sP[k+2])*(sP[k+2]-sP[k+1]) )
+            - ( (sY[k+2] - sY[k+1])*(sP[k+1] - sP[k]) - (sY[k+1] - sY[k])*(sP[k+2] - sP[k+1]) ) / ( (sP[k+2] - sP[k])*(sP[k+2]-sP[k+1])*(sP[k+1]-sP[k]) ) )
+            / (sP[k+3] - sP[k]);
         
         if (prefStencil[k-1] && prefStencil[k+3]) {
             if (abs(ul) < abs(ur)) {
-                c = ul / (6.0*simutils::cube(h));
-                n += c*((evalPnt-sPoints[k+1])*(evalPnt-sPoints[k+2]) 
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+2])
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+1]));
+                c = ul;// / (6.0*simutils::cube(h));
+                n += c*((evalPnt-sP[k+1])*(evalPnt-sP[k+2]) 
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+2])
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+1]));
                 k--;
             } else {
-                c = ur / (6.0*simutils::cube(h));
-                n += c*((evalPnt-sPoints[k+1])*(evalPnt-sPoints[k+2]) 
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+2])
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+1]));
+                c = ur;// / (6.0*simutils::cube(h));
+                n += c*((evalPnt-sP[k+1])*(evalPnt-sP[k+2]) 
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+2])
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+1]));
             }
         } else {
             if (prefStencil[k-1]) {
-                c = ul / (6.0*simutils::cube(h));
-                n += c*((evalPnt-sPoints[k+1])*(evalPnt-sPoints[k+2]) 
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+2])
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+1]));
+                c = ul;// / (6.0*simutils::cube(h));
+                n += c*((evalPnt-sP[k+1])*(evalPnt-sP[k+2]) 
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+2])
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+1]));
                 k--;
             } else {
-                c = ur / (6.0*simutils::cube(h));
-                n += c*((evalPnt-sPoints[k+1])*(evalPnt-sPoints[k+2]) 
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+2])
-                    + (evalPnt-sPoints[k])*(evalPnt-sPoints[k+1]));
+                c = ur;// / (6.0*simutils::cube(h));
+                n += c*((evalPnt-sP[k+1])*(evalPnt-sP[k+2]) 
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+2])
+                    + (evalPnt-sP[k])*(evalPnt-sP[k+1]));
             }
 
         }

@@ -160,7 +160,6 @@ protected:
 
     /* Helper functions */
     double distanceFromInterface(int i, int j);
-    int getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil, bool ghostSkip);
     void getWidestStencil(int minIndex, int maxIndex, int curIndex, bool *stencil);
     void levelSetUnitNormal(int i, int j, double n[2]);
     double smearSign(double h, double phi);
@@ -174,10 +173,14 @@ protected:
 
 
 public:
+    bool enoInRangeX(int val);
+    bool enoInRangeY(int val);
+    int getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil);//, bool ghostSkip);
     // Collision params, TODO use proper OOP here.
     double repulseDist;
     double collisionStiffness;
     double collisionDist;
+    double hx, hy;
     int repulseMode;
     // Get the closest interface point (approximately) to an input point
     Pool2D(Boundary &boundary, 

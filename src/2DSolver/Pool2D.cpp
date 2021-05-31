@@ -623,7 +623,7 @@ void Pool2D::detectCollisions() {
     // If we are using proper repulsive forces, we now build up the KDTree and
     // all of the node collections
     if (repulseMode == 2 && medialAxisCollisionPnts.size() > 0) {
-        cout << "DETECTED A COLLISION" << endl;
+        // cout << "DETECTED A COLLISION" << endl;
         // Place all of the colliding MSS's into the KDTree
         kdPointCloud->resetCloud();
         for (auto colMss = allCollisions.begin(); colMss != allCollisions.end(); ++colMss) {
@@ -648,7 +648,7 @@ void Pool2D::detectCollisions() {
             nMatches = kdTree->radiusSearch(&queryPnt[0],
                 simutils::square(SCAL_FAC*repulseDist), ret_matches, params);
 
-            cout << "nMatches = " << nMatches << endl;
+            // cout << "nMatches = " << nMatches << endl;
 
             // Find the nearest points on each colliding object to the medial axis point
             vector<int> nearestMss;
@@ -753,6 +753,9 @@ void Pool2D::create2DPool(Boundary &boundary,
     // Generate the 1D meshes
     this->x = boundary.generateXMesh(this->nx);
     this->y = boundary.generateYMesh(this->ny);
+
+    this->hx = x[1] - x[0];
+    this->hy = y[1] - y[0];
 
     // Allocate the phi array and temp array for time stepping
     this->phi = simutils::new_constant(ny+2*methodOrd, nx+2*methodOrd, DINFINITY);
@@ -1804,18 +1807,23 @@ double Pool2D::velocityExtrapolationRHS_ENO3(int i, int j, double *mxVals,
  * 
  * Returns: the size of the largest possible stencil
 */
-int Pool2D::getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil, bool ghostSkip) {
+int Pool2D::getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil) {//, bool ghostSkip) {
     
 
     for (int k = 0; k < 2*methodOrd+1; k++) {
         if (axis == 0) {
-            stencil[k] = this->objAtIndex(i-methodOrd+k, j) == objects::FLUID_C;
+            stencil[k] = isUsableU(i-methodOrd+k, j);///this->objAtIndex(i-methodOrd+k, j) == objects::FLUID_C;
         } else if (axis == 1) {
-            stencil[k] = this->objAtIndex(i, j-methodOrd+k) == objects::FLUID_C;
+            // cout << "j = " << j-methodOrd+k << " ";
+            stencil[k] = isUsableV(i, j-methodOrd+k);//this->objAtIndex(i, j-methodOrd+k) == objects::FLUID_C;
         }
     }
+    // if (axis == 1) {
+    //     cout << endl;
+    // }
     return simutils::sum(2*methodOrd+1, (int*)stencil);
 }
+
 
 /**
  * Get the widest stencil between min_index and max_index.
@@ -2319,6 +2327,11 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
         }
     }
 
+    // If significant drift from the interface detected, correct.
+    // if (shouldRefitSDF(min(hx, hy))) {
+    //     refitToSolids(ng);
+    // }
+
     nSteps++;
 }
 
@@ -2354,8 +2367,8 @@ double Pool2D::buildSqeezeField() {
     double near[2];
     double maxU = -1;
     double maxV = -1;
-    double maxDist = -1;
-    double dist;
+    // double maxDist = -1;
+    // double dist;
 
     enumeratePool();
     setUpDomainArray();
@@ -2371,10 +2384,6 @@ double Pool2D::buildSqeezeField() {
 
                 poolU[mo+j][mo+i] = near[0] - pnt[0];
                 poolV[mo+j][mo+i] = near[1] - pnt[1];
-
-                // dist = sqrt(simutils::square(poolU[mo+j][mo+i]) + simutils::square(poolV[mo+j][mo+i]));
-
-                // maxDist = (dist > maxDist) ? dist : maxDist;
 
                 maxU = (abs(poolU[mo+j][mo+i]) > maxU) ? abs(poolU[mo+j][mo+i]) : maxU;
                 maxV = (abs(poolV[mo+j][mo+i]) > maxV) ? abs(poolV[mo+j][mo+i]) : maxV;
@@ -2606,15 +2615,33 @@ bool Pool2D::isNormalInterface(objects::FSIObject obj) {
                 || obj == objects::FLUID_E || objects::FLUID_W;
 }
 
+bool Pool2D::enoInRangeX(int val) {
+    return simutils::in_range(val, 1, nx-1);
+}
+
+bool Pool2D::enoInRangeY(int val) {
+    return simutils::in_range(val, 1, ny-1);
+}
+
 /**
  * Set of function to indicate if a cell value is usable within an ENO stencil
 */
 bool Pool2D::isUsableU(int i, int j) {
-    return pool[j][i] == objects::FLUID_C || pool[j][i+1] == objects::FLUID_C;
+    // return pool[j][i] == objects::FLUID_C || pool[j][i+1] == objects::FLUID_C;
+    if (enoInRangeX(i) && enoInRangeY(j)) {
+        return (pool[j][i] != objects::STRUCTURE || pool[j][i+1] == objects::FLUID_C);
+    } else {
+        return false;
+    }
 }
 
 bool Pool2D::isUsableV(int i, int j) {
-    return pool[j][i] == objects::FLUID_C || pool[j+1][i] == objects::FLUID_C;
+    // return pool[j][i] == objects::FLUID_C || pool[j+1][i] == objects::FLUID_C;
+    if (enoInRangeX(i) && enoInRangeY(j)) {
+        return pool[j][i] != objects::STRUCTURE || pool[j+1][i] == objects::FLUID_C;
+    } else {
+        return false;
+    }
 }
 
 /** 

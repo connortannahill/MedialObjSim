@@ -21,6 +21,8 @@ public:
     void setNy(int ny);
     void setDtFix(double dtFix);
     void setMu(double mu);
+    void setUseEno(bool use);
+    bool useEno = false;
 
     double Re;
     bool dtFixSet=false;

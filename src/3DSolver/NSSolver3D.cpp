@@ -30,6 +30,51 @@ double NSSolver3D::step(double tEnd, double safetyFactor) {
 }
 
 /**
+ * Eno scheme for the NS equations
+ * 
+ * d/dx u^2
+*/
+double NSSolver3D::eno_usqx(int i, int j) {
+    // First build the stencil
+    bool sten[7] = {false, false, false, false, false, false, false};
+    pool->getPossibleStencil(i, j, 0, methodOrd, sten);
+
+    int c = 3;
+    int xi = methodOrd + i;
+    int yi = methodOrd + j;
+
+    // Build the value and point set on the stencil
+    double xSten[7];
+    double ySten[7];
+    for (int l = 0; l < 7; l++) {
+        if (sten[l]) {
+            xSten[l] = x[i-c+l+1];
+            ySten[l] = u[yi][xi-c+l];
+        }
+    }
+
+    // Choose the upwind direction properly (or return centered result)
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
+            upDir = -1;
+        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        // In case where ENO stencil fails, use centered approximation
+        return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
+    }
+
+    // Using upwind direction, compute ENO
+    return discs::thirdOrdENO(x[i+1], xSten, ySten, upDir, sten);
+}
+
+/**
  * Function which takes explicit time step for the velocity terms in the
  * momentum equations.
  * Note: assuming no body forces

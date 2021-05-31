@@ -116,6 +116,8 @@ protected:
     double *y;
     double *z;
 
+    double hx, hy, hz;
+
     bool isDeformable;
 
     objects::FSIObject ***pool;
@@ -175,6 +177,9 @@ protected:
     double buildSqeezeField();
     bool shouldRefitSDF(double tol);
     void refitToSolids(int ng);
+    bool enoInRangeX(int val);
+    bool enoInRangeY(int val);
+    bool enoInRangeZ(int val);
 
     /* Functions for discretizations of HJ equations */
 

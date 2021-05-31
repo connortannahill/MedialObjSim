@@ -1,6 +1,7 @@
 *.vscode
 *.txt
 *.exe
+*.png
 output/
 archive/
 

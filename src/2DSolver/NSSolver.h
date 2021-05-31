@@ -18,6 +18,11 @@ private:
     void applyFluidBCs();
     void applyInterfaceBCs();
     double getDt();
+    double eno_usqx(int i, int j);
+    double eno_vsqy(int i, int j);
+    double eno_uvx(int i, int j);
+    double eno_uvy(int i, int j);
+    void interpolateCellCenterVelocities(int i, int j, double outU[2]);
 public:
     NSSolver(Boundary &boundary,
                 vector<SolidObject> &solidObjects,

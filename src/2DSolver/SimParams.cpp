@@ -26,6 +26,10 @@ void SimParams::setNx(int nx) {
     nxSet = true;
 }
 
+void SimParams::setUseEno(bool use) {
+    this->useEno = use;
+}
+
 void SimParams::setNy(int ny) {
     this->ny = ny;
 

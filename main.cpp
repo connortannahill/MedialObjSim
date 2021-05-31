@@ -1,24 +1,18 @@
 #include <iostream>
+#include "./src/Utils/SimUtilities.h"
 #include "./src/2DSolver/Boundary.h"
 #include "./src/2DSolver/SolidObject.h"
-#include "./src/2DSolver/Pool2D.h"
-#include "./src/2DSolver/MassSpring2D.h"
+#include "./src/2DSolver/NSSolver.h"
+#include <math.h>
+#include "./src/Utils/Discretizations.h"
+#include <cassert>
+#include <fenv.h>
 #include "./src/2DSolver/ObjectSeeder.h"
 #include "./src/2DSolver/SimParams.h"
-
-#include "ctime"
-
-#include "./src/Utils/Discretizations.h"
-#include "./src/Utils/SimUtilities.h"
-#include "./src/Utils/SolidParams.h"
 #include "./src/Utils/TestFormatter.h"
 
-#include <math.h>
-#include <cassert>
-#include <Eigen/Dense>
-
 using namespace std;
-using namespace mass_spring;
+const double EPS = 1e-16;
 
 double circleShapeFun(double x, double y, SolidParams &ps) {
     double cx, cy, r;
@@ -36,155 +30,165 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
     return sqrt(simutils::square(x-cx)+simutils::square(y-cy))-r;
 }
 
-int main(int argc, char **argv) { 
+void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
+    int i, j;
+    double cons_u = 0.0;
+    double cons_v = 0.0;
+
+    int wg = nx + 2*nGhost; // "width"
+    int hg = ny + 2*nGhost; // "height"
+
+    simutils::set_constant(hg, wg-1, cons_u, u);
+    simutils::set_constant(hg-1, wg, cons_v, v);
+}
+
+int main(int argc, char **argv) {
+    // Testing the fluid solver
+    double tEnd = 10.0; 
+
+    // The boundaries
+    double xa = 0, xb = 1;
+    double ya = 0, yb = 1;
+
+    // Number of x, y points
+    // int nx = 128;
+    // int ny = 128;
     int nx = 20;
     int ny = 20;
 
-    double xmin = 0;
-    double xmax = 1;
-    double ymin = 0;
-    double ymax = 1;
-
-    // Create the boundary object
-    Boundary boundary(xmin, xmax, ymin, ymax);
+    /* Creation of the solid objects */
+    ///////////////////////////////////
 
     // Parameters of this circle
-    SolidParams params1;
-    params1.addParam("cx",  0.25);
-    // params1.addParam("cx",  0.5);
-    params1.addParam("cy",  0.5);
-    params1.addParam("r",  0.15);
-    params1.addParam("mass",  1.0);
-    params1.addParam("density",  1.0);
-    params1.addParam("E",  1.0);
-    params1.addParam("eta",  0.0);
+    SolidParams circParams1;
+    SolidParams circParams2;
 
-    SimParams simParams;
-    simParams.setNx(nx);
-    simParams.setNy(ny);
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
-    // simParams.setMssNx(20);
-    // simParams.setMssNy(20);
-    simParams.setRe(0.0);
-    simParams.setMu(0.0);
-    simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    // Compute the repulse distance required
-    double h = sqrt(simutils::square(1.0/((double) simParams.nx)
-        + simutils::square(1.0/((double) simParams.ny))));
-    // simParams.setRepulseDist(3*h); // Actually need 0.1
-    simParams.setRepulseDist(0.1); // Actually need 0.1
-    simParams.setCollisionStiffness(2.0);
-    simParams.setCollisionDist(3*h);
-    simParams.setAdmmTol(1e-10);
-    simParams.setUpdateMode(0);
+    double mass = 1.0;
+    double density = 1.0;
 
-    double dt = 0.5/(1.0/(1/((double)nx))+1.0/((1/(double)ny)));
+    double E = 10;
 
-    simParams.setDtFix(dt);
+    // circParams1.addParam("cx", 0.25);
+    circParams1.addParam("cx", 0.5);
+    circParams1.addParam("cy", 0.5);
+    circParams1.addParam("r", 0.15);
+    circParams1.addParam("mass", mass);
+    circParams1.addParam("density", density);
+    circParams1.addParam("E", E);
+    circParams1.addParam("eta", 0.0);
 
-    // Create the solid structure
+    circParams2.addParam("cx", 0.75);
+    circParams2.addParam("cy", 0.5);
+    circParams2.addParam("r", 0.15);
+    circParams2.addParam("mass", mass);
+    circParams2.addParam("density", density);
+    circParams2.addParam("E", E);
+    circParams2.addParam("eta", 0.0);
+
     double u0 = 0.0;
     double v0 = 0.0;
-    SolidObject::ObjectType objType = SolidObject::ObjectType::DEFORMABLE;
-    SolidObject circle1(u0, v0, objType, circleShapeFun, params1);
 
-    SolidParams params2;
-    params2.addParam("cx", 0.75);
-    params2.addParam("cy", 0.5);
-    params2.addParam("r", 0.15);
-    params2.addParam("mass", 1.0);
-    params2.addParam("density", 1.0);
-    params2.addParam("E", 1.0);
-    params2.addParam("eta", 0.0);
-    SolidObject circle2(u0, v0, objType, coneShapeFun, params2); 
+    bool deformableBody = true;
 
-    vector<SolidObject> shapes;
-    shapes.push_back(circle1);
-    shapes.push_back(circle2);
+    // Boundary object
+    Boundary boundary(xa, xb, ya, yb);
 
-    // Create randomly generated objects
-    // int nStructs = 2;
-    // double r = 0.15;
-    // double eps = 3*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny)));
-    // // double eps = 0.001;
     // ObjectSeeder seeder;
-    // vector<SolidObject> shapes(seeder.randomInitialize(nStructs, deformableBody,
-    //         r, eps, boundary, circleShapeFun, params));
-    // assert(false);
+    // int nStructs = 5;
+    // double r = 0.10;
+    // double epsLoc = 2*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny)));
+    // std::vector<SolidObject> shapes(seeder.randomInitialize(nStructs, deformableBody,
+    //         r, epsLoc, boundary, circleShapeFun, circParams1));
+    SolidObject::ObjectType objType = SolidObject::ObjectType::DEFORMABLE;
+    SolidObject circle1(u0, v0, objType, coneShapeFun, circParams1);
+    SolidObject circle2(u0, v0, objType, coneShapeFun, circParams2);
+    // SolidObject circle1(u0, v0, deformableBody, circleShapeFun, circParams1);
+    // SolidObject circle2(u0, v0, deformableBody, circleShapeFun, circParams2);
 
-    // Create the pool
-    cout << "Creating pool" << endl;
-    Pool2D pool(boundary, shapes, simParams);
-    cout << "Finished creating pool" << endl;
-    // assert(false);
+    // Create circle object array for input
+    // SolidObject shapes[2] = {circle1, circle2};
+    std::vector<SolidObject> shapes;
+    shapes.push_back(circle1);
+    // shapes.push_back(circle2);
+    ///////////////////////////////////
 
+    /* Create the solver object with appropriate parameters for the fluid and domain */
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    SimParams params;
+    params.setRe(1000);
+    params.setNx(nx);
+    params.setNy(ny);
+    params.setMu(1.0/params.Re);
+    params.setRepulseMode(2); // This turns on the KD tree error checking
+    // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
+    // params.setRepulseDist(0.1); // Actually need 0.1
+    // params.setCollisionStiffness(2.0);
+    // params.setCollisionDist(0.25);
+    double h = sqrt(simutils::square(1.0/((double) nx)
+        + simutils::square(1.0/((double) ny))));
+    params.setRepulseDist(3*h); // Actually need 0.1
+    params.setCollisionStiffness(2.0);
+    params.setCollisionDist(3*h);
+    params.setUpdateMode(2);
+    double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+    params.setDtFix(dt);
+
+    // Create the Solver object
+    NSSolver solver(boundary, shapes, params, initialConditions);
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Current time
     double t = 0;
-    double tEnd = 10;
+    double safetyFactor = 1;
 
-    cout << "dt = " << dt << endl;
+    // assert(false); // Think there is an issue with the boundary conditions for the obstical domain
 
-    // Test velocities for the level set methods
-    double **u = simutils::new_constant(ny, nx, 0.0);
-    double **v = simutils::new_constant(ny, nx, 0.0);
-    double **p = simutils::new_constant(ny, nx, 0.0);
+    int nsteps = 0;
+    int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
+    while (t+EPS < tEnd && nsteps < max_steps) {
+        t = solver.step(tEnd, safetyFactor);
 
-    cout << "Beginning time stepping" << endl;
+        nsteps++;
 
-    std::clock_t c_start = std::clock();
-
-    int nstep = 0;
-    int max_steps = (argc > 1) ? atoi(argv[1]) : 1;
-    bool reinitialize = true;
-    // pool.refitToSolids(1);
-    while (t < tEnd && nstep < max_steps) {
-        pool.updatePool(dt, u, v, p, 0, reinitialize); // Advance the level set function
-        t+=dt;
-        cout << "t = " << t << endl;
-        nstep++;
+        std::cout << "t = " << t << std::endl;
+        std::cout << "step = " << nsteps << std::endl;
+        std::cout << std::endl;
     }
-
-    // your_algorithm
-    std::clock_t c_end = std::clock();
-
-    double time_elapsed_ms = 1000.0 * (c_end-c_start) / ((double)CLOCKS_PER_SEC);
-    std::cout << "CPU time used: " << time_elapsed_ms << " ms\n";
-
-
-    cout << "FINISHED time stepping" << endl;
+    
+    std::cout << "Outputting data" << std::endl;
 
     /* Output all of the relevant data */
 
-    TestFormatter testFormatter("PoolTest2D");
+    TestFormatter testFormatter("SimpleTest2D");
     string outStr;
+    string outStr2;
+
+    testFormatter.genOutStr("out", outStr);
+    solver.writeToFile(outStr.c_str());
+    cout << outStr << endl;
 
     testFormatter.genOutStr("poolOut", outStr);
-    pool.outputPool(outStr.c_str());
+    testFormatter.genOutStr("poolVel", outStr2);
+    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
     cout << outStr << endl;
-
-    testFormatter.genOutStr("poolVel", outStr);
-    pool.outputPoolVelocity(outStr.c_str());
-    cout << outStr << endl;
+    cout << outStr2 << endl;
 
     testFormatter.genOutStr("MSSEdges", outStr);
-    pool.outputAllStructures(outStr.c_str());
+    solver.outputAllStructures(outStr.c_str());
     cout << outStr << endl;
 
     testFormatter.genOutStr("MSSNodes", outStr);
-    pool.outputAllStructureNodes(outStr.c_str());
+    solver.outputAllStructureNodes(outStr.c_str());
     cout << outStr << endl;
 
     testFormatter.genOutStr("MSSVels", outStr);
-    pool.outputAllStructureVels(outStr.c_str());
+    solver.outputAllStructureVels(outStr.c_str());
     cout << outStr << endl;
 
     testFormatter.genOutStr("MSSTracers", outStr);
-    pool.outputTracers(outStr.c_str());
-    cout << outStr << endl;
+    solver.outputTracers(outStr.c_str());
 
     testFormatter.genOutStr("medialAxis", outStr);
-    pool.outputMedialAxisApprox(outStr.c_str());
-    cout << outStr << endl;
-
-    // pool.printDomainMatrix();
+    solver.outputMedialAxis(outStr.c_str());
 }

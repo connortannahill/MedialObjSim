@@ -823,6 +823,10 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     this->y = boundary.generateYMesh(this->ny);
     this->z = boundary.generateZMesh(this->nz);
 
+    this->hx = x[1] - x[0];
+    this->hy = y[1] - y[0];
+    this->hz = z[1] - z[0];
+
     // Allocate the phi array and temp array for time stepping
     this->phi = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
                                         nx+2*methodOrd, DINFINITY);
@@ -2543,6 +2547,11 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     for (int i = 0; i < nStructs; i++) {
         solids->at(i).updateSolidLocs(*this, false);
     }
+
+    // If significant drift from the interface detected, correct.
+    if (shouldRefitSDF(min(hx, min(hy, hz)))) {
+        refitToSolids(ng);
+    }
 }
 
 /**
@@ -2555,8 +2564,8 @@ double Pool3D::buildSqeezeField() {
     double maxU = -1;
     double maxV = -1;
     double maxW = -1;
-    double maxDist = -1;
-    double dist;
+    // double maxDist = -1;
+    // double dist;
 
     enumeratePool();
     setUpDomainArray();
@@ -2799,6 +2808,18 @@ bool Pool3D::isNormalInterface(objects::FSIObject obj) {
                 || obj == objects::FLUID_E || obj == objects::FLUID_W
                 || obj == objects::FLUID_U || obj == objects::FLUID_D;
 
+}
+
+bool Pool3D::enoInRangeX(int val) {
+    return simutils::in_range(val, 0, nx);
+}
+
+bool Pool3D::enoInRangeY(int val) {
+    return simutils::in_range(val, 0, ny);
+}
+
+bool Pool3D::enoInRangeZ(int val) {
+    return simutils::in_range(val, 0, nz);
 }
 
 /**

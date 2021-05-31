@@ -31,6 +31,297 @@ double NSSolver::step(double tEnd, double safetyFactor) {
 }
 
 /**
+ * Eno scheme for the NS equations
+ * 
+ * d/dx u^2
+*/
+double NSSolver::eno_usqx(int i, int j) {
+    // First build the stencil
+    bool sten[7] = {false, false, false, false, false, false, false};
+    pool->getPossibleStencil(i, j, 0, 3, sten);
+
+    int c = 3;
+    int xi = methodOrd + i;
+    int yi = methodOrd + j;
+
+    // Build the value and point set on the stencil
+    double xSten[7] = {0};
+    double ySten[7] = {0};
+
+    if (!sten[c]) {
+        return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
+    }
+
+    for (int l = 0; l < 7; l++) {
+        if (sten[l]) {
+            xSten[l] = x[i-c+l+1];
+            ySten[l] = simutils::square(u[yi][xi-c+l]);
+        }
+    }
+
+    // Choose the upwind direction properly (or return centered result)
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
+            upDir = -1;
+        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        // In case where ENO stencil fails, use centered approximation
+        return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
+    }
+
+    return discs::thirdOrdENO(x[i+1], xSten, ySten, upDir, sten);
+}
+
+/**
+ * Eno scheme for the NS equations
+ * 
+ * d/dy v^2
+*/
+double NSSolver::eno_vsqy(int i, int j) {
+    // First build the stencil
+    bool sten[7] = {false, false, false, false, false, false, false};
+    pool->getPossibleStencil(i, j, 1, 3, sten);
+
+    int c = 3;
+    int xi = methodOrd + i;
+    int yi = methodOrd + j;
+
+    // Build the value and point set on the stencil
+    double xSten[7] = {0};
+    double ySten[7] = {0};
+    for (int l = 0; l < 7; l++) {
+        if (sten[l]) {
+            xSten[l] = y[j-c+l+1];
+            ySten[l] = simutils::square(v[yi-c+l][xi]);
+        }
+    }
+
+    if (!sten[c]) {
+        return discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
+    }
+
+    // Choose the upwind direction properly (or return centered result)
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
+            upDir = -1;
+        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        // In case where ENO stencil fails, use centered approximation
+        return discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
+    }
+
+    return discs::thirdOrdENO(y[j+1], xSten, ySten, upDir, sten);
+}
+
+/**
+ * Eno scheme for the NS equations
+ * 
+ * d/dx (uv)^2
+*/
+double NSSolver::eno_uvx(int i, int j) {
+    int c = 3;
+    int xi = methodOrd + i;
+    int yi = methodOrd + j;
+
+    // If center point is not available for interpolation, return the first order scheme
+    bool check = pool->isUsableU(i, j) && pool->isUsableU(i, j+1) 
+        && pool->isUsableU(i-1, j) && pool->isUsableU(i-1, j+1);
+    
+    if (!check) {
+        return discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v);
+    }
+
+    // First build the stencil
+    int check_pnts[7] = {i-2, i-1, i, i, i, i+1, i+2};
+    bool sten[7];
+    for (int l = 0; l < 7; l++) {
+        // sten[l] = pool->isUpdateableV(i, check_pnts[j]) && pool->isUsableV(i, check_pnts[j]);
+        sten[l] = pool->isUsableV(check_pnts[l], j);
+    }
+
+    double xSten[7] = {0};
+    double uVals[7] = {0};
+    double vVals[7] = {0};
+
+    // Compute center point
+    if (!sten[c]) {
+        return discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v);
+    }
+
+    xSten[c] = simutils::midpoint(x[i], x[i+1]);
+    uVals[c] = 0.5 * (0.5*(u[yi][xi-1] + u[yi+1][xi-1]) + 0.5*(u[yi][xi] + u[yi+1][xi]));
+    vVals[c] = v[yi][xi];
+
+
+    // Build the value and point set on the stencil
+    double UC[2];
+
+    for (int l = 0; l < c; l++) {
+        if (sten[l]) {
+            xSten[l] = x[i-c+l];
+            uVals[l] = 0.5*(u[yi][xi-c+l] + u[yi+1][xi-c+l]);
+            vVals[l] = 0.5*(v[yi][xi-c+l-1] + v[yi][xi-c+l]);
+        }
+    }
+
+    for (int l = c+1; l < 7; l++) {
+        if (sten[l]) {
+            xSten[l+1] = x[i-c+l-1];
+            uVals[l] = 0.5*(u[yi][xi-c+l-2] + u[yi+1][xi-c+l-2]);
+            vVals[l] = 0.5*(v[yi][xi-c+l-2] + v[yi][xi-c+l-1]);
+        }
+    }
+
+    // Choose the upwind direction properly (or return centered result)
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (uVals[c-1] > 0 && uVals[c+1] > 0) {
+            upDir = -1;
+        } else if (uVals[c-1] < 0 && uVals[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (uVals[c-1] > uVals[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        // In case where ENO stencil fails, use centered approximation
+        return discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v);
+    }
+
+    // Using upwind direction, compute ENO
+    double uv[7];
+    for (int l = 0; l < 7; l++) {
+        uv[l] = uVals[l] * vVals[l];
+    }
+
+    return discs::thirdOrdENO(simutils::midpoint(x[i], x[i+1]), xSten, uv, upDir, sten);
+}
+
+/**
+ * Eno scheme for the NS equations
+ * 
+ * d/dy (uv)^2
+*/
+double NSSolver::eno_uvy(int i, int j) {
+    int c = 3;
+    int xi = methodOrd + i;
+    int yi = methodOrd + j;
+
+    // First build the stencil
+    int check_pnts[7] = {j-2, j-1, j, j, j, j+1, j+2};
+
+    // If center point is not available for interpolation, return the first order scheme
+    bool check = pool->isUsableV(i, j) && pool->isUsableV(i+1, j) 
+        && pool->isUsableV(i, j-1) && pool->isUsableV(i+1, j-1);
+    
+    if (!check) {
+        return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
+    }
+
+    bool sten[7];
+    for (int l = 0; l < 7; l++) {
+        sten[l] = pool->isUsableU(i, check_pnts[l]);
+    }
+
+    double xSten[7] = {0};
+    double uVals[7] = {0};
+    double vVals[7] = {0};
+
+    // Compute center point
+    if (!sten[c]) {
+        return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
+    }
+    xSten[c] = simutils::midpoint(y[j], y[j+1]);
+    uVals[c] = u[yi][xi];
+    vVals[c] = 0.5 * (0.5*(v[yi][xi] + v[yi][xi+1]) + 0.5*(v[yi-1][xi] + v[yi-1][xi+1]));
+
+    // Build the value and point set on the stencil
+    double UC[2];
+    for (int l = 0; l < c; l++) {
+        if (sten[l]) {
+            xSten[l] = y[j-c+l]+1;
+            uVals[l] = 0.5*(u[yi-c+l+1][xi] + u[yi-c+l+1][xi]);
+            vVals[l] = 0.5*(v[yi-c+l+1][xi] + v[yi-c+l][xi+1]);
+        }
+    }
+
+    for (int l = c+1; l < 7; l++) {
+        if (sten[l]) {
+            xSten[l+1] = y[j-c+l-1];
+            uVals[l+1] = 0.5*(u[yi-c+l-2][xi] + u[yi-c+l-1][xi]);
+            vVals[l+1] = 0.5*(v[yi-c+l-2][xi] + v[yi-c+l-2][xi+1]);
+        }
+    }
+
+    // Choose the upwind direction properly (or return centered result)
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (uVals[c-1] > 0 && uVals[c+1] > 0) {
+            upDir = -1;
+        } else if (uVals[c-1] < 0 && uVals[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (uVals[c-1] > uVals[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        // In case where ENO stencil fails, use centered approximation
+        return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
+    }
+
+    // Using upwind direction, compute ENO
+    double uv[7];
+    for (int l = 0; l < 7; l++) {
+        uv[l] = uVals[l] * vVals[l];
+    }
+
+    return discs::thirdOrdENO(simutils::midpoint(y[j], y[j+1]), xSten, uv, upDir, sten);
+}
+
+
+/**
+ * Method which interpolate fluid velocities to the cell centers.
+ * 
+ * TODO: make sure that this implementation makes sense
+*/
+void NSSolver::interpolateCellCenterVelocities(int i, int j, double outU[2]) {
+    double x, y;
+
+    double uvals[2];
+    double vvals[2];
+
+    y = simutils::midpoint(this->y[j], this->y[j+1]);
+    x = simutils::midpoint(this->x[i], this->x[i+1]);
+
+    // The values being interpolated
+    uvals[0] = this->u[this->methodOrd+j][i];
+    uvals[1] = this->u[this->methodOrd+j][i+1];
+
+    vvals[0] = this->v[j][this->methodOrd+i];
+    vvals[1] = this->v[j+1][this->methodOrd+i];
+
+    // Interpolate the value at the cell centers
+    outU[0] = (uvals[0] + uvals[1])/2.0;
+    outU[1] = (vvals[0] + vvals[1])/2.0;;
+}
+
+/**
  * Function which takes explicit time step for the velocity terms in the
  * momentum equations.
  * Note: assuming no body forces
@@ -44,16 +335,23 @@ void NSSolver::updateF(Pool2D *pool) {
     int mo = methodOrd;
 
     // Compute Fu at the internal points.
+    double laplacian;
+    double convective;
     for (j = 0; j < this->ny; j++) {
         for (i = 0; i < this->nx-1; i++) {
             int yi = j + mo;
             int xi = i + mo;
             if (pool->objAtIndex(i, j) == objects::FLUID_C && pool->isUpdateableU(i, j)) {
-                this->FU[yi][xi] = this->u[yi][xi]
-                    + this->dt*( (1.0/Re)*(discs::firstOrder_lap_uxx(xi, yi, this->dx, this->u) 
-                            + discs::firstOrder_lap_uyy(xi, yi, this->dy, this->u))
-                            - discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u)
-                            - discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v));
+                laplacian = discs::firstOrder_lap_uxx(xi, yi, this->dx, this->u) 
+                            + discs::firstOrder_lap_uyy(xi, yi, this->dy, this->u);
+
+                if (params->useEno) {
+                    convective = eno_usqx(i, j) + eno_uvy(i, j);
+                } else {
+                    convective = discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u)
+                        + discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
+                }
+                this->FU[yi][xi] = this->u[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
             }
         }
     }
@@ -63,11 +361,16 @@ void NSSolver::updateF(Pool2D *pool) {
             int yi = j + mo;
             int xi = i + mo;
             if (pool->objAtIndex(i, j) == objects::FLUID_C && pool->isUpdateableV(i, j)) {
-                this->FV[yi][xi] = this->v[yi][xi]
-                    + this->dt*( (1.0/Re)*(discs::firstOrder_lap_vxx(xi, yi, this->dx, this->v)
-                            + discs::firstOrder_lap_vyy(xi, yi, this->dy, this->v))
-                            - discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v)
-                            - discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v) );
+                laplacian = discs::firstOrder_lap_vxx(xi, yi, this->dx, this->v)
+                            + discs::firstOrder_lap_vyy(xi, yi, this->dy, this->v);
+
+                if (params->useEno) {
+                    convective = eno_uvx(i, j) + eno_vsqy(i, j);
+                } else {
+                    convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v)
+                        + discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
+                }
+                this->FV[yi][xi] = this->v[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
             }
         }
     }
