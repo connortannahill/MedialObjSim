@@ -3,5 +3,5 @@
 *.exe
 output/
 archive/
-
+!TestDrivers/*/*.txt
 
