@@ -3,6 +3,7 @@ import numpy as np
 import itertools
 import seaborn as sb
 import sys
+import os
 
 base_dir = './output/2D'
 
@@ -290,6 +291,138 @@ elif mode == 11:
 
     plt.scatter(x, y)
     plt.show()
+elif mode == 12:  # output both fluid velocity and object velocity plots
+    plots = [('Fluid Velocity', 'out'), ('Object Velocity', 'poolVel')]
+
+    cur_f_name = f_name + 'poolOut'
+    out = np.genfromtxt(cur_f_name, delimiter=',')
+
+    nx = 100
+    ny = 100
+
+    x = out[:,0]
+    y = out[:,1]
+    phi = out[:,2]
+
+    n = int(np.sqrt(phi.size))
+
+    for idx, (name, file_ext) in enumerate(plots, start=1):
+        fig, ax = plt.subplots(1)
+        img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+
+        f = plt.figure(idx)
+        for i in range(numObj):
+            mss_edges_f_name = f_name + 'MSSEdges{0}'.format(i)
+
+            out = np.genfromtxt(mss_edges_f_name, delimiter=',')
+            x = out[:,0]
+            y = out[:,1]
+
+            for i in range(0, x.size, 2):
+                plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
+            plt.xlim((0, 1))
+            plt.ylim((0, 1))
+
+        field_vels_f_name = f_name + file_ext
+        plt.title(test + ' - ' + name)
+
+        out = np.genfromtxt(field_vels_f_name, delimiter=',')
+        x = out[:,0]
+        y = out[:,1]
+        u = out[:,2]
+        v = out[:,3]
+
+        q = ax.quiver(x, y, u, v)
+        # plt.imshow(np.reshape(u, (n, n)))
+        # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
+        # plt.title('Extrapolated Speed Field')
+
+        plt.gca().set_aspect('equal')
+        plt.axis('off')
+    
+    plt.show()
+elif mode == 13:  # plot snapshots of steps through simulation
+
+    # code for displaying plot
+    def displayPlot():
+        x,y,steps = plots[curr_pos]
+        # for i in range(0, x.size, 2):
+        #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
+        plt.plot(x, y, marker='o', linestyle='None', color='r', ms=2)
+        plt.title(test + ', nstep = ' + steps)
+        plt.xlim((0, 1))
+        plt.ylim((0, 1))
+        plt.gca().set_aspect('equal')
+        fig.canvas.draw()
+
+    # code for navigating using left, right arrow keys
+    curr_pos = 0
+    def key_event(e):
+        global curr_pos
+
+        print(curr_pos)
+        if e.key == "right":
+            curr_pos = curr_pos + 1
+        elif e.key == "left":
+            curr_pos = curr_pos - 1
+        else:
+            return
+        curr_pos = curr_pos % len(plots)
+
+        ax.cla()
+        displayPlot()
+
+    # x = out[:,0]
+    # y = out[:,1]
+    # phi = out[:,2]
+
+    # n = int(np.sqrt(phi.size))
+
+    # for idx, (name, file_ext) in enumerate(plots, start=1):
+    #     fig, ax = plt.subplots(1)
+    #     img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+    
+    # get data from each step
+    steps = os.listdir(f_name)
+    steps.sort(key=float)
+    print(steps)
+
+    plots = []
+    for step in steps:
+        curr_name = f_name + step + '/poolOut'
+        out = np.genfromtxt(curr_name, delimiter=',')
+
+        # x = out[:,0]
+        # y = out[:,1]
+
+        x = []
+        y = []
+
+        for i in range(numObj):
+            mss_edges_f_name = f_name + step + '/MSSNodes{0}'.format(i)
+
+            out = np.genfromtxt(mss_edges_f_name, delimiter=',')
+            x_temp = out[:,0]
+            y_temp = out[:,1]
+            x = np.concatenate((x, x_temp))
+            y = np.concatenate((y, y_temp))
+
+            # for i in range(0, x.size, 2):
+            #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
+            # plt.xlim((0, 1))
+            # plt.ylim((0, 1))
+
+        # print(x)
+
+        plots.append((x,y,step))
+
+    fig = plt.figure()
+    fig.canvas.mpl_connect('key_press_event', key_event)
+    ax = fig.add_subplot(111)
+    displayPlot()
+    
+    plt.show()
+
 else:
     print('Invalid mode!')
     sys.exit()

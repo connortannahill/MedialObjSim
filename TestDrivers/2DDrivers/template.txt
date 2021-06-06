@@ -1,0 +1,23 @@
+xa xb
+ya yb
+nx ny
+re
+tEnd
+
+num_objects
+
+SolidObject {
+  SolidParams {
+    cx
+    cy
+    r
+    mass
+    density
+    E
+    eta
+  }
+  u0
+  v0
+  objectType (0: RIGID, 1:DEFORMABLE, 2:STATIC)
+  objectFunc (circleShapeFun, coneShapeFun)
+} for each object in num_objects
