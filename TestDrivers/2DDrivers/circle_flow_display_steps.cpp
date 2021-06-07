@@ -1,15 +1,15 @@
 #include <iostream>
-#include "./src/Utils/SimUtilities.h"
-#include "./src/2DSolver/Boundary.h"
-#include "./src/2DSolver/SolidObject.h"
-#include "./src/2DSolver/NSSolver.h"
+#include "../../src/Utils/SimUtilities.h"
+#include "../../src/2DSolver/Boundary.h"
+#include "../../src/2DSolver/SolidObject.h"
+#include "../../src/2DSolver/NSSolver.h"
 #include <math.h>
-#include "./src/Utils/Discretizations.h"
+#include "../../src/Utils/Discretizations.h"
 #include <cassert>
 #include <fenv.h>
-#include "./src/2DSolver/ObjectSeeder.h"
-#include "./src/2DSolver/SimParams.h"
-#include "./src/Utils/TestFormatter.h"
+#include "../../src/2DSolver/ObjectSeeder.h"
+#include "../../src/2DSolver/SimParams.h"
+#include "../../src/Utils/TestFormatter.h"
 
 using namespace std;
 const double EPS = 1e-16;
@@ -31,7 +31,6 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
 }
 
 void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
-    int i, j;
     double cons_u = 0.0;
     double cons_v = 0.0;
 
@@ -77,126 +76,10 @@ void boundaryConditions(int nx, int ny, double **u, double **v) {
     // }
 }
 
-int main(int argc, char **argv) {
-    // Testing the fluid solver
-    double tEnd = 10.0; 
-
-    // The boundaries
-    double xa = 0, xb = 1;
-    double ya = 0, yb = 1;
-
-    // Number of x, y points
-    // int nx = 128;
-    // int ny = 128;
-    int nx = 20;
-    int ny = 20;
-
-    /* Creation of the solid objects */
-    ///////////////////////////////////
-
-    // Parameters of this circle
-    SolidParams circParams1;
-    SolidParams circParams2;
-
-    double mass = 1.0;
-    double density = 1.0;
-
-    double E = 10;
-
-    // circParams1.addParam("cx", 0.25);
-    circParams1.addParam("cx", 0.5);
-    circParams1.addParam("cy", 0.5);
-    circParams1.addParam("r", 0.15);
-    circParams1.addParam("mass", mass);
-    circParams1.addParam("density", density);
-    circParams1.addParam("E", E);
-    circParams1.addParam("eta", 0.0);
-
-    circParams2.addParam("cx", 0.75);
-    circParams2.addParam("cy", 0.5);
-    circParams2.addParam("r", 0.15);
-    circParams2.addParam("mass", mass);
-    circParams2.addParam("density", density);
-    circParams2.addParam("E", E);
-    circParams2.addParam("eta", 0.0);
-
-    double u0 = 0.0;
-    double v0 = 0.0;
-
-    bool deformableBody = true;
-
-    // Boundary object
-    Boundary boundary(xa, xb, ya, yb);
-
-    // ObjectSeeder seeder;
-    // int nStructs = 5;
-    // double r = 0.10;
-    // double epsLoc = 2*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny)));
-    // std::vector<SolidObject> shapes(seeder.randomInitialize(nStructs, deformableBody,
-    //         r, epsLoc, boundary, circleShapeFun, circParams1));
-    SolidObject::ObjectType objType = SolidObject::ObjectType::DEFORMABLE;
-    SolidObject circle1(u0, v0, objType, coneShapeFun, circParams1);
-    SolidObject circle2(u0, v0, objType, coneShapeFun, circParams2);
-    // SolidObject circle1(u0, v0, deformableBody, circleShapeFun, circParams1);
-    // SolidObject circle2(u0, v0, deformableBody, circleShapeFun, circParams2);
-
-    // Create circle object array for input
-    // SolidObject shapes[2] = {circle1, circle2};
-    std::vector<SolidObject> shapes;
-    shapes.push_back(circle1);
-    // shapes.push_back(circle2);
-    ///////////////////////////////////
-
-    /* Create the solver object with appropriate parameters for the fluid and domain */
-    ///////////////////////////////////////////////////////////////////////////////////
-
-    SimParams params;
-    params.setRe(1000);
-    params.setNx(nx);
-    params.setNy(ny);
-    params.setUseEno(true);
-    params.setMu(1.0/params.Re);
-    params.setRepulseMode(2); // This turns on the KD tree error checking
-    // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
-    // params.setRepulseDist(0.1); // Actually need 0.1
-    // params.setCollisionStiffness(2.0);
-    // params.setCollisionDist(0.25);
-    double h = sqrt(simutils::square(1.0/((double) nx)
-        + simutils::square(1.0/((double) ny))));
-    params.setRepulseDist(3*h); // Actually need 0.1
-    params.setCollisionStiffness(2.0);
-    params.setCollisionDist(3*h);
-    params.setUpdateMode(2);
-    double dt = 0.5/((double)nx) + 0.5/((double)ny);
-    params.setDtFix(dt);
-
-    // Create the Solver object
-    NSSolver solver(boundary, shapes, params, initialConditions, boundaryConditions);
-
-    ///////////////////////////////////////////////////////////////////////////////////
-    // Current time
-    double t = 0;
-    double safetyFactor = 1;
-
-    // assert(false); // Think there is an issue with the boundary conditions for the obstical domain
-
-    int nsteps = 0;
-    int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
-    while (t + EPS < tEnd && nsteps < max_steps) {
-        t = solver.step(tEnd, safetyFactor);
-
-        nsteps++;
-
-        std::cout << "t = " << t << std::endl;
-        std::cout << "step = " << nsteps << std::endl;
-        std::cout << std::endl;
-    }
-    
+void outputData(string f_name, NSSolver &solver) {
+    TestFormatter testFormatter(f_name.c_str());
     std::cout << "Outputting data" << std::endl;
 
-    /* Output all of the relevant data */
-
-    TestFormatter testFormatter("SimpleTest2D");
     string outStr;
     string outStr2;
 
@@ -227,4 +110,122 @@ int main(int argc, char **argv) {
 
     testFormatter.genOutStr("medialAxis", outStr);
     solver.outputMedialAxis(outStr.c_str());
+}
+
+int main(int argc, char **argv) {
+    // Testing the fluid solver
+    double tEnd = 10.0; 
+
+    // The boundaries
+    double xa = 0, xb = 1;
+    double ya = 0, yb = 1;
+
+    // Number of x, y points
+    // int nx = 128;
+    // int ny = 128;
+    int nx = 40;
+    int ny = 40;
+
+    /* Creation of the solid objects */
+    ///////////////////////////////////
+
+    // Parameters of this circle
+    SolidParams circParams1;
+    SolidParams circParams2;
+
+    double mass = 1.0;
+    double density = 1.0;
+
+    double E = 10;
+
+    circParams1.addParam("cx", 0.25);
+    circParams1.addParam("cy", 0.5);
+    circParams1.addParam("r", 0.15);
+    circParams1.addParam("mass", mass);
+    circParams1.addParam("density", density);
+    circParams1.addParam("E", E);
+    circParams1.addParam("eta", 0.0);
+
+    circParams2.addParam("cx", 0.75);
+    circParams2.addParam("cy", 0.5);
+    circParams2.addParam("r", 0.15);
+    circParams2.addParam("mass", mass);
+    circParams2.addParam("density", density);
+    circParams2.addParam("E", E);
+    circParams2.addParam("eta", 0.0);
+
+    double u0 = 0.0;
+    double v0 = 0.0;
+
+    bool deformableBody = true;
+
+    // Boundary object
+    Boundary boundary(xa, xb, ya, yb);
+
+    // Create the objects
+    SolidObject circle1(u0, v0, SolidObject::ObjectType::STATIC,
+            coneShapeFun, circParams1);
+    SolidObject circle2(u0, v0, SolidObject::ObjectType::DEFORMABLE,
+            coneShapeFun, circParams2);
+
+    // Create circle object array for input
+    std::vector<SolidObject> shapes;
+    shapes.push_back(circle1);
+    shapes.push_back(circle2);
+
+    ///////////////////////////////////
+
+    /* Create the solver object with appropriate parameters for the fluid and domain */
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    SimParams params;
+    params.setRe(1000);
+    params.setNx(nx);
+    params.setNy(ny);
+    params.setMu(1.0/params.Re);
+    params.setRepulseMode(2); // This turns on the KD tree error checking
+    double h = sqrt(simutils::square(1.0/((double) nx)
+        + simutils::square(1.0/((double) ny))));
+    params.setRepulseDist(3*h); // Actually need 0.1
+    params.setCollisionStiffness(2.0);
+    params.setCollisionDist(3*h);
+    params.setUpdateMode(2);
+    double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+    params.setDtFix(dt);
+
+    // Create the Solver object
+    NSSolver solver(boundary, shapes, params, initialConditions, boundaryConditions);
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // Current time
+    double t = 0;
+    double safetyFactor = 1;
+
+    // assert(false); // Think there is an issue with the boundary conditions for the obstical domain
+
+    // TODO: remove all files from this folder before outputting
+    string testName = "FlowSteps2D/";
+
+    int nsteps = 0;
+    int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
+    while (t+EPS < tEnd && nsteps < max_steps) {
+        t = solver.step(tEnd, safetyFactor);
+
+        if (nsteps % 20 == 0) {
+            string f_name = testName + std::to_string(nsteps);
+            outputData(f_name, solver);
+        }
+
+        nsteps++;
+
+        std::cout << "t = " << t << std::endl;
+        std::cout << "step = " << nsteps << std::endl;
+        std::cout << std::endl;
+    }
+    
+    /* Output all of the relevant data */
+    std::cout << "Outputting data" << std::endl;
+
+    string f_name = testName + std::to_string(nsteps);
+    outputData(f_name, solver);
 }
