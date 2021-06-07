@@ -132,7 +132,7 @@ int main(int argc, char **argv) {
     params.setCollisionStiffness(2.0);
     params.setCollisionDist(3*h);
     params.setUpdateMode(2);
-    double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+    double dt = 0.5/((double)nx) + 0.5/((double)ny);
     params.setDtFix(dt);
 
     // Create the Solver object
@@ -147,7 +147,7 @@ int main(int argc, char **argv) {
 
     int nsteps = 0;
     int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
-    while (t+EPS < tEnd && nsteps < max_steps) {
+    while (t + EPS < tEnd && nsteps < max_steps) {
         t = solver.step(tEnd, safetyFactor);
 
         nsteps++;

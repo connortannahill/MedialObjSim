@@ -28,6 +28,7 @@ public:
                 vector<SolidObject> &solidObjects,
                 SimParams &params,
                 void (*initialConditions)(int,int,int,double*,double*,double**,double**));
+    int eno_get_upwind(bool sten[7], double ySten[7]);
     double getKinematicBoundaryLC(int i, int j, double velObj,
          double velNeigh, double cPnt[2], double stagPnt[2], int nDir[2]);
     NSSolver() = default;

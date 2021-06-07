@@ -31,6 +31,35 @@ double NSSolver::step(double tEnd, double safetyFactor) {
 }
 
 /**
+ * Helper to get the upwind direction\
+ * 
+ * Cases:
+ *  1 - positive upwind (x_{i+1})
+ * -1 - negative upwind (x_{i-1})
+ *  0 - no upwind
+*/
+int NSSolver::eno_get_upwind(bool sten[7], double ySten[7]) {
+    int c = 3;
+
+    int upDir;
+    if (sten[c-1] && sten[c+1]) {
+        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
+            upDir = -1;
+        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
+            upDir = 1;
+        } else {
+            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
+        }
+    } else if (sten[c-1] || sten[c+1]) {
+        upDir = (sten[c-1]) ? -1 : 1;
+    } else {
+        upDir = 0;
+    }
+
+    return upDir;
+}
+
+/**
  * Eno scheme for the NS equations
  * 
  * d/dx u^2
@@ -60,18 +89,9 @@ double NSSolver::eno_usqx(int i, int j) {
     }
 
     // Choose the upwind direction properly (or return centered result)
-    int upDir;
-    if (sten[c-1] && sten[c+1]) {
-        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
-            upDir = -1;
-        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
-            upDir = 1;
-        } else {
-            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
-        }
-    } else if (sten[c-1] || sten[c+1]) {
-        upDir = (sten[c-1]) ? -1 : 1;
-    } else {
+    int upDir = eno_get_upwind(sten, ySten);
+
+    if (upDir == 0) {
         // In case where ENO stencil fails, use centered approximation
         return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
     }
@@ -108,18 +128,8 @@ double NSSolver::eno_vsqy(int i, int j) {
     }
 
     // Choose the upwind direction properly (or return centered result)
-    int upDir;
-    if (sten[c-1] && sten[c+1]) {
-        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
-            upDir = -1;
-        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
-            upDir = 1;
-        } else {
-            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
-        }
-    } else if (sten[c-1] || sten[c+1]) {
-        upDir = (sten[c-1]) ? -1 : 1;
-    } else {
+    int upDir = eno_get_upwind(sten, ySten);
+    if (upDir == 0) {
         // In case where ENO stencil fails, use centered approximation
         return discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
     }
@@ -149,7 +159,6 @@ double NSSolver::eno_uvx(int i, int j) {
     int check_pnts[7] = {i-2, i-1, i, i, i, i+1, i+2};
     bool sten[7];
     for (int l = 0; l < 7; l++) {
-        // sten[l] = pool->isUpdateableV(i, check_pnts[j]) && pool->isUsableV(i, check_pnts[j]);
         sten[l] = pool->isUsableV(check_pnts[l], j);
     }
 
@@ -187,18 +196,8 @@ double NSSolver::eno_uvx(int i, int j) {
     }
 
     // Choose the upwind direction properly (or return centered result)
-    int upDir;
-    if (sten[c-1] && sten[c+1]) {
-        if (uVals[c-1] > 0 && uVals[c+1] > 0) {
-            upDir = -1;
-        } else if (uVals[c-1] < 0 && uVals[c+1] < 0) {
-            upDir = 1;
-        } else {
-            upDir = (uVals[c-1] > uVals[c+1]) ? -1 : 1;
-        }
-    } else if (sten[c-1] || sten[c+1]) {
-        upDir = (sten[c-1]) ? -1 : 1;
-    } else {
+    int upDir = eno_get_upwind(sten, uVals);
+    if (upDir == 0) {
         // In case where ENO stencil fails, use centered approximation
         return discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v);
     }
@@ -238,22 +237,9 @@ double NSSolver::eno_uvy(int i, int j) {
         sten[l] = pool->isUsableU(i, check_pnts[l]);
     }
 
-    // for (int l = 0; l < 7; l++) {
-    //     cout << sten[l] << " ";
-    // }
-    // cout << endl;
-
-    // for (int l = 0; l < 7; l++) {
-    //     cout << check_pnts[l] << " ";
-    // }
-    // cout << endl;
-
-
-
     double xSten[7] = {0};
     double uVals[7] = {0};
     double vVals[7] = {0};
-
 
     // Compute center point
     if (!sten[c]) {
@@ -265,79 +251,36 @@ double NSSolver::eno_uvy(int i, int j) {
 
 
     // Build the value and point set on the stencil
-    // cout << "(i, j) (" << i << ", " << j << ")" << endl;
     double UC[2];
     for (int l = 0; l < c; l++) {
         if (sten[l]) {
             xSten[l] = y[j-c+l]+1;
-            // cout << "checking sten " << l << endl;
-            // cout << "height = " << yi-c+l << endl;
-            // cout << "height+ = " << yi-c+l+1 << endl;
             uVals[l] = 0.5*(u[yi-c+l][xi] + u[yi-c+l][xi]);
             vVals[l] = 0.5*(v[yi-c+l][xi] + v[yi-c+l-1][xi+1]);
         }
     }
-    // cout << "break" << endl;
 
     for (int l = c+1; l < 7; l++) {
         if (sten[l]) {
             xSten[l+1] = y[j-c+l-1];
-            // cout << "checking sten " << l << endl;
-            // cout << "height = " << yi-c+l-2 << endl;
-            // cout << "height+ = " << yi-c+l-1 << endl;
             uVals[l+1] = 0.5*(u[yi-c+l-2][xi] + u[yi-c+l-1][xi]);
             vVals[l+1] = 0.5*(v[yi-c+l-2][xi] + v[yi-c+l-2][xi+1]);
         }
     }
 
-        // Build the value and point set on the stencil
-    // double UC[2];
-    // for (int l = 0; l < c; l++) {
-    //     if (sten[l]) {
-    //         xSten[l] = x[i-c+l];
-    //         uVals[l] = 0.5*(u[yi][xi-c+l-1] + u[yi+1][xi-c+l-1]);
-    //         vVals[l] = 0.5*(v[yi][xi-c+l-1] + v[yi][xi-c+l]);
-    //     }
-    // }
-
-    // for (int l = c+1; l < 7; l++) {
-    //     if (sten[l]) {
-    //         xSten[l+1] = x[i-c+l-1];
-    //         uVals[l] = 0.5*(u[yi][xi-c+l-2] + u[yi+1][xi-c+l-2]);
-    //         vVals[l] = 0.5*(v[yi][xi-c+l-2] + v[yi][xi-c+l-1]);
-    //     }
-    // }
-
     // Choose the upwind direction properly (or return centered result)
-    int upDir;
-    if (sten[c-1] && sten[c+1]) {
-        if (uVals[c-1] > 0 && uVals[c+1] > 0) {
-            upDir = -1;
-        } else if (uVals[c-1] < 0 && uVals[c+1] < 0) {
-            upDir = 1;
-        } else {
-            upDir = (uVals[c-1] > uVals[c+1]) ? -1 : 1;
-        }
-    } else if (sten[c-1] || sten[c+1]) {
-        upDir = (sten[c-1]) ? -1 : 1;
-    } else {
+    int upDir = eno_get_upwind(sten, vVals);
+    if (upDir == 0) {
         // In case where ENO stencil fails, use centered approximation
         return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
     }
-    // assert(false);
 
     // Using upwind direction, compute ENO
     double uv[7];
     for (int l = 0; l < 7; l++) {
         uv[l] = uVals[l] * vVals[l];
     }
-    // return 0;
-    // // double result = discs::thirdOrdENO(simutils::midpoint(y[j], y[j+1]), xSten, uv, upDir, sten);
-    // // double expected = -sin(x[i+1])*sin(simutils::midpoint(y[j], y[j+1]));
-    // // cout << "res = " << result << endl;
-    // // cout << "exp = " << expected << endl;
 
-    // assert(false);
     return discs::thirdOrdENO(simutils::midpoint(y[j], y[j+1]), xSten, uv, upDir, sten);
 }
 
