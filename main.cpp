@@ -70,7 +70,7 @@ void boundaryConditions(int nx, int ny, double **u, double **v) {
     // // Flow past obstacle
     // for (int j = 1; j <= ny; j++) {
     //     // Inflow condition
-    //     u[j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+    //     u[j][0] = 0.1;
 
     //     // Outflow condition
     //     u[j][nx] = u[j][nx-1];
@@ -166,9 +166,9 @@ int main(int argc, char **argv) {
     params.setRepulseDist(3*h); // Actually need 0.1
     params.setCollisionStiffness(2.0);
     params.setCollisionDist(3*h);
-    params.setUpdateMode(2);
+    params.setUpdateMode(1);
     double dt = 0.5/((double)nx) + 0.5/((double)ny);
-    params.setDtFix(dt);
+    // params.setDtFix(dt);
 
     // Create the Solver object
     NSSolver solver(boundary, shapes, params, initialConditions, boundaryConditions);
@@ -177,8 +177,6 @@ int main(int argc, char **argv) {
     // Current time
     double t = 0;
     double safetyFactor = 1;
-
-    // assert(false); // Think there is an issue with the boundary conditions for the obstical domain
 
     int nsteps = 0;
     int max_steps = (argc == 1) ? 1 : atoi(argv[1]);

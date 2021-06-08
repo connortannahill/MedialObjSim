@@ -255,16 +255,8 @@ elif mode == 10:
     y = out[:,1]
     u = out[:,2]
     v = out[:,3]
+    p = out[:,4]
 
-    # nskip = 3
-    # x = np.reshape(x, (n, n))[::nskip, ::nskip]
-    # y = np.reshape(y, (n, n))[::nskip, ::nskip]
-    # u = np.reshape(u, (n, n))[::nskip, ::nskip]
-    # v = np.reshape(v, (n, n))[::nskip, ::nskip]
-
-    # x = x.flatten()
-    # y = y.flatten()
-    # u = u.flatten()
     # v = v.flatten()
 
 
@@ -278,7 +270,7 @@ elif mode == 10:
 
     plt.gca().set_aspect('equal')
     plt.axis('off')
-    plt.savefig("test.png", bbox_inches='tight')
+    # plt.savefig("test.png", bbox_inches='tight')
 
 
     plt.show()
@@ -422,11 +414,47 @@ elif mode == 13:  # plot snapshots of steps through simulation
     displayPlot()
     
     plt.show()
+elif mode == 14:
+    f_temp = f_name
+    f_name += 'poolOut'
+    out = np.genfromtxt(f_name, delimiter=',')
+
+    x = out[:,0]
+    y = out[:,1]
+    phi = out[:,2]
+
+
+    n = int(np.sqrt(phi.size))
+
+    x *= n
+    y *= n
+
+    fig, ax = plt.subplots(1)
+    img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+    
+    f_name = f_temp
+    f_name += 'out'
+    out = np.genfromtxt(f_name, delimiter=',')
+    x = out[:,0]
+    y = out[:,1]
+    u = out[:,2]
+    v = out[:,3]
+    p = out[:,4]
+
+    # plt.imshow(np.reshape(p, (n, n)))
+    heat_map = sb.heatmap(np.flip(np.reshape(p, (n, n)), axis=0))
+    # heat_map = sb.heatmap(np.flip(np.reshape(u, (n, n)), axis=0))
+    # heat_map = sb.heatmap(np.flip(np.reshape(v, (n, n)), axis=0))
+    plt.title('pressure field')
+
+    plt.gca().set_aspect('equal')
+    plt.axis('off')
+
+    plt.show()
 
 else:
     print('Invalid mode!')
     sys.exit()
-
 
 """
 end pool

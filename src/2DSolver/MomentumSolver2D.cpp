@@ -309,15 +309,21 @@ void MomentumSolver2D::writeToFile(const char *fname) {
         for (int i = 0; i < this->nx; i++) {
             int xi = i + mo;
             int yi = j + mo;
-            // if (pool->objAtIndex(i, j) == objects::FLUID_C) {
-            x = simutils::midpoint(this->x[i], this->x[i+1]);
-            y = simutils::midpoint(this->y[j], this->y[j+1]);
-            outFile << x << ", ";
-            outFile << y << ", ";
-            outFile << this->iu[j][i] << ", ";
-            outFile << this->iv[j][i] << ", ";
-            outFile << this->p[yi][xi] << "\n";
-            // }
+            if (pool->objAtIndex(i, j) != objects::STRUCTURE) {
+                x = simutils::midpoint(this->x[i], this->x[i+1]);
+                y = simutils::midpoint(this->y[j], this->y[j+1]);
+                outFile << x << ", ";
+                outFile << y << ", ";
+                outFile << this->iu[j][i] << ", ";
+                outFile << this->iv[j][i] << ", ";
+                outFile << this->p[yi][xi] << "\n";
+            } else {
+                outFile << 0.0 << ", ";
+                outFile << 0.0 << ", ";
+                outFile << 0.0 << ", ";
+                outFile << 0.0 << ", ";
+                outFile << 0.0 << "\n";
+            }
         }
     }
 

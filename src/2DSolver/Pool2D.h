@@ -130,17 +130,17 @@ protected:
     // Optimal TVD third order TVD Runge-Kutta time-stepper for general HJ equation using ENO discretization
     // TODO: refactor code using a functor to bind the method to a particular instance instead of passing the pool
     friend void tvdRK3HJ(double dt, double **arr, Pool2D *pool, int bcType,
-                         double (Pool2D::*rhs)(int,int,double*,double*,double*,double*),
+                         double (Pool2D::*rhs)(int,int,double*,double*,double*,double*,int),
                          void (Pool2D::*bcFun)(double**));
     friend void rhsHJENO(double hx, double hy, double **in, double **out, int bcType, Pool2D *pool,
-              double (Pool2D::*rhs)(int,int,double*,double*,double*,double*),
+              double (Pool2D::*rhs)(int,int,double*,double*,double*,double*,int),
               void (Pool2D::*bcFun)(double**));
 
     /* RHS functions using ENO discretizations. These all take in a collocation of m(x|y)Vals - the relative distances between
     * mesh points on a uniformly spaced grid in each space dimension, and (x|y)Vals, the values used to construct the interpolant in the
     * ENO schemes. The size of each array is arr[2*methodOrd+1], where methodOrd is the order of accuracy of the method. */
     double levelSetRHS_ENO3(int i,int j, double *mxVals, double *xVals,
-                            double *myVals, double *yVals);
+                            double *myVals, double *yVals, int maxOrd);
     double signedDistanceReinitializationRHS_ENO3(int i,int j, double *mxVals,
                                                   double *xVals, double *myVals,
                                                   double *yVals);

@@ -155,7 +155,7 @@ namespace discs {
      * 
      * Modify so that if stencil does not have enough points, we use the less accurate method
     */
-    inline double thirdOrdENO(double evalPnt, double *sP, double *sY, int upDir, bool *prefStencil) {
+    inline double thirdOrdENO(double evalPnt, double *sP, double *sY, int upDir, bool *prefStencil, int maxOrd) {
         // Current leftmost and rightmost stencil points when building up the scheme
         // int l = 3;
         // int r = 3;
@@ -201,7 +201,7 @@ namespace discs {
             }
         }
 
-        if (count < 3) {
+        if (count < 3 || maxOrd == 1) {
             return n;
         }
 
@@ -233,7 +233,7 @@ namespace discs {
             }
         }
 
-        if (count < 4) {
+        if (count < 4 || maxOrd == 2) {
             return n;
         }
 

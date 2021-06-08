@@ -37,8 +37,8 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
 }
 
 int main(int argc, char **argv) { 
-    int nx = 40;
-    int ny = 40;
+    int nx = 100;
+    int ny = 100;
 
     double xmin = 0;
     double xmax = 1;

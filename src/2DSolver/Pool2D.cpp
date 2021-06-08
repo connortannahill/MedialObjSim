@@ -606,7 +606,8 @@ void Pool2D::detectCollisions() {
             // Build up a list of the neighbours around this cell to find which unique colliding nodes
             for (int j = yCell-2; j <= yCell+2; j++) {
                 for (int i = xCell-2; i <= xCell+2; i++) {
-                    if (indInRange(i, j) && domainMembership(i, j) != DOMAIN_INTERSECTION) {
+                    if (indInRange(i, j) && domainMembership(i, j) != DOMAIN_INTERSECTION
+                        && domainMembership(i, j) != DOMAIN_FLUID) {
                         collidingIds.insert(domainMembership(i, j));
                         allCollisions.insert(domainMembership(i, j));
                     }
@@ -1341,7 +1342,7 @@ void Pool2D::getNormalDir(objects::FSIObject obj, int nDir[2]) {
  *        the values of neighbouring points from the previous time step. ENO stencil is constrained.
 */
 void tvdRK3HJ(double dt, double **arr, Pool2D *pool, int bcType,
-                    double (Pool2D::*rhs)(int,int,double*,double*,double*,double*),
+                    double (Pool2D::*rhs)(int,int,double*,double*,double*,double*,int),
                     void (Pool2D::*bcFun)(double**)) {
     int i, j;
     int start, endx, endy;
@@ -1418,7 +1419,7 @@ void tvdRK3HJ(double dt, double **arr, Pool2D *pool, int bcType,
  * function
 */
 void rhsHJENO(double hx, double hy, double **in, double **out, int bcType, Pool2D *pool,
-            double (Pool2D::*rhs)(int,int,double*,double*,double*,double*),
+            double (Pool2D::*rhs)(int,int,double*,double*,double*,double*,int),
             void (Pool2D::*bcFun)(double**)) {
     int i, j, k;
     int start, endx, endy;
@@ -1450,7 +1451,7 @@ void rhsHJENO(double hx, double hy, double **in, double **out, int bcType, Pool2
                 yVals[k] = in[j+k][mo+i];
                 xVals[k] = in[mo+j][i+k];
             }
-            out[mo+j][mo+i] = (pool->*rhs)(i, j, mxVals, xVals, myVals, yVals);
+            out[mo+j][mo+i] = (pool->*rhs)(i, j, mxVals, xVals, myVals, yVals, 3);
         }
     }
 
@@ -1465,7 +1466,7 @@ void rhsHJENO(double hx, double hy, double **in, double **out, int bcType, Pool2
  * RHS function for the level set function using the third order ENO scheme
 */
 double Pool2D::levelSetRHS_ENO3(int i, int j, double *mxVals, double *xVals,
-                                double *myVals, double *yVals) {
+                                double *myVals, double *yVals, int maxOrd) {
     bool stencil[7] = {true, true, true, true, true, true, true};
     int mo = this->methodOrd;
 
@@ -1477,8 +1478,8 @@ double Pool2D::levelSetRHS_ENO3(int i, int j, double *mxVals, double *xVals,
 
     double pntX = mxVals[3];
     double pntY = myVals[3];
-    return -(poolU[j+mo][i+mo]*discs::thirdOrdENO(pntX, mxVals, xVals, upwindU, stencil)
-                +   poolV[j+mo][i+mo]*discs::thirdOrdENO(pntY, myVals, yVals, upwindV, stencil));
+    return -(poolU[j+mo][i+mo]*discs::thirdOrdENO(pntX, mxVals, xVals, upwindU, stencil, maxOrd)
+                +   poolV[j+mo][i+mo]*discs::thirdOrdENO(pntY, myVals, yVals, upwindV, stencil, maxOrd));
 }
 
 /**
@@ -1625,8 +1626,8 @@ double Pool2D::signedDistanceReinitializationRHS_ENO3(int i, int j, double *mxVa
         int upwindY = 1;
 
         double pnt = xVals[3];
-        double phi_x = discs::thirdOrdENO(pnt,mxVals,xVals,upwindX,xStencil);
-        double phi_y = discs::thirdOrdENO(pnt,myVals,yVals,upwindY,yStencil);
+        double phi_x = discs::thirdOrdENO(pnt,mxVals,xVals,upwindX,xStencil,3);
+        double phi_y = discs::thirdOrdENO(pnt,myVals,yVals,upwindY,yStencil,3);
 
         // Compute the smeared signed distance function
         sign = smearSign(h, phi[methodOrd+j][methodOrd+i]);
@@ -1787,8 +1788,8 @@ double Pool2D::velocityExtrapolationRHS_ENO3(int i, int j, double *mxVals,
 
     // Calculate the RHS of the HJ equation using the third order ENO finite difference scheme.
     double pnt = xVals[3];
-    return -( phiGrad[0]*discs::thirdOrdENO(pnt,mxVals,xVals,upwindX,stencil)
-                    +  phiGrad[1]*discs::thirdOrdENO(pnt,myVals,yVals,upwindY,stencil) );
+    return -( phiGrad[0]*discs::thirdOrdENO(pnt,mxVals,xVals,upwindX,stencil,3)
+                    +  phiGrad[1]*discs::thirdOrdENO(pnt,myVals,yVals,upwindY,stencil,3) );
 }
 
 /**
