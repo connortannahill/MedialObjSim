@@ -32,7 +32,7 @@ NSSolver::NSSolver(Boundary &boundary,
 
     // Copy basic info
     this->nx = params.nx;
-    this->ny = params.nx;
+    this->ny = params.ny;
     this->methodOrd = params.methodOrd;
 
     // Create the uniform 1D meshes using the boundary object
@@ -256,33 +256,45 @@ double NSSolver::step(double tEnd, double safetyFactor) {
         this->dtPrev = this->dt;
     }
 
-    cout << "dt = " << dt << endl;
+    // cout << "dt = " << dt << endl;
 
     // If the time step would exceed tEnd, truncate it
     if (this->t + this->dt > tEnd) {
         this->dt = tEnd - this->t;
     }
 
+    // cout << "applying interface BC's" << endl;
     this->applyInterfaceBCs();
+    // cout << "FINISHED applying interface BC's" << endl;
 
     // Explicit step: advance the velocity-dependent terms using explicit time
     // discretization.
+    // cout << "updating F" << endl;
     this->updateF(pool);
+    // cout << "FINISHED updating F" << endl;
 
     // Implicit step: update the pressure by solving Poisson equation.
+    // cout << "updating P" << endl;
     this->updateP();
+    // cout << "FINISHED updating P" << endl;
 
     // Combine these together to update the fluid velocities.
+    // cout << "updating U" << endl;
     this->updateU();
+    // cout << "FINISHED updating U" << endl;
 
     // Interpolate the velocities to the cell centers
+    // cout << "interpolating velocities" << endl;
     this->interpolateVelocities();
+    // cout << "FINISHED interpolating velocities" << endl;
 
     if (this->nStructs > 0) {
+        // cout << "updating pool" << endl;
         // Update the location of the interfaces
         // cout << "calling updatePool, methodOrd = " << methodOrd << endl;
         (this->pool)->updatePool(dt, iu, iv, p, methodOrd, true);
 
+        // cout << "FINISHED updating pool" << endl;
         // Apply object velocities to boundary points
         this->test_setInternal();
     }
@@ -347,6 +359,20 @@ double NSSolver::eno_usqx(int i, int j) {
     sten[c-1] = true;
     sten[c+1] = true;
 
+    // Avoid interfaces
+    // if (pool->isInterface(pool->objAtIndex(i, j)) || pool->isInterface(pool->objAtIndex(i+1, j))
+    //     || pool->isInterface(pool->objAtIndex(i-1, j))) {
+        // return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
+    // }
+    
+    // if (pool->isUsableU(i+1, j)) {
+    //     sten[c+2] = true;
+    // }
+
+    // if (pool->isUsableU(i-2, j)) {
+    //     sten[c-2] = true;
+    // }
+
 
     // // Build the value and point set on the stencil
     double xSten[7] = {0};
@@ -380,7 +406,7 @@ double NSSolver::eno_usqx(int i, int j) {
     // }
 
     // if (upDir == 1) {
-        // return (simutils::square(u[yi][xi+1]) - simutils::square(u[yi][xi-1]))/(2.0*dx);
+        // return (simutils::square(u[yi][xi+1]) - simutils::square(u[yi][xi]))/(dx);
     // } else if (upDir == -1) {
     //     return (simutils::square(u[yi][xi]) - simutils::square(u[yi][xi-1]))/dx;
     // } else {

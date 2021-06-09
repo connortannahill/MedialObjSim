@@ -79,7 +79,7 @@ void boundaryConditions(int nx, int ny, double **u, double **v) {
 
 int main(int argc, char **argv) {
     // Testing the fluid solver
-    double tEnd = 10.0; 
+    double tEnd = 1; 
 
     // The boundaries
     double xa = 0, xb = 1;
@@ -176,7 +176,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 1;
+    double safetyFactor = 0.5;
 
     int nsteps = 0;
     int max_steps = (argc == 1) ? 1 : atoi(argv[1]);

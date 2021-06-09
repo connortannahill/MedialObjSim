@@ -5,12 +5,9 @@
 #include "Boundary.h"
 #include <cassert>
 
-// TODO: consider the use of Dirichlet at the boundary strip
 
 /** 
  * Method which creates a new matrix object.
- * 
- * 
 */
 void PressureSolver::setUpMatrixStruct(int nx, int ny) {
     int n = nx*ny;
