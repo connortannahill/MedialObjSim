@@ -31,6 +31,22 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
     return sqrt(simutils::square(x-cx)+simutils::square(y-cy))-r;
 }
 
+// based on Cassini oval
+double bloodCellShapeFun(double x, double y, SolidParams &ps) {
+    double cx, cy, a, c;
+    ps.getParam("cx", cx);
+    ps.getParam("cy", cy);
+    ps.getParam("a", a);
+    ps.getParam("c", c);
+
+    double x_sqr = simutils::square(x-cx);
+    double y_sqr = simutils::square(y-cy);
+    double a_sqr = simutils::square(a);
+    double c_sqr = simutils::square(c);
+
+    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
+}
+
 void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
     int i, j;
     double cons_u = 0.0;
@@ -91,6 +107,7 @@ int main(int argc, char **argv) {
     map<string, double (*)(double, double, SolidParams&)> shapeFunctions;
     shapeFunctions["circleShapeFun"] = circleShapeFun;
     shapeFunctions["coneShapeFun"] = coneShapeFun;
+    shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
 
     map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
     boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
@@ -129,26 +146,25 @@ int main(int argc, char **argv) {
     // get objects in simulation
     input_file >> num_objects;
 
-    double cx, cy, r, mass, density, E, eta, u0, v0;
+    string objectFunc, paramName;
     int objectType;
-    string objectFunc;
+    double u0, v0, paramValue;
     for (int i = 0; i < num_objects; i++) {
-      input_file >> cx >> cy >> r >> mass >> density >> E >> eta;
-      input_file >> u0 >> v0 >> objectType >> objectFunc;
-      // std::cout << cx << " " << cy << " " << r << " " << mass << " " << density << " " << E << " " << eta <<  endl;
-      // std::cout << u0 << " " << v0 << " " << objectType << " " << objectFunc << endl;
+        input_file >> objectFunc >> objectType >> u0 >> v0;
+        
+        SolidParams params;
+        input_file >> paramName;
+        while (paramName != ".") {
+            input_file >> paramValue;
+            params.addParam(paramName, paramValue);
+            // cout << paramName << " " << paramValue << endl;
 
-      SolidParams params;
-      params.addParam("cx", cx);
-      params.addParam("cy", cy);
-      params.addParam("r", r);
-      params.addParam("mass", mass);
-      params.addParam("density", density);
-      params.addParam("E", E);
-      params.addParam("eta", eta);
+            input_file >> paramName;
+        }
+        // std::cout << u0 << " " << v0 << " " << objectType << " " << objectFunc << endl;
 
-      SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
-      shapes.push_back(object);
+        SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
+        shapes.push_back(object);
     }
 
     // actually set up simParams

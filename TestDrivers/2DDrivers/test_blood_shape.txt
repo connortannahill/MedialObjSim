@@ -1,0 +1,25 @@
+test for blood cell shape
+
+0 1
+0 1
+40 40
+1000
+0
+lidDrivenCavityBC
+10.0
+
+1
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 0.5
+cy 0.7
+a 0.19
+c 0.2
+mass 1.0
+density 1.0
+E 10
+eta 0.0
+.

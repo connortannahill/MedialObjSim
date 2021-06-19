@@ -10,38 +10,41 @@ lidDrivenCavityBC
 
 3
 
-0.2
-0.3
-0.1
-1.0
-1.0
-10
-0.0
-0.0
-0.0
-1
 coneShapeFun
+1
+0.0
+0.0
+cx 0.2
+cy 0.3
+r 0.1
+mass 1.0
+density 1.0
+E 10
+eta 0.0
+.
 
-0.8
-0.3
-0.1
-1.0
-1.0
-10
-0.0
-0.0
-0.0
-1
 coneShapeFun
+1
+0.0
+0.0
+cx 0.8
+cy 0.3
+r 0.1
+mass 1.0
+density 1.0
+E 10
+eta 0.0
+.
 
-0.5
-0.6
-0.1
-1.0
-1.0
-10
-0.0
-0.0
-0.0
-1
 coneShapeFun
+1
+0.0
+0.0
+cx 0.5
+cy 0.6
+r 0.1
+mass 1.0
+density 1.0
+E 10
+eta 0.0
+.
