@@ -1,7 +1,11 @@
+basic lid driven cavity test for multiple objects
+
 0 1
 0 1
 40 40
 1000
+1
+lidDrivenCavityBC
 10.0
 
 3

@@ -1,7 +1,11 @@
+one line description of what the test does
+
 xa xb
 ya yb
 nx ny
 re
+useEno (0,1)
+boundaryConditions (lidDrivenCavityBC, directionalFlowBC)
 tEnd
 
 num_objects

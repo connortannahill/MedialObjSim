@@ -44,7 +44,7 @@ void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double 
 }
 
 // Problem-dependent boundary condition
-void boundaryConditions(int nx, int ny, double **u, double **v) {
+void resetBoundaryConditions(int nx, int ny, double **u, double **v) {
     // Set all the boundary conditions to 0.
     for (int j = 1; j <= ny; j++) {
         u[j][0] = 0.0;
@@ -61,28 +61,40 @@ void boundaryConditions(int nx, int ny, double **u, double **v) {
         v[0][i] = 0.0;
         v[ny][i] = 0.0;
     }
+}
 
-    // Lid driven cavity example
+void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
+    resetBoundaryConditions(nx, ny, u, v);
+
     double ubar = 1;
     for (int i = 1; i <= nx; i++) {
         u[ny+1][i] = 2*ubar - u[ny][i];
     }
+}
 
-    // // Flow past obstacle
-    // for (int j = 1; j <= ny; j++) {
-    //     // Inflow condition
-    //     u[j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+void directionalFlowBC(int nx, int ny, double **u, double **v) {
+    resetBoundaryConditions(nx, ny, u, v);
 
-    //     // Outflow condition
-    //     u[j][nx] = u[j][nx-1];
-    // }
+    for (int j = 1; j <= ny; j++) {
+        // Inflow condition
+        u[j][0] = 0.1;
+        //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+        // Outflow condition
+        u[j][nx] = u[j][nx-1];
+    }
 }
 
 // argv: main input_file max_steps
 int main(int argc, char **argv) {
+    // set up dictionary of functions for input file
     map<string, double (*)(double, double, SolidParams&)> shapeFunctions;
     shapeFunctions["circleShapeFun"] = circleShapeFun;
     shapeFunctions["coneShapeFun"] = coneShapeFun;
+
+    map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
+    boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
+    boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;
@@ -95,17 +107,21 @@ int main(int argc, char **argv) {
     /* Parse from input file */
     ///////////////////////////////////
 
+    string desc, boundaryConditionType;
     double xa, xb, ya, yb, tEnd;
-    int nx, ny, re;
-    int num_objects;
+    int nx, ny, re, num_objects;
+    bool useEno;
     vector<SolidObject> shapes;
     SimParams simParams;
 
     ifstream input_file(input_file_name);
 
+    // ignore first line, which is a description
+    getline(input_file, desc);
+
     // get simulation params
-    input_file >> xa >> xb >> ya >> yb;
-    input_file >> nx >> ny >> re >> tEnd;
+    input_file >> xa >> xb >> ya >> yb >> nx >> ny;
+    input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
     // std::cout << nx << " " << ny << " " << re << " " << tEnd << endl;
@@ -143,6 +159,7 @@ int main(int argc, char **argv) {
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
+    simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
     // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
@@ -159,7 +176,7 @@ int main(int argc, char **argv) {
     Boundary boundary(xa, xb, ya, yb);
 
     // Create the Solver object
-    NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryConditions);
+    NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryConditionFunctions[boundaryConditionType]);
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time

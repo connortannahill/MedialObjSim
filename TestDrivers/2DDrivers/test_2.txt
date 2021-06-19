@@ -1,0 +1,23 @@
+test for unmoving/static object by making object massive and stiff
+
+0 1
+0 1
+40 40
+10
+1
+directionalFlowBC
+400.0
+
+1
+
+0.5
+0.5
+0.3
+1000.0
+1.0
+1000
+0.0
+0.0
+0.0
+1
+coneShapeFun

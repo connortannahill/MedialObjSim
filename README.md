@@ -19,3 +19,15 @@ To plot:
 python plot.py <test_name> <mode> <num_objects>
 ```
 where `test_name` is from `output/<test_name>` file generated from running C++ code
+
+
+### Test Driver Input Files
+
+In folder `TestDrivers/2DDrivers/`, see `template.txt` for the format of the input file and `test_1.txt` for basic usage.
+
+To run, change Makefile `sol2d` to `main_from_txt.cpp`. Example command line call:
+
+```sh
+./fluidsolver2d.exe TestDrivers/2DDrivers/test_1.txt 100
+```
+
