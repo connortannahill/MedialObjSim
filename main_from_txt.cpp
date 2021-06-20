@@ -48,7 +48,6 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
 }
 
 void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
-    int i, j;
     double cons_u = 0.0;
     double cons_v = 0.0;
 
@@ -101,7 +100,43 @@ void directionalFlowBC(int nx, int ny, double **u, double **v) {
     }
 }
 
-// argv: main input_file max_steps
+void outputData(string f_name, NSSolver &solver) {
+    TestFormatter testFormatter(f_name.c_str());
+    std::cout << "Outputting data" << std::endl;
+
+    string outStr;
+    string outStr2;
+
+    testFormatter.genOutStr("out", outStr);
+    solver.writeToFile(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("poolOut", outStr);
+    testFormatter.genOutStr("poolVel", outStr2);
+    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
+    cout << outStr << endl;
+    cout << outStr2 << endl;
+
+    testFormatter.genOutStr("MSSEdges", outStr);
+    solver.outputAllStructures(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSNodes", outStr);
+    solver.outputAllStructureNodes(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSVels", outStr);
+    solver.outputAllStructureVels(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSTracers", outStr);
+    solver.outputTracers(outStr.c_str());
+
+    testFormatter.genOutStr("medialAxis", outStr);
+    solver.outputMedialAxis(outStr.c_str());
+}
+
+// argv: main input_file max_steps save_snapshots
 int main(int argc, char **argv) {
     // set up dictionary of functions for input file
     map<string, double (*)(double, double, SolidParams&)> shapeFunctions;
@@ -120,6 +155,7 @@ int main(int argc, char **argv) {
 
     string input_file_name = argv[1];
     int max_steps = (argc == 2) ? 1 : atoi(argv[2]);
+    bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
 
     /* Parse from input file */
     ///////////////////////////////////
@@ -185,8 +221,8 @@ int main(int argc, char **argv) {
     simParams.setRepulseDist(3*h); // Actually need 0.1
     simParams.setCollisionStiffness(2.0);
     simParams.setCollisionDist(3*h);
-    simParams.setUpdateMode(2);
-    simParams.setDtFix(dt);
+    simParams.setUpdateMode(1);
+    // simParams.setDtFix(dt);
 
     // Boundary object
     Boundary boundary(xa, xb, ya, yb);
@@ -202,49 +238,42 @@ int main(int argc, char **argv) {
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
 
     int nsteps = 0;
-    while (t+EPS < tEnd && nsteps < max_steps) {
-        t = solver.step(tEnd, safetyFactor);
+    if (save_snapshots) {
 
-        nsteps++;
+        string testName = "FlowSteps2D/";
+        while (t+EPS < tEnd && nsteps < max_steps) {
+            t = solver.step(tEnd, safetyFactor);
 
-        std::cout << "t = " << t << std::endl;
-        std::cout << "step = " << nsteps << std::endl;
-        std::cout << std::endl;
+            if (nsteps % 20 == 0) {
+                string f_name = testName + std::to_string(nsteps);
+                outputData(f_name, solver);
+            }
+
+            nsteps++;
+
+            std::cout << "t = " << t << std::endl;
+            std::cout << "step = " << nsteps << std::endl;
+            std::cout << std::endl;
+        }
+
+        string f_name = testName + std::to_string(nsteps);
+        outputData(f_name, solver);
+
+    } else {
+
+        while (t+EPS < tEnd && nsteps < max_steps) {
+            t = solver.step(tEnd, safetyFactor);
+
+            nsteps++;
+
+            std::cout << "t = " << t << std::endl;
+            std::cout << "step = " << nsteps << std::endl;
+            std::cout << std::endl;
+        }
+
+        /* Output all of the relevant data */
+        std::cout << "Outputting data" << std::endl;
+        outputData("SimpleTest2D", solver);
+
     }
-    
-    std::cout << "Outputting data" << std::endl;
-
-    /* Output all of the relevant data */
-
-    TestFormatter testFormatter("SimpleTest2D");
-    string outStr;
-    string outStr2;
-
-    testFormatter.genOutStr("out", outStr);
-    solver.writeToFile(outStr.c_str());
-    std::cout << outStr << endl;
-
-    testFormatter.genOutStr("poolOut", outStr);
-    testFormatter.genOutStr("poolVel", outStr2);
-    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
-    std::cout << outStr << endl;
-    std::cout << outStr2 << endl;
-
-    testFormatter.genOutStr("MSSEdges", outStr);
-    solver.outputAllStructures(outStr.c_str());
-    std::cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSNodes", outStr);
-    solver.outputAllStructureNodes(outStr.c_str());
-    std::cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSVels", outStr);
-    solver.outputAllStructureVels(outStr.c_str());
-    std::cout << outStr << endl;
-
-    testFormatter.genOutStr("MSSTracers", outStr);
-    solver.outputTracers(outStr.c_str());
-
-    testFormatter.genOutStr("medialAxis", outStr);
-    solver.outputMedialAxis(outStr.c_str());
 }

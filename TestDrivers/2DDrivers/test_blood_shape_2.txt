@@ -1,11 +1,11 @@
-test for blood cell shape
+test for blood cells with directional flow in longer tube
 
+0 2
 0 1
-0 1
-40 40
+60 60
 1000
 1
-lidDrivenCavityBC
+directionalFlowBC
 20.0
 
 5
@@ -14,25 +14,11 @@ bloodCellShapeFun
 1
 0.0
 0.0
-cx 0.25
-cy 0.7
+cx 0.3
+cy 0.8
 a 0.1
 c 0.105
-mass 1.0
-density 1.0
-E 10
-eta 0.0
-.
-
-bloodCellShapeFun
-1
-0.0
-0.0
-cx 0.75
-cy 0.7
-a 0.1
-c 0.105
-mass 1.0
+mass 0.8
 density 1.0
 E 10
 eta 0.0
@@ -43,7 +29,21 @@ bloodCellShapeFun
 0.0
 0.0
 cx 0.5
-cy 0.45
+cy 0.5
+a 0.1
+c 0.105
+mass 0.4
+density 1.0
+E 10
+eta 0.0
+.
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 0.8
+cy 0.25
 a 0.1
 c 0.105
 mass 1.0
@@ -56,11 +56,11 @@ bloodCellShapeFun
 1
 0.0
 0.0
-cx 0.25
-cy 0.2
+cx 1.1
+cy 0.6
 a 0.1
 c 0.105
-mass 1.0
+mass 0.5
 density 1.0
 E 10
 eta 0.0
@@ -70,8 +70,8 @@ bloodCellShapeFun
 1
 0.0
 0.0
-cx 0.75
-cy 0.2
+cx 1.4
+cy 0.3
 a 0.1
 c 0.105
 mass 1.0
