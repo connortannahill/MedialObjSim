@@ -1,0 +1,24 @@
+test for single object in basic directional flow
+
+0 1
+0 1
+40 40
+1000
+1
+directionalFlowBC
+400.0
+
+1
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.5
+cy 0.5
+r 0.1
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
