@@ -10,7 +10,8 @@ SRC3D=$(wildcard ./src/3DSolver/*.cpp) $(wildcard ./src/LASolver/*.cpp) $(wildca
 # Basic drivers
 ###############
 
-sol2d : main.cpp $(SRC2D) $(LIBS)
+# sol2d : main.cpp $(SRC2D) $(LIBS)
+sol2d : main_from_txt.cpp $(SRC2D) $(LIBS)
 	$(CC) $(CFLAGS) $^ -o fluidsolver2d.exe
 
 sol3d : main.cpp $(SRC3D) $(LIBS)

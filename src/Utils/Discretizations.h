@@ -37,6 +37,32 @@ namespace discs {
         return ( simutils::square(v[j][i] + v[j+1][i]) 
             - simutils::square(v[j-1][i] + v[j][i])) / (4.0*dy);
     }
+    inline double firstOrder_conv_usqx_stab(int i, int j, double dx, double **u, double gam) {
+        return ( simutils::square(u[j][i] + u[j][i+1])
+            - simutils::square(u[j][i-1] + u[j][i]))/(4.0*dx) 
+            + gam*(abs(u[j][i] + u[j][i+1])*(u[j][i] - u[j][i+1]) + abs(u[j][i-1] + u[j][i])*(u[j][i-1] - u[j][i]))/(4.0*dx);
+    }
+
+    inline double firstOrder_conv_uvy_stab(int i, int j, double dy, double **u, double **v, double gam) {
+        return ( (v[j][i] + v[j][i+1]) * (u[j][i] + u[j+1][i]) 
+            -  (v[j-1][i] + v[j-1][i+1]) * (u[j-1][i] + u[j][i]) ) / (4.0*dy)
+            + gam*(abs(v[j][i] + v[j][i+1]) * (u[j][i] - u[j+1][i])
+                - abs(v[j-1][i] + v[j-1][i+1]) * (u[j-1][i] - u[j][i]) )/(4.0*dy);
+    }
+
+    inline double firstOrder_conv_uvx_stab(int i, int j, double dx, double **u, double **v, double gam) {
+        return ( (u[j][i] + u[j+1][i]) * (v[j][i] + v[j][i+1])
+            - (u[j][i-1] + u[j+1][i-1]) * (v[j][i-1] + v[j][i]) ) / (4.0*dx)
+            + gam*(abs(u[j][i] + u[j+1][i]) * (v[j][i] - v[j][i+1])
+                - abs(u[j][i-1] + u[j+1][i-1]) * (v[j][i-1] - v[j][i]))/(4.0*dx);
+    }
+
+    inline double firstOrder_conv_vsqy_stab(int i, int j, double dy, double **v, double gam) {
+        return ( simutils::square(v[j][i] + v[j+1][i]) 
+            - simutils::square(v[j-1][i] + v[j][i])) / (4.0*dy)
+            + gam*(abs(v[j][i] + v[j+1][i])*abs(v[j][i] - v[j+1][i])  
+                - abs(v[j-1][i] + v[j][i])*(v[j-1][i] - v[j][i]))/(4.0*dy);
+    }
 
     inline double firstOrder_lap_uxx(int i, int j, double dx, double **u) {
         return (u[j][i+1] - 2.0*u[j][i] + u[j][i-1]) / (simutils::square(dx));

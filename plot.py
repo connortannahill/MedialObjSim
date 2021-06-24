@@ -292,15 +292,15 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     nx = 100
     ny = 100
 
-    x = out[:,0]
-    y = out[:,1]
+    x_pool = out[:,0]
+    y_pool = out[:,1]
     phi = out[:,2]
 
     n = int(np.sqrt(phi.size))
 
     for idx, (name, file_ext) in enumerate(plots, start=1):
         fig, ax = plt.subplots(1)
-        img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+        img = ax.contour(np.reshape(x_pool, (n, n)), np.reshape(y_pool, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
 
         f = plt.figure(idx)
         for i in range(numObj):
@@ -442,7 +442,8 @@ elif mode == 14:
     p = out[:,4]
 
     # plt.imshow(np.reshape(p, (n, n)))
-    heat_map = sb.heatmap(np.flip(np.reshape(p, (n, n)), axis=0))
+    # heat_map = sb.heatmap(np.flip(np.reshape(p, (n, n)), axis=0))
+    heat_map = sb.heatmap(np.reshape(p, (n, n)), axis=0)
     # heat_map = sb.heatmap(np.flip(np.reshape(u, (n, n)), axis=0))
     # heat_map = sb.heatmap(np.flip(np.reshape(v, (n, n)), axis=0))
     plt.title('pressure field')

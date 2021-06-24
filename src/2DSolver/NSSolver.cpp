@@ -684,6 +684,32 @@ void NSSolver::updateF(Pool2D *pool) {
 
     int mo = methodOrd;
 
+    // Compute the stabilization parameter
+    // double gam = 0.0;
+    // if (params->useEno) {
+    //     // Get max 
+    //     double maxU = -INFINITY;
+    //     double maxV = -INFINITY;
+    //     for (j = 0; j < this->ny; j++) {
+    //         for (i = 0; i < this->nx-1; i++) {
+    //             int yi = j + mo;
+    //             int xi = i + mo;
+
+    //             maxU = max(maxU, u[yi][xi]);
+    //         }
+    //     }
+    //     for (j = 0; j < this->ny-1; j++) {
+    //         for (i = 0; i < this->nx; i++) {
+    //             int yi = j + mo;
+    //             int xi = i + mo;
+
+    //             maxV = max(maxV, v[yi][xi]);
+    //         }
+    //     }
+
+    //     gam = 
+    // }
+
     // Compute Fu at the internal points.
     double laplacian;
     double convective;
@@ -696,7 +722,10 @@ void NSSolver::updateF(Pool2D *pool) {
                             + discs::firstOrder_lap_uyy(xi, yi, this->dy, this->u);
 
                 if (params->useEno) {
-                    convective = eno_usqx(i, j) + eno_uvy(i, j);
+                    double gam = max(abs((u[yi][xi]*this->dt)/(this->dx)), abs(v[yi][xi]*this->dt)/(this->dy));
+                    convective = discs::firstOrder_conv_usqx_stab(xi, yi, this->dx, this->u, gam)
+                        + discs::firstOrder_conv_uvy_stab(xi, yi, this->dy, this->u, this->v, gam);
+                    // eno_usqx(i, j) + eno_uvy(i, j);
                     // convective = eno_usqx(i,j) + discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
                 } else {
                     convective = discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u)
@@ -716,8 +745,11 @@ void NSSolver::updateF(Pool2D *pool) {
                             + discs::firstOrder_lap_vyy(xi, yi, this->dy, this->v);
 
                 if (params->useEno) {
+                    double gam = max(abs((u[yi][xi]*this->dt)/(this->dx)), abs(v[yi][xi]*this->dt)/(this->dy));
+                    convective = discs::firstOrder_conv_uvx_stab(xi, yi, this->dx, this->u, this->v, gam)
+                        + discs::firstOrder_conv_vsqy_stab(xi, yi, this->dy, this->v, gam);
                     // convective = eno_uvx(i, j) + eno_vsqy(i, j);
-                    convective = eno_uvx(i, j) + eno_vsqy(i, j);
+                    // convective = eno_uvx(i, j) + eno_vsqy(i, j);
                     // convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v) + eno_vsqy(i, j);
                 } else {
                     convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v)
