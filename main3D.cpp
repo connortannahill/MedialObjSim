@@ -57,9 +57,9 @@ int main(int argc, char **argv) {
     double za = 0, zb = 1;
 
     // Number of x, y points
-    int nx = 30;
-    int ny = 30;
-    int nz = 30;
+    int nx = 20;
+    int ny = 20;
+    int nz = 20;
 
     /* Creation of the solid objects */
     ///////////////////////////////////
@@ -104,7 +104,7 @@ int main(int argc, char **argv) {
     double v0 = 0.0;
     double w0 = 0.0;
 
-    bool deformableBody = true;
+    SolidObject3D::ObjectType deformableBody = SolidObject3D::ObjectType::DEFORMABLE;
 
     // The individual circles
     SolidObject3D circle1(u0, v0, w0, deformableBody, coneShapeFun, circParams1);
@@ -140,13 +140,40 @@ int main(int argc, char **argv) {
     SimParams3D params;
     params.setRe(1000.0);
     // params["mu"] = 1/params["Re"];
-    params.setMu(0.0);
-    params.setMssNx(20);
-    params.setMssNy(20);
-    params.setMssNz(20);
+    params.setMu(1.0/params.Re);
     params.setNx(nx);
     params.setNy(ny);
     params.setNz(nz);
+    params.setMssNx(nx);
+    params.setMssNy(ny);
+    params.setMssNz(nz);
+    params.setUseEno(false);
+    params.setRepulseMode(0);
+    double h = sqrt(simutils::square(1.0/((double) nx)
+        + simutils::square(1.0/((double) ny)
+        + simutils::square(1.0/((double) nz)))));
+    params.setRepulseDist(3.0*h);
+    params.setCollisionDist(3.0*h);
+    params.setCollisionStiffness(2.0);
+    params.setRepulseDist(3.0*h);
+    params.setUpdateMode(1);
+
+    //   params.setRe(1000);
+    // params.setNx(nx);
+    // params.setNy(ny);
+    // params.setUseEno(true);
+    // params.setMu(1.0/params.Re);
+    // params.setRepulseMode(2); // This turns on the KD tree error checking
+    // // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
+    // // params.setRepulseDist(0.1); // Actually need 0.1
+    // // params.setCollisionStiffness(2.0);
+    // // params.setCollisionDist(0.25);
+    // double h = sqrt(simutils::square(1.0/((double) nx)
+    //     + simutils::square(1.0/((double) ny))));
+    // params.setRepulseDist(3*h); // Actually need 0.1
+    // params.setCollisionStiffness(2.0);
+    // params.setCollisionDist(3*h);
+    // params.setUpdateMode(1);
 
     // Create the Solver object
     std::cout << "creating the solver" << std::endl;
@@ -165,17 +192,17 @@ int main(int argc, char **argv) {
     int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
     std::cout << "TAKING " << max_steps << " STEPS" << std::endl;
     double eps = 1e-12;
-    while (t+eps < tEnd && nsteps < max_steps) {
-        std::cout << "Taking a step" << std::endl;
-        t = solver.step(tEnd, safetyFactor);
-        std::cout << "Finished a step" << std::endl;
+    // while (t+eps < tEnd && nsteps < max_steps) {
+    //     std::cout << "Taking a step" << std::endl;
+    //     t = solver.step(tEnd, safetyFactor);
+    //     std::cout << "Finished a step" << std::endl;
 
-        nsteps++;
+    //     nsteps++;
 
-        std::cout << "t = " << t << std::endl;
-        std::cout << "step = " << nsteps << std::endl;
-        std::cout << std::endl;
-    }
+    //     std::cout << "t = " << t << std::endl;
+    //     std::cout << "step = " << nsteps << std::endl;
+    //     std::cout << std::endl;
+    // }
 
     // Write to the output file.
     std::cout << "Outputting data" << std::endl;

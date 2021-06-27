@@ -381,7 +381,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     }
 
     /* Set vels to zero if this is a static object */
-    if (objType = SolidObject3D::ObjectType::STATIC) {
+    if (objType == SolidObject3D::ObjectType::STATIC) {
         qt->setZero();
     }
 

@@ -1,4 +1,7 @@
 #include "SimParams3D.h"
+#include <iostream>
+
+using namespace std;
 
 void SimParams3D::setRe(double Re) {
     this->Re = Re;
@@ -18,6 +21,10 @@ void SimParams3D::setMssNy(int mssNy) {
 void SimParams3D::setMssNz(int mssNy) {
     this->mssNy = mssNy;
     mssNySet = true;
+}
+
+void SimParams3D::setUseEno(bool useEno) {
+    this->useEno = useEno;
 }
 
 void SimParams3D::setNx(int nx) {
@@ -61,6 +68,15 @@ void SimParams3D::setMu(double mu) {
 }
 
 bool SimParams3D::checkParams() {
+    cout << nxSet << endl;
+    cout << nySet << endl;
+    cout << nzSet << endl;
+    cout << reSet << endl;
+    cout << muSet << endl;
+    cout << repulseModeSet << endl;
+    cout << repulseDistSet << endl;
+    cout << collisionStiffnessSet << endl;
+    cout << collisionDistSet << endl;
     return nxSet && nySet && nzSet && reSet && muSet && repulseModeSet && repulseDistSet
             && collisionStiffnessSet && collisionDistSet;
 }

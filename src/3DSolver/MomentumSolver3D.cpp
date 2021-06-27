@@ -319,25 +319,6 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
         this->dt = tEnd - this->t;
     }
 
-    // If there are any structures in the pool, update the pool location.
-    // if (this->nStructs > 0) {
-    //     // Update the location of the interfaces
-    //     cout << "Updating the pool" << endl;
-    //     (this->pool)->updatePool(dtPrev, u, v, w, p, methodOrd, true);
-    //     cout << "FINISHED updating the pool" << endl;
-
-    //     // Apply object velocities to boundary points
-    //     this->test_setInternal();
-
-    //     // // Update the enumeration of the pool
-    //     // (this->pool)->enumeratePool();
-
-    //     // // Find the domain belonging for each of the cells
-    //     // // if (pool->enumHasChanged()) {
-    //     // (this->pool)->setUpDomainArray();
-    //     // }
-    // }
-
     // Apply the fluid boundary conditions on the initial step using pure virtual function.
     cout << "Applying fluid BC's" << endl;
     this->applyFluidBCs();

@@ -29,50 +29,50 @@ double NSSolver3D::step(double tEnd, double safetyFactor) {
     return MomentumSolver3D::step(tEnd, safetyFactor);
 }
 
-/**
- * Eno scheme for the NS equations
- * 
- * d/dx u^2
-*/
-double NSSolver3D::eno_usqx(int i, int j) {
-    // First build the stencil
-    bool sten[7] = {false, false, false, false, false, false, false};
-    pool->getPossibleStencil(i, j, 0, methodOrd, sten);
+// /**
+//  * Eno scheme for the NS equations
+//  * 
+//  * d/dx u^2
+// */
+// double NSSolver3D::eno_usqx(int i, int j) {
+//     // First build the stencil
+//     bool sten[7] = {false, false, false, false, false, false, false};
+//     pool->getPossibleStencil(i, j, 0, methodOrd, sten);
 
-    int c = 3;
-    int xi = methodOrd + i;
-    int yi = methodOrd + j;
+//     int c = 3;
+//     int xi = methodOrd + i;
+//     int yi = methodOrd + j;
 
-    // Build the value and point set on the stencil
-    double xSten[7];
-    double ySten[7];
-    for (int l = 0; l < 7; l++) {
-        if (sten[l]) {
-            xSten[l] = x[i-c+l+1];
-            ySten[l] = u[yi][xi-c+l];
-        }
-    }
+//     // Build the value and point set on the stencil
+//     double xSten[7];
+//     double ySten[7];
+//     for (int l = 0; l < 7; l++) {
+//         if (sten[l]) {
+//             xSten[l] = x[i-c+l+1];
+//             ySten[l] = u[yi][xi-c+l];
+//         }
+//     }
 
-    // Choose the upwind direction properly (or return centered result)
-    int upDir;
-    if (sten[c-1] && sten[c+1]) {
-        if (ySten[c-1] > 0 && ySten[c+1] > 0) {
-            upDir = -1;
-        } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
-            upDir = 1;
-        } else {
-            upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
-        }
-    } else if (sten[c-1] || sten[c+1]) {
-        upDir = (sten[c-1]) ? -1 : 1;
-    } else {
-        // In case where ENO stencil fails, use centered approximation
-        return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
-    }
+//     // Choose the upwind direction properly (or return centered result)
+//     int upDir;
+//     if (sten[c-1] && sten[c+1]) {
+//         if (ySten[c-1] > 0 && ySten[c+1] > 0) {
+//             upDir = -1;
+//         } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
+//             upDir = 1;
+//         } else {
+//             upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
+//         }
+//     } else if (sten[c-1] || sten[c+1]) {
+//         upDir = (sten[c-1]) ? -1 : 1;
+//     } else {
+//         // In case where ENO stencil fails, use centered approximation
+//         return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
+//     }
 
-    // Using upwind direction, compute ENO
-    return discs::thirdOrdENO(x[i+1], xSten, ySten, upDir, sten);
-}
+//     // Using upwind direction, compute ENO
+//     return discs::thirdOrdENO(x[i+1], xSten, ySten, upDir, sten);
+// }
 
 /**
  * Function which takes explicit time step for the velocity terms in the
@@ -91,6 +91,8 @@ void NSSolver3D::updateF(Pool3D *pool) {
 
     int mo = methodOrd;
 
+    double laplacian;
+    double convective;
     for (k = 0; k < this->nz; k++) {
         for (j = 0; j < this->ny; j++) {
             for (i = 0; i < this->nx-1; i++) {
@@ -99,17 +101,25 @@ void NSSolver3D::updateF(Pool3D *pool) {
                 zi = k + mo;
 
                 if (pool->objAtIndex(i, j, k) == objects::FLUID_C && pool->isUpdateableU(i, j, k)) {
-                    this->FU[zi][yi][xi] = this->u[zi][yi][xi]
-                        + this->dt*( (1.0/Re)*(discs::firstOrder3D_lap_uxx(xi, yi, zi, this->dx, this->u) 
+                    laplacian = (discs::firstOrder3D_lap_uxx(xi, yi, zi, this->dx, this->u) 
                                 + discs::firstOrder3D_lap_uyy(xi, yi, zi, this->dy, this->u)
-                                + discs::firstOrder3D_lap_uzz(xi, yi, zi, this->dz, this->u))
-                                - discs::firstOrder3D_conv_usqx(xi, yi, zi, this->dx, this->u)
-                                - discs::firstOrder3D_conv_uvy(xi, yi, zi, this->dy, this->u, this->v)
-                                - discs::firstOrder3D_conv_uwz(xi, yi, zi, this->dz, u, w));
+                                + discs::firstOrder3D_lap_uzz(xi, yi, zi, this->dz, this->u));
+
+                    if (params->useEno) {
+                        double gam = max(abs((u[zi][yi][xi]*this->dt)/(this->dx)), 
+                            max(abs(v[zi][yi][xi]*this->dt)/(this->dy), abs(w[zi][yi][xi]*this->dt)/(this->dz)));
+                        convective = discs::firstOrder3D_conv_usqx_stab(xi, yi, zi, this->dx, this->u, gam)
+                                + discs::firstOrder3D_conv_uvy_stab(xi, yi, zi, this->dy, this->u, this->v, gam)
+                                + discs::firstOrder3D_conv_uwz_stab(xi, yi, zi, this->dz, u, w, gam);
+                    } else {
+                        convective = discs::firstOrder3D_conv_usqx(xi, yi, zi, this->dx, this->u)
+                                + discs::firstOrder3D_conv_uvy(xi, yi, zi, this->dy, this->u, this->v)
+                                + discs::firstOrder3D_conv_uwz(xi, yi, zi, this->dz, u, w);
+                    }
+                    this->FU[zi][yi][xi] = this->u[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
                 }
             }
         }
-
     }
 
     for (k = 0; k < this->nz; k++) {
@@ -120,13 +130,21 @@ void NSSolver3D::updateF(Pool3D *pool) {
                 zi = k + mo;
 
                 if (pool->objAtIndex(i, j, k) == objects::FLUID_C && pool->isUpdateableV(i, j, k)) {
-                    this->FV[zi][yi][xi] = this->v[zi][yi][xi]
-                        + this->dt*( (1.0/Re)*(discs::firstOrder3D_lap_vxx(xi, yi, zi, this->dx, this->v)
+                    laplacian = discs::firstOrder3D_lap_vxx(xi, yi, zi, this->dx, this->v)
                                 + discs::firstOrder3D_lap_vyy(xi, yi, zi, this->dy, this->v)
-                                + discs::firstOrder3D_lap_vzz(xi, yi, zi, this->dz, this->v))
-                                - discs::firstOrder3D_conv_vux(xi, yi, zi, this->dx, this->v, this->u)
-                                - discs::firstOrder3D_conv_vsqy(xi, yi, zi, this->dy, this->v)
-                                - discs::firstOrder3D_conv_vwz(xi, yi, zi, this->dz, this->v, this->w) );
+                                + discs::firstOrder3D_lap_vzz(xi, yi, zi, this->dz, this->v);
+                    if (params->useEno) {
+                        double gam = max(abs((u[zi][yi][xi]*this->dt)/(this->dx)), 
+                            max(abs(v[zi][yi][xi]*this->dt)/(this->dy), abs(w[zi][yi][xi]*this->dt)/(this->dz)));
+                        convective = discs::firstOrder3D_conv_vux_stab(xi, yi, zi, this->dx, this->v, this->u, gam)
+                                + discs::firstOrder3D_conv_vsqy_stab(xi, yi, zi, this->dy, this->v, gam)
+                                + discs::firstOrder3D_conv_vwz_stab(xi, yi, zi, this->dz, this->v, this->w, gam);
+                    } else {
+                        convective = discs::firstOrder3D_conv_vux(xi, yi, zi, this->dx, this->v, this->u)
+                                + discs::firstOrder3D_conv_vsqy(xi, yi, zi, this->dy, this->v)
+                                + discs::firstOrder3D_conv_vwz(xi, yi, zi, this->dz, this->v, this->w);
+                    }
+                    this->FV[zi][yi][xi] = this->v[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective);
                 }
             }
         }
@@ -140,13 +158,22 @@ void NSSolver3D::updateF(Pool3D *pool) {
                 zi = k + mo;
 
                 if (pool->objAtIndex(i, j, k) == objects::FLUID_C && pool->isUpdateableW(i, j, k)) {
-                    this->FW[zi][yi][xi] = this->w[zi][yi][xi]
-                        + this->dt*( (1.0/Re)*(discs::firstOrder3D_lap_wxx(xi, yi, zi, this->dx, this->w)
+                    laplacian = discs::firstOrder3D_lap_wxx(xi, yi, zi, this->dx, this->w)
                                 + discs::firstOrder3D_lap_wyy(xi, yi, zi, this->dy, this->w)
-                                + discs::firstOrder3D_lap_wzz(xi, yi, zi, this->dz, this->w))
-                                - discs::firstOrder3D_conv_wux(xi, yi, zi, this->dx, this->w, this->u)
-                                - discs::firstOrder3D_conv_wvy(xi, yi, zi, this->dy, this->w, this->v)
-                                - discs::firstOrder3D_conv_wsqz(xi, yi, zi, this->dz, this->w) );
+                                + discs::firstOrder3D_lap_wzz(xi, yi, zi, this->dz, this->w);
+                    if (params->useEno) {
+                        double gam = max(abs((u[zi][yi][xi]*this->dt)/(this->dx)), 
+                            max(abs(v[zi][yi][xi]*this->dt)/(this->dy), abs(w[zi][yi][xi]*this->dt)/(this->dz)));
+                        convective = discs::firstOrder3D_conv_wux_stab(xi, yi, zi, this->dx, this->w, this->u, gam)
+                                + discs::firstOrder3D_conv_wvy_stab(xi, yi, zi, this->dy, this->w, this->v, gam)
+                                + discs::firstOrder3D_conv_wsqz_stab(xi, yi, zi, this->dz, this->w, gam);
+                    } else {
+                        convective = discs::firstOrder3D_conv_wux(xi, yi, zi, this->dx, this->w, this->u)
+                                + discs::firstOrder3D_conv_wvy(xi, yi, zi, this->dy, this->w, this->v)
+                                + discs::firstOrder3D_conv_wsqz(xi, yi, zi, this->dz, this->w);
+
+                    }
+                    this->FW[zi][yi][xi] = this->w[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
                 }
             }
         }

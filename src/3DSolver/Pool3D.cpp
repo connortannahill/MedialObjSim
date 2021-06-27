@@ -2,6 +2,7 @@
 #include "Boundary3D.h"
 #include "SolidObject3D.h"
 #include "../Utils/SimUtilities.h"
+#include <iostream>
 #include <math.h>
 #include <set>
 #include <limits>
@@ -70,6 +71,9 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     int upwindY = 0;
     int upwindZ = 0;
 
+    cout << "Getting upwind" << endl;
+    cout << "(i, j, k) = " << i << ", " << j << ", " << k << endl;
+
     // x
     if (i+1 > nx-1 || i-1 < 0) {
         // First checks: the point must be in bounds. If one of the points is OOB but the
@@ -93,15 +97,11 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
                 upwindX = 1;
             }
         }
-        // if (phiReInit[mo+k][mo+j][mo+i-1] < phiReInit[mo+k][mo+j][mo+i+1]) {
-        //     upwindX = -1;
-        // } else {
-        //     upwindX = 1;
-        // }
     } else {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindX = (fastMarchingState[k][j][i+1] != FAR) ? 1 : -1;
     }
+    cout << "upwindX = " << upwindX << endl;
 
     // y
     if (j+1 > ny-1 || j-1 < 0) {
@@ -123,15 +123,11 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
                 upwindY = 1;
             }
         }
-        // if (phiReInit[mo+k][mo+j-1][mo+i] < phiReInit[mo+k][mo+j+1][mo+i]) {
-        //     upwindY = -1;
-        // } else {
-        //     upwindY = 1;
-        // }
     } else {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindY = (fastMarchingState[k][j+1][i] != FAR) ? 1 : -1;
     }
+    cout << "upwindY = " << upwindY << endl;
 
     // z
     if (k+1 > nz-1 || k-1 < 0) {
@@ -152,15 +148,12 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
                 upwindZ = 1;
             }
         }
-        // if (phiReInit[mo+k-1][mo+j][mo+i] < phiReInit[mo+k+1][mo+j][mo+i]) {
-        //     upwindZ = -1;
-        // } else {
-        //     upwindZ = 1;
-        // }
     } else {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindZ = (fastMarchingState[k+1][j][i] != FAR) ? 1 : -1;
     }
+    cout << "upwindZ = " << upwindZ << endl;
+    cout << "FINISHEd Getting upwind" << endl;
 
     // Now we apply the method outlined in Bridson 2015 to approximate the solution to the
     // reinitialization Eikonal equation
@@ -170,11 +163,13 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     assert(!(upwindX == 0 && upwindY == 0 && upwindZ == 0));
 
     // Build arrays with step sizes
+    cout << "assigning phi values" << endl;
     double phiVals[3] = {
         (upwindX == 0) ? DINFINITY : phiReInit[mo+k][mo+j][mo+i+upwindX],
         (upwindY == 0) ? DINFINITY : phiReInit[mo+k][mo+j+upwindY][mo+i],
         (upwindZ == 0) ? DINFINITY : phiReInit[mo+k+upwindZ][mo+j][mo+i]
     };
+    cout << "FINISHEd assigning phi values" << endl;
 
     double h[3] = {hx, hy, hz};
 
@@ -182,6 +177,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     double vVals[3];
     double wVals[3];
 
+    cout << "getting u values" << endl;
     if (nExtrap) {
         uVals[0] = (upwindX == 0) ? DINFINITY : poolU[mo+k][mo+j][mo+i+upwindX];
         uVals[1] = (upwindY == 0) ? DINFINITY : poolU[mo+k][mo+j+upwindY][mo+i];
@@ -195,6 +191,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         wVals[1] = (upwindY == 0) ? DINFINITY : poolW[mo+k][mo+j+upwindY][mo+i];
         wVals[2] = (upwindZ == 0) ? DINFINITY : poolW[mo+k+upwindZ][mo+j][mo+i];
     }
+    cout << "Finished getting u values" << endl;
 
 
     // Simultaneous selection sort of all of the above arrays in increasing phi vals
@@ -232,7 +229,8 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         }
     }
 
-    assert(phiVals[0] <= phiVals[1] && phiVals[1] <= phiVals[2] && phiVals[0] <= phiVals[2]);
+    assert(phiVals[0] <= phiVals[1] && phiVals[1] <= phiVals[2]
+        && phiVals[0] <= phiVals[2]);
 
     // Now we apply the Bridson algorithm
 
@@ -396,6 +394,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     double pnt[3];
     double vTemp[3];
 
+    cout << "into first part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -448,8 +447,10 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
+    cout << "FINISHED into first part" << endl;
 
     // Now run the FM algorithm in the fluid region.
+    cout << "Running the FMM" << endl;
     int i, j, k;
     double val;
     while (!heap.empty()) {
@@ -464,21 +465,26 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
         val = pnt.getVal();
 
         // Assign the domain memberships of the neighbouring points
+        cout << "assigning domain" << endl;
         if (domainTracker[k][j][i] != DOMAIN_INTERSECTION_3D) {
             assignDomainMemberships(i, j, k, mode);
         }
+        cout << "FINSIEHd assigning domain" << endl;
 
         // Update all of the neighbours according to the fast marching algorithm
         // and add them to the heap structure
+        cout << "setting nvals" << endl;
         fastMarchSetNVal(i+1, j, k, nExtrap, mode);
         fastMarchSetNVal(i-1, j, k, nExtrap, mode);
         fastMarchSetNVal(i, j+1, k, nExtrap, mode);
         fastMarchSetNVal(i, j-1, k, nExtrap, mode);
         fastMarchSetNVal(i, j, k+1, nExtrap, mode);
         fastMarchSetNVal(i, j, k-1, nExtrap, mode);
+        cout << "FINISHEd setting nvals" << endl;
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
+    cout << "FINSIEHD Running the FMM" << endl;
 
     if (mode == 2) {
         return;
@@ -506,6 +512,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
     // Now, run the algorithm in the structure domain. Note that at this point,
     // all of the fluid and inteface regions are in the "accepted class" at this point.
+    cout << "Second part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -564,6 +571,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
+    cout << "FINISHED Second part" << endl;
 
     if (mode != 0) {
         for (int k = 0; k < this->nz; k++) {
@@ -584,6 +592,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     }
 
     // Now, run fast marching on the interior data.
+    cout << "Second fast marching" << endl;
     while (!heap.empty()) {
         GridVal3D pnt = heap.top();
         heap.pop();
@@ -605,6 +614,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
+    cout << "FINISHED Second fast marching" << endl;
 
     // Finally, flip the sign of the phi value in all of structure points.
     for (int k = 0; k < this->nz; k++) {
@@ -878,6 +888,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     // if (isDeformable) {
     solids = new vector<MassSpring3D>();
     // assert(false);
+    cout << "Creating the solids" << endl;
     if (nx != mssNx || ny != mssNy || nz != mssNz) {
         // Create different dimension Pool to represent the solid and copy the current Pool.
 
@@ -911,12 +922,12 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         // Delete the temp Pool
         delete poolTemp;
     } else {
-        int updateMode = 2;
+        // int updateMode = 2;
 
         // Create the mass-spring system for each of the objects
         solids = new vector<MassSpring3D>();
 
-        if (updateMode == 2 && !params.dtFixSet) {
+        if (params.updateMode == 2 && !params.dtFixSet) {
             cout << "Attempting to use ADMM without fixed time step!" << endl;
             assert(false);
         }
@@ -924,22 +935,31 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         for (int i = 0; i < nStructs; i++) {
             solids->push_back(MassSpring3D(*this, i, structures.at(i),
                                 params.updateMode, params.elementMode));
-            if (updateMode == 2) {
+            if (params.updateMode == 2) {
                 solids->at(i).setAdmmTol(params.admmTol);
             }
         }
     }
+    cout << "Finished creating the solids" << endl;
 
     // State of each grid point within the FMM
     fastMarchingState = simutils::new_constant(nz, ny, nz, FAR);
-
+    
+    cout << "Fast marking with mode 0" << endl;
     fastMarch(false, 0);
+    cout << "FINISHED fast marching with mode 0" << endl;
     simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
 
-    // Locate nodes of MSS exactly on isocontour of new MSS
-    for (int i = 0; i < nStructs; i++) {
-        solids->at(i).interpBoundary(*this, true);
+    this->enumeratePool();
+
+    if (repulseMode == 2) {
+        detectCollisions();
     }
+
+    // Locate nodes of MSS exactly on isocontour of new MSS
+    // for (int i = 0; i < nStructs; i++) {
+    //     solids->at(i).interpBoundary(*this, true);
+    // }
 }
 
 /**
@@ -1671,9 +1691,9 @@ double Pool3D::levelSetRHS_ENO3(int i, int j, int k, double *mxVals, double *xVa
     double pntY = myVals[3];
     double pntZ = mzVals[3];
 
-    return -(poolU[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntX, mxVals, xVals, upwindU, stencil)
-                +   poolV[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntY, myVals, yVals, upwindV, stencil)
-                +   poolW[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntZ, mzVals, zVals, upwindW, stencil));
+    return -(poolU[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntX, mxVals, xVals, upwindU, stencil, 3)
+                +   poolV[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntY, myVals, yVals, upwindV, stencil, 3)
+                +   poolW[k+mo][j+mo][i+mo]*discs::thirdOrdENO(pntZ, mzVals, zVals, upwindW, stencil, 3));
 }
 
 /**
@@ -1698,9 +1718,12 @@ bool Pool3D::oneGridFromInterface(int i, int j, int k) {
  * NOTE: assumes that phi contains the original interface
 */
 bool Pool3D::oneGridFromInterfaceStructure(int i, int j, int k) {
-    return isInterface(objAtIndex(i-1, j, k))     || isInterface(objAtIndex(i+1, j, k))
+    int ox = methodOrd+i;
+    int oy = methodOrd+j;
+    int oz = methodOrd+k;
+    return phi[oz][oy][ox] < 0 && (isInterface(objAtIndex(i-1, j, k))     || isInterface(objAtIndex(i+1, j, k))
             || isInterface(objAtIndex(i, j+1, k)) || isInterface(objAtIndex(i, j-1, k))
-            || isInterface(objAtIndex(i, j, k+1)) || isInterface(objAtIndex(i, j, k-1));
+            || isInterface(objAtIndex(i, j, k+1)) || isInterface(objAtIndex(i, j, k-1)));
 }
 
 
@@ -2076,10 +2099,9 @@ double Pool3D::velocityExtrapolationRHS_ENO3(int i, int j, int k, double *mxVals
     double pntZ = mzVals[3];
 
     // Calculate the RHS of the HJ equation using the third order ENO finite difference scheme.
-    return -( phiGrad[0]*discs::thirdOrdENO(pntX, mxVals,xVals,upwindX,stencil)
-                    + phiGrad[1]*discs::thirdOrdENO(pntY, myVals,yVals,upwindY,stencil)
-                    + phiGrad[2]*discs::thirdOrdENO(pntZ, mzVals,zVals,upwindZ,stencil) );
-                        double pntX = mxVals[3];
+    return -( phiGrad[0]*discs::thirdOrdENO(pntX, mxVals,xVals,upwindX,stencil, 3)
+                    + phiGrad[1]*discs::thirdOrdENO(pntY, myVals,yVals,upwindY,stencil, 3)
+                    + phiGrad[2]*discs::thirdOrdENO(pntZ, mzVals,zVals,upwindZ,stencil, 3) );
 }
 
 /**
@@ -2549,9 +2571,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     }
 
     // If significant drift from the interface detected, correct.
-    if (shouldRefitSDF(min(hx, min(hy, hz)))) {
-        refitToSolids(ng);
-    }
+    // if (shouldRefitSDF(min(hx, min(hy, hz)))) {
+    //     refitToSolids(ng);
+    // }
 }
 
 /**
@@ -2585,8 +2607,8 @@ double Pool3D::buildSqeezeField() {
                     poolV[mo+k][mo+j][mo+i] = near[1] - pnt[1];
                     poolW[mo+k][mo+j][mo+i] = near[2] - pnt[2];
 
-                    maxU = (abs(poolU[mo+j][mo+i]) > maxU) ? abs(poolU[mo+j][mo+i]) : maxU;
-                    maxV = (abs(poolV[mo+j][mo+i]) > maxV) ? abs(poolV[mo+j][mo+i]) : maxV;
+                    maxU = (abs(poolU[mo+k][mo+j][mo+i]) > maxU) ? abs(poolU[mo+k][mo+j][mo+i]) : maxU;
+                    maxV = (abs(poolV[mo+k][mo+j][mo+i]) > maxV) ? abs(poolV[mo+k][mo+j][mo+i]) : maxV;
                     maxW = (abs(poolW[mo+k][mo+j][mo+i]) > maxW) ? abs(poolW[mo+k][mo+j][mo+i]) : maxW;
                 }
             }
