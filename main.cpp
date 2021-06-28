@@ -1,17 +1,17 @@
 #include <iostream>
 #include "./src/3DSolver/Boundary3D.h"
 #include "./src/3DSolver/SolidObject3D.h"
-#include "./src/3DSolver/Pool3D.h"
-#include "./src/3DSolver/MassSpring3D.h"
-#include "./src/Utils/SolidParams.h"
-#include <math.h>
+#include "./src/3DSolver/NSSolver3D.h"
+
 #include "./src/Utils/SimUtilities.h"
 #include "./src/Utils/Discretizations.h"
-#include <cassert>
+#include "./src/Utils/TestFormatter.h"
 #include "./src/3DSolver/SimParams3D.h"
 
+#include <math.h>
+#include <cassert>
+
 using namespace std;
-using namespace mass_spring;
 
 double circleShapeFun(double x, double y, double z, SolidParams &ps) {
     double cx, cy, cz, r;
@@ -32,126 +32,220 @@ double coneShapeFun(double x, double y, double z, SolidParams &ps) {
     return sqrt(simutils::square(x-cx)+simutils::square(y-cy)+simutils::square(z-cz))-r;
 }
 
-int main(int argc, char **argv) { 
+void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
+                        double *y, double *z, double ***u, double ***v,
+                        double ***w) {
+    double cons_u = 0.0;
+    double cons_v = 0.0;
+    double cons_w = 0.0;
+
+    int wg = nx + 2*nGhost; // "width"
+    int hg = ny + 2*nGhost; // "height"
+    int vg = nz + 2*nGhost; // "vert"
+
+    simutils::set_constant(vg, hg, wg-1, cons_u, u);
+    simutils::set_constant(vg, hg-1, wg, cons_v, v);
+    simutils::set_constant(vg-1, hg, wg, cons_w, w); 
+}
+
+int main(int argc, char **argv) {
+    // Testing the fluid solver
+    double tEnd = 6.4;
+
+    // The boundaries
+    double xa = 0, xb = 1;
+    double ya = 0, yb = 1;
+    double za = 0, zb = 1;
+
+    // Number of x, y points
     int nx = 20;
     int ny = 20;
     int nz = 20;
 
-    double xmin = 0;
-    double xmax = 1;
-    double ymin = 0;
-    double ymax = 1;
-    double zmin = 0;
-    double zmax = 1;
+    /* Creation of the solid objects */
+    ///////////////////////////////////
+    int numStructs = 1;
+    // int numStructs = 2;
 
-    // Create the boundary object
-    Boundary3D boundary(xmin, xmax, ymin, ymax, zmin, zmax);
+    // unordered_map<string, double> circParams1;
+    // unordered_map<string, double> circParams2;
 
-    // Parameters of this circle
-    SolidParams params1;
-    params1.addParam("cx", 0.25);
-    // params["cx"] = 0.5;
-    params1.addParam("cy", 0.5);
-    params1.addParam("cz", 0.5);
-    params1.addParam("r", 0.15);
-    params1.addParam("mass", 1.0);
-    params1.addParam("density", 1.0);
-    params1.addParam("E", 15.0);
+    SolidParams circParams1;
+    SolidParams circParams2;
+
+
+    double mass = 100.0;
+    double density = 1.0;
+    double E = 5.0;
+    double eta = 0.0;
+
+
+    // circParams1["cx"] = 0.25;
+    circParams1.addParam("cx", 0.25);
+    circParams1.addParam("cy", 0.5);
+    circParams1.addParam("cz", 0.5);
+    circParams1.addParam("r", 0.15);
+    circParams1.addParam("mass", mass);
+    circParams1.addParam("density", density);
+    circParams1.addParam("E", E);
     // params["E"] = 5.0;
-    params1.addParam("eta", 0.0);
+    circParams1.addParam("eta", eta);
 
-    // Create the solid structure
+    circParams2.addParam("cx", 0.75);
+    circParams2.addParam("cy", 0.5);
+    circParams2.addParam("cz", 0.5);
+    circParams2.addParam("r", 0.15);
+    circParams2.addParam("mass", mass);
+    circParams2.addParam("density", density);
+    circParams2.addParam("E", E);
+    // params["E"] = 5.0;
+    circParams2.addParam("eta", eta);
+
     double u0 = 0.0;
     double v0 = 0.0;
     double w0 = 0.0;
+
     SolidObject3D::ObjectType deformableBody = SolidObject3D::ObjectType::DEFORMABLE;
-    SolidObject3D circle(u0, v0, w0, deformableBody, coneShapeFun, params1);
-    // SolidObject3D circle(u0, v0, w0, deformableBody, circleShapeFun, params);
 
-    SolidParams params2;
-    params2.addParam("cx", 0.75);
-    params2.addParam("cy", 0.5);
-    params2.addParam("cz", 0.5);
-    params2.addParam("r", 0.15);
-    params2.addParam("mass", 1.0);
-    params2.addParam("density", 1.0);
-    params2.addParam("E", 15.0);
-    params2.addParam("eta", 0.0);
-    SolidObject3D circle2(u0, v0, w0, deformableBody, coneShapeFun, params2); 
+    // The individual circles
+    SolidObject3D circle1(u0, v0, w0, deformableBody, coneShapeFun, circParams1);
+    SolidObject3D circle2(u0, v0, w0, deformableBody, coneShapeFun, circParams2);
 
-    // SolidObject3D objs[2] = {circle, circle2};
+    // Create circle object array for embedding in Pool
     std::vector<SolidObject3D> circles;
-    circles.push_back(circle);
     circles.push_back(circle2);
-    // SolidObject3D objs[1] = {circle};
+    circles.push_back(circle1);
 
-    // Create the pool
-    SimParams3D simParams;
-    simParams.setNx(nx);
-    simParams.setNy(ny);
-    simParams.setNz(nz);
+    // int numStructs = 1;
+    // unordered_map<string, double> circParams;
 
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
-    simParams.setMssNz(nz);
+    // circParams["cx"] = 0.5;
+    // circParams["cy"] = 0.5;
+    // circParams["cz"] = 0.5;
+    // circParams["r"] = 0.20;
+    // // Solid object null pointer
+    // double mass = 10;
+    // double u0 = 0.0;
+    // double v0 = 0.0;
+    // double w0 = 0.0;
+    // double density = 1.0;
+    // SolidObject3D circle(u0, v0, w0, mass, density, coneShapeFun, circParams);
+    ///////////////////////////////////
 
-    simParams.setRe(0.0);
-    simParams.setMu(0.0);
+    // Parameters of this circle
+    // Boundary object
+    Boundary3D boundary(xa, xb, ya, yb, za, zb);
 
-    simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
-    simParams.setRepulseDist(0.1); // Actually need 0.1
-    simParams.setCollisionStiffness(2.0);
-    simParams.setCollisionDist(0.25);
 
-    double dt = 0.5/(1.0/(1/((double)nx))+1.0/((1/(double)ny))+1.0/((1/(double)nz)));
+    // Hashmap of any required params
+    SimParams3D params;
+    params.setRe(1000.0);
+    // params["mu"] = 1/params["Re"];
+    params.setMu(1.0/params.Re);
+    params.setNx(nx);
+    params.setNy(ny);
+    params.setNz(nz);
+    params.setMssNx(nx);
+    params.setMssNy(ny);
+    params.setMssNz(nz);
+    params.setUseEno(false);
+    params.setRepulseMode(0);
+    double h = sqrt(simutils::square(1.0/((double) nx)
+        + simutils::square(1.0/((double) ny)
+        + simutils::square(1.0/((double) nz)))));
+    params.setRepulseDist(3.0*h);
+    params.setCollisionDist(3.0*h);
+    params.setCollisionStiffness(2.0);
+    params.setRepulseDist(3.0*h);
+    params.setUpdateMode(1);
 
-    simParams.setDtFix(dt);
+    //   params.setRe(1000);
+    // params.setNx(nx);
+    // params.setNy(ny);
+    // params.setUseEno(true);
+    // params.setMu(1.0/params.Re);
+    // params.setRepulseMode(2); // This turns on the KD tree error checking
+    // // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
+    // // params.setRepulseDist(0.1); // Actually need 0.1
+    // // params.setCollisionStiffness(2.0);
+    // // params.setCollisionDist(0.25);
+    // double h = sqrt(simutils::square(1.0/((double) nx)
+    //     + simutils::square(1.0/((double) ny))));
+    // params.setRepulseDist(3*h); // Actually need 0.1
+    // params.setCollisionStiffness(2.0);
+    // params.setCollisionDist(3*h);
+    // params.setUpdateMode(1);
 
-    cout << "creating the pool" << endl;
-    Pool3D pool(boundary, circles, simParams);
-    cout << "FINSIEHD creating the pool" << endl;
-    // assert(false);
+    // Create the Solver object
+    std::cout << "creating the solver" << std::endl;
+    NSSolver3D solver(boundary, circles, params, initialConditions);
+    std::cout << "created the solver" << std::endl;
+    // NSSolver3D solver(nx, ny, nz, boundary, numStructs, true, &circle1, params, initialConditions);
 
+    // Current time
     double t = 0;
-    double tEnd = 10;
-    // double dt = 0.5/(1.0/(1.0/((double)nx))+1.0/((1.0/(double)ny))+1.0/(1.0/((double)nz)));
+    double safetyFactor = 0.5;
 
-    std::cout << "dt = " << dt << std::endl;
+    std::cout << "Going to update the pool" << std::endl;
 
-    // Test velocities for the level set methods
-    double ***u = simutils::new_constant(nz, ny, nx, 0.0);
-    double ***v = simutils::new_constant(nz, ny, nx, 0.0);
-    double ***w = simutils::new_constant(nz, ny, nx, 0.0);
-    double ***p = simutils::new_constant(nz, ny, nx, 0.0);
+    int nsteps = 0;
+    // int max_steps = 1;
+    int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
+    std::cout << "TAKING " << max_steps << " STEPS" << std::endl;
+    double eps = 1e-12;
+    while (t+eps < tEnd && nsteps < max_steps) {
+        std::cout << "Taking a step" << std::endl;
+        t = solver.step(tEnd, safetyFactor);
+        std::cout << "Finished a step" << std::endl;
 
-    // int nstep = 0;
-    // std::cout << "Hi" << std::endl;
-    // int max_steps = (argc == 1) ? 1 : atoi(argv[1]);
-    // std::cout << "Bye" << std::endl;
-    // bool reinitialize = true;
-    // while (t < tEnd && nstep < max_steps) {
-    //     pool.updatePool(dt, u, v, w, p, 0, reinitialize); // Advance the level set function
+        nsteps++;
 
-    //     t+=dt;
-    //     std::cout << "t = " << t << std::endl;
-    //     std::cout << "nStep = " << nstep << std::endl;
-    //     nstep++;
-    // }
+        std::cout << "t = " << t << std::endl;
+        std::cout << "step = " << nsteps << std::endl;
+        std::cout << std::endl;
+    }
 
-    string testTitle("PoolTests2D");
+    // Write to the output file.
+    // std::cout << "Outputting data" << std::endl;
+    // solver.writeToFile("out3D.txt");
+    // solver.writePoolToFile("pool3DOut.txt", "pool3DVel.txt");
+    // solver.outputStructure(0, "MSS3DEdges0.txt");
+    // // solver.outputStructure(1, "MSS3DEdges1.txt");
+    // solver.outputStructureNodes(0, "MSS3DNodes0.txt");
+    // // solver.outputStructureNodes(1, "MSS3DNodes1.txt");
+    // solver.outputStructureVels(0, "MSS3DVels0.txt");
+    // // solver.outputStructureVels(1, "MSS3DVels1.txt");
 
-    std::cout << "Outputting all of the data" << std::endl;
+    // std::cout << "end of main" << std::endl;
+    TestFormatter testFormatter("SimpleTest3D");
+    string outStr;
+    string outStr2;
 
-    pool.outputPool("pool3DOut.txt");
-    pool.outputPoolVelocity("pool3DVel.txt");
-    pool.outputStructure(0, "MSS3DEdges0.txt");
-    // pool.outputStructure(1, "MSS3DEdges1.txt");
-    pool.outputStructureNodes(0, "MSS3DNodes0.txt");
-    // pool.outputStructureNodes(1, "MSS3DNodes1.txt");
-    pool.outputStructureVels(0, "MSS3DVels0.txt");
-    // pool.outputStructureVels(1, "MSS3DVels1.txt");
-    pool.outputSurfaceCentroids(0, "MSS3DCentroids0.txt");
+    testFormatter.genOutStr("out3D", outStr);
+    solver.writeToFile(outStr.c_str());
+    cout << outStr << endl;
 
-    std::cout << "Finished updating all of the data" << std::endl;
+    testFormatter.genOutStr("pool3DOut", outStr);
+    testFormatter.genOutStr("pool3DVel", outStr2);
+    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
+    cout << outStr << endl;
+    cout << outStr2 << endl;
+
+    testFormatter.genOutStr("MSS3DEdges", outStr);
+    solver.outputAllStructures(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSS3DNodes", outStr);
+    solver.outputAllStructureNodes(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSS3DVels", outStr);
+    solver.outputAllStructureVels(outStr.c_str());
+    cout << outStr << endl;
+
+    // testFormatter.genOutStr("MSSTracers", outStr);
+    // solver.outputTracers(outStr.c_str());
+
+    // testFormatter.genOutStr("medialAxis", outStr);
+    // solver.outputMedialAxis(outStr.c_str());
 }

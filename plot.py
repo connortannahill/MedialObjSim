@@ -5,8 +5,6 @@ import seaborn as sb
 import sys
 import os
 
-base_dir = './output/2D'
-
 if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
     sys.exit()

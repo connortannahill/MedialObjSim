@@ -71,8 +71,8 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     int upwindY = 0;
     int upwindZ = 0;
 
-    cout << "Getting upwind" << endl;
-    cout << "(i, j, k) = " << i << ", " << j << ", " << k << endl;
+    // cout << "Getting upwind" << endl;
+    // cout << "(i, j, k) = " << i << ", " << j << ", " << k << endl;
 
     // x
     if (i+1 > nx-1 || i-1 < 0) {
@@ -101,7 +101,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindX = (fastMarchingState[k][j][i+1] != FAR) ? 1 : -1;
     }
-    cout << "upwindX = " << upwindX << endl;
+    // cout << "upwindX = " << upwindX << endl;
 
     // y
     if (j+1 > ny-1 || j-1 < 0) {
@@ -127,7 +127,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindY = (fastMarchingState[k][j+1][i] != FAR) ? 1 : -1;
     }
-    cout << "upwindY = " << upwindY << endl;
+    // cout << "upwindY = " << upwindY << endl;
 
     // z
     if (k+1 > nz-1 || k-1 < 0) {
@@ -152,8 +152,8 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindZ = (fastMarchingState[k+1][j][i] != FAR) ? 1 : -1;
     }
-    cout << "upwindZ = " << upwindZ << endl;
-    cout << "FINISHEd Getting upwind" << endl;
+    // cout << "upwindZ = " << upwindZ << endl;
+    // cout << "FINISHEd Getting upwind" << endl;
 
     // Now we apply the method outlined in Bridson 2015 to approximate the solution to the
     // reinitialization Eikonal equation
@@ -163,13 +163,13 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     assert(!(upwindX == 0 && upwindY == 0 && upwindZ == 0));
 
     // Build arrays with step sizes
-    cout << "assigning phi values" << endl;
+    // cout << "assigning phi values" << endl;
     double phiVals[3] = {
         (upwindX == 0) ? DINFINITY : phiReInit[mo+k][mo+j][mo+i+upwindX],
         (upwindY == 0) ? DINFINITY : phiReInit[mo+k][mo+j+upwindY][mo+i],
         (upwindZ == 0) ? DINFINITY : phiReInit[mo+k+upwindZ][mo+j][mo+i]
     };
-    cout << "FINISHEd assigning phi values" << endl;
+    // cout << "FINISHEd assigning phi values" << endl;
 
     double h[3] = {hx, hy, hz};
 
@@ -177,7 +177,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     double vVals[3];
     double wVals[3];
 
-    cout << "getting u values" << endl;
+    // cout << "getting u values" << endl;
     if (nExtrap) {
         uVals[0] = (upwindX == 0) ? DINFINITY : poolU[mo+k][mo+j][mo+i+upwindX];
         uVals[1] = (upwindY == 0) ? DINFINITY : poolU[mo+k][mo+j+upwindY][mo+i];
@@ -191,7 +191,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         wVals[1] = (upwindY == 0) ? DINFINITY : poolW[mo+k][mo+j+upwindY][mo+i];
         wVals[2] = (upwindZ == 0) ? DINFINITY : poolW[mo+k+upwindZ][mo+j][mo+i];
     }
-    cout << "Finished getting u values" << endl;
+    // cout << "Finished getting u values" << endl;
 
 
     // Simultaneous selection sort of all of the above arrays in increasing phi vals
@@ -394,7 +394,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     double pnt[3];
     double vTemp[3];
 
-    cout << "into first part" << endl;
+    // cout << "into first part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -447,10 +447,10 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
-    cout << "FINISHED into first part" << endl;
+    // cout << "FINISHED into first part" << endl;
 
     // Now run the FM algorithm in the fluid region.
-    cout << "Running the FMM" << endl;
+    // cout << "Running the FMM" << endl;
     int i, j, k;
     double val;
     while (!heap.empty()) {
@@ -465,26 +465,26 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
         val = pnt.getVal();
 
         // Assign the domain memberships of the neighbouring points
-        cout << "assigning domain" << endl;
+        // cout << "assigning domain" << endl;
         if (domainTracker[k][j][i] != DOMAIN_INTERSECTION_3D) {
             assignDomainMemberships(i, j, k, mode);
         }
-        cout << "FINSIEHd assigning domain" << endl;
+        // cout << "FINSIEHd assigning domain" << endl;
 
         // Update all of the neighbours according to the fast marching algorithm
         // and add them to the heap structure
-        cout << "setting nvals" << endl;
+        // cout << "setting nvals" << endl;
         fastMarchSetNVal(i+1, j, k, nExtrap, mode);
         fastMarchSetNVal(i-1, j, k, nExtrap, mode);
         fastMarchSetNVal(i, j+1, k, nExtrap, mode);
         fastMarchSetNVal(i, j-1, k, nExtrap, mode);
         fastMarchSetNVal(i, j, k+1, nExtrap, mode);
         fastMarchSetNVal(i, j, k-1, nExtrap, mode);
-        cout << "FINISHEd setting nvals" << endl;
+        // cout << "FINISHEd setting nvals" << endl;
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
-    cout << "FINSIEHD Running the FMM" << endl;
+    // cout << "FINSIEHD Running the FMM" << endl;
 
     if (mode == 2) {
         return;
@@ -512,7 +512,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
     // Now, run the algorithm in the structure domain. Note that at this point,
     // all of the fluid and inteface regions are in the "accepted class" at this point.
-    cout << "Second part" << endl;
+    // cout << "Second part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -571,7 +571,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
-    cout << "FINISHED Second part" << endl;
+    // cout << "FINISHED Second part" << endl;
 
     if (mode != 0) {
         for (int k = 0; k < this->nz; k++) {
@@ -592,7 +592,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     }
 
     // Now, run fast marching on the interior data.
-    cout << "Second fast marching" << endl;
+    // cout << "Second fast marching" << endl;
     while (!heap.empty()) {
         GridVal3D pnt = heap.top();
         heap.pop();
@@ -614,7 +614,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
-    cout << "FINISHED Second fast marching" << endl;
+    // cout << "FINISHED Second fast marching" << endl;
 
     // Finally, flip the sign of the phi value in all of structure points.
     for (int k = 0; k < this->nz; k++) {

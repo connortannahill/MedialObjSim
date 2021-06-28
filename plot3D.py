@@ -3,24 +3,29 @@ import numpy as np
 import matplotlib.pyplot as plt
 import sys
 
+base_dir = './output/3D'
+
 if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
     sys.exit()
 
-mode = int(sys.argv[1])
+test = sys.argv[1]
+mode = int(sys.argv[2])
+f_name = './output/{0}/'.format(test)
 
+nMss = int(sys.argv[3])
 narg = 1
 if len(sys.argv) == 3:
     narg = int(sys.argv[2])
 
 
-# fluid_fname = 'out3D.txt'
-# pool_fname = 'poolVals3D.txt'
-# pool_fname = 'poolVel3D.txt'
+# fluid_fname = 'out3D'
+# pool_fname = 'poolVals3D'
+# pool_fname = 'poolVel3D'
 
 if mode == -1:
     # f_name = 'colOut.txt'
-    f_name = 'medialAxis3D.txt'
+    f_name += 'medialAxis3D'
 
     out = np.genfromtxt(f_name, delimiter=',')
     x = out[:,0]
@@ -32,7 +37,7 @@ if mode == -1:
     fig.show()
 
 if mode == -2:
-    f_name = 'colOut.txt'
+    f_name += 'colOut'
 
     out = np.genfromtxt(f_name, delimiter=',')
     x = out[:,0]
@@ -49,9 +54,11 @@ if mode == -2:
     fig.show()
 
 if mode == 0:
-    pool_iso_fname = 'pool3DOut.txt'
-    # pool_vel_fname = 'pool3DVel.txt'
-    pool_vel_fname = 'out3D.txt'
+    f_temp = f_name
+
+    pool_iso_fname = f_temp + 'pool3DOut'
+    # pool_vel_fname = 'pool3DVel'
+    pool_vel_fname = f_temp + 'out3D'
 
     out_pool = np.genfromtxt(pool_iso_fname, delimiter=',')
     out_pool_vel = np.genfromtxt(pool_vel_fname, delimiter=',')
@@ -86,7 +93,7 @@ if mode == 0:
 
     fig.show()
 elif mode == 1:
-    pool_fname = 'pool3DOut.txt'
+    pool_fname = f_name + 'pool3DOut'
 
     # Read in the pool data
     out = np.genfromtxt(pool_fname, delimiter=',')
@@ -98,10 +105,10 @@ elif mode == 1:
 
     mssList = []
     
-    for i in range(narg):
-        f_name = 'MSS3DEdges{0}.txt'.format(i)
+    for i in range(nMss):
+        f_name_t = f_name + 'MSS3DEdges{0}'.format(i)
 
-        out = np.genfromtxt(f_name, delimiter=',')
+        out = np.genfromtxt(f_name_t, delimiter=',')
         x_mss = out[:,0]
         y_mss = out[:,1]
         z_mss = out[:,2]
@@ -128,7 +135,7 @@ elif mode == 1:
 
     fig.show()
 elif mode == 2:
-    pool_vel_fname = 'pool3DVel.txt'.format(0)
+    pool_vel_fname = f_name +  'pool3DVel'.format(0)
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
 
     x = out[:,0]
@@ -152,9 +159,9 @@ elif mode == 3:
     # Read in input data
 
     for i in range(1):
-        f_name = 'MSS3DEdges{0}.txt'.format(i)
+        f_name_t = f_name + 'MSS3DEdges{0}'.format(i)
 
-        out = np.genfromtxt(f_name, delimiter=',')
+        out = np.genfromtxt(f_name_t, delimiter=',')
         x = out[:,0]
         y = out[:,1]
         z = out[:,2]
@@ -165,8 +172,8 @@ elif mode == 3:
         # ax.ylim((0, 1))
     
     # Scatter plot of the centroids
-    f_name = 'MSS3DCentroids{}.txt'.format(0)
-    out = np.genfromtxt(f_name, delimiter=',')
+    f_name_t = f_name + 'MSS3DCentroids{}'.format(0)
+    out = np.genfromtxt(f_name_t, delimiter=',')
 
     x = out[:,0]
     y = out[:,1]
@@ -193,8 +200,8 @@ elif mode == 4:
     val = float(sys.argv[3])
 
     # Read in the input values
-    pool_vel_fname = 'pool3DVel.txt'
-    # pool_vel_fname = 'out3D.txt'
+    pool_vel_fname = f_name + 'pool3DVel'
+    # pool_vel_fname = 'out3D'
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
 
     # The coordinates
@@ -213,7 +220,7 @@ elif mode == 4:
     z_bounds = [np.amin(z), np.amax(z)]
 
     # Extract the phi value
-    pool_vel_fname = 'pool3DOut.txt'
+    pool_vel_fname = f_name + 'pool3DOut'
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
 
     phi = out[:,3]
@@ -262,7 +269,7 @@ elif mode == 4:
     
     plt.show()
 elif mode == 5:
-    mss_vel_fname = 'MSS3DVels{0}.txt'.format(0)
+    mss_vel_fname = f_name +  'MSS3DVels{0}'.format(0)
 
     out = np.genfromtxt(mss_vel_fname, delimiter=',')
 

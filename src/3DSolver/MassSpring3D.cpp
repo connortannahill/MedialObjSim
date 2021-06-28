@@ -166,7 +166,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
 
                         double diff[3] = {pnt[0] - structPnt[0], pnt[1] - structPnt[1], pnt[2] - structPnt[2]};
 
-                        if (simutils::eps_equal(simutils::eucNorm3D(diff), 0.0, EPS)) {
+                        if (simutils::eps_equal(simutils::eucNorm3D(diff), 0.0, 1e-12)) {
                             // Add a small purtabation to the outward normal if two points are too close.
                             // Should not contribute to the overall error.
                             const double ADJ = 1e-16;
@@ -223,7 +223,6 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
             }
         }
     }
-    // assert(false);
 
     // Compute and then assign the point masses. Additionally, create the q vector.
     pntMass = obj.getMass()/pntList->size();
@@ -273,6 +272,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                 if (domain == structNum && poolObj != objects::FLUID_C) {
                     // Get the ID of the current point.
                     pntId = objectPointLabels[make_tuple(i, j, k)];
+                    cout << "pntId = " << pntId << endl;
 
                     // Coordinates of the current point
                     pntLoc[0] = pntList->at(pntId).x;
@@ -286,6 +286,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                     bool sEdge[13] = {false,   true,   false,   true,   false,   true,
                                       true,   true,   true,   true,   true,   true,   true};
 
+                    cout << "neighId = ";
                     for (int l = 0; l < 13; l++) {
                         int ni = niList[l];
                         int nj = njList[l];
@@ -295,6 +296,12 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                         if (pool.objAtIndex(ni, nj, nk) != objects::FLUID_C) {
                             // Extract some information about the neighbour in this direction.
                             neighId = objectPointLabels[make_tuple(ni, nj, nk)];
+                            cout << neighId << ", ";
+                            if (pntId == neighId) {
+                                assert(false);
+                            }
+
+                            assert(pntId != neighId);
 
                             // Create the new edge
                             edgeList->push_back(edge3D());
@@ -336,10 +343,12 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                             pntList->at(neighId).edgeIds.push_back(edgeId);
                         }
                     }
+                    cout << endl;
                 }
             }
         }
     }
+    cout << "DONE OBJECT " << structNum << endl;
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-5;
@@ -347,13 +356,13 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     double dt = 0.05*simutils::dmin(hx, simutils::dmin(hy, hz));
     int iters = 0;
 
-    do  {
-        this->updateSolidVels(dt, pool, NULL, NULL, 1, true);
-        this->updateSolidLocs(pool, false);
+    // do  {
+    //     this->updateSolidVels(dt, pool, NULL, NULL, 1, true);
+    //     this->updateSolidLocs(pool, false);
 
-        iters ++;
-    }
-    while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
+    //     iters ++;
+    // }
+    // while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
     // After this is done, set the edge length of each spring to its current config to bring the
     // potential energy to 0.
