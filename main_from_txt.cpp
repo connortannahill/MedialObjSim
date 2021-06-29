@@ -1,15 +1,16 @@
-#include <iostream>
-#include "./src/Utils/SimUtilities.h"
-#include "./src/2DSolver/Boundary.h"
-#include "./src/2DSolver/SolidObject.h"
-#include "./src/2DSolver/NSSolver.h"
-#include <math.h>
-#include "./src/Utils/Discretizations.h"
 #include <cassert>
 #include <fenv.h>
 #include <fstream>
+#include <iostream>
+#include <math.h>
+
+#include "./src/2DSolver/Boundary.h"
+#include "./src/2DSolver/SolidObject.h"
+#include "./src/2DSolver/NSSolver.h"
 #include "./src/2DSolver/ObjectSeeder.h"
 #include "./src/2DSolver/SimParams.h"
+#include "./src/Utils/Discretizations.h"
+#include "./src/Utils/SimUtilities.h"
 #include "./src/Utils/TestFormatter.h"
 
 using namespace std;
@@ -47,15 +48,19 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
     return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
 }
 
-void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
-    double cons_u = 0.0;
-    double cons_v = 0.0;
+// kinda complicated, should make better
+typedef std::function<void (int,int,int,double*,double*,double**,double**)> initialConditionsFunType;
+initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
+    // return lambda function with same parameters for NSSolver but user-given velocities
+    return [cons_u, cons_v](int nx, int ny, int nGhost, 
+                            double *x, double *y, double **u, double **v) {
 
-    int wg = nx + 2*nGhost; // "width"
-    int hg = ny + 2*nGhost; // "height"
+        int wg = nx + 2*nGhost; // "width"
+        int hg = ny + 2*nGhost; // "height"
 
-    simutils::set_constant(hg, wg-1, cons_u, u);
-    simutils::set_constant(hg-1, wg, cons_v, v);
+        simutils::set_constant(hg, wg-1, cons_u, u);
+        simutils::set_constant(hg-1, wg, cons_v, v);
+    };
 }
 
 // Problem-dependent boundary conditions
@@ -138,7 +143,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////
 
     string desc, boundaryConditionType;
-    double xa, xb, ya, yb, tEnd;
+    double xa, xb, ya, yb, cons_u, cons_v, tEnd;
     int nx, ny, re, num_objects;
     bool useEno;
     vector<SolidObject> shapes;
@@ -150,7 +155,7 @@ int main(int argc, char **argv) {
     getline(input_file, desc);
 
     // get simulation params
-    input_file >> xa >> xb >> ya >> yb >> nx >> ny;
+    input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
@@ -201,11 +206,13 @@ int main(int argc, char **argv) {
     simParams.setUpdateMode(1);
     // simParams.setDtFix(dt);
 
-    // Boundary object
+    // initial/boundary conditions and boundary object
+    auto initialConditions = getInitialConditionsFun(cons_u, cons_v);
+    auto boundaryCondition = boundaryConditionFunctions[boundaryConditionType];
     Boundary boundary(xa, xb, ya, yb);
 
     // Create the Solver object
-    NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryConditionFunctions[boundaryConditionType]);
+    NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time

@@ -21,7 +21,8 @@ using namespace std;
 NSSolver::NSSolver(Boundary &boundary,
                     vector<SolidObject> &solidObjects,
                     SimParams &params,
-                    void (*initialConditions)(int,int,int,double*,double*,double**,double**),
+                    std::function<void (int,int,int,double*,double*,double**,double**)> initialConditions,
+                    // void (*initialConditions)(int,int,int,double*,double*,double**,double**),
                     void (*boundaryConditions)(int,int,double**,double**))
 {
     // Check that the parameters object is set

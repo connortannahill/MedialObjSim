@@ -3,6 +3,7 @@ one line description of what the test does
 xa xb
 ya yb
 nx ny
+cons_u cons_v
 re
 useEno (0,1)
 boundaryConditions (lidDrivenCavityBC, directionalFlowBC)

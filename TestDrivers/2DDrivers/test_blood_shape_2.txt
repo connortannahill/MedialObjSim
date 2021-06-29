@@ -1,9 +1,10 @@
-test for blood cells with directional flow in longer tube
+test for moving blood cells with directional flow in longer tube
 
 0 2
 0 1
 60 60
-1000
+0.1 0
+3000
 1
 directionalFlowBC
 20.0
@@ -12,7 +13,7 @@ directionalFlowBC
 
 bloodCellShapeFun
 1
-0.0
+0.1
 0.0
 cx 0.3
 cy 0.8
@@ -26,9 +27,9 @@ eta 0.0
 
 bloodCellShapeFun
 1
+0.1
 0.0
-0.0
-cx 0.5
+cx 0.45
 cy 0.5
 a 0.1
 c 0.105
@@ -40,9 +41,9 @@ eta 0.0
 
 bloodCellShapeFun
 1
+0.1
 0.0
-0.0
-cx 0.8
+cx 0.6
 cy 0.25
 a 0.1
 c 0.105
@@ -54,10 +55,10 @@ eta 0.0
 
 bloodCellShapeFun
 1
-0.0
+0.1
 0.0
 cx 0.9
-cy 0.5
+cy 0.7
 a 0.1
 c 0.105
 mass 0.5
@@ -68,10 +69,10 @@ eta 0.0
 
 bloodCellShapeFun
 1
+0.1
 0.0
-0.0
-cx 1.4
-cy 0.3
+cx 1.1
+cy 0.4
 a 0.1
 c 0.105
 mass 1.0

@@ -3,6 +3,7 @@ test for blood cell shape
 0 1
 0 1
 40 40
+0 0
 1000
 1
 lidDrivenCavityBC
