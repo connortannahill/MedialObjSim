@@ -34,14 +34,19 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
 
 // based on Cassini oval
 double bloodCellShapeFun(double x, double y, SolidParams &ps) {
-    double cx, cy, a, c;
+    double cx, cy, a, c, deg;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
     ps.getParam("a", a);
     ps.getParam("c", c);
+    ps.getParam("deg", deg); // degree of rotation
 
-    double x_sqr = simutils::square(x-cx);
-    double y_sqr = simutils::square(y-cy);
+    double rad = deg * M_PI / 180;
+    double rotcx = (x-cx) * cos(rad) - (y-cy) * sin(rad);
+    double rotcy = (x-cx) * sin(rad) + (y-cy) * cos(rad);
+
+    double x_sqr = simutils::square(rotcx);
+    double y_sqr = simutils::square(rotcy);
     double a_sqr = simutils::square(a);
     double c_sqr = simutils::square(c);
 

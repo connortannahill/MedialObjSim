@@ -19,6 +19,7 @@ cx 0.25
 cy 0.7
 a 0.1
 c 0.105
+deg 30
 mass 1.0
 density 1.0
 E 10
@@ -33,6 +34,7 @@ cx 0.75
 cy 0.7
 a 0.1
 c 0.105
+deg -30
 mass 1.0
 density 1.0
 E 10
