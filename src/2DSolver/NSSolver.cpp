@@ -886,6 +886,23 @@ double NSSolver::getKinematicBoundaryLC(int i, int j, double velObj, double velN
  * TODO: this should not be virtual, going to be the same for all codes.
 */
 void NSSolver::applyInterfaceBCs() {
+    // Set all the boundary conditions to 0.
+    for (int j = 1; j <= ny; j++) {
+        u[j][0] = 0.0;
+        u[j][nx] = 0.0;
+
+        v[j][0] = -v[j][1];
+        v[j][nx+1] = -v[j][nx];
+    }
+
+    for (int i = 1; i <= nx; i++) {
+        u[0][i] = -u[1][i];
+        u[ny+1][i] = -u[ny][i];
+
+        v[0][i] = 0.0;
+        v[ny][i] = 0.0;
+    }
+
     this->applyFluidBCs(this->nx, this->ny, this->u, this->v);
 
     int i, j, xi, yi;

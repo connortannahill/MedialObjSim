@@ -58,29 +58,8 @@ void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double 
     simutils::set_constant(hg-1, wg, cons_v, v);
 }
 
-// Problem-dependent boundary condition
-void resetBoundaryConditions(int nx, int ny, double **u, double **v) {
-    // Set all the boundary conditions to 0.
-    for (int j = 1; j <= ny; j++) {
-        u[j][0] = 0.0;
-        u[j][nx] = 0.0;
-
-        v[j][0] = -v[j][1];
-        v[j][nx+1] = -v[j][nx];
-    }
-
-    for (int i = 1; i <= nx; i++) {
-        u[0][i] = -u[1][i];
-        u[ny+1][i] = -u[ny][i];
-
-        v[0][i] = 0.0;
-        v[ny][i] = 0.0;
-    }
-}
-
+// Problem-dependent boundary conditions
 void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-    resetBoundaryConditions(nx, ny, u, v);
-
     double ubar = 1;
     for (int i = 1; i <= nx; i++) {
         u[ny+1][i] = 2*ubar - u[ny][i];
@@ -88,8 +67,6 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 }
 
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
-    resetBoundaryConditions(nx, ny, u, v);
-
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
         u[j][0] = 0.1;
