@@ -1,41 +1,44 @@
 #include <iostream>
-#include "./src/Utils/SimUtilities.h"
-#include "./src/2DSolver/Boundary.h"
-#include "./src/2DSolver/SolidObject.h"
-#include "./src/2DSolver/NSSolver.h"
-#include <math.h>
-#include "./src/Utils/Discretizations.h"
-#include <cassert>
-#include <fenv.h>
 #include <fstream>
-#include "./src/2DSolver/ObjectSeeder.h"
-#include "./src/2DSolver/SimParams.h"
+#include "./src/3DSolver/Boundary3D.h"
+#include "./src/3DSolver/SolidObject3D.h"
+#include "./src/3DSolver/NSSolver3D.h"
+
+#include "./src/Utils/SimUtilities.h"
+#include "./src/Utils/Discretizations.h"
 #include "./src/Utils/TestFormatter.h"
+#include "./src/3DSolver/SimParams3D.h"
+
+#include <math.h>
+#include <cassert>
 
 using namespace std;
-const double EPS = 1e-16;
+const double EPS = 1e-12;
 
-double circleShapeFun(double x, double y, SolidParams &ps) {
-    double cx, cy, r;
+double circleShapeFun(double x, double y, double z, SolidParams &ps) {
+    double cx, cy, cz, r;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
+    ps.getParam("cz", cz);
     ps.getParam("r", r);
-    return simutils::square(x-cx)+simutils::square(y-cy)-simutils::square(r);
+    return simutils::square(x-cx)+simutils::square(y-cy)+simutils::square(z-cz)-simutils::square(r);
 }
 
-double coneShapeFun(double x, double y, SolidParams &ps) {
-    double cx, cy, r;
+double coneShapeFun(double x, double y, double z, SolidParams &ps) {
+    double cx, cy, cz, r;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
+    ps.getParam("cz", cz);
     ps.getParam("r", r);
-    return sqrt(simutils::square(x-cx)+simutils::square(y-cy))-r;
+    return sqrt(simutils::square(x-cx)+simutils::square(y-cy)+simutils::square(z-cz))-r;
 }
 
 // based on Cassini oval
-double bloodCellShapeFun(double x, double y, SolidParams &ps) {
-    double cx, cy, a, c;
+double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
+    double cx, cy, cz, a, c;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
+    ps.getParam("cz", cz);
     ps.getParam("a", a);
     ps.getParam("c", c);
 
@@ -47,106 +50,111 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
     return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
 }
 
-void initialConditions(int nx, int ny, int nGhost, double *x, double *y, double **u, double **v) {
+void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
+                        double *y, double *z, double ***u, double ***v,
+                        double ***w) {
     double cons_u = 0.0;
     double cons_v = 0.0;
+    double cons_w = 0.0;
 
     int wg = nx + 2*nGhost; // "width"
     int hg = ny + 2*nGhost; // "height"
+    int vg = nz + 2*nGhost; // "vert"
 
-    simutils::set_constant(hg, wg-1, cons_u, u);
-    simutils::set_constant(hg-1, wg, cons_v, v);
+    simutils::set_constant(vg, hg, wg-1, cons_u, u);
+    simutils::set_constant(vg, hg-1, wg, cons_v, v);
+    simutils::set_constant(vg-1, hg, wg, cons_w, w); 
 }
 
 // Problem-dependent boundary condition
-void resetBoundaryConditions(int nx, int ny, double **u, double **v) {
-    // Set all the boundary conditions to 0.
-    for (int j = 1; j <= ny; j++) {
-        u[j][0] = 0.0;
-        u[j][nx] = 0.0;
+// void resetBoundaryConditions(int nx, int ny, double **u, double **v) {
+//     // Set all the boundary conditions to 0.
+//     for (int j = 1; j <= ny; j++) {
+//         u[j][0] = 0.0;
+//         u[j][nx] = 0.0;
 
-        v[j][0] = -v[j][1];
-        v[j][nx+1] = -v[j][nx];
-    }
+//         v[j][0] = -v[j][1];
+//         v[j][nx+1] = -v[j][nx];
+//     }
 
-    for (int i = 1; i <= nx; i++) {
-        u[0][i] = -u[1][i];
-        u[ny+1][i] = -u[ny][i];
+//     for (int i = 1; i <= nx; i++) {
+//         u[0][i] = -u[1][i];
+//         u[ny+1][i] = -u[ny][i];
 
-        v[0][i] = 0.0;
-        v[ny][i] = 0.0;
-    }
-}
+//         v[0][i] = 0.0;
+//         v[ny][i] = 0.0;
+//     }
+// }
 
-void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-    resetBoundaryConditions(nx, ny, u, v);
+// void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
+//     resetBoundaryConditions(nx, ny, u, v);
 
-    double ubar = 1;
-    for (int i = 1; i <= nx; i++) {
-        u[ny+1][i] = 2*ubar - u[ny][i];
-    }
-}
+//     double ubar = 1;
+//     for (int i = 1; i <= nx; i++) {
+//         u[ny+1][i] = 2*ubar - u[ny][i];
+//     }
+// }
 
-void directionalFlowBC(int nx, int ny, double **u, double **v) {
-    resetBoundaryConditions(nx, ny, u, v);
+// void directionalFlowBC(int nx, int ny, double **u, double **v) {
+//     resetBoundaryConditions(nx, ny, u, v);
 
-    for (int j = 1; j <= ny; j++) {
-        // Inflow condition
-        u[j][0] = 0.1;
-        //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+//     for (int j = 1; j <= ny; j++) {
+//         // Inflow condition
+//         u[j][0] = 0.1;
+//         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
-        // Outflow condition
-        u[j][nx] = u[j][nx-1];
-    }
-}
+//         // Outflow condition
+//         u[j][nx] = u[j][nx-1];
+//     }
+// }
 
-void outputData(string f_name, NSSolver &solver) {
+void outputData(string f_name, NSSolver3D &solver) {
     TestFormatter testFormatter(f_name.c_str());
     std::cout << "Outputting data" << std::endl;
 
     string outStr;
     string outStr2;
 
-    testFormatter.genOutStr("out", outStr);
+    testFormatter.genOutStr("out3D", outStr);
     solver.writeToFile(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("poolOut", outStr);
-    testFormatter.genOutStr("poolVel", outStr2);
+    testFormatter.genOutStr("pool3DOut", outStr);
+    testFormatter.genOutStr("pool3DVel", outStr2);
     solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
     cout << outStr << endl;
     cout << outStr2 << endl;
 
-    testFormatter.genOutStr("MSSEdges", outStr);
+    testFormatter.genOutStr("MSS3DEdges", outStr);
     solver.outputAllStructures(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSNodes", outStr);
+    testFormatter.genOutStr("MSS3DNodes", outStr);
     solver.outputAllStructureNodes(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSVels", outStr);
+    testFormatter.genOutStr("MSS3DVels", outStr);
     solver.outputAllStructureVels(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSTracers", outStr);
-    solver.outputTracers(outStr.c_str());
+    // testFormatter.genOutStr("MSSTracers", outStr);
+    // solver.outputTracers(outStr.c_str());
 
-    testFormatter.genOutStr("medialAxis", outStr);
-    solver.outputMedialAxis(outStr.c_str());
+    // testFormatter.genOutStr("medialAxis", outStr);
+    // solver.outputMedialAxis(outStr.c_str());
 }
 
 // argv: main input_file max_steps save_snapshots
 int main(int argc, char **argv) {
     // set up dictionary of functions for input file
-    map<string, double (*)(double, double, SolidParams&)> shapeFunctions;
+    map<string, double (*)(double, double, double, SolidParams&)> shapeFunctions;
     shapeFunctions["circleShapeFun"] = circleShapeFun;
     shapeFunctions["coneShapeFun"] = coneShapeFun;
-    shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
+    // shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
 
-    map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
-    boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
-    boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
+    // map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
+    // boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
+    // boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;
@@ -161,11 +169,11 @@ int main(int argc, char **argv) {
     ///////////////////////////////////
 
     string desc, boundaryConditionType;
-    double xa, xb, ya, yb, tEnd;
-    int nx, ny, re, num_objects;
+    double xa, xb, ya, yb, za, zb, tEnd;
+    int nx, ny, nz, re, num_objects;
     bool useEno;
-    vector<SolidObject> shapes;
-    SimParams simParams;
+    vector<SolidObject3D> shapes;
+    SimParams3D simParams;
 
     ifstream input_file(input_file_name);
 
@@ -173,7 +181,7 @@ int main(int argc, char **argv) {
     getline(input_file, desc);
 
     // get simulation params
-    input_file >> xa >> xb >> ya >> yb >> nx >> ny;
+    input_file >> xa >> xb >> ya >> yb >> za >> zb >> nx >> ny >> nz;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
@@ -184,9 +192,9 @@ int main(int argc, char **argv) {
 
     string objectFunc, paramName;
     int objectType;
-    double u0, v0, paramValue;
+    double u0, v0, w0, paramValue;
     for (int i = 0; i < num_objects; i++) {
-        input_file >> objectFunc >> objectType >> u0 >> v0;
+        input_file >> objectFunc >> objectType >> u0 >> v0 >> w0;
         
         SolidParams params;
         input_file >> paramName;
@@ -199,36 +207,36 @@ int main(int argc, char **argv) {
         }
         // std::cout << u0 << " " << v0 << " " << objectType << " " << objectFunc << endl;
 
-        SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
+        SolidObject3D object(u0, v0, w0, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 
     // actually set up simParams
     double h = sqrt(simutils::square(1.0/((double) nx)
-        + simutils::square(1.0/((double) ny))));
-    double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+        + simutils::square(1.0/((double) ny)
+        + simutils::square(1.0/((double) nz)))));
+    // double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
 
     simParams.setRe(re);
+    simParams.setMu(1.0/simParams.Re);
     simParams.setNx(nx);
     simParams.setNy(ny);
+    simParams.setNz(nz);
+    simParams.setMssNx(nx);
+    simParams.setMssNy(ny);
+    simParams.setMssNz(nz);
     simParams.setUseEno(useEno);
-    simParams.setMu(1.0/simParams.Re);
-    simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
-    // simParams.setRepulseDist(0.1); // Actually need 0.1
-    // simParams.setCollisionStiffness(2.0);
-    // simParams.setCollisionDist(0.25);
+    simParams.setRepulseMode(0);
     simParams.setRepulseDist(3*h); // Actually need 0.1
     simParams.setCollisionStiffness(2.0);
     simParams.setCollisionDist(3*h);
     simParams.setUpdateMode(1);
-    // simParams.setDtFix(dt);
 
     // Boundary object
-    Boundary boundary(xa, xb, ya, yb);
+    Boundary3D boundary(xa, xb, ya, yb, za, zb);
 
     // Create the Solver object
-    NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryConditionFunctions[boundaryConditionType]);
+    NSSolver3D solver(boundary, shapes, simParams, initialConditions);
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
@@ -240,7 +248,7 @@ int main(int argc, char **argv) {
     int nsteps = 0;
     if (save_snapshots) {
 
-        string testName = "FlowSteps2D/";
+        string testName = "FlowSteps3D/";
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
@@ -260,7 +268,8 @@ int main(int argc, char **argv) {
         outputData(f_name, solver);
 
     } else {
-
+        
+        std::cout << "TAKING " << max_steps << " STEPS" << std::endl;
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
@@ -273,7 +282,7 @@ int main(int argc, char **argv) {
 
         /* Output all of the relevant data */
         std::cout << "Outputting data" << std::endl;
-        outputData("SimpleTest2D", solver);
+        outputData("SimpleTest3D", solver);
 
     }
 }

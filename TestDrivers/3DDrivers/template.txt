@@ -1,0 +1,24 @@
+one line description of what the test does
+
+xa xb
+ya yb
+za zb
+nx ny nz
+re
+useEno (0,1)
+boundaryConditions (lidDrivenCavityBC, directionalFlowBC)
+tEnd
+
+num_objects
+
+SolidObject {
+  objectFunc (circleShapeFun, coneShapeFun)
+  objectType (0: RIGID, 1:DEFORMABLE, 2:STATIC)
+  u0
+  v0
+  w0
+  SolidParams {
+    param_name value
+  }
+  .
+} for each object in num_objects
