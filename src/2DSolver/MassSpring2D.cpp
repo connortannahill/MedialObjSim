@@ -334,6 +334,8 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     }
     while (qt->lpNorm<1>() > eps &&  iters < MAX_ITERS);
 
+    this->iterCount = 0;
+
     // After this is done, set the edge length of each spring to its current config to bring the
     // potential energy to 0.
     double barVec[2];
@@ -403,6 +405,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
 
     // If this is a static object, set the vels to 0.
     if (objType == SolidObject::ObjectType::STATIC) {
+        cout << "STATIC OBJECT BEING USED" << endl;
         qt->setZero();
         qtBackup->setZero();
     }
@@ -1024,7 +1027,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2]) {
     colStress[0] /= numNear;
     colStress[1] /= numNear;
     
-    // cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
+    cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
 }
 
 /**
@@ -1585,6 +1588,10 @@ void MassSpring2D::verletSolve(double dt, int elementMode, bool initMode) {
             if (!(initMode && pntList->at(i).boundaryPnt)) {
                 (*q)[2*i] = 2.0*(*q)[2*i] - (*qprev)[2*i] + (simutils::square(dt)/pntList->at(i).mass)*(*f)[2*i];
                 (*q)[2*i+1] = 2.0*(*q)[2*i+1] - (*qprev)[2*i+1] + (simutils::square(dt)/pntList->at(i).mass)*(*f)[2*i+1];
+                // (*q)[2*i] += dt*((*qt)[2*i]) + 0.5*simutils::square(dt)*((*f)[2*i]/pntList->at(i).mass);
+                // (*q)[2*i+1] += dt*((*qt)[2*i+1]) + 0.5*simutils::square(dt)*((*f)[2*i+1]/pntList->at(i).mass);
+                // (*q)[2*i] = (*q)[2*i] + (*qt)[2*i] + (simutils::square(dt)/pntList->at(i).mass)*(*f)[2*i];
+                // (*q)[2*i+1] = (*q)[2*i+1] + (*qt)[2*i+1] + (simutils::square(dt)/pntList->at(i).mass)*(*f)[2*i+1];
             }
 
             // Update the velocities
@@ -1873,6 +1880,8 @@ void MassSpring2D::prox(double dt, Eigen::VectorXd &x, Eigen::VectorXd &DXpU, Ei
 
 void MassSpring2D::updateAfterStep(double dt, Eigen::VectorXd &xPrev, Eigen::VectorXd &x) {
     // Update the node positions
+    // cout << "Diff after step " << (x - *q).norm() << endl;
+    // assert(false);
     *q = x;
     
     // Update the node velocities

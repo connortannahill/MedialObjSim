@@ -167,7 +167,7 @@ protected:
     double phiSmearSign(double h, double phi, double phi_x, double phi_y);
     bool isStructConnected(int i, int j);
     bool isFluidConnected(int i, int j);
-    void assignDomainMemberships(int i, int j, int mode);
+    void assignDomainMemberships(int i, int j, double val, int mode);
     bool indInRange(int i, int j);
     bool shouldRefitSDF(double tol);
 

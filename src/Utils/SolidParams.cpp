@@ -7,6 +7,11 @@ SolidParams::SolidParams() {
     doubleParamMap.clear();
 }
 
+// SolidParams::SolidParams(const SolidParams &s) {
+//     this->intParamMap = s.intParamMap;
+//     this->doubleParamMap = s.doubleParamMap;
+// }
+
 void SolidParams::addParam(string &paramName, double val) {
     doubleParamMap[paramName] = val;
 }

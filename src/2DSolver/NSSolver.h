@@ -50,15 +50,15 @@ private:
 
     double **p;
     // TODO: decide the size of these and if they are needed
-    double **px;
-    double **py;
+    // double **px;
+    // double **py;
 
     // The values for the explicit part of the method.
     double **FU;
     double **FV;
     // TODO: decide the size of these and if they are needed
-    double **FUx;
-    double **FVy;
+    // double **FUx;
+    // double **FVy;
 
     // Solver for the Pressure equation and its parameters
     PressureSolver *pressureSolver;

@@ -2571,9 +2571,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     }
 
     // If significant drift from the interface detected, correct.
-    // if (shouldRefitSDF(min(hx, min(hy, hz)))) {
-    //     refitToSolids(ng);
-    // }
+    if (shouldRefitSDF(min(hx, min(hy, hz)))) {
+        refitToSolids(ng);
+    }
 }
 
 /**
@@ -2637,7 +2637,7 @@ bool Pool3D::shouldRefitSDF(double tol) {
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
     for (auto solid = solids->begin(); solid != solids->end(); ++solid) {
-        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++solid) {
+        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
             squeeze = abs(interpolatePhi(pnt->x, pnt->y, pnt->z)) < tol;
 
             if (!squeeze) {

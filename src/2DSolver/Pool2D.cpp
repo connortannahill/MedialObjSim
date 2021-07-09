@@ -11,6 +11,7 @@
 #include <map>
 #include <queue>
 #include "MassSpring2D.h"
+#include <stdio.h>
 
 using namespace mass_spring;
 using namespace std;
@@ -289,7 +290,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
 /**
  * Assign the marching state of the current node.
 */
-void Pool2D::assignDomainMemberships(int i, int j, int mode) {
+void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
     // cout << "assigning domain" << endl;
     int curMembership = domainMembership(i, j);
     int neighMembership;
@@ -325,12 +326,13 @@ void Pool2D::assignDomainMemberships(int i, int j, int mode) {
 
                 domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
 
-                intersectionFound = true;
+                // Domain intersection which meets the collision requirement
+                intersectionFound = true && val <= this->collisionDist;
             }
         }
     }
 
-    if (intersectionFound) {
+    if (intersectionFound && mode == 2) {
         medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
     }
 }
@@ -357,7 +359,9 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
     int mo = methodOrd;
 
     // Clear the medial axis array
-    medialAxisPnts->clear();
+    if (mode == 2) {
+        medialAxisPnts->clear();
+    }
 
     // Initialize the velocity fields and the temp signed distance function to infinity (negative
     // infinity in the interior of the domain.)
@@ -432,7 +436,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
 
         // Assign the doman memberships of the neighbouring points
         if (domainTracker[j][i] != DOMAIN_INTERSECTION) {
-            assignDomainMemberships(i, j, mode);
+            assignDomainMemberships(i, j, val, mode);
         }
 
         // Update all of the neighbours according to the fast marching algorithm
@@ -589,6 +593,8 @@ void Pool2D::detectCollisions() {
     set<int> allCollisions;
     set<int> collidingIds;
     vector<pair<double, double>> medialAxisCollisionPnts;
+
+    cout << "In detect collisions. Num axis pnts = " << medialAxisPnts->size() << endl;
 
     for (auto tup = medialAxisPnts->begin(); tup != medialAxisPnts->end(); ++tup) {
         // Find the cell location of the medial axis point
@@ -2285,6 +2291,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
 */
 void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, bool reinitialize) {
     int k;
+    // cout << "in updatePool" << endl;
 
     // If this is called but there are no immersed structures, simply return
     if (this->nStructs < 1) {
@@ -2329,11 +2336,14 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
 
     // If significant drift from the interface detected, correct.
-    // if (shouldRefitSDF(min(hx, hy))) {
-    //     refitToSolids(ng);
-    // }
+    // cout << "refitting SDF" << endl;
+    if (shouldRefitSDF(min(hx, hy))) {
+        refitToSolids(ng);
+    }
+    // cout << "finsihed refitting SDF" << endl;
 
     nSteps++;
+    // cout << "finished  updatePool" << endl;
 }
 
 /**
@@ -2343,11 +2353,12 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
  * as a signed distance function.
 */
 bool Pool2D::shouldRefitSDF(double tol) {
+    // cout << "in refit" << endl;
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
     for (auto solid = solids->begin(); solid != solids->end(); ++solid) {
-        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++solid) {
+        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
             squeeze = abs(interpolatePhi(pnt->x, pnt->y)) < tol;
 
             if (!squeeze) {
@@ -2355,6 +2366,8 @@ bool Pool2D::shouldRefitSDF(double tol) {
             }
         }
     }
+
+    // cout << "FINISHEd in refit" << endl;
 
     return squeeze;
 }
@@ -2409,7 +2422,8 @@ double Pool2D::buildSqeezeField() {
  * TODO: may need to reinitialize before using this
 */
 void Pool2D::refitToSolids(int ng) {
-    int mo = this->methodOrd;
+    // int mo = this->methodOrd;
+    cout << "Refitting to solids!!!" << endl;
 
     double t = 0;
 
@@ -3045,7 +3059,7 @@ void Pool2D::bfsFromTracer(int structNum) {
     int i = simutils::findLimInfMeshPoint(tracers[structNum].x, this->x, this->nx+1);
     int j = simutils::findLimInfMeshPoint(tracers[structNum].y, this->y, this->ny+1);
 
-    cout << "For stuct num " << structNum << " tracker grid location is x = " << i << " y = " << j << endl;
+    // cout << "For stuct num " << structNum << " tracker grid location is x = " << i << " y = " << j << endl;
     int ri, rj, ni, nj;
     objects::FSIObject FL = objects::FLUID_C; // Make the ternary operator more palatable below
 

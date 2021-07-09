@@ -11,6 +11,7 @@ public:
     SolidParams();
     void addParam(string &paramName, double val);
     void addParam(string &paramName, int val);
+    // SolidParams(const SolidParams &s);
 
     void addParam(const char *paramName, double val);
     void addParam(const char *paramName, int val);
