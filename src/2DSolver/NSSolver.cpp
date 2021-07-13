@@ -480,7 +480,7 @@ double NSSolver::eno_uvx(int i, int j) {
     // }
 
     // First build the stencil
-    int check_pnts[7] = {i-2, i-1, i, i, i, i+1, i+2};
+    // int check_pnts[7] = {i-2, i-1, i, i, i, i+1, i+2};
     bool sten[7] = {false, false, false, false, false, false, false};
     sten[c] = true;
     sten[c+1] = true;
@@ -560,7 +560,7 @@ double NSSolver::eno_uvy(int i, int j) {
     int yi = methodOrd + j;
 
     // First build the stencil
-    int check_pnts[7] = {j-2, j-1, j, j, j, j+1, j+2};
+    // int check_pnts[7] = {j-2, j-1, j, j, j, j+1, j+2};
 
     // If center point is not available for interpolation, return the first order scheme
     // bool check = pool->isUsableV(i, j) && pool->isUsableV(i+1, j) 
@@ -628,7 +628,7 @@ double NSSolver::eno_uvy(int i, int j) {
     //     // In case where ENO stencil fails, use centered approximation
     //     return discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
     // }
-    int upDir = 1;
+    // int upDir = 1;
 
     // // Using upwind direction, compute ENO
     double uv[7];

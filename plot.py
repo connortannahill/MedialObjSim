@@ -246,14 +246,14 @@ elif mode == 10:
         plt.ylim((0, 1))
     
     f_name = f_temp
-    # f_name += 'poolVel'
-    f_name += 'out'
+    f_name += 'poolVel'
+    # f_name += 'out'
     out = np.genfromtxt(f_name, delimiter=',')
     x = out[:,0]
     y = out[:,1]
     u = out[:,2]
     v = out[:,3]
-    p = out[:,4]
+    # p = out[:,4]
 
     # v = v.flatten()
 

@@ -31,6 +31,9 @@ test_circle_flow_2d : $(DRIVERS2D)/circle_flow.cpp $(SRC2D) $(LIBS)
 test_circle_flow_display_steps_2d : $(DRIVERS2D)/circle_flow_display_steps.cpp $(SRC2D) $(LIBS)
 	$(CC) $(CFLAGS) $^ -o circle_flow_display_steps.exe
 
+col_test_2d : $(DRIVERS2D)/col_test.cpp $(SRC2D) $(LIBS)
+	$(CC) $(CFLAGS) $^ -o col_test_2d.exe
+
 
 
 # 3D Test Drivers
