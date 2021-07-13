@@ -7,21 +7,36 @@ basic lid driven cavity test for an object in 3D
 1000
 0
 lidDrivenCavityBC
-10.0
+6.4
 
-1
+2
 
 coneShapeFun
 1
 0.0
 0.0
 0.0
-cx 0.5
+cx 0.25
 cy 0.5
 cz 0.5
 r 0.15
-mass 1.0
+mass 100.0
 density 1.0
-E 15
+E 5
+eta 0.0
+.
+
+coneShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.75
+cy 0.5
+cz 0.5
+r 0.15
+mass 100.0
+density 1.0
+E 5
 eta 0.0
 .
