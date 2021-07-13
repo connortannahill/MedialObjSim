@@ -44,10 +44,11 @@ double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
 
     double x_sqr = simutils::square(x-cx);
     double y_sqr = simutils::square(y-cy);
+    double z_sqr = simutils::square(z-cz);
     double a_sqr = simutils::square(a);
     double c_sqr = simutils::square(c);
 
-    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
+    return simutils::square(x_sqr + y_sqr + z_sqr + a_sqr) - 4*a_sqr*(x_sqr + y_sqr) - simutils::square(c_sqr);
 }
 
 void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
@@ -150,7 +151,7 @@ int main(int argc, char **argv) {
     map<string, double (*)(double, double, double, SolidParams&)> shapeFunctions;
     shapeFunctions["circleShapeFun"] = circleShapeFun;
     shapeFunctions["coneShapeFun"] = coneShapeFun;
-    // shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
+    shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
 
     // map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
     // boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
