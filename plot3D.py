@@ -135,7 +135,7 @@ elif mode == 1:
 
     fig.show()
 elif mode == 2:
-    pool_vel_fname = f_name +  'pool3DVel'.format(0)
+    pool_vel_fname = f_name + 'pool3DVel'
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
 
     x = out[:,0]

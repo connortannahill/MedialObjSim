@@ -1,0 +1,57 @@
+lid driven cavity test for multiple object in 3D
+
+0 1
+0 1
+0 1
+20 20 20
+1000
+0
+lidDrivenCavityBC
+40.0
+
+3
+
+circleShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.2
+cy 0.25
+cz 0.25
+r 0.1
+mass 1.0
+density 1.0
+E 15
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.5
+cy 0.5
+cz 0.5
+r 0.1
+mass 1.0
+density 1.0
+E 15
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.75
+cy 0.7
+cz 0.75
+r 0.1
+mass 1.0
+density 1.0
+E 15
+eta 0.0
+.

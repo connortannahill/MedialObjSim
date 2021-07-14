@@ -2,8 +2,8 @@ one line description of what the test does
 
 xa xb
 ya yb
-nx ny
-cons_u cons_v
+za zb
+nx ny nz
 re
 useEno (0,1)
 boundaryConditions (lidDrivenCavityBC, directionalFlowBC)
@@ -16,6 +16,7 @@ SolidObject {
   objectType (0: RIGID, 1:DEFORMABLE, 2:STATIC)
   u0
   v0
+  w0
   SolidParams {
     param_name value
   }
