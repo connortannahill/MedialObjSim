@@ -36,6 +36,27 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
     return sqrt(simutils::square(x-cx)+simutils::square(y-cy))-r;
 }
 
+// based on Cassini oval
+double bloodCellShapeFun(double x, double y, SolidParams &ps) {
+    double cx, cy, a, c, deg;
+    ps.getParam("cx", cx);
+    ps.getParam("cy", cy);
+    ps.getParam("a", a);
+    ps.getParam("c", c);
+    ps.getParam("deg", deg); // degree of rotation
+
+    double rad = deg * M_PI / 180;
+    double rotcx = (x-cx) * cos(rad) - (y-cy) * sin(rad);
+    double rotcy = (x-cx) * sin(rad) + (y-cy) * cos(rad);
+
+    double x_sqr = simutils::square(rotcx);
+    double y_sqr = simutils::square(rotcy);
+    double a_sqr = simutils::square(a);
+    double c_sqr = simutils::square(c);
+
+    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
+}
+
 int main(int argc, char **argv) { 
     int nx = 20;
     int ny = 20;
@@ -56,14 +77,14 @@ int main(int argc, char **argv) {
     params1.addParam("r",  0.15);
     params1.addParam("mass",  1.0);
     params1.addParam("density",  1.0);
-    params1.addParam("E",  1.0);
+    params1.addParam("E",  10.0);
     params1.addParam("eta",  0.0);
 
     SolidParams params2(params1);
     params2.addParam("cx", 0.75);
     params2.addParam("cy", 0.5);
 
-    double u0 = 0.0;
+    double u0 = 0.1;
     double v0 = 0.0;
     SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
     SolidObject circle2(-u0, v0, objType, coneShapeFun, params2);
@@ -84,11 +105,11 @@ int main(int argc, char **argv) {
     // Compute the repulse distance required
     double h = sqrt(simutils::square(1.0/((double) simParams.nx)
         + simutils::square(1.0/((double) simParams.ny))));
-    simParams.setRepulseDist(5.0*h); // Actually need 0.1
+    // simParams.setRepulseDist(8.0*h); // Actually need 0.1
     // simParams.setRepulseDist(0.1); // Actually need 0.1
     simParams.setCollisionStiffness(2.0);
     // simParams.setCollisionDist(3*h);
-    simParams.setCollisionDist(2.0*h);
+    simParams.setCollisionDist(4.0*h);
     simParams.setAdmmTol(1e-10);
     simParams.setUpdateMode(1);
 

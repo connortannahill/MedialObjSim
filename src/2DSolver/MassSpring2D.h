@@ -68,6 +68,7 @@ public:
 
     // Backups for the state variables in case we wish to revert the state
     Eigen::VectorXd *qBackup;
+    Eigen::VectorXd *fBackup;
     Eigen::VectorXd *qtBackup;
     Eigen::VectorXd *qprevBackup;
 
@@ -126,7 +127,7 @@ protected:
                             massPoint2D pnt2, double force[4]);
     void calcLocalElasticHessian(double dt, edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
     void calcLocalKelvinForce(edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
-    void computeCollisionStress(int nodeId, double colStress[2]);
+    void computeCollisionStress(int nodeId, double colStress[2], double diffNorm);
 
     /* Helper functions */
     void interpolateBoundaryLocation(Pool2D &pool, int i, int j, double X[2]);

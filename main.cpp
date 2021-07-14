@@ -80,8 +80,8 @@ int main(int argc, char **argv) {
     double eta = 0.0;
 
 
-    // circParams1["cx"] = 0.25;
-    circParams1.addParam("cx", 0.25);
+    // circParams1.addParam("cx", 0.25);
+    circParams1.addParam("cx", 0.5);
     circParams1.addParam("cy", 0.5);
     circParams1.addParam("cz", 0.5);
     circParams1.addParam("r", 0.15);
@@ -113,7 +113,7 @@ int main(int argc, char **argv) {
 
     // Create circle object array for embedding in Pool
     std::vector<SolidObject3D> circles;
-    circles.push_back(circle2);
+    // circles.push_back(circle2);
     circles.push_back(circle1);
 
     // int numStructs = 1;

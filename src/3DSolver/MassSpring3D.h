@@ -73,10 +73,17 @@ public:
     double collisionDist;
     double repulseDist;
 
+    // Algorithmic variables
     Eigen::VectorXd *q;
     Eigen::VectorXd *qt;
     Eigen::VectorXd *qprev;
     Eigen::VectorXd *f;
+
+    // Backups for the state variables in case we wish to revert the state
+    Eigen::VectorXd *qBackup;
+    Eigen::VectorXd *fBackup;
+    Eigen::VectorXd *qtBackup;
+    Eigen::VectorXd *qprevBackup;
 
     double hx, hy, hz;
     double pntMass;
@@ -135,7 +142,7 @@ protected:
                             massPoint3D pnt2, double force[6]);
     void calcLocalElasticHessian(double dt, edge3D edge, int pntId1, massPoint3D pnt1, int pntId2, massPoint3D pnt2);
     void calcLocalKelvinForce(edge3D edge, int pntId1, massPoint3D pnt1, int pntId2, massPoint3D pnt2);
-    void computeCollisionStress(int nodeId, double colStress[3]);
+    void computeCollisionStress(int nodeId, double colStress[3], double dA);
     void interpolateBoundaryLocation(Pool3D &pool, int i, int j, int k, double X[3]);
     bool findNearestGridNormalInterface(Pool3D &pool, int pntId, int nearestInterfacePnt[3]);
     double distToEdge(double x[3], int pntId1, int pntId2, double &t);
