@@ -17,7 +17,8 @@ using namespace std;
 MomentumSolver3D::MomentumSolver3D(
     Boundary3D &boundary, vector<SolidObject3D> &solidObjects,
     SimParams3D &params,
-    void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***))
+    void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***),
+    void (*boundaryConditions)(int,int,int,double***))
 {
 
     if (!params.checkParams()) {
@@ -117,6 +118,8 @@ MomentumSolver3D::MomentumSolver3D(
     //       able to handle irregular boundaries.
     initialConditions(this->nx, this->ny, this->nz, this->methodOrd, this->x,
                         this->y, this->z, this->u, this->v, this->w);
+
+    applyFluidBCs = boundaryConditions;
 
     // Pre-compute the Barycentric weights
     // TODO: ensure that this is correct for the FV methods used later
@@ -321,7 +324,6 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
 
     // Apply the fluid boundary conditions on the initial step using pure virtual function.
     cout << "Applying fluid BC's" << endl;
-    this->applyFluidBCs();
     this->applyInterfaceBCs();
     cout << "FINISHED Applying fluid BC's" << endl;
 

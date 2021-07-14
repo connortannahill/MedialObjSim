@@ -67,47 +67,26 @@ void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
     simutils::set_constant(vg-1, hg, wg, cons_w, w); 
 }
 
-// Problem-dependent boundary condition
-// void resetBoundaryConditions(int nx, int ny, double **u, double **v) {
-//     // Set all the boundary conditions to 0.
-//     for (int j = 1; j <= ny; j++) {
-//         u[j][0] = 0.0;
-//         u[j][nx] = 0.0;
+void lidDrivenCavityBC(int nx, int ny, int nz, double ***u) {
+    double ubar = 1.0;
+    for (int j = 1; j <= ny; j++) {
+        for (int i = 1; i <= nx; i++) {
+            u[nz+1][j][i] = 2.0*ubar - u[nz][j][i];
+        }
+    }
+}
 
-//         v[j][0] = -v[j][1];
-//         v[j][nx+1] = -v[j][nx];
-//     }
+void directionalFlowBC(int nx, int ny, int nz, double ***u) {
+    for (int k = 1; k <= nz; k++) {
+        for (int j = 1; j <= ny; j++) {
+            // Inflow condition
+            u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
-//     for (int i = 1; i <= nx; i++) {
-//         u[0][i] = -u[1][i];
-//         u[ny+1][i] = -u[ny][i];
-
-//         v[0][i] = 0.0;
-//         v[ny][i] = 0.0;
-//     }
-// }
-
-// void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-//     resetBoundaryConditions(nx, ny, u, v);
-
-//     double ubar = 1;
-//     for (int i = 1; i <= nx; i++) {
-//         u[ny+1][i] = 2*ubar - u[ny][i];
-//     }
-// }
-
-// void directionalFlowBC(int nx, int ny, double **u, double **v) {
-//     resetBoundaryConditions(nx, ny, u, v);
-
-//     for (int j = 1; j <= ny; j++) {
-//         // Inflow condition
-//         u[j][0] = 0.1;
-//         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
-
-//         // Outflow condition
-//         u[j][nx] = u[j][nx-1];
-//     }
-// }
+            // Outflow condition
+            u[k][j][nx] = u[k][j][nx-1];
+        }
+    }
+}
 
 void outputData(string f_name, NSSolver3D &solver) {
     TestFormatter testFormatter(f_name.c_str());
@@ -153,9 +132,9 @@ int main(int argc, char **argv) {
     shapeFunctions["coneShapeFun"] = coneShapeFun;
     shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
 
-    // map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
-    // boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
-    // boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
+    map<string, void (*)(int, int, int, double***)> boundaryConditionFunctions;
+    boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
+    boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;
@@ -164,7 +143,8 @@ int main(int argc, char **argv) {
 
     string input_file_name = argv[1];
     int max_steps = (argc == 2) ? 1 : atoi(argv[2]);
-    bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
+    // bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
+    bool save_snapshots = 0; // not implemented in 3D yet
 
     /* Parse from input file */
     ///////////////////////////////////
@@ -233,11 +213,13 @@ int main(int argc, char **argv) {
     simParams.setCollisionDist(3*h);
     simParams.setUpdateMode(1);
 
-    // Boundary object
+    // initial/boundary conditions and boundary object
+    // auto initialConditions = getInitialConditionsFun(cons_u, cons_v);
+    auto boundaryCondition = boundaryConditionFunctions[boundaryConditionType];
     Boundary3D boundary(xa, xb, ya, yb, za, zb);
 
     // Create the Solver object
-    NSSolver3D solver(boundary, shapes, simParams, initialConditions);
+    NSSolver3D solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time

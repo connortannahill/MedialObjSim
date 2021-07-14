@@ -16,8 +16,9 @@ using namespace std;
 NSSolver3D::NSSolver3D(Boundary3D &boundary, 
                     vector<SolidObject3D> &solidObjects,
                     SimParams3D &params,
-                    void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***))
-                    : MomentumSolver3D(boundary, solidObjects, params, initialConditions)
+                    void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***),
+                    void (*boundaryConditions)(int,int,int,double***))
+                    : MomentumSolver3D(boundary, solidObjects, params, initialConditions, boundaryConditions)
 {
 }
 
@@ -366,6 +367,9 @@ double NSSolver3D::getKinematicBoundaryLC(int i, int j, int k, double velObj, do
  * TODO: this code is lol
 */
 void NSSolver3D::applyInterfaceBCs() {
+    this->resetBoundaryConditions();
+    this->applyFluidBCs(this->nx,this->ny, this->nz, this->u);
+
     int i, j, k, xi, yi, zi;
     objects::FSIObject obj;
 
@@ -654,7 +658,7 @@ void NSSolver3D::applyInterfaceBCs() {
 /**
  * Apply the boundary conditions
 */
-void NSSolver3D::applyFluidBCs() {
+void NSSolver3D::resetBoundaryConditions() {
     int i, j, k;
 
     // Set all the boundary conditions to 0.
@@ -694,25 +698,6 @@ void NSSolver3D::applyFluidBCs() {
             this->w[k][this->ny+1][i] = -this->w[k][this->ny][i];
         }
     }
-
-
-    // Lid-driven cavity example, apply x velocity of 1. 
-    double ubar = 1.0;
-    for (j = 1; j <= this->ny; j++) {
-        for (i = 1; i <= this->nx; i++) {
-            this->u[nz+1][j][i] = 2.0*ubar - u[nz][j][i];
-        }
-    }
-    // // Flow past obstical
-    // for (int k = 1; j <= this->nz; k++) {
-    //     for (j = 1; j <= this->ny; j++) {
-    //         // Inflow condition
-    //         this->u[k][j][0] = 0.1; //simutils::dmin(this->t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - this->t, 0);
-
-    //         // Outflow condition
-    //         this->u[k][j][this->nx] = this->u[k][j][this->nx-1];
-    //     }
-    // }
 }
 
 /**

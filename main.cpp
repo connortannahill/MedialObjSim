@@ -48,6 +48,27 @@ void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
     simutils::set_constant(vg-1, hg, wg, cons_w, w); 
 }
 
+void lidDrivenCavityBC(int nx, int ny, int nz, double ***u) {
+    double ubar = 1.0;
+    for (int j = 1; j <= ny; j++) {
+        for (int i = 1; i <= nx; i++) {
+            u[nz+1][j][i] = 2.0*ubar - u[nz][j][i];
+        }
+    }
+}
+
+void directionalFlowBC(int nx, int ny, int nz, double ***u) {
+    for (int k = 1; k <= nz; k++) {
+        for (int j = 1; j <= ny; j++) {
+            // Inflow condition
+            u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+            // Outflow condition
+            u[k][j][nx] = u[k][j][nx-1];
+        }
+    }
+}
+
 int main(int argc, char **argv) {
     // Testing the fluid solver
     double tEnd = 6.4;
@@ -178,7 +199,7 @@ int main(int argc, char **argv) {
 
     // Create the Solver object
     std::cout << "creating the solver" << std::endl;
-    NSSolver3D solver(boundary, circles, params, initialConditions);
+    NSSolver3D solver(boundary, circles, params, initialConditions, lidDrivenCavityBC);
     std::cout << "created the solver" << std::endl;
     // NSSolver3D solver(nx, ny, nz, boundary, numStructs, true, &circle1, params, initialConditions);
 

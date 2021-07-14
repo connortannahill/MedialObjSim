@@ -14,7 +14,7 @@ using namespace std;
 class NSSolver3D : MomentumSolver3D {
 private:
     void updateF(Pool3D *pool);
-    void applyFluidBCs();
+    void resetBoundaryConditions();
     void applyInterfaceBCs();
     double getDt();
 
@@ -25,7 +25,8 @@ public:
     NSSolver3D(Boundary3D &boundary,
             vector<SolidObject3D> &solidObjects,
             SimParams3D &params,
-            void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***));
+            void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***),
+            void (*boundaryConditions)(int,int,int,double***));
     NSSolver3D() = default;
     double step(double tEnd, double safetyFactor);
     void writeToFile(const char *fname);
