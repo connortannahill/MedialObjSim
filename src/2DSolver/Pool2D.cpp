@@ -710,7 +710,11 @@ void Pool2D::create2DPool(Boundary &boundary,
     } else {
         this->dtFix = -1;
     }
-    
+
+    // Set the body forces
+    this->gx = params.gx;
+    this->gy = params.gy;
+
     // Set the method order used for the evolution of the level set equation
     this->methodOrd = 3;
 

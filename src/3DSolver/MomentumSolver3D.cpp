@@ -31,6 +31,11 @@ MomentumSolver3D::MomentumSolver3D(
     this->nz = params.nz;
     this->methodOrd = params.methodOrd;
 
+    // Body forces
+    this->gx = params.gx;
+    this->gy = params.gy;
+    this->gz = params.gz;
+
     // Create the uniform 1D meshes using the boundary object
     this->x = boundary.generateXMesh(this->nx);
     this->y = boundary.generateYMesh(this->ny);

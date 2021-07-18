@@ -771,6 +771,11 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     } else {
         this->dtFix = -1;
     }
+
+    // Set the body forces
+    this->gx = params.gx;
+    this->gy = params.gy;
+    this->gz = params.gz;
     
     // Set the method order used for the evolution of the level set equation
     // TODO: generalize this

@@ -23,6 +23,26 @@ void SimParams3D::setMssNz(int mssNy) {
     mssNySet = true;
 }
 
+void SimParams3D::setGx(double gx) {
+    this->gx = gx;
+}
+void SimParams3D::setGy(double gy) {
+    this->gy = gy;
+}
+void SimParams3D::setGz(double gz) {
+    this->gz = gz;
+}
+
+double SimParams3D::getGx() {
+    return this->gx;
+}
+double SimParams3D::getGy() {
+    return this->gy;
+}
+double SimParams3D::getGz() {
+    return this->gz;
+}
+
 void SimParams3D::setUseEno(bool useEno) {
     this->useEno = useEno;
 }

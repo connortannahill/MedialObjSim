@@ -58,6 +58,7 @@ public:
     double collisionDist;
     double repulseDist;
     double admmTol = 1e-6;
+    double gx, gy;
 
     /* Algorithmic variables and control modes */
     Eigen::VectorXd *q;
@@ -122,6 +123,7 @@ public:
 protected:
     /* Energy functions */
     void applyBoundaryForces(Pool2D &pool, double ***stress, int ng, double fNet[2]);
+    void applyBodyForces();
     void calcLocalElasticForce(edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
     void calcElasticForce(double E, double l0, massPoint2D pnt1,
                             massPoint2D pnt2, double force[4]);

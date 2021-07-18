@@ -25,6 +25,9 @@ MassSpring2D::MassSpring2D(const MassSpring2D &cpy) : Assembly() {
     this->w = cpy.w;
     this->admmTol = cpy.admmTol;
 
+    this->gx = cpy.gx;
+    this->gy = cpy.gy;
+
     this->objType = cpy.objType;
 
     /* The collision detection points */
@@ -95,6 +98,9 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     edgeList = new vector<edge2D>();
     boundaryEdgeIdList = new vector<int>();
     boundaryNodeIdList = new vector<int>();
+
+    this->gx = pool.gx;
+    this->gy = pool.gy;
 
     this->updateMode = updateMode;
     this->elementMode = elementMode;
@@ -1644,6 +1650,15 @@ void MassSpring2D::verletSolve(double dt, int elementMode, bool initMode) {
     eta = etaTemp;
 }
 
+/**
+ * Apply the boundary forces
+*/
+void MassSpring2D::applyBodyForces() {
+    for (int id = 0; id < pntList->size(); id++) {
+        (*f)[2*id] += gx;
+        (*f)[2*id+1] += gy;
+    }
+}
 
 /**
  * Update the state of the mass-spring system using the information provided by the fluid
@@ -1683,6 +1698,7 @@ void MassSpring2D::updateSolidVels(double dt, Pool2D &pool, double ***stress, do
     // Loop through all of the points. For each boundary point, add to the force vector.
     if (!initMode) {
         applyBoundaryForces(pool, stress, ng, fNet);
+        applyBodyForces();
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the

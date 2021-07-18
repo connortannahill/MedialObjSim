@@ -264,12 +264,13 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
-    # plt.title('Extrapolated Speed Field')
+    plt.title('$t = 0.75$')
 
     plt.gca().set_aspect('equal')
-    plt.axis('off')
-    # plt.savefig("test.png", bbox_inches='tight')
-
+    # plt.axis('off')
+    plt.savefig("test.png", bbox_inches='tight')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
 
     plt.show()
 elif mode == 11:

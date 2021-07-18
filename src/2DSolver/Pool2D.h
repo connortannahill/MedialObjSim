@@ -189,6 +189,8 @@ public:
     Pool2D() = default;
     ~Pool2D();
 
+    double gx, gy;
+
     /* Control method */
     void updatePool(double dt, double **u, double **v, double **p, int ng, bool reinitialize);
 

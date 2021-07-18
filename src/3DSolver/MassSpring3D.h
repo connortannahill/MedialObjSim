@@ -84,8 +84,10 @@ public:
     Eigen::VectorXd *fBackup;
     Eigen::VectorXd *qtBackup;
     Eigen::VectorXd *qprevBackup;
+    void applyBodyForces();
 
     double hx, hy, hz;
+    double gx, gy, gz;
     double pntMass;
 
     double eta;

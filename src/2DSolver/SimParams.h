@@ -37,6 +37,8 @@ public:
     int elementMode = 0;
     double admmTol = 1e-6;
     double h;
+    double gx = 0.0;
+    double gy = 0.0;
 
     // This variable determines whether repulsive forces are to be used to keep objects apart and which
     // kind should be used
@@ -55,6 +57,10 @@ public:
     void setAdmmTol(double admmTol);
     void setUpdateMode(int mode);
     void setElementMode(int mode);
+    void setGx(double gx);
+    void setGy(double gy);
+    double getGx();
+    double getGy();
     double getH();
 
 

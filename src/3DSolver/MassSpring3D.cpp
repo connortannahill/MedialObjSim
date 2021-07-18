@@ -26,6 +26,10 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
     this->boundaryNodeIdList = new vector<int>(*cpy.boundaryNodeIdList);
     this->faceList = new vector<face3D>(*cpy.faceList);
     this->w = cpy.w;
+    
+    this->gx = cpy.gx;
+    this->gy = cpy.gy;
+    this->gz = cpy.gz;
 
     /* The collision detection points */
     nodeCols = new vector<set<massPoint3D*>>(*cpy.nodeCols);
@@ -95,6 +99,10 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     faceList = new vector<face3D>();
     boundaryEdgeIdList = new vector<int>();
     boundaryNodeIdList = new vector<int>();
+
+    this->gx = pool.gx;
+    this->gy = pool.gy;
+    this->gz = pool.gz;
 
     this->elementMode = elementMode;
     this->updateMode = updateMode;
@@ -1609,6 +1617,16 @@ void MassSpring3D::verletSolve(double dt, int elementMode, bool initMode) {
     eta = etaTemp;
 }
 
+/**
+ * Apply the boundary forces
+*/
+void MassSpring3D::applyBodyForces() {
+    for (int id = 0; id < pntList->size(); id++) {
+        (*f)[2*id] += gx;
+        (*f)[2*id+1] += gy;
+        (*f)[2*id+2] += gz;
+    }
+}
 
 /**
  * Update the state of the mass-spring system using the information provided by the fluid
@@ -1648,6 +1666,7 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     // Loop through all of the points. For each boundary point, add to the force vector.
     if (!initMode) {
         applyBoundaryForces(pool, stress, ng, fNet);
+        applyBodyForces();
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the

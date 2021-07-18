@@ -27,6 +27,7 @@ protected:
     // Information related to the meshes.
     int nx, ny, nz;
     double dx, dy, dz;
+    double gx, gy, gz;
 
     // Information related to the temporal domain.
     double t, dt, dtPrev;
