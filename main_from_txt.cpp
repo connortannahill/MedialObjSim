@@ -198,6 +198,8 @@ int main(int argc, char **argv) {
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
+    simParams.setMssNx(nx);
+    simParams.setMssNy(ny);
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
@@ -205,10 +207,13 @@ int main(int argc, char **argv) {
     // simParams.setRepulseDist(0.1); // Actually need 0.1
     // simParams.setCollisionStiffness(2.0);
     // simParams.setCollisionDist(0.25);
-    simParams.setRepulseDist(3*h); // Actually need 0.1
-    simParams.setCollisionStiffness(2.0);
-    simParams.setCollisionDist(3*h);
+    simParams.setRepulseDist(0.1); // Actually need 0.1
+    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionDist(4*h);
     simParams.setUpdateMode(1);
+    simParams.setAdmmTol(1e-10);
+    simParams.setGx(0.0);
+    simParams.setGy(0.0);
     // simParams.setDtFix(dt);
 
     // initial/boundary conditions and boundary object

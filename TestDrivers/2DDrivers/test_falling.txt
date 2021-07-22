@@ -1,0 +1,64 @@
+test with gravity - need to change main_from_txt to add gravity vectors
+
+0 1
+0 1
+40 40
+0.1 0
+1000
+1
+directionalFlowBC
+100
+
+2
+
+circleShapeFun
+0
+0.0
+0.0
+cx 0.3
+cy 0.75
+r 0.1
+mass 10
+density 10.0
+E 100
+eta 0.0
+.
+
+circleShapeFun
+0
+0.0
+0.0
+cx 0.6
+cy 0.75
+r 0.1
+mass 10
+density 10.0
+E 100
+eta 0.0
+.
+
+circleShapeFun
+0
+0.1
+0.0
+cx 0.15
+cy 0.5
+r 0.1
+mass 10
+density 10.0
+E 100
+eta 0.0
+.
+
+circleShapeFun
+0
+0.1
+0.0
+cx 0.8
+cy 0.55
+r 0.1
+mass 10
+density 10.0
+E 100
+eta 0.0
+.

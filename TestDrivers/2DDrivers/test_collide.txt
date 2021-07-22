@@ -1,0 +1,51 @@
+test for colliding objects
+
+0 1
+0 1
+40 40
+0.1 0
+1000
+1
+directionalFlowBC
+400.0
+
+3
+
+circleShapeFun
+1
+0.1
+0.0
+cx 0.4
+cy 0.6
+r 0.1
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.7
+cy 0.5
+r 0.1
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+0.1
+0.05
+cx 0.3
+cy 0.3
+r 0.1
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
