@@ -36,6 +36,27 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
     return sqrt(simutils::square(x-cx)+simutils::square(y-cy))-r;
 }
 
+// based on Cassini oval
+double bloodCellShapeFun(double x, double y, SolidParams &ps) {
+    double cx, cy, a, c, deg;
+    ps.getParam("cx", cx);
+    ps.getParam("cy", cy);
+    ps.getParam("a", a);
+    ps.getParam("c", c);
+    ps.getParam("deg", deg); // degree of rotation
+
+    double rad = deg * M_PI / 180;
+    double rotcx = (x-cx) * cos(rad) - (y-cy) * sin(rad);
+    double rotcy = (x-cx) * sin(rad) + (y-cy) * cos(rad);
+
+    double x_sqr = simutils::square(rotcx);
+    double y_sqr = simutils::square(rotcy);
+    double a_sqr = simutils::square(a);
+    double c_sqr = simutils::square(c);
+
+    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
+}
+
 int main(int argc, char **argv) { 
     int nx = 20;
     int ny = 20;
@@ -45,28 +66,77 @@ int main(int argc, char **argv) {
     double ymin = 0;
     double ymax = 1;
 
+    double a = 0.1;
+    double c = 0.105;
+
     // Create the boundary object
     Boundary boundary(xmin, xmax, ymin, ymax);
 
     // Creating the pool objects
     SolidObject::ObjectType objType = SolidObject::ObjectType::DEFORMABLE;
     SolidParams params1;
-    params1.addParam("cx",  0.25);
-    params1.addParam("cy",  0.5);
     params1.addParam("r",  0.15);
     params1.addParam("mass",  1.0);
     params1.addParam("density",  1.0);
-    params1.addParam("E",  1.0);
+    params1.addParam("E",  10.0);
     params1.addParam("eta",  0.0);
+    params1.addParam("a", a);
+    params1.addParam("c", c);
+    params1.addParam("deg", 90);
+
+    // 2 Convex
+    params1.addParam("cx",  0.25);
+    params1.addParam("cy",  0.5);
 
     SolidParams params2(params1);
     params2.addParam("cx", 0.75);
     params2.addParam("cy", 0.5);
 
-    double u0 = 0.0;
+    // 4 Convex
+    // params1.addParam("cx",  0.25);
+    // params1.addParam("cy",  0.25);
+
+    // SolidParams params2(params1);
+    // params2.addParam("cx", 0.75);
+    // params2.addParam("cy", 0.25);
+
+    // SolidParams params3(params1);
+    // params3.addParam("cx", 0.25);
+    // params3.addParam("cy", 0.75);
+
+    // SolidParams params4(params1);
+    // params4.addParam("cx", 0.75);
+    // params4.addParam("cy", 0.75);
+
+    // 1 convex, 1 not
+    // params1.addParam("cx",  0.25);
+    // params1.addParam("cy",  0.5);
+
+    // SolidParams params2(params1);
+    // params2.addParam("cx", 0.75);
+    // params2.addParam("cy", 0.55);
+
+    // 2 convex
+    double u0 = 0.1;
     double v0 = 0.0;
     SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
     SolidObject circle2(-u0, v0, objType, coneShapeFun, params2);
+
+    // 4 convex
+    // double u0 = 0.1;
+    // double v0 = 0.1;
+
+    // SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
+    // SolidObject circle2(-u0, v0, objType, coneShapeFun, params1);
+    // SolidObject circle3(u0, -v0, objType, coneShapeFun, params1);
+    // SolidObject circle4(-u0, -v0, objType, coneShapeFun, params1);
+
+    // 1 convex, 1 not
+    // double u0 = 0.1;
+    // double v0 = 0.0;
+
+    // SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
+    // SolidObject circle2(-u0, v0, objType, bloodCellShapeFun, params1);
 
     vector<SolidObject> shapes;
     shapes.push_back(circle1);
@@ -84,16 +154,19 @@ int main(int argc, char **argv) {
     // Compute the repulse distance required
     double h = sqrt(simutils::square(1.0/((double) simParams.nx)
         + simutils::square(1.0/((double) simParams.ny))));
-    simParams.setRepulseDist(5.0*h); // Actually need 0.1
+    // simParams.setRepulseDist(8.0*h); // Actually need 0.1
     // simParams.setRepulseDist(0.1); // Actually need 0.1
-    simParams.setCollisionStiffness(2.0);
-    // simParams.setCollisionDist(3*h);
-    simParams.setCollisionDist(2.0*h);
+    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionDist(4.0*h);
     simParams.setAdmmTol(1e-10);
     simParams.setUpdateMode(1);
 
     double dt = 0.01;//0.5/(1.0/(1/((double)nx))+1.0/((1/(double)ny)));
     simParams.setDtFix(dt);
+
+    // Set the body forces for this scenerio
+    simParams.setGx(0.0);
+    simParams.setGy(0.0);
 
     // Create the pool
     Pool2D pool(boundary, shapes, simParams);
@@ -112,9 +185,9 @@ int main(int argc, char **argv) {
     int max_steps = (argc > 1) ? atoi(argv[1]) : 1;
     bool reinitialize = true;
     while (t < tEnd && nstep < max_steps) {
-	cout << "Updating the pool" << endl;
+	    cout << "Updating the pool" << endl;
         pool.updatePool(dt, u, v, p, 0, reinitialize); // Advance the level set function
-	cout << "Finished the pool" << endl;
+	    cout << "Finished the pool" << endl;
         t += dt;
         cout << "t = " << t << endl;
         nstep++;

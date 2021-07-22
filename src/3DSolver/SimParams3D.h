@@ -41,6 +41,9 @@ public:
     int updateMode = 2;
     int elementMode = 0;
     double mu;
+    double gx = 0.0;
+    double gy = 0.0;
+    double gz = 0.0;
 
     bool checkParams();
 
@@ -63,6 +66,12 @@ public:
     void setAdmmTol(double admmTol);
     void setUpdateMode(int mode);
     void setElementMode(int mode);
+    void setGx(double gx);
+    void setGy(double gy);
+    void setGz(double gz);
+    double getGx();
+    double getGy();
+    double getGz();
 };
 
 #endif

@@ -58,6 +58,7 @@ public:
     double collisionDist;
     double repulseDist;
     double admmTol = 1e-6;
+    double gx, gy;
 
     /* Algorithmic variables and control modes */
     Eigen::VectorXd *q;
@@ -68,6 +69,7 @@ public:
 
     // Backups for the state variables in case we wish to revert the state
     Eigen::VectorXd *qBackup;
+    Eigen::VectorXd *fBackup;
     Eigen::VectorXd *qtBackup;
     Eigen::VectorXd *qprevBackup;
 
@@ -121,12 +123,13 @@ public:
 protected:
     /* Energy functions */
     void applyBoundaryForces(Pool2D &pool, double ***stress, int ng, double fNet[2]);
+    void applyBodyForces();
     void calcLocalElasticForce(edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
     void calcElasticForce(double E, double l0, massPoint2D pnt1,
                             massPoint2D pnt2, double force[4]);
     void calcLocalElasticHessian(double dt, edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
     void calcLocalKelvinForce(edge2D edge, int pntId1, massPoint2D pnt1, int pntId2, massPoint2D pnt2);
-    void computeCollisionStress(int nodeId, double colStress[2]);
+    void computeCollisionStress(int nodeId, double colStress[2], double diffNorm);
 
     /* Helper functions */
     void interpolateBoundaryLocation(Pool2D &pool, int i, int j, double X[2]);

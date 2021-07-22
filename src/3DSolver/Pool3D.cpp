@@ -294,7 +294,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     phiReInit[mo+k][mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d > collisionDist) {
+        if (d > collisionDist/2.0) {
             fastMarchingState[k][j][i] = ACCEPTED;
             return;
         }
@@ -663,7 +663,7 @@ void Pool3D::detectCollisions() {
         medPhi = interpolatePhi(medX, medY, medZ); //phiReInit[zCell+mo][yCell+mo][xCell+mo];
 
         // If this value is beneath the threshold for possible collision, look at which objects are colliding
-        if (medPhi < repulseDist) {
+        if (medPhi < collisionDist / 2.0) {
             // Build up a list of the neighbours around this cell to find which unique colliding nodes
             for (int k = zCell-2; k <= zCell+2; k++) {
                 for (int j = yCell-2; j <= yCell+2; j++) {
@@ -699,7 +699,7 @@ void Pool3D::detectCollisions() {
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
-        double SCAL_FAC = 2.0;
+        double SCAL_FAC = 1.0;
         int nMatches;
         for (auto tup = medialAxisCollisionPnts.begin(); tup != medialAxisCollisionPnts.end(); ++tup) {
             medX = get<0>(*tup);
@@ -711,7 +711,7 @@ void Pool3D::detectCollisions() {
             // Do a radius search around this medial axis cell to discover all of the
             // potentially interacting nodes
             nMatches = kdTree->radiusSearch(&queryPnt[0],
-                simutils::square(SCAL_FAC*repulseDist), ret_matches, params);
+                simutils::square(SCAL_FAC*collisionDist), ret_matches, params);
 
             for (int i = 0; i < nMatches; i++) {
                 allCols.insert(kdPointCloud->points->at(ret_matches.at(i).first));
@@ -771,15 +771,20 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     } else {
         this->dtFix = -1;
     }
+
+    // Set the body forces
+    this->gx = params.gx;
+    this->gy = params.gy;
+    this->gz = params.gz;
     
     // Set the method order used for the evolution of the level set equation
     // TODO: generalize this
     this->methodOrd = 3;
 
     // Set the repulsion mode and distance
-    this->repulseDist = params.repulseDist;
     this->collisionStiffness = params.collisionStiffness;
     this->collisionDist = params.collisionDist;
+    this->repulseDist = 2.0 * this->collisionDist;
     this->repulseMode = params.repulseMode;
 
 

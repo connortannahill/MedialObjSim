@@ -61,6 +61,21 @@ void SimParams::setRepulseMode(int mode) {
     this->repulseModeSet = true;
 }
 
+
+void SimParams::setGx(double gx) {
+    this->gx = gx;
+}
+void SimParams::setGy(double gy) {
+    this->gy = gy;
+}
+
+double SimParams::getGx() {
+    return this->gx;
+}
+double SimParams::getGy() {
+    return this->gy;
+}
+
 void SimParams::setRepulseDist(double dist) {
     this->repulseDist = dist;
     this->repulseDistSet = true;

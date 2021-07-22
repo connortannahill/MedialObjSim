@@ -29,6 +29,7 @@ private:
     // Useful 1D meshes
     double *x;
     double *y;
+    double gx, gy;
 
     // Hashmap containing any model parameters.
     SimParams *params;

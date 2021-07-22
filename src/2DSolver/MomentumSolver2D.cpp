@@ -32,6 +32,10 @@ MomentumSolver2D::MomentumSolver2D(Boundary &boundary,
     this->ny = params.nx;
     this->methodOrd = params.methodOrd;
 
+    // Copy the constant body forces (gravity)
+    this->gx = params.gx;
+    this->gy = params.gy;
+
     // Create the uniform 1D meshes using the boundary object
     this->x = boundary.generateXMesh(this->nx);
     this->y = boundary.generateYMesh(this->ny);

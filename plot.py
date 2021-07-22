@@ -264,15 +264,17 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
-    # plt.title('Extrapolated Speed Field')
+    plt.title('$t = 0.75$')
 
     plt.gca().set_aspect('equal')
-    plt.axis('off')
-    # plt.savefig("test.png", bbox_inches='tight')
-
+    # plt.axis('off')
+    plt.savefig("test.png", bbox_inches='tight')
+    plt.xlabel("$x$")
+    plt.ylabel("$y$")
 
     plt.show()
 elif mode == 11:
+    f_temp = f_name
     f_name += 'medialAxis'
     out = np.genfromtxt(f_name, delimiter=',')
 
@@ -280,7 +282,24 @@ elif mode == 11:
     y = out[:,1]
 
     plt.scatter(x, y)
+
+    for i in range(numObj):
+        f_name = f_temp + 'MSSEdges{0}'.format(i)
+
+        out = np.genfromtxt(f_name, delimiter=',')
+        x = out[:,0]
+        y = out[:,1]
+
+        for i in range(0, x.size, 2):
+            plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=0.5)
+        plt.xlim((0, 1))
+        plt.ylim((0, 1))
+
+        f_name = f_temp
+
+    plt.gca().set_aspect('equal')
     plt.show()
+
 elif mode == 12:  # output both fluid velocity and object velocity plots
     plots = [('Fluid Velocity', 'out'), ('Object Velocity', 'poolVel')]
 

@@ -26,6 +26,10 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
     this->boundaryNodeIdList = new vector<int>(*cpy.boundaryNodeIdList);
     this->faceList = new vector<face3D>(*cpy.faceList);
     this->w = cpy.w;
+    
+    this->gx = cpy.gx;
+    this->gy = cpy.gy;
+    this->gz = cpy.gz;
 
     /* The collision detection points */
     nodeCols = new vector<set<massPoint3D*>>(*cpy.nodeCols);
@@ -46,6 +50,10 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
     q = new Eigen::VectorXd(*(cpy.q));
     qt = new Eigen::VectorXd(*(cpy.qt));
     qprev = new Eigen::VectorXd(*(cpy.qprev));
+    qBackup = new Eigen::VectorXd(*(cpy.qBackup));
+    fBackup = new Eigen::VectorXd(*(cpy.fBackup));
+    qtBackup = new Eigen::VectorXd(*(cpy.qtBackup));
+    qprevBackup = new Eigen::VectorXd(*(cpy.qprevBackup));
     f = new Eigen::VectorXd(*(cpy.f));
 
     this->eta = cpy.eta;
@@ -91,6 +99,10 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     faceList = new vector<face3D>();
     boundaryEdgeIdList = new vector<int>();
     boundaryNodeIdList = new vector<int>();
+
+    this->gx = pool.gx;
+    this->gy = pool.gy;
+    this->gz = pool.gz;
 
     this->elementMode = elementMode;
     this->updateMode = updateMode;
@@ -225,11 +237,15 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     }
 
     // Compute and then assign the point masses. Additionally, create the q vector.
-    pntMass = obj.getMass()/pntList->size();
+    this->pntMass = obj.getMass()/pntList->size();
 
     q     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
     qprev = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
     qt    = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
+    qBackup     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
+    fBackup     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
+    qprevBackup = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
+    qtBackup    = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
     f     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
 
     int qoff = 0;
@@ -241,9 +257,21 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         (*q)[qoff+1] = pntList->at(i).y;
         (*q)[qoff+2] = pntList->at(i).z;
 
+        (*qBackup)[qoff]   = pntList->at(i).x;
+        (*qBackup)[qoff+1] = pntList->at(i).y;
+        (*qBackup)[qoff+2] = pntList->at(i).z;
+
+        (*fBackup)[qoff] = 0.0;
+        (*fBackup)[qoff+1] = 0.0;
+        (*fBackup)[qoff+2] = 0.0;
+
         (*qt)[qoff]   = pntList->at(i).u;
         (*qt)[qoff+1] = pntList->at(i).v;
         (*qt)[qoff+2] = pntList->at(i).w;
+
+        (*qtBackup)[qoff]   = pntList->at(i).u;
+        (*qtBackup)[qoff+1] = pntList->at(i).v;
+        (*qtBackup)[qoff+2] = pntList->at(i).w;
 
         qoff += 3;
     }
@@ -384,10 +412,24 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         (*q)(3*i+1) = pntList->at(i).y;
         (*q)(3*i+2) = pntList->at(i).z;
 
+        (*qBackup)(3*i) = pntList->at(i).x;
+        (*qBackup)(3*i+1) = pntList->at(i).y;
+        (*qBackup)(3*i+2) = pntList->at(i).z;
+
         (*qt)(3*i)   = obj.getU0();
         (*qt)(3*i+1) = obj.getV0();
         (*qt)(3*i+2) = obj.getW0();
+
+        (*qtBackup)(3*i)   = obj.getU0();
+        (*qtBackup)(3*i+1) = obj.getV0();
+        (*qtBackup)(3*i+2) = obj.getW0();
+
+        (*fBackup)(3*i)   = 0.0;
+        (*fBackup)(3*i+1) = 0.0;
+        (*fBackup)(3*i+2) = 0.0;
     }
+
+    f->setZero();
 
     /* Set vels to zero if this is a static object */
     if (objType == SolidObject3D::ObjectType::STATIC) {
@@ -747,7 +789,7 @@ void MassSpring3D::calcElasticForce(double E, double l0, massPoint3D pnt1,
 /**
  * Computes the collision stress for a given boundary node, specified by its ID
 */
-void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3]) {
+void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], double dA) {
     // 0 out the stress vector
     colStress[0] = 0.0;
     colStress[1] = 0.0;
@@ -756,28 +798,41 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3]) {
     // Compute the forces acting internally on this node by the other members of the MSS
     massPoint3D mPnt = pntList->at(nodeId);
 
-    int neighId = -1;
-    int *pntIds;
+    // int neighId = -1;
+    // int *pntIds;
     double forces[6];
-    double nodeForces[3] = {0.0, 0.0, 0.0};
-    for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
-        // Find the id of the connected node
-        pntIds = edgeList->at(*edgeId).pntIds;
-        neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
+    // double nodeForces[3] = {0.0, 0.0, 0.0};
+    // for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
+    //     // Find the id of the connected node
+    //     pntIds = edgeList->at(*edgeId).pntIds;
+    //     neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
 
-        // Calculate the elastic force
-        calcElasticForce(this->E, edgeList->at(*edgeId).l0,
-                    mPnt, pntList->at(neighId), forces);
+    //     // Calculate the elastic force
+    //     calcElasticForce(this->E, edgeList->at(*edgeId).l0,
+    //                 mPnt, pntList->at(neighId), forces);
 
-        // Calculate the force being applied to the boundary node
-        nodeForces[0] += forces[0];
-        nodeForces[1] += forces[1];
-        nodeForces[2] += forces[2];
-    }
+    //     // Calculate the force being applied to the boundary node
+    //     nodeForces[0] += forces[0];
+    //     nodeForces[1] += forces[1];
+    //     nodeForces[2] += forces[2];
+    // }
+
+    double f_i[3] = {(*fBackup)(3*nodeId), (*fBackup)(3*nodeId+1), (*fBackup)(3*nodeId+2)};
+    double v_i[3] = {(*qt)(3*nodeId), (*qt)(3*nodeId+1), (*qt)(3*nodeId+2)};
+
+    // Calculate the force to cancel the velocities
+    double cancelStress[3] = {
+        - (pntMass/dt)*v_i[0],
+        - (pntMass/dt)*v_i[1],
+        - (pntMass/dt)*v_i[2]
+    };
+    // colStress[0] += f_i[0] - pntMass*v_i[0];
+    // colStress[1] += f_i[1] - pntMass*v_i[1];
+    // colStress[2] += f_i[2] - pntMass*v_i[2];
 
     // For each of the collisions this node is involved in, calculate a resisting force
     massPoint3D colPnt;
-    double collisionNormal[3] = {0.0, 0.0, 0.0};
+    // double collisionNormal[3] = {0.0, 0.0, 0.0};
     double pntDiff[3];
     double pntDist;
     int numNear = 0;
@@ -785,16 +840,16 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3]) {
         colPnt = **near;
 
         // Compute the normal vector for this collision
-        collisionNormal[0] = mPnt.x - colPnt.x;
-        collisionNormal[1] = mPnt.y - colPnt.y;
-        collisionNormal[2] = mPnt.z - colPnt.z;
-        simutils::normalize3D(collisionNormal);
+        // collisionNormal[0] = mPnt.x - colPnt.x;
+        // collisionNormal[1] = mPnt.y - colPnt.y;
+        // collisionNormal[2] = mPnt.z - colPnt.z;
+        // simutils::normalize3D(collisionNormal);
 
         // Compute the collision stress to stop the momentum in this direction
-        double fac = simutils::ddot3d(nodeForces, collisionNormal);
-        colStress[0] += - fac*collisionNormal[0];
-        colStress[1] += - fac*collisionNormal[1];
-        colStress[2] += - fac*collisionNormal[2];
+        // double fac = simutils::ddot3d(nodeForces, collisionNormal);
+        // colStress[0] += - fac*collisionNormal[0];
+        // colStress[1] += - fac*collisionNormal[1];
+        // colStress[2] += - fac*collisionNormal[2];
 
         // Compute the spring repulsion force for this node
         pntDiff[0] = mPnt.x - colPnt.x;
@@ -803,7 +858,7 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3]) {
         pntDist = simutils::eucNorm3D(pntDiff);
 
         if (collisionDist > pntDist) {
-            calcElasticForce(this->E, collisionDist, mPnt, colPnt, forces);
+            calcElasticForce(this->E, repulseDist, mPnt, colPnt, forces);
         } else {
             forces[0] = 0.0;
             forces[1] = 0.0;
@@ -820,6 +875,19 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3]) {
     colStress[0] /= numNear;
     colStress[1] /= numNear;
     colStress[2] /= numNear;
+
+    // Cancel stress ignores scaling
+    cancelStress[0] /= dA;
+    cancelStress[1] /= dA;
+    cancelStress[2] /= dA;
+
+    // Apply the velocity stop stress
+    colStress[0] += cancelStress[0];
+    colStress[1] += cancelStress[1];
+    colStress[2] += cancelStress[1];
+    
+    // cout << "colStress = (" << colStress[0] << ", " << colStress[1]
+    //     << ", " << colStress[2] << ")" << endl;
 }
 
 /** 
@@ -865,6 +933,24 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         mPnt2 = pntList->at(id2);
         mPnt3 = pntList->at(id3);
 
+        /* Compute the area of this triangle */
+
+        // a = pnt2 - pnt1
+        a[0] = mPnt2.x - mPnt1.x;
+        a[1] = mPnt2.y - mPnt1.y;
+        a[2] = mPnt2.z - mPnt1.z;
+
+        // b = pnt3 - pnt1
+        b[0] = mPnt3.x - mPnt1.x;
+        b[1] = mPnt3.y - mPnt1.y;
+        b[2] = mPnt3.z - mPnt1.z;
+
+        // Take the cross product of these vectors
+        simutils::cross_product_3D(a, b, aXB);
+
+        // The area of the triangle is 0.5*||a x b||_2
+        dA = simutils::eucNorm3D(aXB)/2.0;
+
         // Find stress acting on first node
         bool found1 = findNearestGridNormalInterface(pool, id1, iPnt);
         ni = iPnt[0];
@@ -875,7 +961,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id1).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id1, s1);
+                computeCollisionStress(id1, s1, dA);
 
             } else {
                 // Apply hydrodynamic stress if there is no collision
@@ -899,7 +985,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id2, s2);
+                computeCollisionStress(id2, s2, dA);
             } else {
                 // Apply hydrodynamic stress if there is no collision
                 s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -922,7 +1008,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id3).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id3, s3);
+                computeCollisionStress(id3, s3, dA);
             } else {
                 // Apply hydrodynamic stress if there is no collision
                 s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -935,25 +1021,6 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             s3[1] = 0.0;
             s3[2] = 0.0;
         }
-
-        /* Compute the area of this triangle */
-
-        // a = pnt2 - pnt1
-        // cout << "Computing the cross product" << endl;
-        a[0] = mPnt2.x - mPnt1.x;
-        a[1] = mPnt2.y - mPnt1.y;
-        a[2] = mPnt2.z - mPnt1.z;
-
-        // b = pnt3 - pnt1
-        b[0] = mPnt3.x - mPnt1.x;
-        b[1] = mPnt3.y - mPnt1.y;
-        b[2] = mPnt3.z - mPnt1.z;
-
-        // Take the cross product of these vectors
-        simutils::cross_product_3D(a, b, aXB);
-
-        // The area of the triangle is 0.5*||a x b||_2
-        dA = simutils::eucNorm3D(aXB)/2.0;
 
         // Compute the centroid of this triangle
         computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
@@ -1550,6 +1617,16 @@ void MassSpring3D::verletSolve(double dt, int elementMode, bool initMode) {
     eta = etaTemp;
 }
 
+/**
+ * Apply the boundary forces
+*/
+void MassSpring3D::applyBodyForces() {
+    for (int id = 0; id < pntList->size(); id++) {
+        (*f)[2*id] += gx;
+        (*f)[2*id+1] += gy;
+        (*f)[2*id+2] += gz;
+    }
+}
 
 /**
  * Update the state of the mass-spring system using the information provided by the fluid
@@ -1589,6 +1666,7 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     // Loop through all of the points. For each boundary point, add to the force vector.
     if (!initMode) {
         applyBoundaryForces(pool, stress, ng, fNet);
+        applyBodyForces();
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
@@ -2566,6 +2644,11 @@ MassSpring3D::~MassSpring3D() {
     delete q;
     delete qt;
     delete qprev;
+    delete qprev;
+    delete qBackup;
+    delete qtBackup;
+    delete qprevBackup;
+    delete fBackup;
 
     if (updateMode == 1) {
         delete[] pcgRHS;

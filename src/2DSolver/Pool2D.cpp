@@ -277,7 +277,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     phiReInit[mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d > collisionDist) {
+        if (d > collisionDist/2.0) {
            fastMarchingState[j][i] = ACCEPTED;
            return;
         }
@@ -327,7 +327,7 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
                 domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
 
                 // Domain intersection which meets the collision requirement
-                intersectionFound = true && val <= this->collisionDist;
+                intersectionFound = true && val <= (this->collisionDist)/2.0;
             }
         }
     }
@@ -608,7 +608,7 @@ void Pool2D::detectCollisions() {
         medPhi = interpolatePhi(medX, medY);//phiReInit[yCell+mo][xCell+mo];
 
         // If this value is beneath the threshold for possible collision, look at which objects are colliding
-        if (medPhi < repulseDist) {
+        if (medPhi < collisionDist/2.0) {
             // Build up a list of the neighbours around this cell to find which unique colliding nodes
             for (int j = yCell-2; j <= yCell+2; j++) {
                 for (int i = xCell-2; i <= xCell+2; i++) {
@@ -642,7 +642,7 @@ void Pool2D::detectCollisions() {
         kdTree->buildIndex();
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
-        double SCAL_FAC = 1.2;
+        double SCAL_FAC = 1.0;
         int nMatches;
         for (auto pair = medialAxisCollisionPnts.begin(); pair != medialAxisCollisionPnts.end(); ++pair) {
             medX = pair->first;
@@ -653,7 +653,7 @@ void Pool2D::detectCollisions() {
             // Do a radius search around this medial axis cell to discover all of the
             // potentially interacting nodes
             nMatches = kdTree->radiusSearch(&queryPnt[0],
-                simutils::square(SCAL_FAC*repulseDist), ret_matches, params);
+                simutils::square(SCAL_FAC*(collisionDist/2.0)), ret_matches, params);
 
             // cout << "nMatches = " << nMatches << endl;
 
@@ -673,10 +673,10 @@ void Pool2D::detectCollisions() {
                 id++;
             }
             
-            if (nearestMss.size() < 2) {
-                cout << "ERROR IN FINDING MSS NODES AT COLLISION POINT" << endl;
-                assert(nearestMss.size() < 2);
-            }
+            // if (nearestMss.size() < 2) {
+            //     // cout << "ERROR IN FINDING MSS NODES AT COLLISION POINT" << endl;
+            //     assert(nearestMss.size() < 2);
+            // }
             
             // For each of the matches, we keep track in each MSS of which of the points
             // it is potentially colliding with
@@ -710,16 +710,21 @@ void Pool2D::create2DPool(Boundary &boundary,
     } else {
         this->dtFix = -1;
     }
-    
+
+    // Set the body forces
+    this->gx = params.gx;
+    this->gy = params.gy;
+
     // Set the method order used for the evolution of the level set equation
     this->methodOrd = 3;
 
     this->nSteps = 0;
 
     // Set the repulsion mode and distance.
-    this->repulseDist = params.repulseDist;
+    // this->repulseDist = params.repulseDist;
     this->collisionStiffness = params.collisionStiffness;
     this->collisionDist = params.collisionDist;
+    this->repulseDist = 2.0 * this->collisionDist;
     this->repulseMode = params.repulseMode;
 
     // Create the kdTree data object and point cloud

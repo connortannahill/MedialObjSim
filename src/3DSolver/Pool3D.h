@@ -230,6 +230,7 @@ protected:
 
 public:
     double dtFix;
+    double gx, gy, gz;
 
     double repulseDist;
     double collisionStiffness;
