@@ -1,6 +1,7 @@
 #include "Pool2D.h"
 #include "Boundary.h"
 #include "SolidObject.h"
+#include <iostream>
 #include "../Utils/SimUtilities.h"
 #include <math.h>
 #include <limits>
@@ -321,8 +322,10 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
                 int offX = (ni - i > 0) ? 1 : 0;
                 int offY = (nj - j > 0) ? 1 : 0;
 
-                medX += x[i+offX];
-                medY += y[j+offY];
+                if (!intersectionFound) {
+                    medX += x[i+offX];
+                    medY += y[j+offY];
+                }
 
                 domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
 
@@ -333,6 +336,8 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
     }
 
     if (intersectionFound && mode == 2) {
+        nIntersections = 1;
+        // medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
         medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
     }
 }
@@ -642,7 +647,7 @@ void Pool2D::detectCollisions() {
         kdTree->buildIndex();
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
-        double SCAL_FAC = 1.0;
+        double SCAL_FAC = 2.0; 
         int nMatches;
         for (auto pair = medialAxisCollisionPnts.begin(); pair != medialAxisCollisionPnts.end(); ++pair) {
             medX = pair->first;
@@ -2091,6 +2096,8 @@ void Pool2D::computeBoundaryStress(int i, int j, objects::FSIObject obj, int ng,
 
     // Compute the information for the hydrodynamic stress tensor.
     // By taking the value the unit normal points to.
+    // cout << "Accessing Pres (" << ng+i+(int)n[0] << ", " << ng+j+(int)n[1] << endl;
+    // cout << "norm = (" << n[0] << ", " << n[1] << endl;
     pres = p[ng+j+(int)n[1]][ng+i+(int)n[0]];
 
     // Use either backwards or forwards difference formula to compute the derivatives
@@ -2119,6 +2126,7 @@ void Pool2D::computeBoundaryStress(int i, int j, objects::FSIObject obj, int ng,
     // cout << "N is normalized now!!" << endl;
     simutils::normalize2D(n);
     // assert(false);
+    // cout << "Stresses are attained" << endl;
 
     // Compute the stresses (assigning them to the pool velocities temporarily for memory saving)
     poolU[mo+j][mo+i] = ((-pres + 2.0*this->mu*uGrad[0])*n[0]
@@ -2176,6 +2184,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
     if (this->nStructs >= 1) {
 
         // Re-initialize the tracer partical forces to 0
+        cout << "Calculating the forces on each node and such" << endl;
         for (i = 0; i < nStructs; i++) {
             tracers[i].fNetX = 0.0;
             tracers[i].fNetY = 0.0;
@@ -2200,6 +2209,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
                 }
             }
         }
+        cout << "Finished calculating the forces on each node and such" << endl;
 
         // Use the net force being applied on the object to update the tracer velocities using Newton's
         // second law
@@ -2240,17 +2250,19 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
             // and update the positions of the tracer particals.
             double **stress[2] = {poolU, poolV};
 
+            cout << "Detecting the collisions" << endl;
             if (repulseMode != 0) {
-                // TODO: maybe think about a more efficient 
                 this->fastMarchPool(false, 2);
                 this->detectCollisions();
                 this->setUpDomainArray();
             }
+            cout << "FINISHED Detecting the collisions" << endl;
 
             // assert(false);
 
             double fNet[2] = {0, 0};
             // int elementMode = 0;
+            cout << "Updating the MSS vels" << endl;
             for (int i = 0; i < nStructs; i++) {
                 // cout << "OBJ " << i << endl;
                 solids->at(i).updateSolidVels(dt, *this, stress, fNet, mo, false);
@@ -2265,6 +2277,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
                 fNet[0] = 0.0;
                 fNet[1] = 0.0;
             }
+            cout << "FINISHED updating the MSS vels" << endl;
             // assert(false);
             // cout << "in pool finished updating all structs" << endl;
             // assert(false);
@@ -2307,6 +2320,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     setUpDomainArray();
 
     // Update the velocity field
+    // cout << "Getting the pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, p, ng);
 
     if (reinitialize) {
@@ -2320,6 +2334,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
 
     // Update the pool using the third order ENO scheme to test level set in the equation.
     // Using periodic boundary condition.
+    // cout << "Running update" << endl;
     tvdRK3HJ(dt, phi, this, 0, &Pool2D::levelSetRHS_ENO3,
              &Pool2D::applyLevelSetPeriodicBCs);
 
@@ -2329,11 +2344,13 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
     
     // Update the enumeration and domain array for the shifted level set.
+    // cout << "Running update" << endl;
     enumeratePool();
     setUpDomainArray();
 
     // Update the position of the solids
     // cout << "Updating the solid locations" << endl;
+    // cout << "Updating locs" << endl;
     if (isDeformable) {
         for (int i = 0; i < nStructs; i++) {
             solids->at(i).updateSolidLocs(*this, false);
@@ -2343,6 +2360,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     // If significant drift from the interface detected, correct.
     // cout << "refitting SDF" << endl;
     if (shouldRefitSDF(min(hx, hy))) {
+        assert(false);
         refitToSolids(ng);
     }
     // cout << "finsihed refitting SDF" << endl;
@@ -2362,9 +2380,12 @@ bool Pool2D::shouldRefitSDF(double tol) {
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
+    massPoint2D pnt;
     for (auto solid = solids->begin(); solid != solids->end(); ++solid) {
-        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
-            squeeze = abs(interpolatePhi(pnt->x, pnt->y)) < tol;
+        // for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
+        for (auto bId = solid->boundaryNodeIdList->begin(); bId != solid->boundaryNodeIdList->end(); ++bId) {
+            pnt = solid->pntList->at(*bId);
+            squeeze = abs(interpolatePhi(pnt.x, pnt.y)) > tol;
 
             if (!squeeze) {
                 return squeeze;
@@ -3024,6 +3045,7 @@ void Pool2D::printDomainMatrix() {
  * Uses the domain tracers, so these must be properly updated at all times.
 */
 void Pool2D::setUpDomainArray() {
+    // cout << "Setting up the domain array" << endl;
     // Set all of the domain member array to "undescovered"
     simutils::set_constant(ny, nx, DOMAIN_UNDESCOVERED, this->domainTracker);
 

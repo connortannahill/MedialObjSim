@@ -857,7 +857,7 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         pntDiff[2] = mPnt.z - colPnt.z;
         pntDist = simutils::eucNorm3D(pntDiff);
 
-        if (collisionDist > pntDist) {
+        if (repulseDist > pntDist) {
             calcElasticForce(this->E, repulseDist, mPnt, colPnt, forces);
         } else {
             forces[0] = 0.0;
@@ -894,7 +894,7 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
  * Helper function to apply external force to a boundary node.
  * 
 */
-void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, double fNet[3]) {
+void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, double fNet[3], double colNet[3]) {
 
     int ni, nj, nk; // Locations of the nodes
 
@@ -1049,6 +1049,10 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3]   +=  s_x;
         (*f)[3*id3+1] +=  s_y;
         (*f)[3*id3+2] +=  s_z;
+
+        // colNet[0] +=  s_x;
+        // colNet[1] +=  s_y;
+        // colNet[2] +=  s_z;
     }
 
     for (int id = 0; id < pntList->size(); id++) {
@@ -1664,9 +1668,17 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     *qprev = *q;
 
     // Loop through all of the points. For each boundary point, add to the force vector.
+    double colNet[3];
     if (!initMode) {
-        applyBoundaryForces(pool, stress, ng, fNet);
+        applyBoundaryForces(pool, stress, ng, fNet, colNet);
         applyBodyForces();
+    }
+
+    // Apply the collision net force to the whole object
+    for (int i = 0; i < f->size(); i++) {
+        (*f)[2*i] += colNet[0];
+        (*f)[2*i+1] += colNet[1];
+        (*f)[2*i+3] += colNet[3];
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
