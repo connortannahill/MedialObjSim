@@ -85,7 +85,7 @@ int main(int argc, char **argv) {
 
     /* Creation of the solid objects */
     ///////////////////////////////////
-    int numStructs = 1;
+    // int numStructs = 1;
     // int numStructs = 2;
 
     // unordered_map<string, double> circParams1;
@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
     SolidParams circParams2;
 
 
-    double mass = 100.0;
+    double mass = 1.0;
     double density = 1.0;
     double E = 5.0;
     double eta = 0.0;

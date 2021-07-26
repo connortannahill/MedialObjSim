@@ -138,7 +138,7 @@ public:
     ~MassSpring3D();
 protected:
     /* Helper functions */
-    void applyBoundaryForces(Pool3D &pool, double ****stress, int ng, double fNet[3]);
+    void applyBoundaryForces(Pool3D &pool, double ****stress, int ng, double fNet[3], double colNet[3]);
     void calcLocalElasticForce(edge3D edge, int pntId1, massPoint3D pnt1, int pntId2, massPoint3D pnt2);
     void calcElasticForce(double E, double l0, massPoint3D pnt1,
                             massPoint3D pnt2, double force[6]);

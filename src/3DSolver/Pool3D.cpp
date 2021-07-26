@@ -699,7 +699,7 @@ void Pool3D::detectCollisions() {
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
-        double SCAL_FAC = 1.0;
+        double SCAL_FAC = 1.5;
         int nMatches;
         for (auto tup = medialAxisCollisionPnts.begin(); tup != medialAxisCollisionPnts.end(); ++tup) {
             medX = get<0>(*tup);
@@ -2641,14 +2641,23 @@ bool Pool3D::shouldRefitSDF(double tol) {
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
+    massPoint3D pnt;
     for (auto solid = solids->begin(); solid != solids->end(); ++solid) {
-        for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
-            squeeze = abs(interpolatePhi(pnt->x, pnt->y, pnt->z)) < tol;
+        for (auto bId = solid->boundaryNodeIdList->begin(); bId != solid->boundaryNodeIdList->end(); ++bId) {
+            pnt = solid->pntList->at(*bId);
+            squeeze = abs(interpolatePhi(pnt.x, pnt.y, pnt.z)) > tol;
 
             if (!squeeze) {
                 return squeeze;
             }
         }
+        // for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
+        //     squeeze = abs(interpolatePhi(pnt->x, pnt->y, pnt->z)) < tol;
+
+        //     if (!squeeze) {
+        //         return squeeze;
+        //     }
+        // }
     }
 
     return squeeze;
@@ -2660,7 +2669,7 @@ bool Pool3D::shouldRefitSDF(double tol) {
  * TODO: may need to reinitialize before using this
 */
 void Pool3D::refitToSolids(int ng) {
-    int mo = this->methodOrd;
+    // int mo = this->methodOrd;
 
     double t = 0;
 

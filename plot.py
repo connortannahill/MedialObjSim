@@ -215,6 +215,22 @@ elif mode == 10:
     y = out[:,1]
     phi = out[:,2]
 
+    # def phi_fun(x, y):
+    #     r = 0.25
+    #     a = 0.3
+    #     c = 0.105
+    #     xc = 0.5
+    #     yc = 0.5
+    #     b = 2.25*r 
+    #     rad = np.pi/4
+    #     xval = (x - xc)/b * np.cos(rad) - (y-yc) / (b) * np.sin(rad)
+    #     yval = (x - xc)/b * np.sin(rad) + (y-yc) / (b) * np.cos(rad)
+    #     return (xval**2 + yval**2 + a**2)**2 - 4*a**2*xval**2 - c**2
+
+    # for i, tup in enumerate(zip(x, y)):
+    #     phi[i] = phi_fun(tup[0], tup[1])
+
+
     n = int(np.sqrt(phi.size))
 
     # x *= n
@@ -222,6 +238,8 @@ elif mode == 10:
 
     fig, ax = plt.subplots(1)
     img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+    # plt.show()
+    # assert(False)
 
     # f_name = f_temp
     # f_name += 'MSSTracers'
@@ -242,8 +260,8 @@ elif mode == 10:
 
         for i in range(0, x.size, 2):
             plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=4, lw=0.5)
-        plt.xlim((0, 1))
-        plt.ylim((0, 1))
+        # plt.xlim((0, 1))
+        # plt.ylim((0, 1))
     
     f_name = f_temp
     f_name += 'poolVel'
@@ -264,11 +282,11 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
-    plt.title('$t = 0.75$')
+    plt.title('$t = 1.0$')
 
     plt.gca().set_aspect('equal')
     # plt.axis('off')
-    plt.savefig("test.png", bbox_inches='tight')
+    plt.savefig("4ColTest_1_0.png", bbox_inches='tight')
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
@@ -292,8 +310,7 @@ elif mode == 11:
 
         for i in range(0, x.size, 2):
             plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=0.5)
-        plt.xlim((0, 1))
-        plt.ylim((0, 1))
+        # plt.xlim((0, 1)) plt.ylim((0, 1))
 
         f_name = f_temp
 

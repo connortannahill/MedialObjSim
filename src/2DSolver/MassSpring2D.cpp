@@ -140,7 +140,6 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     for (int j = 0; j < pool.getNy(); j++) {
         for (int i = 0; i < pool.getNx(); i++) {
             domain = pool.domainMembership(i, j);
-
             poolObj = pool.objAtIndex(i, j);
 
             // if (domain == structNum && poolObj == objects::STRUCTURE) {
@@ -345,7 +344,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
         this->updateSolidLocs(pool, false);
         iters ++;
     }
-    while (qt->lpNorm<1>() > eps &&  iters < MAX_ITERS);
+    while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
     this->iterCount = 0;
 
@@ -381,7 +380,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     f->setZero();
 
     if (this->updateMode == 1) {
-        cout << "Using the implicit method" << endl;
+        // cout << "Using the implicit method" << endl;
         // If using semi-implicit method, setup the matrix.
         this->matrix = this->createStiffnessMatrix();
 
@@ -983,29 +982,28 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     // 0 out the stress vector
     colStress[0] = 0.0;
     colStress[1] = 0.0;
+    cout << "Computing collision stress" << endl;
 
     // Compute the forces acting internally on this node by the other members of the MSS
     massPoint2D mPnt = pntList->at(nodeId);
 
-    // int neighId = -1;
-    // int *pntIds;
+    int neighId = -1;
+    int *pntIds;
     double forces[4];
-    // double nodeForces[2] = {0.0, 0.0};
-    // for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
-    //     // Find the id of the connected node
-    //     pntIds = edgeList->at(*edgeId).pntIds;
-    //     neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
+    double intStress[2];
+    for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
+        // Find the id of the connected node
+        pntIds = edgeList->at(*edgeId).pntIds;
+        neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
 
-    //     // Calculate the elastic force
-    //     calcElasticForce(this->E, edgeList->at(*edgeId).l0,
-    //                 mPnt, pntList->at(neighId), forces);
+        // Calculate the elastic force
+        calcElasticForce(this->E, edgeList->at(*edgeId).l0,
+                    mPnt, pntList->at(neighId), forces);
 
-    //     // Compute the forces required to set the velocity to 0.
-
-    //     // Calculate the force being applied to the boundary node
-    //     colStress[0] = forces[0];
-    //     colStress[1] = forces[1];
-    // }
+        // Calculate the internal force being applied to the colliding boundary node
+        intStress[0] += forces[0];
+        intStress[1] += forces[1];
+    }
 
     // Get the current forces and velocities
     // double f_i[2] = {(*fBackup)(2*nodeId), (*fBackup)(2*nodeId+1)};
@@ -1048,7 +1046,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
         pntDiff[1] = mPnt.y - colPnt.y;
         pntDist = simutils::eucNorm2D(pntDiff);
 
-        if (collisionDist > pntDist) {
+        if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
         } else {
             forces[0] = 0.0;
@@ -1069,10 +1067,10 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     cancelStress[1] /= diffNorm;
 
     // Apply the velocity stop stress
-    colStress[0] += cancelStress[0];
-    colStress[1] += cancelStress[1];
+    colStress[0] += cancelStress[0] - intStress[0];
+    colStress[1] += cancelStress[1] - intStress[1];
     
-    // cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
+    cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
 }
 
 /**
@@ -1085,7 +1083,7 @@ void MassSpring2D::setAdmmTol(double tol) {
 /** 
  * Helper function to apply external force to a boundary node.
 */
-void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, double fNet[2]) {
+void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, double fNet[2], double colNet[2]) {
 
     int ni, nj; // Locations of the nodes
 
@@ -1095,6 +1093,8 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
     }
 
     int iPnt[2];
+
+    // int stressCount = 0;
 
     // Compute the net force acting on the edges
     massPoint2D mPnt1;
@@ -1162,6 +1162,10 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
 
         (*f)[2*id2] += 0.5*(s1[0] + s2[0])*diffNorm;
         (*f)[2*id2+1] += 0.5*(s1[1] + s2[1])*diffNorm;
+
+        // Add this to the collision net force
+        // colNet[0] += 0.5*(s1[0] + s2[0])*diffNorm;
+        // colNet[1] += 0.5*(s1[1] + s2[1])*diffNorm;
     }
 
     for (int id = 0; id < pntList->size(); id++) {
@@ -1460,7 +1464,7 @@ void MassSpring2D::linearImplicitSolve(double dt, int elementMode, bool initMode
     double etaTemp = eta;
     
     if (initMode) {
-        E = 1.0;
+        E = 5.0;
         eta = 0.0;
     }
 
@@ -1696,9 +1700,16 @@ void MassSpring2D::updateSolidVels(double dt, Pool2D &pool, double ***stress, do
     *qprev = *q;
 
     // Loop through all of the points. For each boundary point, add to the force vector.
+    double colNet[2] = {0.0, 0.0};
     if (!initMode) {
-        applyBoundaryForces(pool, stress, ng, fNet);
+        applyBoundaryForces(pool, stress, ng, fNet, colNet);
         applyBodyForces();
+    }
+
+    // Apply the collision net force to the whole object
+    for (int i = 0; i < pntList->size(); i++) {
+        (*f)[2*i] += colNet[0];
+        (*f)[2*i+1] += colNet[1];
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
@@ -1857,6 +1868,7 @@ void MassSpring2D::updateSolidLocs(Pool2D &pool, bool interp) {
             pntList->at(i).x = (*q)[2*i];
             pntList->at(i).y = (*q)[2*i+1];
         }
+
         // assert(false);
     }
 }
