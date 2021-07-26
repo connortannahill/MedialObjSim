@@ -2669,7 +2669,7 @@ bool Pool3D::shouldRefitSDF(double tol) {
  * TODO: may need to reinitialize before using this
 */
 void Pool3D::refitToSolids(int ng) {
-    int mo = this->methodOrd;
+    // int mo = this->methodOrd;
 
     double t = 0;
 

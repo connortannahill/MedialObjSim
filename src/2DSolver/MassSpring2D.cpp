@@ -140,7 +140,6 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     for (int j = 0; j < pool.getNy(); j++) {
         for (int i = 0; i < pool.getNx(); i++) {
             domain = pool.domainMembership(i, j);
-
             poolObj = pool.objAtIndex(i, j);
 
             // if (domain == structNum && poolObj == objects::STRUCTURE) {
@@ -345,7 +344,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
         this->updateSolidLocs(pool, false);
         iters ++;
     }
-    while (qt->lpNorm<1>() > eps &&  iters < MAX_ITERS);
+    while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
     this->iterCount = 0;
 
@@ -1465,7 +1464,7 @@ void MassSpring2D::linearImplicitSolve(double dt, int elementMode, bool initMode
     double etaTemp = eta;
     
     if (initMode) {
-        E = 1.0;
+        E = 5.0;
         eta = 0.0;
     }
 
@@ -1869,6 +1868,7 @@ void MassSpring2D::updateSolidLocs(Pool2D &pool, bool interp) {
             pntList->at(i).x = (*q)[2*i];
             pntList->at(i).y = (*q)[2*i+1];
         }
+
         // assert(false);
     }
 }
