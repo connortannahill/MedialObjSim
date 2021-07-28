@@ -148,6 +148,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////
 
     string desc, boundaryConditionType;
+    string outFileName;
     double xa, xb, ya, yb, cons_u, cons_v, tEnd;
     int nx, ny, re, num_objects;
     bool useEno;
@@ -158,6 +159,9 @@ int main(int argc, char **argv) {
 
     // ignore first line, which is a description
     getline(input_file, desc);
+
+    // Get the output file name
+    getline(input_file, outFileName);
 
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v;
@@ -234,12 +238,11 @@ int main(int argc, char **argv) {
     int nsteps = 0;
     if (save_snapshots) {
 
-        string testName = "FlowSteps2D/";
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 20 == 0) {
-                string f_name = testName + std::to_string(nsteps);
+                string f_name = outFileName + std::to_string(nsteps);
                 outputData(f_name, solver);
             }
 
@@ -250,7 +253,7 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
 
-        string f_name = testName + std::to_string(nsteps);
+        string f_name = outFileName + std::to_string(nsteps);
         outputData(f_name, solver);
 
     } else {
@@ -267,7 +270,7 @@ int main(int argc, char **argv) {
 
         /* Output all of the relevant data */
         std::cout << "Outputting data" << std::endl;
-        outputData("SimpleTest2D", solver);
+        outputData(outFileName, solver);
 
     }
 }

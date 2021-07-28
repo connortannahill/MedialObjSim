@@ -1,4 +1,5 @@
 basic directional flow test for an object in 3D
+Directional3D
 
 0 1
 0 1

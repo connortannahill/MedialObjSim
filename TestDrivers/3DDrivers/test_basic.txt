@@ -1,4 +1,5 @@
 basic lid driven cavity test for an object in 3D
+LidDriven3D
 
 0 1
 0 1

@@ -84,10 +84,24 @@ if mode == 0:
     y_pool = out_pool[:,1]
     z_pool = out_pool[:,2]
     phi    = out_pool[:,3]
+    cx = 0.5
+    cy = 0.5
+    cz = 0.5
+    a = 0.38
+    c = 0.15
+    r = 0.3
+    b = 1.75 * r
+
+    for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
+        x, y, z = pnt
+        xsq = ((x-cx)/b)**2
+        ysq = ((y-cy)/b)**2
+        zsq = ((z-cz)/b)**2
+        phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
 
 
     fig = go.Figure(data=[
-        go.Cone(x=x, y=y, z=z, u=u, v=v, w=w, sizemode="absolute"),
+        # go.Cone(x=x, y=y, z=z, u=u, v=v, w=w, sizemode="absolute"),
         go.Isosurface(x=x_pool, y=y_pool, z=z_pool, value=phi, isomin=-0.0001,
                         isomax=0.0001, colorscale=[(0, 'blue'), (1, 'red')])])
 
@@ -113,6 +127,19 @@ elif mode == 1:
         y_mss = out[:,1]
         z_mss = out[:,2]
         mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss))
+        # for i in range(0, x.size, 3):
+        #     mssList.append(go.Scatter3d(x=x[i:i+3], y=y[i:i+3], z=z[i:i+3]))
+            # ax.plot(x[i:i+2], y[i:i+2], z[i:i+2], 'ro-', ms=0.5)
+    # for i in range(1):
+    #     f_name_t = f_name + 'MSS3DEdges{0}'.format(i)
+
+    #     out = np.genfromtxt(f_name_t, delimiter=',')
+    #     x = out[:,0]
+    #     y = out[:,1]
+    #     z = out[:,2]
+
+    #     for i in range(0, x.size, 2):
+    #         ax.plot(x[i:i+2], y[i:i+2], z[i:i+2], 'ro-', ms=0.5)
 
     # fig = go.Figure(data=[go.Isosurface(
     #     x=x,
@@ -123,15 +150,16 @@ elif mode == 1:
     #     isomax=0.0001,
     #     colorscale=[(0,"blue"), (1,"red")],
     #     opacity=0.3), go.Scatter3d(x=x_mss, y=y_mss, z=z_mss)])
-    fig = go.Figure(data=[go.Isosurface(
-        x=x,
-        y=y,
-        z=z,
-        value=phi,
-        isomin=-0.0001,
-        isomax=0.0001,
-        colorscale=[(0,"blue"), (1,"red")],
-        opacity=0.3)]+mssList)
+    # fig = go.Figure(data=[go.Isosurface(
+    #     x=x,
+    #     y=y,
+    #     z=z,
+    #     value=phi,
+    #     isomin=-0.0001,
+    #     isomax=0.0001,
+    #     colorscale=[(0,"blue"), (1,"red")],
+    #     opacity=0.3)]+mssList)
+    fig = go.Figure(data=mssList)
 
     fig.show()
 elif mode == 2:
@@ -172,14 +200,14 @@ elif mode == 3:
         # ax.ylim((0, 1))
     
     # Scatter plot of the centroids
-    f_name_t = f_name + 'MSS3DCentroids{}'.format(0)
-    out = np.genfromtxt(f_name_t, delimiter=',')
+    # f_name_t = f_name + 'MSS3DCentroids{}'.formVat(0)
+    # out = np.genfromtxt(f_name_t, delimiter=',')
 
-    x = out[:,0]
-    y = out[:,1]
-    z = out[:,2]
+    # x = out[:,0]
+    # y = out[:,1]
+    # z = out[:,2]
 
-    ax.scatter(x, y, z, c='b')
+    # ax.scatter(x, y, z, c='b')
     
     plt.show()
 elif mode == 4:

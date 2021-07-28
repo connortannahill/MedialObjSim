@@ -260,8 +260,8 @@ elif mode == 10:
 
         for i in range(0, x.size, 2):
             plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=4, lw=0.5)
-        # plt.xlim((0, 1))
-        # plt.ylim((0, 1))
+        # plt.xlim((0.25, 1.75))
+        # plt.ylim((1, 2))
     
     f_name = f_temp
     f_name += 'poolVel'
@@ -282,11 +282,11 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
-    plt.title('$t = 1.0$')
+    plt.title('$t = 0.0$')
 
     plt.gca().set_aspect('equal')
     # plt.axis('off')
-    plt.savefig("4ColTest_1_0.png", bbox_inches='tight')
+    plt.savefig("2Mixed_0_0.png", bbox_inches='tight')
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 

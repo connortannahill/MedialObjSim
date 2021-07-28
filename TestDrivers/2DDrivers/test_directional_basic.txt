@@ -1,4 +1,5 @@
 test for single object in basic directional flow
+TestSingleDirectional
 
 0 1
 0 1

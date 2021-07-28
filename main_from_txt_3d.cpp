@@ -35,20 +35,23 @@ double coneShapeFun(double x, double y, double z, SolidParams &ps) {
 
 // based on Cassini oval
 double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
-    double cx, cy, cz, a, c;
+    double cx, cy, cz, a, c, r;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
     ps.getParam("cz", cz);
     ps.getParam("a", a);
     ps.getParam("c", c);
+    ps.getParam("r", r);
 
-    double x_sqr = simutils::square(x-cx);
-    double y_sqr = simutils::square(y-cy);
-    double z_sqr = simutils::square(z-cz);
+    double b = 1.75 * r;
+
+    double x_sqr = simutils::square((x-cx)/b);
+    double y_sqr = simutils::square((y-cy)/b);
+    double z_sqr = simutils::square((z-cz)/b);
     double a_sqr = simutils::square(a);
     double c_sqr = simutils::square(c);
 
-    return simutils::square(x_sqr + y_sqr + z_sqr + a_sqr) - 4*a_sqr*(x_sqr + y_sqr) - simutils::square(c_sqr);
+    return simutils::square(x_sqr + y_sqr + z_sqr + a_sqr) - 4*a_sqr*(x_sqr + y_sqr) - c_sqr;
 }
 
 void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
@@ -150,6 +153,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////
 
     string desc, boundaryConditionType;
+    string testName;
     double xa, xb, ya, yb, za, zb, tEnd;
     int nx, ny, nz, re, num_objects;
     bool useEno;
@@ -160,6 +164,9 @@ int main(int argc, char **argv) {
 
     // ignore first line, which is a description
     getline(input_file, desc);
+
+    // Get the name of the test
+    getline(input_file, testName);
 
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> za >> zb >> nx >> ny >> nz;
@@ -231,7 +238,6 @@ int main(int argc, char **argv) {
     int nsteps = 0;
     if (save_snapshots) {
 
-        string testName = "FlowSteps3D/";
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
@@ -265,7 +271,7 @@ int main(int argc, char **argv) {
 
         /* Output all of the relevant data */
         std::cout << "Outputting data" << std::endl;
-        outputData("SimpleTest3D", solver);
+        outputData(testName, solver);
 
     }
 }

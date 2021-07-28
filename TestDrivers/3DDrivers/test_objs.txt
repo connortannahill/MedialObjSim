@@ -1,4 +1,5 @@
 lid driven cavity test for multiple object in 3D
+MultiObjs3D
 
 0 1
 0 1

@@ -6,6 +6,7 @@
 #include "../../src/2DSolver/ObjectSeeder.h"
 #include "../../src/2DSolver/SimParams.h"
 
+
 #include "ctime"
 
 #include "../../src/Utils/Discretizations.h"
@@ -68,9 +69,9 @@ int main(int argc, char **argv) {
     // double ymin = 0;
     // double ymax = 1;
     double xmin = 0;
-    double xmax = 2;
+    double xmax = 1;
     double ymin = 0;
-    double ymax = 2;
+    double ymax = 1;
 
     // double a = 0.3;
     // double c = 0.105;
@@ -83,7 +84,7 @@ int main(int argc, char **argv) {
     // Creating the pool objects
     SolidObject::ObjectType objType = SolidObject::ObjectType::DEFORMABLE;
     SolidParams params1;
-    params1.addParam("r",  0.2);
+    params1.addParam("r",  0.15);
     params1.addParam("mass",  1.0);
     params1.addParam("density",  1.0);
     params1.addParam("E",  10.0);
@@ -93,18 +94,18 @@ int main(int argc, char **argv) {
     params1.addParam("deg", -30);
 
     // 2 Convex
-    // params1.addParam("cx",  0.25);
-    // params1.addParam("cy",  0.5);
+    params1.addParam("cx",  0.25);
+    params1.addParam("cy",  0.5);
 
-    // SolidParams params2(params1);
-    // params2.addParam("cx", 0.75);
-    // params2.addParam("cy", 0.5);
+    SolidParams params2(params1);
+    params2.addParam("cx", 0.75);
+    params2.addParam("cy", 0.5);
 
     // 4 Convex
     // params1.addParam("r",  0.15);
 
-    SolidParams params2(params1);
-    // // SolidParams params3(params1);
+    // SolidParams params2(params1);
+    // SolidParams params3(params1);
     // // SolidParams params4(params1);
 
     // // params1.addParam("cx",  0.25);
@@ -121,13 +122,13 @@ int main(int argc, char **argv) {
     // params4.addParam("cy", 0.75);
 
     // 1 convex, 1 not
-    params1.addParam("cx",  1.0);
-    params1.addParam("cy",  1.5);
-    params1.addParam("r", 0.5);
+    // params1.addParam("cx",  1.0);
+    // params1.addParam("cy",  1.5);
+    // params1.addParam("r", 0.5);
 
-    params2.addParam("cx", 1.0);
-    params2.addParam("cy", 0.75);
-    params2.addParam("r", 0.10);
+    // params2.addParam("cx", 1.0);
+    // params2.addParam("cy", 0.75);
+    // params2.addParam("r", 0.10);
 
     // SolidParams params2(params1);
     // params2.addParam("cx", 0.75);
@@ -149,11 +150,11 @@ int main(int argc, char **argv) {
     // SolidObject circle4(-u0, -v0, objType, coneShapeFun, params4);
 
     // 1 convex, 1 not
-    double u0 = 0.0;
-    double v0 = 0.1;
+    double u0 = 0.1;
+    double v0 = 0.0;
 
-    // SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
-    SolidObject circle1(0.0, 0.0, objType, bloodCellShapeFun, params1);
+    SolidObject circle1(u0, v0, objType, coneShapeFun, params1);
+    // SolidObject circle1(0.0, 0.0, objType, bloodCellShapeFun, params1);
     SolidObject circle2(-u0, v0, objType, coneShapeFun, params2);
 
     vector<SolidObject> shapes;
@@ -166,8 +167,8 @@ int main(int argc, char **argv) {
     SimParams simParams;
     simParams.setNx(nx);
     simParams.setNy(ny);
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
+    simParams.setMssNx(nx/2);
+    simParams.setMssNy(ny/2);
     simParams.setRe(0.0);
     simParams.setMu(0.0);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking

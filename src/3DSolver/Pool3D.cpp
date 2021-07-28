@@ -385,6 +385,10 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     // function values.
     int mo = methodOrd;
 
+    if (mode == 2) {
+        medialAxisPnts->clear();
+    }
+
     // Initialize the velocity fields and the temp signed distance function to infinity (negative
     // infinity in the interior of the domain.)
 

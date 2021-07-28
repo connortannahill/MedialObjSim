@@ -1,4 +1,5 @@
 test for moving blood cells with directional flow in longer tube
+BloodDirectional
 
 0 2
 0 1
