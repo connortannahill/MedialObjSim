@@ -13,7 +13,7 @@ objs = []
 
 with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     f.write('Many object test generic, can be from many sources\n')
-    f.write(testName)
+    f.write(testName + '\n\n')
 
     print('Getting the parameters for the simulation')
     line = input('xa <space> xb = ')
@@ -84,11 +84,12 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     f.write('{}\n'.format(numObjs))
     # f.write('\n')
 
-    print('The parameter list (rotations are generated randomly) and added to all objects press None -1 to stop')
+    print('The parameter list (rotations are generated randomly) and added to all objects, enter "None -1" to stop')
     paramList = {}
     val = 1
-    while (val != '-1'):
+    while True:
         name, val = input('[paramName] [paramVal] = ').split()
+        if val == '-1': break
         print('{0} {1}'.format(name, val))
         paramList[name] = float(val)
     

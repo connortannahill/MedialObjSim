@@ -204,8 +204,8 @@ int main(int argc, char **argv) {
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
+    simParams.setMssNx(nx/2);
+    simParams.setMssNy(ny/2);
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
@@ -213,9 +213,9 @@ int main(int argc, char **argv) {
     // simParams.setRepulseDist(0.1); // Actually need 0.1
     // simParams.setCollisionStiffness(2.0);
     // simParams.setCollisionDist(0.25);
-    simParams.setRepulseDist(0.1); // Actually need 0.1
+    simParams.setRepulseDist(0.2); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(4*h);
+    simParams.setCollisionDist(5*h);
     simParams.setUpdateMode(1);
     simParams.setAdmmTol(1e-10);
     simParams.setGx(0.0);
