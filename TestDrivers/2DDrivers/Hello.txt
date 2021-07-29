@@ -1,0 +1,77 @@
+Many object test generic, can be from many sources
+Hello
+
+0.0 1.0
+0.0 1.0
+40 40
+0.0 0.0
+1000.0
+1
+lidDrivenCavityBC
+1.0
+
+4
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.25
+cy 0.25
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.38
+c 0.105
+deg 230
+.
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.25
+cy 0.75
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.38
+c 0.105
+deg 132
+.
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.75
+cy 0.25
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.38
+c 0.105
+deg 201
+.
+
+circleShapeFun
+1
+0.0
+0.0
+cx 0.75
+cy 0.75
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.38
+c 0.105
+deg 27
+.

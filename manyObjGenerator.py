@@ -64,14 +64,21 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     eps = float(input('Packing tolerance (how far apart at minimum) = '))
 
     # Compute the tolerance for the embedding 5h
-    eps = 0
+    # eps = 0
     if dim == 2:
         epsMin = np.linalg.norm([5*(1.0/nx), 5*(1.0/ny)])
     else:
         epsMin = np.linalg.norm([5*(1.0/nx), 5*(1.0/ny), 5*(1.0/nz)])
     
     while eps > epsMin:
-        eps = float(input('This packing tolerance will be too low for the chosen grid density, please choose another: '))
+        eps = float(input('This packing tolerance will be too low for the chosen grid density, please choose another > {}: '.format(epsMin)))
+    
+
+    # print('eps = {}'.format(eps))
+    # print('dim = {}'.format(dim))
+    b = r+eps
+    # print(b)
+    # assert(False)
     
     # Compute the maximum
     iMax = int(np.floor((XB - XA)/(2*(r + eps))))
@@ -97,9 +104,9 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     """ Now generate the centers for each object """
     centerList = []
     if dim == 2:
-        centerList = [(XA+tup[0]*2*(r+eps)+(r+eps), YA+tup[1]*2*(r+eps)+(r+eps)) for tup in product(range(0, iMax), range(0, jMax))]
+        centerList = [(XA+tup[0]*2*b+b, YA+tup[1]*2*b+b) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*2*(r+eps)+(r+eps), YA+tup[1]*2*(r+eps)+(r+eps), ZA+tup[2]*2*(r+eps)+(r+eps)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax+1))]
+        centerList = [(XA+tup[0]*2*(b)+(b), YA+tup[1]*2*(b)+(b), ZA+tup[2]*2*(b)+(b)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax+1))]
     
     """ For each of these centers, give the output for the file! """
 
@@ -127,7 +134,7 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
         
         f.write('.\n')
 
-        circle = plt.Circle(center, r+eps)
+        circle = plt.Circle(center, r)
         ax.add_patch(circle)
 
 
