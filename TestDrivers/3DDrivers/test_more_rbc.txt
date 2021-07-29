@@ -1,0 +1,129 @@
+lid driven cavity test for red blood cell shape in 3D
+RBCcavity3D
+
+0 2
+0 1
+0 1
+40 40 40
+0 0 0
+1000
+0
+lidDrivenCavityBC
+10.0
+
+7
+
+bloodCellShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.4
+cy 0.5
+cz 0.7
+r 0.2
+a 0.38
+c 0.1505
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+bloodCellShapeFun
+1
+0.0
+0.0
+0.0
+cx 1.7
+cy 0.5
+cz 0.7
+r 0.2
+a 0.38
+c 0.1505
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+bloodCellShapeFun
+1
+0.0
+0.0
+0.0
+cx 1.1
+cy 0.5
+cz 0.7
+r 0.2
+a 0.38
+c 0.1505
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+bloodCellShapeFun
+1
+0.0
+0.0
+0.0
+cx 1.2
+cy 0.75
+cz 0.3
+r 0.2
+a 0.38
+c 0.1505
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+bloodCellShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.8
+cy 0.25
+cz 0.3
+r 0.2
+a 0.38
+c 0.1505
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.0
+0.0
+cx 0.4
+cy 0.8
+cz 0.4
+r 0.15
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.0
+0.0
+cx 1.6
+cy 0.3
+cz 0.4
+r 0.15
+mass 10.0
+density 1.0
+E 5
+eta 0.0
+.

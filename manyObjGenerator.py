@@ -41,7 +41,7 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
         f.write('{} {}\n'.format(u_cons, v_cons))
     else:
         u_cons, v_cons, w_cons = [int(i) for i in input('cons_u <space> cons_v <space> cons_w = ').split()]
-        f.write('{} {}\n'.format(u_cons, v_cons, w_cons))
+        f.write('{} {} {}\n'.format(u_cons, v_cons, w_cons))
 
 
     f.write('{}\n'.format(float(input('Re = '))))
@@ -84,7 +84,7 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     f.write('{}\n'.format(numObjs))
     # f.write('\n')
 
-    print('The parameter list (rotations are generated randomly) and added to all objects press None -1 to stop')
+    print('The parameter list (rotations are generated randomly) and added to all objects, enter "None -1" to stop')
     paramList = {}
     name, val = input('[paramName] [paramVal] = ').split()
     while (val != '-1'):

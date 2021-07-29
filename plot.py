@@ -259,7 +259,7 @@ elif mode == 10:
         y = out[:,1]
 
         for i in range(0, x.size, 2):
-            plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=4, lw=0.5)
+            plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=1, lw=0.5)
         # plt.xlim((0.25, 1.75))
         # plt.ylim((1, 2))
     

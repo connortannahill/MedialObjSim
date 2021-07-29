@@ -34,23 +34,25 @@ double coneShapeFun(double x, double y, SolidParams &ps) {
 
 // based on Cassini oval
 double bloodCellShapeFun(double x, double y, SolidParams &ps) {
-    double cx, cy, a, c, deg;
+    double cx, cy, a, c, r, deg;
     ps.getParam("cx", cx);
     ps.getParam("cy", cy);
     ps.getParam("a", a);
     ps.getParam("c", c);
+    ps.getParam("r", r);
     ps.getParam("deg", deg); // degree of rotation
 
+    double b = 2.25 * r;
     double rad = deg * M_PI / 180;
-    double rotcx = (x-cx) * cos(rad) - (y-cy) * sin(rad);
-    double rotcy = (x-cx) * sin(rad) + (y-cy) * cos(rad);
+    double rotcx = (x-cx) / (b) * cos(rad) - (y-cy) / (b) * sin(rad);
+    double rotcy = (x-cx) / (b) * sin(rad) + (y-cy) / (b) * cos(rad);
 
     double x_sqr = simutils::square(rotcx);
     double y_sqr = simutils::square(rotcy);
     double a_sqr = simutils::square(a);
     double c_sqr = simutils::square(c);
 
-    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - simutils::square(c_sqr);
+    return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - c_sqr;
 }
 
 // kinda complicated, should make better
@@ -229,8 +231,8 @@ int main(int argc, char **argv) {
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
+    simParams.setMssNx(nx/2);
+    simParams.setMssNy(ny/2);
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
@@ -238,9 +240,9 @@ int main(int argc, char **argv) {
     // simParams.setRepulseDist(0.1); // Actually need 0.1
     // simParams.setCollisionStiffness(2.0);
     // simParams.setCollisionDist(0.25);
-    simParams.setRepulseDist(0.1); // Actually need 0.1
+    simParams.setRepulseDist(0.2); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(4*h);
+    simParams.setCollisionDist(5*h);
     simParams.setUpdateMode(1);
     simParams.setAdmmTol(1e-10);
     simParams.setGx(0.0);

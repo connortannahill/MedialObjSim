@@ -5,6 +5,7 @@ Directional3D
 0 1
 0 1
 20 20 20
+0.1 0 0
 1000
 0
 directionalFlowBC

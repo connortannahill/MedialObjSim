@@ -54,20 +54,20 @@ double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
     return simutils::square(x_sqr + y_sqr + z_sqr + a_sqr) - 4*a_sqr*(x_sqr + y_sqr) - c_sqr;
 }
 
-void initialConditions(int nx, int ny, int nz, int nGhost, double *x,
-                        double *y, double *z, double ***u, double ***v,
-                        double ***w) {
-    double cons_u = 0.0;
-    double cons_v = 0.0;
-    double cons_w = 0.0;
+typedef std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions3DFunType;
+initialConditions3DFunType getInitialConditionsFun(double cons_u, double cons_v, double cons_w) {
+    // return lambda function with same parameters for NSSolver but user-given velocities
+    return [cons_u, cons_v, cons_w](int nx, int ny, int nz, int nGhost, 
+                            double *x, double *y, double *z, double ***u, double ***v, double ***w) {
 
-    int wg = nx + 2*nGhost; // "width"
-    int hg = ny + 2*nGhost; // "height"
-    int vg = nz + 2*nGhost; // "vert"
+        int wg = nx + 2*nGhost; // "width"
+        int hg = ny + 2*nGhost; // "height"
+        int vg = nz + 2*nGhost; // "vert"
 
-    simutils::set_constant(vg, hg, wg-1, cons_u, u);
-    simutils::set_constant(vg, hg-1, wg, cons_v, v);
-    simutils::set_constant(vg-1, hg, wg, cons_w, w); 
+        simutils::set_constant(vg, hg, wg-1, cons_u, u);
+        simutils::set_constant(vg, hg-1, wg, cons_v, v);
+        simutils::set_constant(vg-1, hg, wg, cons_w, w); 
+    };
 }
 
 void lidDrivenCavityBC(int nx, int ny, int nz, double ***u) {
@@ -154,7 +154,7 @@ int main(int argc, char **argv) {
 
     string desc, boundaryConditionType;
     string testName;
-    double xa, xb, ya, yb, za, zb, tEnd;
+    double xa, xb, ya, yb, za, zb, cons_u, cons_v, cons_w, tEnd;
     int nx, ny, nz, re, num_objects;
     bool useEno;
     vector<SolidObject3D> shapes;
@@ -170,6 +170,7 @@ int main(int argc, char **argv) {
 
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> za >> zb >> nx >> ny >> nz;
+    input_file >> cons_u >> cons_v >> cons_w;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
@@ -221,7 +222,7 @@ int main(int argc, char **argv) {
     simParams.setUpdateMode(1);
 
     // initial/boundary conditions and boundary object
-    // auto initialConditions = getInitialConditionsFun(cons_u, cons_v);
+    auto initialConditions = getInitialConditionsFun(cons_u, cons_v, cons_w);
     auto boundaryCondition = boundaryConditionFunctions[boundaryConditionType];
     Boundary3D boundary(xa, xb, ya, yb, za, zb);
 
