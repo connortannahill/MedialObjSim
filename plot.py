@@ -194,8 +194,8 @@ elif mode == 9:
 
         for i in range(0, x.size, 2):
             plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=0.5)
-        plt.xlim((0, 1))
-        plt.ylim((0, 1))
+        plt.xlim((0, 4))
+        plt.ylim((0, 2))
 
         f_name = f_temp
 

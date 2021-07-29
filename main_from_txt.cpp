@@ -149,42 +149,66 @@ int main(int argc, char **argv) {
 
     string desc, boundaryConditionType;
     string outFileName;
-    double xa, xb, ya, yb, cons_u, cons_v, tEnd;
-    int nx, ny, re, num_objects;
+    double xa, xb, ya, yb, cons_u, cons_v, tEnd, re;
+    int nx, ny, num_objects;
     bool useEno;
     vector<SolidObject> shapes;
     SimParams simParams;
 
     ifstream input_file(input_file_name);
 
+    cout << "Got the input file = " << input_file_name << endl;
+
     // ignore first line, which is a description
     getline(input_file, desc);
+
+    cout << "line 165" << endl;
 
     // Get the output file name
     getline(input_file, outFileName);
 
+    cout << "line 170" << endl;
+
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
+
+    cout << "xa = " << xa << " " << xb << endl;
+    cout << "ya = " << ya << " " << yb << endl;
+    cout << "nx = " << nx << " " << ny << endl;
+    cout << "u = " << cons_u << " " << cons_v << endl;
+    cout << "re = " << re << endl;
+    cout << "useEno = " << useEno << endl;
+    cout << "bctype = " << boundaryConditionType << endl;
+    cout << "tEnd = " << tEnd << endl;
+    cout << "line 175" << endl;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
     // std::cout << nx << " " << ny << " " << re << " " << tEnd << endl;
 
     // get objects in simulation
     input_file >> num_objects;
+    cout << "num_objects " << num_objects << endl;
+    cout << "line 182" << endl;
 
     string objectFunc, paramName;
     int objectType;
     double u0, v0, paramValue;
     for (int i = 0; i < num_objects; i++) {
         input_file >> objectFunc >> objectType >> u0 >> v0;
+        cout << "objFunc " << objectFunc << endl;
+        cout << "objType " << objectType << endl;
+        cout << "u0 " << u0 << endl;
+        cout << "v0 " << v0 << endl;
         
         SolidParams params;
-        input_file >> paramName;
+        input_file >> paramName >> paramValue;
         while (paramName != ".") {
-            input_file >> paramValue;
+            cout << "ParamName = " << paramName << " " <<  paramValue << endl;
+            assert(false);
             params.addParam(paramName, paramValue);
-            // cout << paramName << " " << paramValue << endl;
+            input_file >> paramName >> paramValue;
+            cout << paramName << " " << paramValue << endl;
 
             input_file >> paramName;
         }
@@ -193,6 +217,9 @@ int main(int argc, char **argv) {
         SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
+
+    cout << "Number of objects = " << shapes.size() << endl;
+    cout << "line 204" << endl;
 
     // actually set up simParams
     double h = sqrt(simutils::square(1.0/((double) nx)
@@ -226,7 +253,10 @@ int main(int argc, char **argv) {
     Boundary boundary(xa, xb, ya, yb);
 
     // Create the Solver object
+    cout << "creating the solver" << endl;
     NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
+
+    cout << "FINISHED creating the solver" << endl;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
