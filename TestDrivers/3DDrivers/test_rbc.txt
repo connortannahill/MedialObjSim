@@ -24,6 +24,7 @@ cz 0.5
 r 0.3
 a 0.38
 c 0.1505
+deg 90
 mass 10.0
 density 1.0
 E 5

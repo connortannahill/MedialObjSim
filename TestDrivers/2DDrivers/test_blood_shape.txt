@@ -3,7 +3,7 @@ BloodShape
 
 0 1
 0 1
-40 40
+80 80
 0 0
 1000
 1
@@ -18,8 +18,9 @@ bloodCellShapeFun
 0.0
 cx 0.25
 cy 0.7
-a 0.1
-c 0.105
+a 0.38
+c 0.15
+r 0.1
 deg 30
 mass 1.0
 density 1.0
@@ -33,8 +34,9 @@ bloodCellShapeFun
 0.0
 cx 0.75
 cy 0.7
-a 0.1
-c 0.105
+a 0.38
+c 0.15
+r 0.1
 deg -30
 mass 1.0
 density 1.0
@@ -48,8 +50,9 @@ bloodCellShapeFun
 0.0
 cx 0.5
 cy 0.45
-a 0.1
-c 0.105
+a 0.38
+c 0.15
+r 0.1
 mass 1.0
 density 1.0
 E 10
@@ -62,8 +65,9 @@ bloodCellShapeFun
 0.0
 cx 0.25
 cy 0.2
-a 0.1
-c 0.105
+a 0.38
+c 0.15
+r 0.1
 mass 1.0
 density 1.0
 E 10
@@ -76,8 +80,9 @@ bloodCellShapeFun
 0.0
 cx 0.75
 cy 0.2
-a 0.1
-c 0.105
+a 0.38
+c 0.15
+r 0.1
 mass 1.0
 density 1.0
 E 10

@@ -1,0 +1,91 @@
+test for colliding objects
+TestLarge
+
+0 4
+0 4
+200 200
+0.1 0
+1000
+1
+lidDrivenCavityBC
+400.0
+
+6
+
+circleShapeFun
+1
+0.3
+0.3
+cx 1.4
+cy 1.6
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+0.3
+cx 2.2
+cy 1.5
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+0.0
+-0.3
+cx 2.4
+cy 2.3
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+0.4
+-0.3
+cx 1.4
+cy 2.6
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+-0.2
+0.0
+cx 3.0
+cy 1.8
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
+
+circleShapeFun
+1
+-0.2
+0.0
+cx 3.4
+cy 2.2
+r 0.2
+mass 1
+density 1.0
+E 10
+eta 0.0
+.
