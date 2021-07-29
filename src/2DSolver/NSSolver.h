@@ -94,7 +94,6 @@ public:
                 vector<SolidObject> &solidObjects,
                 SimParams &params,
                 std::function<void (int,int,int,double*,double*,double**,double**)> initialConditions,
-                // void (*initialConditions)(int,int,int,double*,double*,double**,double**),
                 void (*boundaryConditions)(int,int,double**,double**));
     int eno_get_upwind(bool sten[7], double ySten[7]);
     void (*initialConditions)(int,int,int,double*,double*,double**,double**);

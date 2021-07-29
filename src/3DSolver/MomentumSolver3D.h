@@ -93,7 +93,7 @@ public:
     MomentumSolver3D(Boundary3D &boundary,
                      vector<SolidObject3D> &solidObjects,
                      SimParams3D &params,
-                     void (*initialConditions)(int,int,int,int,double*,double*,double*,double***,double***,double***),
+                     std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions,
                      void (*boundaryConditions)(int,int,int,double***));
     MomentumSolver3D() = default;
     ~MomentumSolver3D();
