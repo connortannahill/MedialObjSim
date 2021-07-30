@@ -272,7 +272,7 @@ int main(int argc, char **argv) {
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 20 == 0) {
-                string f_name = outFileName + std::to_string(nsteps);
+                string f_name = outFileName + "/" + std::to_string(nsteps);
                 outputData(f_name, solver);
             }
 
@@ -283,7 +283,7 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
 
-        string f_name = outFileName + std::to_string(nsteps);
+        string f_name = outFileName + "/" + std::to_string(nsteps);
         outputData(f_name, solver);
 
     } else {

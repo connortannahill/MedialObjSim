@@ -409,7 +409,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     #     img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
     
     # get data from each step
-    steps = os.listdir(f_name)
+    steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
     print(steps)
 
