@@ -8,940 +8,86 @@ PipeFlow160x80
 1000.0
 1
 directionalFlowBC
-4.0
+5.0
 
-150
+77
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 0.55
+cx 0.565
+cy 0.565
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 137
+deg 335
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 0.65
+cx 0.565
+cy 0.6950000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 148
+deg 14
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 0.75
+cx 0.565
+cy 0.825
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 45
+deg 224
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 0.8500000000000001
+cx 0.565
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 345
+deg 169
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 0.9500000000000001
+cx 0.565
+cy 1.085
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 102
+deg 32
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 0.55
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 16
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.55
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 170
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.55
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 324
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.55
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 129
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.55
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 193
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 331
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 289
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 24
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 228
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 350
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 84
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 137
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 217
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 34
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.65
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 23
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 289
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 15
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 26
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 45
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 285
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 62
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 36
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 320
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 321
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.75
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 299
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 264
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 270
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 109
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 360
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 346
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 333
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 217
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 179
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 274
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.8500000000000001
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 155
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 220
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 202
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 15
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 111
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 135
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 178
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 58
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 204
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 55
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 0.9500000000000001
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 250
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 63
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 68
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 182
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 275
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 263
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 126
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 276
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 277
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 26
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.05
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 87
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 191
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 329
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 134
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 165
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 320
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 145
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 1.1500000000000001
+cx 0.565
+cy 1.2149999999999999
 r 0.05
 mass 1.0
 density 1.0
@@ -954,232 +100,22 @@ coneShapeFun
 1
 0.1
 0.0
-cx 1.1500000000000001
-cy 1.2500000000000002
+cx 0.565
+cy 1.345
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 228
+deg 177
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.1500000000000001
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 131
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.1500000000000001
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 272
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 137
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 102
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 137
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 1
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 13
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 351
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 104
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 288
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 80
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.2500000000000002
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 109
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.35
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 23
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.35
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 112
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.35
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 16
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.35
-cy 0.8500000000000001
+cx 0.6950000000000001
+cy 0.565
 r 0.05
 mass 1.0
 density 1.0
@@ -1192,708 +128,176 @@ coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 0.9500000000000001
+cx 0.6950000000000001
+cy 0.6950000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 206
+deg 289
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 1.05
+cx 0.6950000000000001
+cy 0.825
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 204
+deg 10
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 1.1500000000000001
+cx 0.6950000000000001
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 68
+deg 99
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 1.2500000000000002
+cx 0.6950000000000001
+cy 1.085
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 355
+deg 74
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 1.35
+cx 0.6950000000000001
+cy 1.2149999999999999
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 49
+deg 138
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.35
-cy 1.45
+cx 0.6950000000000001
+cy 1.345
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 212
+deg 141
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 0.55
+cx 0.825
+cy 0.565
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 264
+deg 253
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 0.65
+cx 0.825
+cy 0.6950000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 157
+deg 33
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 0.75
+cx 0.825
+cy 0.825
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 126
+deg 166
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 0.8500000000000001
+cx 0.825
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 76
+deg 33
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 0.9500000000000001
+cx 0.825
+cy 1.085
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 139
+deg 142
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 1.05
+cx 0.825
+cy 1.2149999999999999
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 184
+deg 5
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.45
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 161
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.45
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 93
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.45
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 205
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.45
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 136
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 15
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 135
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 53
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 288
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 68
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 23
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 38
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 16
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 6
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.55
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 49
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 144
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 350
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 316
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 84
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 129
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 312
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 302
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 157
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 217
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.6500000000000001
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 73
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 209
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 157
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 71
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 15
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 0.9500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 76
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 1.05
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 150
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 1.1500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 230
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 1.2500000000000002
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 71
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 1.35
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 121
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.7500000000000002
-cy 1.45
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 61
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.85
-cy 0.55
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 26
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.85
-cy 0.65
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 153
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.85
-cy 0.75
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 101
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.85
-cy 0.8500000000000001
-r 0.05
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-deg 351
-.
-
-coneShapeFun
-1
-0.1
-0.0
-cx 1.85
-cy 0.9500000000000001
+cx 0.825
+cy 1.345
 r 0.05
 mass 1.0
 density 1.0
@@ -1906,92 +310,190 @@ coneShapeFun
 1
 0.1
 0.0
-cx 1.85
-cy 1.05
+cx 0.9550000000000001
+cy 0.565
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 157
+deg 36
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.85
-cy 1.1500000000000001
+cx 0.9550000000000001
+cy 0.6950000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 227
+deg 69
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.85
-cy 1.2500000000000002
+cx 0.9550000000000001
+cy 0.825
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 235
+deg 232
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.85
-cy 1.35
+cx 0.9550000000000001
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 321
+deg 88
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.85
-cy 1.45
+cx 0.9550000000000001
+cy 1.085
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 76
+deg 59
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 0.55
+cx 0.9550000000000001
+cy 1.2149999999999999
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 327
+deg 100
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 0.65
+cx 0.9550000000000001
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 116
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 255
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 205
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 192
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 0.9550000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 272
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 96
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 21
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.085
+cy 1.345
 r 0.05
 mass 1.0
 density 1.0
@@ -2004,64 +506,148 @@ coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 0.75
+cx 1.2149999999999999
+cy 0.565
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 38
+deg 141
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 0.8500000000000001
+cx 1.2149999999999999
+cy 0.6950000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 160
+deg 18
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 0.9500000000000001
+cx 1.2149999999999999
+cy 0.825
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 338
+deg 358
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 1.05
+cx 1.2149999999999999
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 60
+deg 267
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 1.1500000000000001
+cx 1.2149999999999999
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 68
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.2149999999999999
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 151
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.2149999999999999
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 349
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.345
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 138
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.345
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 353
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.345
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 246
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.345
+cy 0.9550000000000001
 r 0.05
 mass 1.0
 density 1.0
@@ -2074,40 +660,432 @@ coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 1.2500000000000002
+cx 1.345
+cy 1.085
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 247
+deg 285
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 1.35
+cx 1.345
+cy 1.2149999999999999
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 156
+deg 73
 .
 
 coneShapeFun
 1
 0.1
 0.0
-cx 1.9500000000000002
-cy 1.45
+cx 1.345
+cy 1.345
 r 0.05
 mass 1.0
 density 1.0
 E 10.0
 eta 0.0
-deg 51
+deg 297
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 251
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 243
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 353
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 0.9550000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 169
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 195
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 57
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.475
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 45
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 301
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 355
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 185
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 0.9550000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 291
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 187
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 127
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.605
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 25
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 155
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 176
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 30
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 0.9550000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 244
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 333
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 113
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.7349999999999999
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 84
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 0.565
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 161
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 0.6950000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 227
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 0.825
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 44
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 0.9550000000000001
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 54
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 1.085
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 160
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 1.2149999999999999
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 187
+.
+
+coneShapeFun
+1
+0.1
+0.0
+cx 1.865
+cy 1.345
+r 0.05
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 56
 .

@@ -74,7 +74,7 @@ initialConditions3DFunType getInitialConditionsFun(double cons_u, double cons_v,
     };
 }
 
-void lidDrivenCavityBC(int nx, int ny, int nz, double ***u) {
+void lidDrivenCavityBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
     double ubar = 1.0;
     for (int j = 1; j <= ny; j++) {
         for (int i = 1; i <= nx; i++) {
@@ -83,7 +83,7 @@ void lidDrivenCavityBC(int nx, int ny, int nz, double ***u) {
     }
 }
 
-void directionalFlowBC(int nx, int ny, int nz, double ***u) {
+void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
     for (int k = 1; k <= nz; k++) {
         for (int j = 1; j <= ny; j++) {
             // Inflow condition
@@ -91,6 +91,23 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u) {
 
             // Outflow condition
             u[k][j][nx] = u[k][j][nx-1];
+        }
+    }
+}
+
+void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
+    for (int k = 1; k <= nz; k++) {
+        for (int i = 1; i <= nx; i++) {
+            v[k][0][i] = v[k][1][i];
+
+            v[k][ny][i] = -0.1;
+
+
+            // // Inflow condition
+            // u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+            // // Outflow condition
+            // u[k][j][nx] = u[k][j][nx-1];
         }
     }
 }
@@ -139,9 +156,10 @@ int main(int argc, char **argv) {
     shapeFunctions["coneShapeFun"] = coneShapeFun;
     shapeFunctions["bloodCellShapeFun"] = bloodCellShapeFun;
 
-    map<string, void (*)(int, int, int, double***)> boundaryConditionFunctions;
+    map<string, void (*)(int, int, int, double***, double***, double***)> boundaryConditionFunctions;
     boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
     boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
+    boundaryConditionFunctions["downDirFlowBC"] = directionalFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;

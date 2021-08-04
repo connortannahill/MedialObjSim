@@ -3,7 +3,7 @@ import numpy as np
 import itertools
 import seaborn as sb
 import sys
-import os
+import os, glob
 
 if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
@@ -12,10 +12,17 @@ if len(sys.argv) == 1:
 test = sys.argv[1]
 mode = int(sys.argv[2])
 f_name = './output/{0}/'.format(test)
+print(f_name)
 
-numObj = 1
-if (len(sys.argv) == 4):
-    numObj = int(sys.argv[3])
+# numObj = 1
+# if (len(sys.argv) == 4):
+#     numObj = int(sys.argv[3])
+
+# Get the number of objects
+cur_dir = os.getcwd()
+os.chdir(f_name)
+numObj = len(glob.glob('MSSEdges*'))
+os.chdir(cur_dir)
 
 
 """
@@ -231,13 +238,13 @@ elif mode == 10:
     #     phi[i] = phi_fun(tup[0], tup[1])
 
 
-    n = int(np.sqrt(phi.size))
+    # n = int(np.sqrt(phi.size))
 
     # x *= n
     # y *= n
 
     fig, ax = plt.subplots(1)
-    img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+    # img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
     # plt.show()
     # assert(False)
 
@@ -258,14 +265,33 @@ elif mode == 10:
         x = out[:,0]
         y = out[:,1]
 
-        for i in range(0, x.size, 2):
-            plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=1, lw=0.5)
+        x_list = [x[i:i+2] for i in range(x.size, 2)]
+        y_list = [y[i:i+2] for i in range(y.size, 2)]
+        lines = []
+        # print(x.size)
+        # print(list(range(0, x.size, 2)))
+        for j in range(0, x.size, 2):
+            # print('hi')
+            lines.append([(x[j],y[j]), (x[j+1],y[j+1])])
+        # print('done for')
+        # lines = [[(x[i],y[i]), (x[i+1],y[i+1])] for i in range(x.size, 2)]
+
+        # print(lines[0])
+        # assert(False)
+        from matplotlib.collections import LineCollection
+        lc = LineCollection(lines, colors='r')
+
+        ax.add_collection(lc)
+
+        # for i in range(0, x.size, 2):
+        #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=1, lw=0.5)
+        # plt.plot(x_list, y_list, 'ro-', ms=1, lw=0.5)
         # plt.xlim((0.25, 1.75))
         # plt.ylim((1, 2))
     
     f_name = f_temp
-    f_name += 'poolVel'
-    # f_name += 'out'
+    # f_name += 'poolVel'
+    f_name += 'out'
     out = np.genfromtxt(f_name, delimiter=',')
     x = out[:,0]
     y = out[:,1]
@@ -282,11 +308,12 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
-    plt.title('$t = 0.0$')
+    
+    plt.title('$t = 1.73$')
 
     plt.gca().set_aspect('equal')
     # plt.axis('off')
-    plt.savefig("2Mixed_0_0.png", bbox_inches='tight')
+    plt.savefig("ManyConvex_1_73.png", bbox_inches='tight')
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
@@ -330,11 +357,11 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     y_pool = out[:,1]
     phi = out[:,2]
 
-    n = int(np.sqrt(phi.size))
+    # n = int(np.sqrt(phi.size))
 
     for idx, (name, file_ext) in enumerate(plots, start=1):
         fig, ax = plt.subplots(1)
-        img = ax.contour(np.reshape(x_pool, (n, n)), np.reshape(y_pool, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
+        # img = ax.contour(np.reshape(x_pool, (n, n)), np.reshape(y_pool, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
 
         f = plt.figure(idx)
         for i in range(numObj):
@@ -344,10 +371,27 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
             x = out[:,0]
             y = out[:,1]
 
-            for i in range(0, x.size, 2):
-                plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
-            plt.xlim((0, 1))
-            plt.ylim((0, 1))
+            # for i in range(0, x.size, 2):
+            #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
+            # plt.xlim((0, 1))
+            # plt.ylim((0, 1))
+            x_list = [x[i:i+2] for i in range(x.size, 2)]
+            y_list = [y[i:i+2] for i in range(y.size, 2)]
+            lines = []
+            # print(x.size)
+            # print(list(range(0, x.size, 2)))
+            for j in range(0, x.size, 2):
+                # print('hi')
+                lines.append([(x[j],y[j]), (x[j+1],y[j+1])])
+            # print('done for')
+            # lines = [[(x[i],y[i]), (x[i+1],y[i+1])] for i in range(x.size, 2)]
+
+            # print(lines[0])
+            # assert(False)
+            from matplotlib.collections import LineCollection
+            lc = LineCollection(lines, colors='r')
+
+            ax.add_collection(lc)
 
         field_vels_f_name = f_name + file_ext
         plt.title(test + ' - ' + name)

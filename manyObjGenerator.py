@@ -70,8 +70,8 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     else:
         epsMin = np.linalg.norm([5*(1.0/nx), 5*(1.0/ny), 5*(1.0/nz)])
     
-    while eps > epsMin:
-        eps = float(input('This packing tolerance will be too low for the chosen grid density, please choose another > {}: '.format(epsMin)))
+    while eps < epsMin:
+        eps = float(input('This packing tolerance {0} will be too low for the chosen grid density, please choose another > {1}: '.format(eps, epsMin)))
     
 
     # print('eps = {}'.format(eps))
@@ -134,7 +134,7 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
         
         f.write('.\n')
 
-        circle = plt.Circle(center, r)
+        circle = plt.Circle(center, r+eps)
         ax.add_patch(circle)
 
 

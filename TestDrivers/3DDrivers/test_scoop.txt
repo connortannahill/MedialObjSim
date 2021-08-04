@@ -3,6 +3,7 @@ TestScoop
 
 0 5
 0 5
+0 5
 80 80
 0 0
 1000
@@ -16,8 +17,10 @@ bloodCellShapeFun
 1
 0.0
 0.0
+0.0
 cx 2.5
 cy 4.0
+cz 2.5
 a 0.3
 c 0.105
 r 1.5
@@ -32,8 +35,10 @@ coneShapeFun
 1
 0.0
 0.0
+0.0
 cx 2
 cy 2.5
+cz 2.5
 r 0.5
 mass 1.0
 density 1.0
@@ -43,10 +48,12 @@ eta 0.0
 
 coneShapeFun
 1
+0.0
 0.0
 0.0
 cx 3.5
 cy 2.5
+cz 2.5
 r 0.5
 mass 1.0
 density 1.0
@@ -58,8 +65,10 @@ coneShapeFun
 1
 0.0
 0.0
+0.0
 cx 2.7
 cy 1.35
+cz 2.5
 r 0.5
 mass 1.0
 density 1.0

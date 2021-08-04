@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include <math.h>
+#include <chrono>
 
 #include "./src/2DSolver/Boundary.h"
 #include "./src/2DSolver/SolidObject.h"
@@ -13,6 +14,7 @@
 #include "./src/Utils/SimUtilities.h"
 #include "./src/Utils/TestFormatter.h"
 
+using namespace std::chrono;
 using namespace std;
 const double EPS = 1e-16;
 
@@ -89,6 +91,19 @@ void directionalFlowBC(int nx, int ny, double **u, double **v) {
     }
 }
 
+void downDirFlowBC(int nx, int ny, double **u, double **v) {
+    // cout << "in bc" << endl;
+    for (int i = 1; i <= nx; i++) {
+        // Inflow condition
+        v[0][i] = v[1][i];
+        //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+        // Outflow condition
+        v[ny][i] = -0.1;
+    }
+    // cout << "out bc" << endl;
+}
+
 void outputData(string f_name, NSSolver &solver) {
     TestFormatter testFormatter(f_name.c_str());
     std::cout << "Outputting data" << std::endl;
@@ -136,6 +151,7 @@ int main(int argc, char **argv) {
     map<string, void (*)(int, int, double**, double**)> boundaryConditionFunctions;
     boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
     boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
+    boundaryConditionFunctions["downDirFlowBC"] = downDirFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;
@@ -265,6 +281,10 @@ int main(int argc, char **argv) {
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
 
+    // Start recording the time. We do not include the seeding as this is technically
+    // not a part of the algorithm per se.
+    auto start = high_resolution_clock::now();
+
     int nsteps = 0;
     if (save_snapshots) {
 
@@ -303,4 +323,14 @@ int main(int argc, char **argv) {
         outputData(outFileName, solver);
 
     }
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<seconds>(stop - start);
+
+    cout << "=========================================================" << endl;
+    cout << "The total run time of the algorithm: " << duration.count() << endl;
+    cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+    cout << "=========================================================" << endl;
+
+
 }

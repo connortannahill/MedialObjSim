@@ -79,7 +79,7 @@ protected:
     double *baryWeights;
 
     // Use boundary condition callback function
-    void (*applyFluidBCs)(int,int,int,double***);
+    void (*applyFluidBCs)(int,int,int,double***,double***,double***);
 
     // Functions related to implementation of the explicit-implicit fluid model.
     void updateP();
@@ -94,7 +94,7 @@ public:
                      vector<SolidObject3D> &solidObjects,
                      SimParams3D &params,
                      std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions,
-                     void (*boundaryConditions)(int,int,int,double***));
+                     void (*boundaryConditions)(int,int,int,double***,double***,double***));
     MomentumSolver3D() = default;
     ~MomentumSolver3D();
     double step(double tEnd, double safetyFactor);

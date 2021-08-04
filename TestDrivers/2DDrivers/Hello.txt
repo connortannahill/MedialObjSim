@@ -25,7 +25,7 @@ E 10.0
 eta 0.0
 a 0.38
 c 0.105
-deg 230
+deg 344
 .
 
 circleShapeFun
@@ -41,7 +41,7 @@ E 10.0
 eta 0.0
 a 0.38
 c 0.105
-deg 132
+deg 313
 .
 
 circleShapeFun
@@ -57,7 +57,7 @@ E 10.0
 eta 0.0
 a 0.38
 c 0.105
-deg 201
+deg 141
 .
 
 circleShapeFun
@@ -73,5 +73,5 @@ E 10.0
 eta 0.0
 a 0.38
 c 0.105
-deg 27
+deg 187
 .

@@ -17,7 +17,7 @@ NSSolver3D::NSSolver3D(Boundary3D &boundary,
                     vector<SolidObject3D> &solidObjects,
                     SimParams3D &params,
                     std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions,
-                    void (*boundaryConditions)(int,int,int,double***))
+                    void (*boundaryConditions)(int,int,int,double***,double***,double***))
                     : MomentumSolver3D(boundary, solidObjects, params, initialConditions, boundaryConditions)
 {
 }
@@ -368,7 +368,7 @@ double NSSolver3D::getKinematicBoundaryLC(int i, int j, int k, double velObj, do
 */
 void NSSolver3D::applyInterfaceBCs() {
     this->resetBoundaryConditions();
-    this->applyFluidBCs(this->nx,this->ny, this->nz, this->u);
+    this->applyFluidBCs(this->nx,this->ny, this->nz, this->u, this->v, this->w);
 
     int i, j, k, xi, yi, zi;
     objects::FSIObject obj;

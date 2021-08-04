@@ -18,7 +18,7 @@ MomentumSolver3D::MomentumSolver3D(
     Boundary3D &boundary, vector<SolidObject3D> &solidObjects,
     SimParams3D &params,
     std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions,
-    void (*boundaryConditions)(int,int,int,double***))
+    void (*boundaryConditions)(int,int,int,double***,double***,double***))
 {
 
     if (!params.checkParams()) {

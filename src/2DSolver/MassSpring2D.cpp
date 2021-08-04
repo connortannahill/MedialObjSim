@@ -982,7 +982,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     // 0 out the stress vector
     colStress[0] = 0.0;
     colStress[1] = 0.0;
-    cout << "Computing collision stress" << endl;
+    // cout << "Computing collision stress" << endl;
 
     // Compute the forces acting internally on this node by the other members of the MSS
     massPoint2D mPnt = pntList->at(nodeId);
@@ -1070,7 +1070,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     colStress[0] += cancelStress[0] - intStress[0];
     colStress[1] += cancelStress[1] - intStress[1];
     
-    cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
+    // cout << "colStress = (" << colStress[0] << ", " << colStress[1] << ")" << endl;
 }
 
 /**

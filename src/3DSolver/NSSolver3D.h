@@ -26,7 +26,7 @@ public:
             vector<SolidObject3D> &solidObjects,
             SimParams3D &params,
             std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions,
-            void (*boundaryConditions)(int,int,int,double***));
+            void (*boundaryConditions)(int,int,int,double***,double***,double***));
     NSSolver3D() = default;
     double step(double tEnd, double safetyFactor);
     void writeToFile(const char *fname);

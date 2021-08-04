@@ -1,0 +1,125 @@
+Many object test generic, can be from many sources
+Q2ManyObjects
+
+0.0 5.0
+0.0 5.0
+80 80
+0.0 -0.1
+1000.0
+1
+downDirFlowBC
+100.0
+
+8
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 1.3
+cy 3.55
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 49
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 1.3
+cy 4.15
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 322
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 1.9000000000000001
+cy 3.55
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 105
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 1.9000000000000001
+cy 4.15
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 75
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 2.5
+cy 3.55
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 263
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 2.5
+cy 4.15
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 144
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 3.1000000000000005
+cy 3.55
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 112
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+cx 3.1000000000000005
+cy 4.15
+r 0.2
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+deg 231
+.
