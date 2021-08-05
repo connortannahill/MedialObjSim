@@ -5,6 +5,7 @@ xa xb
 ya yb
 nx ny
 cons_u cons_v
+g_x g_y
 re
 useEno (0,1)
 boundaryConditions (lidDrivenCavityBC, directionalFlowBC)

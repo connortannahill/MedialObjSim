@@ -5,6 +5,7 @@ test_seed
 0.0 1.0
 40 40
 0.0 0.0
+0 0
 1000.0
 True
 directionalFlowBC

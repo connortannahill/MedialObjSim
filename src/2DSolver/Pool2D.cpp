@@ -327,17 +327,21 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
                     medY += y[j+offY];
                 }
 
-                domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
+                // domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
+                domainTracker[nj][ni] = DOMAIN_INTERSECTION;
 
                 // Domain intersection which meets the collision requirement
-                intersectionFound = true && val <= (this->collisionDist)/2.0;
+                // cout << "val = " << val << " collisionDist/2 = " << (this->collisionDist)/2.0 << endl;
+                intersectionFound = true; //&& val <= (this->collisionDist)/2.0;
+                break;
             }
         }
     }
 
-    if (intersectionFound && mode == 2) {
-        nIntersections = 1;
+    if (intersectionFound) { //&& mode == 2) {
+        // nIntersections = 1;
         // medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
+        // cout << "Pushing back!" << endl;
         medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
     }
 }
@@ -576,6 +580,8 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
             }
         }
     }
+
+    cout << "Keeping track number medial axis = " << medialAxisPnts->size() << endl;
 }
 
 /**
@@ -2251,6 +2257,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
             double **stress[2] = {poolU, poolV};
 
             cout << "Detecting the collisions" << endl;
+            cout << "repulseMode = " << repulseMode << endl;
             if (repulseMode != 0) {
                 this->fastMarchPool(false, 2);
                 this->detectCollisions();
@@ -2292,7 +2299,9 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
             //     this->detectCollisions();
             //     this->fastMarchPool(true);
             // }
+            cout << "fast marching" << endl;
             this->fastMarchPool(true, 0);
+            cout << "FINISHED fast marching" << endl;
         }
         
     } else {

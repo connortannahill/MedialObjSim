@@ -5,6 +5,7 @@ Test2
 0 1
 40 40
 0 0
+0 0
 10
 1
 directionalFlowBC

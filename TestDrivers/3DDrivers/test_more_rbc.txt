@@ -6,6 +6,7 @@ RBCcavity3D
 0 1
 40 40 40
 0 0 0
+0 0 0
 1000
 0
 lidDrivenCavityBC

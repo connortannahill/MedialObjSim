@@ -176,7 +176,7 @@ int main(int argc, char **argv) {
 
     string desc, boundaryConditionType;
     string testName;
-    double xa, xb, ya, yb, za, zb, cons_u, cons_v, cons_w, tEnd;
+    double xa, xb, ya, yb, za, zb, cons_u, cons_v, cons_w, g_x, g_y, g_z, tEnd;
     int nx, ny, nz, re, num_objects;
     bool useEno;
     vector<SolidObject3D> shapes;
@@ -192,7 +192,7 @@ int main(int argc, char **argv) {
 
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> za >> zb >> nx >> ny >> nz;
-    input_file >> cons_u >> cons_v >> cons_w;
+    input_file >> cons_u >> cons_v >> cons_w >> g_x >> g_y >> g_z;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
@@ -242,6 +242,9 @@ int main(int argc, char **argv) {
     simParams.setCollisionStiffness(2.0);
     simParams.setCollisionDist(3*h);
     simParams.setUpdateMode(1);
+    simParams.setGx(g_x);
+    simParams.setGy(g_y);
+    simParams.setGz(g_z);
 
     // initial/boundary conditions and boundary object
     auto initialConditions = getInitialConditionsFun(cons_u, cons_v, cons_w);

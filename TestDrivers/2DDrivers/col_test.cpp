@@ -178,7 +178,7 @@ int main(int argc, char **argv) {
     // simParams.setRepulseDist(8.0*h); // Actually need 0.1
     // simParams.setRepulseDist(0.1); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(5.0*h);
+    simParams.setCollisionDist(10);//5.0*h);
     simParams.setAdmmTol(1e-10);
     simParams.setUpdateMode(1);
 

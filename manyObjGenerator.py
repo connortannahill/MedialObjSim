@@ -43,6 +43,14 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
         u_cons, v_cons, w_cons = [int(i) for i in input('cons_u <space> cons_v <space> cons_w = ').split()]
         f.write('{} {} {}\n'.format(u_cons, v_cons, w_cons))
 
+    g_x, g_y, g_z = 0, 0, 0
+    if dim == 2:
+        g_x, g_y = [float(i) for i in input('g_x <space> g_y = ').split()]
+        f.write('{} {}\n'.format(g_x, g_y))
+    else:
+        g_x, g_y, g_z = [int(i) for i in input('g_x <space> g_y <space> g_z = ').split()]
+        f.write('{} {} {}\n'.format(g_x, g_y, g_z))
+
 
     f.write('{}\n'.format(float(input('Re = '))))
     f.write('{}\n'.format(int(bool(input('useEno = ')))))
@@ -104,9 +112,9 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     """ Now generate the centers for each object """
     centerList = []
     if dim == 2:
-        centerList = [(XA+tup[0]*2*b+b, YA+tup[1]*2*b+b) for tup in product(range(0, iMax), range(0, jMax))]
+        centerList = [(XA+tup[0]*2*b+r, YA+tup[1]*2*b+r) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*2*(b)+(b), YA+tup[1]*2*(b)+(b), ZA+tup[2]*2*(b)+(b)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax+1))]
+        centerList = [(XA+tup[0]*2*(b)+(r), YA+tup[1]*2*(b)+(r), ZA+tup[2]*2*(b)+(r)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax+1))]
     
     """ For each of these centers, give the output for the file! """
 
@@ -134,8 +142,11 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
         
         f.write('.\n')
 
-        circle = plt.Circle(center, r+eps)
+        circle = plt.Circle(center, r)
         ax.add_patch(circle)
+    
+    plt.xlim((0, 5))
+    plt.ylim((0, 5))
 
 
     # (or if you have an existing figure)

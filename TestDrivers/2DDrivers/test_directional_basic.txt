@@ -5,6 +5,7 @@ TestSingleDirectional
 0 1
 40 40
 0.1 0
+0 0
 1000
 1
 directionalFlowBC

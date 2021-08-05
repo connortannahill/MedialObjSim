@@ -415,15 +415,17 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
     # code for displaying plot
     def displayPlot():
-        x,y,steps = plots[curr_pos]
+        x,y,x_pool,y_pool,u,v,steps = plots[curr_pos]
         # for i in range(0, x.size, 2):
         #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
         plt.plot(x, y, marker='o', linestyle='None', color='r', ms=2)
+        q = ax.quiver(x_pool, y_pool, u, v)
         plt.title(test + ', nstep = ' + steps)
-        plt.xlim((0, 1))
-        plt.ylim((0, 1))
+        # plt.xlim((0, 1))
+        # plt.ylim((0, 1))
         plt.gca().set_aspect('equal')
         fig.canvas.draw()
+    
 
     # code for navigating using left, right arrow keys
     curr_pos = 0
@@ -458,6 +460,10 @@ elif mode == 13:  # plot snapshots of steps through simulation
     print(steps)
 
     plots = []
+    max_x = -np.inf
+    min_x = np.inf
+    max_y = -np.inf
+    min_y = np.inf
     for step in steps:
         curr_name = f_name + step + '/poolOut'
         out = np.genfromtxt(curr_name, delimiter=',')
@@ -483,11 +489,22 @@ elif mode == 13:  # plot snapshots of steps through simulation
             # plt.ylim((0, 1))
 
         # print(x)
+        out = np.genfromtxt(f_name+step+'/out', delimiter=',')
+        x_pool = out[:,0]
+        y_pool = out[:,1]
+        max_x = max(max(x_pool), max_x)
+        min_x = min(min(x_pool), min_x)
+        max_y = max(max(y_pool), max_y)
+        min_y = min(min(y_pool), min_y)
+        u = out[:,2]
+        v = out[:,3]
 
-        plots.append((x,y,step))
+        plots.append((x,y,x_pool,y_pool,u,v,step))
 
     fig = plt.figure()
     fig.canvas.mpl_connect('key_press_event', key_event)
+    # plt.xlim((min_x, max_x))
+    # plt.ylim((min_y, max_y))
     ax = fig.add_subplot(111)
     displayPlot()
     

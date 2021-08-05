@@ -5,6 +5,7 @@ xa xb
 ya yb
 za zb
 nx ny nz
+g_x g_y g_z
 cons_u cons_v cons_w
 re
 useEno (0,1)

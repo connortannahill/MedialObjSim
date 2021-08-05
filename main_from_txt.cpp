@@ -167,7 +167,7 @@ int main(int argc, char **argv) {
 
     string desc, boundaryConditionType;
     string outFileName;
-    double xa, xb, ya, yb, cons_u, cons_v, tEnd, re;
+    double xa, xb, ya, yb, cons_u, cons_v, tEnd, re, g_x, g_y;
     int nx, ny, num_objects;
     bool useEno;
     vector<SolidObject> shapes;
@@ -188,7 +188,7 @@ int main(int argc, char **argv) {
     cout << "line 170" << endl;
 
     // get simulation params
-    input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v;
+    input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v >> g_x >> g_y;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
     cout << "xa = " << xa << " " << xb << endl;
@@ -245,22 +245,21 @@ int main(int argc, char **argv) {
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
-    simParams.setMssNx(nx);
-    simParams.setMssNy(ny);
+    simParams.setMssNx((nx/((int)(xb - xa)) <= 32) ? 2*nx : 2*nx);
+    simParams.setMssNy(((ny/((int)(yb - ya)) <= 32)) ? 2*ny : 2*ny);
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
     // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
-    // simParams.setRepulseDist(0.1); // Actually need 0.1
+    simParams.setRepulseDist(0); // Actually need 0.1
     // simParams.setCollisionStiffness(2.0);
     // simParams.setCollisionDist(0.25);
-    simParams.setRepulseDist(0.2); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(20*h);
+    simParams.setCollisionDist(10*h);
     simParams.setUpdateMode(1);
     simParams.setAdmmTol(1e-10);
-    simParams.setGx(0.0);
-    simParams.setGy(0.0);
+    simParams.setGx(g_x);
+    simParams.setGy(g_y);
     // simParams.setDtFix(dt);
 
     // initial/boundary conditions and boundary object
@@ -291,7 +290,7 @@ int main(int argc, char **argv) {
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 20 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = outFileName + "/" + std::to_string(nsteps);
                 outputData(f_name, solver);
             }

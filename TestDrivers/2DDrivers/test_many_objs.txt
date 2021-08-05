@@ -5,6 +5,7 @@ TestManyObjects
 0 1
 60 60
 0.1 0
+0 0
 1000
 1
 directionalFlowBC

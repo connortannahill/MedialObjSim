@@ -5,6 +5,7 @@ PipeFlow160x80
 0.0 2.0
 160 80
 0.1 0.0
+0.0 0.0
 1000.0
 1
 directionalFlowBC
