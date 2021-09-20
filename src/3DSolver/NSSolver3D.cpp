@@ -30,58 +30,10 @@ double NSSolver3D::step(double tEnd, double safetyFactor) {
     return MomentumSolver3D::step(tEnd, safetyFactor);
 }
 
-// /**
-//  * Eno scheme for the NS equations
-//  * 
-//  * d/dx u^2
-// */
-// double NSSolver3D::eno_usqx(int i, int j) {
-//     // First build the stencil
-//     bool sten[7] = {false, false, false, false, false, false, false};
-//     pool->getPossibleStencil(i, j, 0, methodOrd, sten);
-
-//     int c = 3;
-//     int xi = methodOrd + i;
-//     int yi = methodOrd + j;
-
-//     // Build the value and point set on the stencil
-//     double xSten[7];
-//     double ySten[7];
-//     for (int l = 0; l < 7; l++) {
-//         if (sten[l]) {
-//             xSten[l] = x[i-c+l+1];
-//             ySten[l] = u[yi][xi-c+l];
-//         }
-//     }
-
-//     // Choose the upwind direction properly (or return centered result)
-//     int upDir;
-//     if (sten[c-1] && sten[c+1]) {
-//         if (ySten[c-1] > 0 && ySten[c+1] > 0) {
-//             upDir = -1;
-//         } else if (ySten[c-1] < 0 && ySten[c+1] < 0) {
-//             upDir = 1;
-//         } else {
-//             upDir = (ySten[c-1] > ySten[c+1]) ? -1 : 1;
-//         }
-//     } else if (sten[c-1] || sten[c+1]) {
-//         upDir = (sten[c-1]) ? -1 : 1;
-//     } else {
-//         // In case where ENO stencil fails, use centered approximation
-//         return discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u);
-//     }
-
-//     // Using upwind direction, compute ENO
-//     return discs::thirdOrdENO(x[i+1], xSten, ySten, upDir, sten);
-// }
-
 /**
  * Function which takes explicit time step for the velocity terms in the
  * momentum equations.
  * Note: assuming no body forces
- * 
- * TODO: consolidate the convective term discretizations based on simply the
- *       cell edge we want the solution on
 */
 void NSSolver3D::updateF(Pool3D *pool) {
     int i, j, k;
@@ -181,7 +133,6 @@ void NSSolver3D::updateF(Pool3D *pool) {
     }
 
     // Set the boundary values for F required in the pressure solver.
-    // TODO: this should probably be moved into the pressure solver
     // so that it can be most consistent. TODO: find a way more efficient way of
     // implementing these checks (ofc after we have a prototype)
 
@@ -273,57 +224,6 @@ double NSSolver3D::getKinematicBoundaryLC(int i, int j, int k, double velObj, do
     inPnt[1] = stagPnt[1] - hy*(double)nDir[1];
     inPnt[2] = stagPnt[2] - hz*(double)nDir[2];
 
-    // Phi values that will be used for interpolation
-    // int xPnts[2];
-    // int yPnts[2];
-    // int zPnts[2];
-
-    // if (nDir[0] == 1) {
-    //     xPnts[0] = i-1;
-    //     xPnts[1] = i;
-    // } else {
-    //     xPnts[0] = i;
-    //     xPnts[1] = i+1;
-    // }
-
-    // if (nDir[1] == 1) {
-    //     yPnts[0] = j-1;
-    //     yPnts[1] = j;
-    // } else {
-    //     yPnts[0] = j;
-    //     yPnts[1] = j+1;
-    // }
-
-    // if (nDir[2] == 1) {
-    //     zPnts[0] = k-1;
-    //     zPnts[1] = k;
-    // } else {
-    //     zPnts[0] = k;
-    //     zPnts[1] = k+1;
-    // }
-
-    // Find the points at which we are interpolating
-    // double phiXPnts[2] = {simutils::midpoint(x[xPnts[0]], x[xPnts[0]+1]),
-    //                         simutils::midpoint(x[xPnts[1]], x[xPnts[1]+1])};
-    // double phiYPnts[2] = {simutils::midpoint(y[yPnts[0]], y[yPnts[0]+1]),
-    //                         simutils::midpoint(y[yPnts[1]], y[yPnts[1]+1])};
-    // double phiZPnts[2] = {simutils::midpoint(z[zPnts[0]], z[zPnts[0]+1]), 
-    //                         simutils::midpoint(z[zPnts[1]], z[zPnts[1]+1])};
-
-    // double phiInterp[8] = {pool->getPhiVal(xPnts[0], yPnts[0], zPnts[0]),
-    //                         pool->getPhiVal(xPnts[1], yPnts[0], zPnts[0]),
-    //                         pool->getPhiVal(xPnts[0], yPnts[1], zPnts[0]),
-    //                         pool->getPhiVal(xPnts[1], yPnts[1], zPnts[0]),
-    //                         pool->getPhiVal(xPnts[0], yPnts[0], zPnts[1]),
-    //                         pool->getPhiVal(xPnts[1], yPnts[0], zPnts[1]),
-    //                         pool->getPhiVal(xPnts[0], yPnts[1], zPnts[1]),
-    //                         pool->getPhiVal(xPnts[1], yPnts[1], zPnts[1])};
-    
-    // Evaluate the interpolant at the staggered point and the internal point
-    // phi_out = simutils::triLinearInterpolation(stagPnt[0], stagPnt[1], stagPnt[2],
-    //                                     phiXPnts, phiYPnts, phiZPnts, phiInterp);
-    // phi_in = simutils::triLinearInterpolation(inPnt[0], inPnt[1], inPnt[2],
-    //                                     phiXPnts, phiYPnts, phiZPnts, phiInterp);
     phi_out = pool->interpolatePhi(stagPnt[0], stagPnt[1], stagPnt[2]);
     phi_in = pool->interpolatePhi(inPnt[0], inPnt[1], inPnt[2]);
 
@@ -362,9 +262,6 @@ double NSSolver3D::getKinematicBoundaryLC(int i, int j, int k, double velObj, do
 /**
  * Apply conditions at the fluid-structure interface
  * 
- * TODO: may be some redundant code in the 3D case.
- * 
- * TODO: this code is lol
 */
 void NSSolver3D::applyInterfaceBCs() {
     this->resetBoundaryConditions();

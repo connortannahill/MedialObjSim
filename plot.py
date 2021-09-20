@@ -21,7 +21,7 @@ print(f_name)
 # Get the number of objects
 cur_dir = os.getcwd()
 os.chdir(f_name)
-numObj = len(glob.glob('MSSEdges*'))
+numObj = len(glob.glob(f_name+'MSSEdges*'))
 os.chdir(cur_dir)
 
 
@@ -209,8 +209,6 @@ elif mode == 9:
 
     plt.show()
 elif mode == 10:
-    # plt.add_subplot(111,aspect='equal')
-    # plt.axes().set_aspect('equal', 'datalim')
     f_temp = f_name
     f_name += 'poolOut'
     out = np.genfromtxt(f_name, delimiter=',')
@@ -222,40 +220,7 @@ elif mode == 10:
     y = out[:,1]
     phi = out[:,2]
 
-    # def phi_fun(x, y):
-    #     r = 0.25
-    #     a = 0.3
-    #     c = 0.105
-    #     xc = 0.5
-    #     yc = 0.5
-    #     b = 2.25*r 
-    #     rad = np.pi/4
-    #     xval = (x - xc)/b * np.cos(rad) - (y-yc) / (b) * np.sin(rad)
-    #     yval = (x - xc)/b * np.sin(rad) + (y-yc) / (b) * np.cos(rad)
-    #     return (xval**2 + yval**2 + a**2)**2 - 4*a**2*xval**2 - c**2
-
-    # for i, tup in enumerate(zip(x, y)):
-    #     phi[i] = phi_fun(tup[0], tup[1])
-
-
-    # n = int(np.sqrt(phi.size))
-
-    # x *= n
-    # y *= n
-
     fig, ax = plt.subplots(1)
-    # img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
-    # plt.show()
-    # assert(False)
-
-    # f_name = f_temp
-    # f_name += 'MSSTracers'
-    # out = np.genfromtxt(f_name, delimiter=',')
-    # x = out[:,0]
-    # y = out[:,1]
-
-    # for i in range(out.shape[0]):
-    #     plt.scatter(x[i], y[i], color='y')
     
     for i in range(numObj):
         f_name = f_temp
@@ -291,8 +256,7 @@ elif mode == 10:
     
     f_name = f_temp
     # f_name += 'poolVel'
-    f_name += 'out'
-    out = np.genfromtxt(f_name, delimiter=',')
+    out = np.genfromtxt(f_name+'out', delimiter=',')
     x = out[:,0]
     y = out[:,1]
     u = out[:,2]
@@ -308,6 +272,13 @@ elif mode == 10:
     q = ax.quiver(x, y, u, v)
     # plt.imshow(np.reshape(u, (n, n)))
     # heat_map = sb.heatmap(np.reshape(temp, (n, n)))
+
+    out = np.genfromtxt(f_name+'medialAxis', delimiter=',')
+
+    x = out[:,0]
+    y = out[:,1]
+
+    plt.scatter(x, y)
     
     plt.title('$t = 1.73$')
 
@@ -415,14 +386,13 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
     # code for displaying plot
     def displayPlot():
-        x,y,x_pool,y_pool,u,v,steps = plots[curr_pos]
-        # for i in range(0, x.size, 2):
-        #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
-        plt.plot(x, y, marker='o', linestyle='None', color='r', ms=2)
+        x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
+        for i in range(0, x.size, 2):
+            plt.scatter(x[i:i+2], y[i:i+2], c='r', marker='o', s=1)
+        if (len(x_med) > 0):
+            plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
         plt.title(test + ', nstep = ' + steps)
-        # plt.xlim((0, 1))
-        # plt.ylim((0, 1))
         plt.gca().set_aspect('equal')
         fig.canvas.draw()
     
@@ -444,16 +414,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         ax.cla()
         displayPlot()
 
-    # x = out[:,0]
-    # y = out[:,1]
-    # phi = out[:,2]
 
-    # n = int(np.sqrt(phi.size))
-
-    # for idx, (name, file_ext) in enumerate(plots, start=1):
-    #     fig, ax = plt.subplots(1)
-    #     img = ax.contour(np.reshape(x, (n, n)), np.reshape(y, (n, n)), np.reshape(phi, (n, n)), levels=[0], colors='b')
-    
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
@@ -468,11 +429,10 @@ elif mode == 13:  # plot snapshots of steps through simulation
         curr_name = f_name + step + '/poolOut'
         out = np.genfromtxt(curr_name, delimiter=',')
 
-        # x = out[:,0]
-        # y = out[:,1]
+        numObj = len(glob.glob(f_name + step + '/MSSEdges*'))
 
-        x = []
-        y = []
+        x_objs = []
+        y_objs = []
 
         for i in range(numObj):
             mss_edges_f_name = f_name + step + '/MSSNodes{0}'.format(i)
@@ -480,15 +440,9 @@ elif mode == 13:  # plot snapshots of steps through simulation
             out = np.genfromtxt(mss_edges_f_name, delimiter=',')
             x_temp = out[:,0]
             y_temp = out[:,1]
-            x = np.concatenate((x, x_temp))
-            y = np.concatenate((y, y_temp))
+            x_objs = np.concatenate((x_objs, x_temp))
+            y_objs = np.concatenate((y_objs, y_temp))
 
-            # for i in range(0, x.size, 2):
-            #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=2, lw=0.5)
-            # plt.xlim((0, 1))
-            # plt.ylim((0, 1))
-
-        # print(x)
         out = np.genfromtxt(f_name+step+'/out', delimiter=',')
         x_pool = out[:,0]
         y_pool = out[:,1]
@@ -499,12 +453,23 @@ elif mode == 13:  # plot snapshots of steps through simulation
         u = out[:,2]
         v = out[:,3]
 
-        plots.append((x,y,x_pool,y_pool,u,v,step))
+        out = np.genfromtxt(f_name+step+'/medialAxis', delimiter=',')
+
+        print('hi {}'.format(out.size))
+        if (out.size == 0) :
+            x_med = np.array([])
+            y_med = np.array([])
+        elif (out.size == 3):
+            x_med = np.array([out[0]])
+            y_med = np.array([out[1]])
+        else:
+            x_med = out[:,0]
+            y_med = out[:,1]
+
+        plots.append((x_objs,y_objs,x_pool,y_pool,x_med,y_med,u,v,step))
 
     fig = plt.figure()
     fig.canvas.mpl_connect('key_press_event', key_event)
-    # plt.xlim((min_x, max_x))
-    # plt.ylim((min_y, max_y))
     ax = fig.add_subplot(111)
     displayPlot()
     

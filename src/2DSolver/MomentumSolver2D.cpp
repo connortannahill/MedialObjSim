@@ -138,7 +138,6 @@ void MomentumSolver2D::test_setInternal() {
             int xi = i + mo;
             int yi = j + mo;
 
-            // if (pool->isInterface(pool->objAtIndex(i, j))) {
             if (pool->objAtIndex(i, j)!=objects::FLUID_C) {
                 this->u[yi][xi] = (this->pool)->getObjU(i, j);
                 this->u[yi][xi-1] = (this->pool)->getObjU(i, j);
@@ -151,14 +150,12 @@ void MomentumSolver2D::test_setInternal() {
             int xi = i + mo;
             int yi = j + mo;
 
-            // if (pool->isInterface(pool->objAtIndex(i, j))) {
             if (pool->objAtIndex(i, j)!=objects::FLUID_C) {
                 this->v[yi][xi] = (this->pool)->getObjV(i, j);
                 this->v[yi-1][xi] = (this->pool)->getObjV(i, j);
             }
         }
     }
-
 }
 
 /**
@@ -198,7 +195,6 @@ void MomentumSolver2D::updateU() {
 /**
  * Method which interpolate fluid velocities to the cell centers.
  * 
- * TODO: make sure that this implementation makes sense
 */
 void MomentumSolver2D::interpolateVelocities() {
     int i, j;
@@ -244,7 +240,6 @@ void MomentumSolver2D::updateP() {
 double MomentumSolver2D::step(double tEnd, double safetyFactor) {
 
     // Compute the time step
-    // this->dt = safetyFactor*this->getDt();
     if (params->dtFixSet) {
         cout << "SETTING POOL DTFIX" << endl;
         this->dt = params->dtFix;
@@ -254,11 +249,8 @@ double MomentumSolver2D::step(double tEnd, double safetyFactor) {
 
     }
     if (!stepTaken) {
-        // pool->dtFix = this->dt;
         this->dtPrev = this->dt;
     }
-
-    cout << "dt = " << dt << endl;
 
     // If the time step would exceed tEnd, truncate it
     if (this->t + this->dt > tEnd) {
@@ -282,7 +274,6 @@ double MomentumSolver2D::step(double tEnd, double safetyFactor) {
 
     if (this->nStructs > 0) {
         // Update the location of the interfaces
-        // cout << "calling updatePool, methodOrd = " << methodOrd << endl;
         (this->pool)->updatePool(dt, iu, iv, p, methodOrd, true);
 
         // Apply object velocities to boundary points

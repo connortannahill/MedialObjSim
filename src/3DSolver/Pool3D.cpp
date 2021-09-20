@@ -20,9 +20,6 @@ using namespace std;
 // Infinity 
 const double DINFINITY = numeric_limits<double>::infinity();
 
-// Safety factors for various methods
-// const double SFAC_REINIT = 0.1;
-
 // Constants
 int DOMAIN_UNDESCOVERED_3D = -2;
 int DOMAIN_INTERSECTION_3D = -3;
@@ -71,9 +68,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     int upwindY = 0;
     int upwindZ = 0;
 
-    // cout << "Getting upwind" << endl;
-    // cout << "(i, j, k) = " << i << ", " << j << ", " << k << endl;
-
     // x
     if (i+1 > nx-1 || i-1 < 0) {
         // First checks: the point must be in bounds. If one of the points is OOB but the
@@ -101,7 +95,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindX = (fastMarchingState[k][j][i+1] != FAR) ? 1 : -1;
     }
-    // cout << "upwindX = " << upwindX << endl;
 
     // y
     if (j+1 > ny-1 || j-1 < 0) {
@@ -127,7 +120,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindY = (fastMarchingState[k][j+1][i] != FAR) ? 1 : -1;
     }
-    // cout << "upwindY = " << upwindY << endl;
 
     // z
     if (k+1 > nz-1 || k-1 < 0) {
@@ -152,8 +144,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindZ = (fastMarchingState[k+1][j][i] != FAR) ? 1 : -1;
     }
-    // cout << "upwindZ = " << upwindZ << endl;
-    // cout << "FINISHEd Getting upwind" << endl;
 
     // Now we apply the method outlined in Bridson 2015 to approximate the solution to the
     // reinitialization Eikonal equation
@@ -163,13 +153,11 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     assert(!(upwindX == 0 && upwindY == 0 && upwindZ == 0));
 
     // Build arrays with step sizes
-    // cout << "assigning phi values" << endl;
     double phiVals[3] = {
         (upwindX == 0) ? DINFINITY : phiReInit[mo+k][mo+j][mo+i+upwindX],
         (upwindY == 0) ? DINFINITY : phiReInit[mo+k][mo+j+upwindY][mo+i],
         (upwindZ == 0) ? DINFINITY : phiReInit[mo+k+upwindZ][mo+j][mo+i]
     };
-    // cout << "FINISHEd assigning phi values" << endl;
 
     double h[3] = {hx, hy, hz};
 
@@ -177,7 +165,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     double vVals[3];
     double wVals[3];
 
-    // cout << "getting u values" << endl;
     if (nExtrap) {
         uVals[0] = (upwindX == 0) ? DINFINITY : poolU[mo+k][mo+j][mo+i+upwindX];
         uVals[1] = (upwindY == 0) ? DINFINITY : poolU[mo+k][mo+j+upwindY][mo+i];
@@ -191,8 +178,6 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
         wVals[1] = (upwindY == 0) ? DINFINITY : poolW[mo+k][mo+j+upwindY][mo+i];
         wVals[2] = (upwindZ == 0) ? DINFINITY : poolW[mo+k+upwindZ][mo+j][mo+i];
     }
-    // cout << "Finished getting u values" << endl;
-
 
     // Simultaneous selection sort of all of the above arrays in increasing phi vals
     double temp;
@@ -333,15 +318,8 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, int mode) {
                 domainTracker[nk][nj][ni] = curMembership;
             } else if (neighMembership != curMembership && domainTracker[nk][nj][ni] != DOMAIN_INTERSECTION_3D) {
 
-                // domainTracker[nk][nj][ni] = DOMAIN_INTERSECTION_3D;
                 // Keep track of the number if intersections about this point. We accumulate
                 // them and take the average.
-                // nIntersections++;
-
-                // medX += x[ni];
-                // medY += y[nj];
-                // medZ += z[nk];
-
                 nIntersections++;
 
                 int offX = (ni - i > 0) ? 1 : 0;
@@ -355,6 +333,7 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, int mode) {
                 domainTracker[k+offZ][j+offY][i+offX] = DOMAIN_INTERSECTION_3D;
 
                 intersectionFound = true;
+                break;
             }
         }
     }
@@ -372,8 +351,6 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, int mode) {
  * 
  * Assumes that the current phi approximates a signed distance function. That domain
  * membership has been established and center of mass velocity computer (only rigid body right now)
- * 
- * NOTE: the boundary values (and for now the interior values) of the velocity field are assumed to be set.
  * 
  * mode controls what the fast marching algorithm does
  *  mode = 0: the interpolation based reinititialization
@@ -398,7 +375,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     double pnt[3];
     double vTemp[3];
 
-    // cout << "into first part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -451,10 +427,8 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
-    // cout << "FINISHED into first part" << endl;
 
     // Now run the FM algorithm in the fluid region.
-    // cout << "Running the FMM" << endl;
     int i, j, k;
     double val;
     while (!heap.empty()) {
@@ -469,26 +443,21 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
         val = pnt.getVal();
 
         // Assign the domain memberships of the neighbouring points
-        // cout << "assigning domain" << endl;
         if (domainTracker[k][j][i] != DOMAIN_INTERSECTION_3D) {
             assignDomainMemberships(i, j, k, mode);
         }
-        // cout << "FINSIEHd assigning domain" << endl;
 
         // Update all of the neighbours according to the fast marching algorithm
         // and add them to the heap structure
-        // cout << "setting nvals" << endl;
         fastMarchSetNVal(i+1, j, k, nExtrap, mode);
         fastMarchSetNVal(i-1, j, k, nExtrap, mode);
         fastMarchSetNVal(i, j+1, k, nExtrap, mode);
         fastMarchSetNVal(i, j-1, k, nExtrap, mode);
         fastMarchSetNVal(i, j, k+1, nExtrap, mode);
         fastMarchSetNVal(i, j, k-1, nExtrap, mode);
-        // cout << "FINISHEd setting nvals" << endl;
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
-    // cout << "FINSIEHD Running the FMM" << endl;
 
     if (mode == 2) {
         return;
@@ -501,12 +470,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     obj = objAtIndex(i, j, k);
 
                     fastMarchingState[k][j][i] = (isInterface(obj)) ? CLOSE : FAR;
-
-                    // if (obj == objects::FLUID_C || obj == objects::STRUCTURE) {
-                    //     fastMarchingState[k][j][i] = FAR;
-                    // } else {
-                    //     fastMarchingState[k][j][i] = CLOSE;
-                    // }
                 }
             }
         }
@@ -516,7 +479,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
     // Now, run the algorithm in the structure domain. Note that at this point,
     // all of the fluid and inteface regions are in the "accepted class" at this point.
-    // cout << "Second part" << endl;
     for (int k = 0; k < this->nz; k++) {
         pnt[2] = simutils::midpoint(z[k], z[k+1]);
         for (int j = 0; j < this->ny; j++) {
@@ -528,7 +490,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                 obj = this->objAtIndex(i, j, k);
 
                 if (obj == objects::STRUCTURE) {
-                    // phiVal = phi[mo+k][mo+j][mo+i]; // Use the negated phi values.
                     phiVal = INFINITY;
                     assert(phiVal >= 0);
 
@@ -575,7 +536,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             }
         }
     }
-    // cout << "FINISHED Second part" << endl;
 
     if (mode != 0) {
         for (int k = 0; k < this->nz; k++) {
@@ -596,7 +556,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     }
 
     // Now, run fast marching on the interior data.
-    // cout << "Second fast marching" << endl;
     while (!heap.empty()) {
         GridVal3D pnt = heap.top();
         heap.pop();
@@ -618,7 +577,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
         fastMarchingState[k][j][i] = ACCEPTED;
     }
-    // cout << "FINISHED Second fast marching" << endl;
 
     // Finally, flip the sign of the phi value in all of structure points.
     for (int k = 0; k < this->nz; k++) {
@@ -664,7 +622,7 @@ void Pool3D::detectCollisions() {
         zCell = simutils::findLimInfMeshPoint(medZ, this->z, this->nz+1);
 
         // Find the value of the level set function in this cell
-        medPhi = interpolatePhi(medX, medY, medZ); //phiReInit[zCell+mo][yCell+mo][xCell+mo];
+        medPhi = interpolatePhi(medX, medY, medZ);
 
         // If this value is beneath the threshold for possible collision, look at which objects are colliding
         if (medPhi < collisionDist / 2.0) {
@@ -721,8 +679,6 @@ void Pool3D::detectCollisions() {
                 allCols.insert(kdPointCloud->points->at(ret_matches.at(i).first));
             }
             
-            // cout << "detected " << nMatches << " matches" << endl;
-
             // For each of the matches, we keep track in each MSS of which of the points it is potentially colliding with
             vector<int> nearestMss;
             vector<int> nearestPointMatch;
@@ -896,8 +852,6 @@ void Pool3D::create3DPool(Boundary3D &boundary,
 
     // if (isDeformable) {
     solids = new vector<MassSpring3D>();
-    // assert(false);
-    cout << "Creating the solids" << endl;
     if (nx != mssNx || ny != mssNy || nz != mssNz) {
         // Create different dimension Pool to represent the solid and copy the current Pool.
 
@@ -931,8 +885,6 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         // Delete the temp Pool
         delete poolTemp;
     } else {
-        // int updateMode = 2;
-
         // Create the mass-spring system for each of the objects
         solids = new vector<MassSpring3D>();
 
@@ -949,14 +901,11 @@ void Pool3D::create3DPool(Boundary3D &boundary,
             }
         }
     }
-    cout << "Finished creating the solids" << endl;
 
     // State of each grid point within the FMM
     fastMarchingState = simutils::new_constant(nz, ny, nz, FAR);
     
-    cout << "Fast marking with mode 0" << endl;
     fastMarch(false, 0);
-    cout << "FINISHED fast marching with mode 0" << endl;
     simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
 
     this->enumeratePool();
@@ -964,11 +913,6 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     if (repulseMode == 2) {
         detectCollisions();
     }
-
-    // Locate nodes of MSS exactly on isocontour of new MSS
-    // for (int i = 0; i < nStructs; i++) {
-    //     solids->at(i).interpBoundary(*this, true);
-    // }
 }
 
 /**
@@ -1207,8 +1151,6 @@ void Pool3D::interpolatePhiGrad(double x, double y, double z, double phiGrad[3])
  *         - The structure can not leave through the edge of the pool (so no periodic boundary conditions)
  * 
  * NOTE: Prevents the tracer partical from wandering outside of the domain
- * 
- * TODO: refactor this code for better code re-use.
 */
 void Pool3D::updateTracer(int structNum, double dt, int mode) {
     // Extract information from the tracer for this structure
@@ -1306,7 +1248,6 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
         double yStep = tracers[structNum].y - alpha*gradPhi_ijk[1];
         double zStep = tracers[structNum].z - alpha*gradPhi_ijk[2];
 
-        // const double gamma = 0.5;
         const int max_iter = 10;
         int iters = 0;
 
@@ -1324,7 +1265,6 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
             }
         }
 
-       
         if (iters < max_iter) {
             tracers[structNum].x = xStep;
             tracers[structNum].y = yStep;
@@ -1730,7 +1670,7 @@ bool Pool3D::oneGridFromInterfaceStructure(int i, int j, int k) {
     int ox = methodOrd+i;
     int oy = methodOrd+j;
     int oz = methodOrd+k;
-    return phi[oz][oy][ox] < 0 && (isInterface(objAtIndex(i-1, j, k))     || isInterface(objAtIndex(i+1, j, k))
+    return phi[oz][oy][ox] < 0 && (isInterface(objAtIndex(i-1, j, k)) || isInterface(objAtIndex(i+1, j, k))
             || isInterface(objAtIndex(i, j+1, k)) || isInterface(objAtIndex(i, j-1, k))
             || isInterface(objAtIndex(i, j, k+1)) || isInterface(objAtIndex(i, j, k-1)));
 }
@@ -2144,10 +2084,8 @@ void Pool3D::calculateLocalFNet(int i, int j, int k, objects::FSIObject obj, int
         is_mv = i-2;
 
         n[0] -= 1.0;
-        // dA += simutils::square(hx);
     } else if (this->hasStructInDir(obj, objects::WEST)) {
         n[0] += 1.0;
-        // dA += simutils::square(hx);
     } 
     
     if (this->hasStructInDir(obj, objects::NORTH))  {
@@ -2155,10 +2093,8 @@ void Pool3D::calculateLocalFNet(int i, int j, int k, objects::FSIObject obj, int
         js_mv = j-2;
 
         n[1] -= 1.0;
-        // dA += simutils::square(hy);
     } else if (this->hasStructInDir(obj, objects::SOUTH)) {
         n[1] += 1.0;
-        // dA += simutils::square(hy);
     }
 
     if (this->hasStructInDir(obj, objects::UP)) {
@@ -2166,10 +2102,8 @@ void Pool3D::calculateLocalFNet(int i, int j, int k, objects::FSIObject obj, int
         ks_mv = k-2;
 
         n[2] -= 1.0;
-        // dA += simutils::square(hz);
     } else if (this->hasStructInDir(obj, objects::DOWN)) {
         n[2] += 1.0;
-        // dA += simutils::square(hz);
     }
 
     if (!simutils::eps_equal(n[0], 0.0, 1e-16)) {
@@ -2493,9 +2427,6 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
             }
 
             // Compute the velocities on the interface points
-            // TODO: consider using more accurate location detection for the interfaces.
-            // TODO: may be somewhat resolved / changed when we do more accurate boundary capturing
-            // TODO: PUT THIS IN FAST MARCHING LIKE IN THE 2D code
             double inPnt[3];
             double vel[3];
             for (int k = 0; k < nz; k++) {
@@ -2595,8 +2526,6 @@ double Pool3D::buildSqeezeField() {
     double maxU = -1;
     double maxV = -1;
     double maxW = -1;
-    // double maxDist = -1;
-    // double dist;
 
     enumeratePool();
     setUpDomainArray();
@@ -2655,13 +2584,6 @@ bool Pool3D::shouldRefitSDF(double tol) {
                 return squeeze;
             }
         }
-        // for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
-        //     squeeze = abs(interpolatePhi(pnt->x, pnt->y, pnt->z)) < tol;
-
-        //     if (!squeeze) {
-        //         return squeeze;
-        //     }
-        // }
     }
 
     return squeeze;
@@ -2673,8 +2595,6 @@ bool Pool3D::shouldRefitSDF(double tol) {
  * TODO: may need to reinitialize before using this
 */
 void Pool3D::refitToSolids(int ng) {
-    // int mo = this->methodOrd;
-
     double t = 0;
 
     double CFL = buildSqeezeField();
@@ -2721,7 +2641,6 @@ void Pool3D::printPool() {
 
 void Pool3D::outputPool(const char *fname) {
     double x, y, z;
-    // int mo = methodOrd;
 
     ofstream outFile;
     outFile.open(fname);
@@ -2735,7 +2654,6 @@ void Pool3D::outputPool(const char *fname) {
                 outFile << x << ", ";
                 outFile << y << ", ";
                 outFile << z << ", ";
-                // outFile << this->phi[mo+k][mo+j][mo+i] << endl;
                 outFile << this->interpolatePhi(x, y, z) << endl;
             }
         }
@@ -2989,8 +2907,6 @@ void Pool3D::setUpDomainArray() {
  * 
  * The result is a hashmap (unordered_map) with keys (i, j) coordinates in the pool,
  * with values that are tuples ()
- * 
- * TODO: should not allow any kind of array bound violation. In general usage this should be impossible but still.
 */
 void Pool3D::bfsFromTracer(int structNum) {
     // Find the grid square that the tracer is currently on. This is the root node for the BFS.
@@ -2998,7 +2914,6 @@ void Pool3D::bfsFromTracer(int structNum) {
     int j = simutils::findLimInfMeshPoint(tracers[structNum].y, this->y, this->ny+1);
     int k = simutils::findLimInfMeshPoint(tracers[structNum].z, this->z, this->nz+1);
 
-    cout << "For stuct num " << structNum << " tracker grid location is x = " << i << " y = " << j << " z = "  << k << endl;
     int ri, rj, rk, ni, nj, nk;
     objects::FSIObject FL = objects::FLUID_C; // Make the ternary operator more palatable below
 

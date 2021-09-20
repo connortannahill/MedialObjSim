@@ -56,7 +56,6 @@ MomentumSolver3D::MomentumSolver3D(
 
     // Create the output arrays with required ghost cells for the staggered grid
     // configuration.
-    // TODO: make sure that this is correct
     int hg = this->ny + 2*this->methodOrd; // "height"
     int wg = this->nx + 2*this->methodOrd; // "width"
     int vg = this->nz + 2*this->methodOrd; // "vert"
@@ -119,15 +118,12 @@ MomentumSolver3D::MomentumSolver3D(
     (this->pressureParams)->north = 10; // number of orthogs for orthomin
 
     // Use initial condition callback function to assign u, v
-    // TODO: make initial conditions more general and perhaps more
-    //       able to handle irregular boundaries.
     initialConditions(this->nx, this->ny, this->nz, this->methodOrd, this->x,
                         this->y, this->z, this->u, this->v, this->w);
 
     applyFluidBCs = boundaryConditions;
 
     // Pre-compute the Barycentric weights
-    // TODO: ensure that this is correct for the FV methods used later
     this->baryWeights = new double[this->methodOrd+1];
     simutils::barycentricInterp(this->methodOrd, this->baryWeights);
 
@@ -148,7 +144,6 @@ void MomentumSolver3D::test_setInternal() {
                 yi = j + mo;
                 zi = k + mo;
 
-                // if (pool->isInterface(pool->objAtIndex(i, j, k))) {
                 if (pool->objAtIndex(i, j, k) != objects::FLUID_C) {
                     this->u[zi][yi][xi] = (this->pool)->getObjU(i, j, k);
                     this->u[zi][yi][xi-1] = (this->pool)->getObjU(i, j, k);
@@ -164,7 +159,6 @@ void MomentumSolver3D::test_setInternal() {
                 yi = j + mo;
                 zi = k + mo;
 
-                // if (pool->isInterface(pool->objAtIndex(i, j, k))) {
                 if (pool->objAtIndex(i, j, k) != objects::FLUID_C) {
                     this->v[zi][yi][xi] = (this->pool)->getObjV(i, j, k);
                     this->v[zi][yi-1][xi] = (this->pool)->getObjV(i, j, k);
@@ -181,7 +175,6 @@ void MomentumSolver3D::test_setInternal() {
                 zi = k + mo;
 
                 if (pool->objAtIndex(i, j, k) != objects::FLUID_C) {
-                // if (pool->isInterface(pool->objAtIndex(i, j, k))) {
                     this->w[zi][yi][xi] = (this->pool)->getObjW(i, j, k);
                     this->w[zi-1][yi][xi] = (this->pool)->getObjW(i, j, k);
                 }
@@ -194,8 +187,6 @@ void MomentumSolver3D::test_setInternal() {
  * Method to update U using F and P. Note only the internal points are updated
  * as we only ever apply a relatively simple Dirichlet condition at the boundaries
  * for the fluids.
- * 
- * // TODO: generalize how the pressure derivatives are being evaluated to at least second order.
  */
 void MomentumSolver3D::updateU() {
     int i, j, k;
@@ -300,16 +291,8 @@ void MomentumSolver3D::interpolateVelocities() {
  * The linear system is solved using ILU preconditioned PCG.
 */
 void MomentumSolver3D::updateP() {
-    // (this->pressureSolver)->solvePCG(this->dt, this->pool, this->FU, this->FV, this->FW,
-    //                                  this->p, true, *(this->pressureParams));
-    // if (!stepTaken) {
     (this->pressureSolver)->solvePCG(this->dt, this->pool, this->FU, this->FV, this->FW,
                                     this->p, true, *(this->pressureParams));
-    // } else {
-    //     (this->pressureSolver)->solvePCG(this->dt, this->pool, this->FU, this->FV, this->FW,
-    //                                     this->p, pool->enumHasChanged(), *(this->pressureParams));
-    // }
-    // cout << "in updateP: " << pool->enumHasChanged() << endl;
 }
 
 /**
@@ -328,18 +311,14 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     }
 
     // Apply the fluid boundary conditions on the initial step using pure virtual function.
-    cout << "Applying fluid BC's" << endl;
     this->applyInterfaceBCs();
-    cout << "FINISHED Applying fluid BC's" << endl;
 
     // Explicit step: advance the velocity-dependent terms using explicit time
     // discretization.
     this->updateF(pool);
 
     // Implicit step: update the pressure by solving Poisson equation.
-    cout << "Updating the pressure" << endl;
     this->updateP();
-    cout << "FINISHED Updating the pressure" << endl;
 
     // Combine these together to update the fluid velocities.
     this->updateU();
@@ -350,9 +329,7 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     // If there are any structures in the pool, update the pool location.
     if (this->nStructs > 0) {
         // Update the location of the interfaces
-        cout << "Updating the pool" << endl;
         (this->pool)->updatePool(dt, iu, iv, w, p, methodOrd, true);
-        cout << "FINISHED updating the pool" << endl;
 
         // Apply object velocities to boundary points
         this->test_setInternal();
@@ -391,7 +368,6 @@ void MomentumSolver3D::writeToFile(const char *fname) {
                 xi = i + mo;
                 yi = j + mo;
                 zi = k + mo;
-                // if (pool->objAtIndex(i, j, k) == objects::FLUID_C) {
                 x = simutils::midpoint(this->x[i], this->x[i+1]);
                 y = simutils::midpoint(this->y[j], this->y[j+1]);
                 z = simutils::midpoint(this->z[k], this->z[k+1]);
@@ -404,18 +380,14 @@ void MomentumSolver3D::writeToFile(const char *fname) {
                     outFile << this->iu[k][j][i] << ", ";
                     outFile << this->iv[k][j][i] << ", ";
                     outFile << this->iw[k][j][i] << ", ";
-                    
                     outFile << this->p[zi][yi][xi] << "\n";
 
                 } else {
                     outFile << 0.0 << ", ";
                     outFile << 0.0 << ", ";
                     outFile << 0.0 << ", ";
-                    
                     outFile << 0.0 << "\n";
                 }
-                
-                // }
             }
         }
     }

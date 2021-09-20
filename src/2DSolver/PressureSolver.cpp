@@ -280,7 +280,7 @@ void PressureSolver::setUpPressureRHS(double dt, double **FU, double **FV, doubl
                     velVec[1] = FV[j+mo+nDir[1]][i+mo+nDir[0]] - pool->getObjV(i, j);
                     rhs = simutils::ddot2d(velVec, nDirNorm);
                     h = sqrt(simutils::square(hx*nDir[0]) + simutils::square(hy*nDir[1]));
-                    // (this->matrix)->bValue(row) = -p[j+mo+nDir[1]][i+mo+nDir[0]];
+
                     (this->matrix)->bValue(row) = p[j+mo+nDir[1]][i+mo+nDir[0]] - (h/dt)*rhs;
                 } else {
                     (this->matrix)->bValue(row) = 0;
@@ -390,8 +390,6 @@ PressureSolver::~PressureSolver() {
 void PressureSolver::poolDisc(int row, int xInd, int yInd, Pool2D *pool, MatrixIter *matrix) {
     objects::FSIObject type = pool->objAtIndex(xInd, yInd);
 
-    // int intType = objects::NORTH*objects::SOUTH*objects::EAST*objects::WEST;
-
     if (type == objects::STRUCTURE) {
         discSolid(row, matrix);
     } else if (pool->isInterface(type)) {
@@ -399,58 +397,6 @@ void PressureSolver::poolDisc(int row, int xInd, int yInd, Pool2D *pool, MatrixI
     } else {
         discC(row, matrix);
     }
-
-    // If the current cell does not contain a fluid, trivial discretization.
-    // Else we choose based on the relative location of the interface points for this
-    // fluid cell.
-    // if (type != objects::FLUID_C) {
-    //     discSolid(row, matrix);
-    // } else {
-    //     // Check in each cardinal direction if there is an interface. If so, modify intType. If
-    //     // there is no interface, it will keep its value 1 label and we relabel it to FLUID_C. Otherwise
-    //     // use the appropriate directional discretization.
-    //     intType = (pool->objAtIndex(xInd, yInd+1) != objects::FLUID_C) ? (int) intType/objects::NORTH : intType;
-    //     intType = (pool->objAtIndex(xInd, yInd-1) != objects::FLUID_C) ? (int) intType/objects::SOUTH : intType;
-    //     intType = (pool->objAtIndex(xInd+1, yInd) != objects::FLUID_C) ? (int) intType/objects::EAST : intType;
-    //     intType = (pool->objAtIndex(xInd-1, yInd) != objects::FLUID_C) ? (int) intType/objects::WEST : intType;
-        
-    //     // No interface - set to FLUID_C
-    //     if (intType == objects::NORTH*objects::SOUTH*objects::EAST*objects::WEST) {
-    //         intType = -1;
-    //     }
-
-    //     switch ((objects::FSIObject) intType) {
-    //         case objects::FLUID_SW:  discSW(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_S:   discS(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_SE:  discSE(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_W:   discW(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_C:   discC(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_E:   discE(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_NW:  discNW(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_N:   discN(row, matrix);
-    //                                  break;
-
-    //         case objects::FLUID_NE:  discNE(row, matrix);
-    //                                  break;
-
-    //         default:                 assert(false);
-    //                                  break;
-    //     }
-    // }
 }
 
 void PressureSolver::discSW(int row, MatrixIter *matrix) {

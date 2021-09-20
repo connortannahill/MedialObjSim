@@ -777,7 +777,12 @@ namespace simutils {
         double c0 = c00*(1 - yd) + c10*yd;
         double c1 = c01*(1 - yd) + c11*yd;
 
+        // double c0 = (f[0]*(1 - xd) + f[1]*xd)*(1 - yd) + (f[2]*(1 - xd) + f[3]*xd)*yd;
+        // double c1 = (f[4]*(1 - xd) + f[5]*xd)*(1 - yd) + (f[6]*(1 - xd) + f[7]*xd)*yd;
+
         return c0*(1 - zd) + c1*zd;
+        // return f[0]*(1 - xd)*(1 - yd)*(1 - zd) + f[1]*xd*(1 - yd)*(1 - zd) + f[2]*(1 - xd)*yd*(1 - zd) + f[3]*xd*yd*(1 - zd) 
+        // + f[4]*(1 - xd)*(1 - yd)*zd + f[5]*xd*(1 - yd)*zd + f[6]*(1 - xd)*yd*zd + f[7]*xd*yd*zd;
     }
 
     inline void triLinearGradient(double x, double y, double z, double xMesh[2],

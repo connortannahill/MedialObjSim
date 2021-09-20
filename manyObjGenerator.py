@@ -71,22 +71,24 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
     r = float(input('Radius of objects = '))
     eps = float(input('Packing tolerance (how far apart at minimum) = '))
 
+    hx = abs(XB - XA)/nx
+    hy = abs(YB - YA)/ny
+    hz = 0
+    if dim == 3:
+        hz = abs(ZB - ZA)/nz
+
     # Compute the tolerance for the embedding 5h
     # eps = 0
     if dim == 2:
-        epsMin = np.linalg.norm([5*(1.0/nx), 5*(1.0/ny)])
+        epsMin = np.linalg.norm([5*hx, 5*hy])
     else:
-        epsMin = np.linalg.norm([5*(1.0/nx), 5*(1.0/ny), 5*(1.0/nz)])
+        epsMin = np.linalg.norm([5*hx, 5*hy, 5*hz])
     
     while eps < epsMin:
         eps = float(input('This packing tolerance {0} will be too low for the chosen grid density, please choose another > {1}: '.format(eps, epsMin)))
     
 
-    # print('eps = {}'.format(eps))
-    # print('dim = {}'.format(dim))
     b = r+eps
-    # print(b)
-    # assert(False)
     
     # Compute the maximum
     iMax = int(np.floor((XB - XA)/(2*(r + eps))))
@@ -150,17 +152,4 @@ with open('TestDrivers/{0}DDrivers/{1}.txt'.format(dim, testName), 'w') as f:
 
 
     # (or if you have an existing figure)
-    # fig = plt.gcf()
-    # ax = fig.gca()
     plt.show()
-
-    # ax.add_patch(circle1)
-    # ax.add_patch(circle2)
-    # ax.add_patch(circle3)
-
-    
-    
-
-    
-
-

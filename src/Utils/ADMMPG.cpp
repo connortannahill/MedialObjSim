@@ -79,7 +79,7 @@ void ADMMPG::step(int nIters, double tol) {
         *uBar = *DXpU - *z;
 
         // Update the solution x^{n+1}
-        *vec =  ((*a->M) * (*xBar)) + dtsq*(( *WD_T * (*a->W) * (*z - *uBar)));
+        *vec =  ((*a->M) * (*xBar)) + dtsq*(( *WD_T * ((*a->W) * (*z - *uBar))));
         *x = cgSol->solve(*vec);
 
         // Compute the primal residual. If it is beneath the tolerance, exit

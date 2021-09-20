@@ -135,9 +135,16 @@ void outputData(string f_name, NSSolver &solver) {
 
     testFormatter.genOutStr("MSSTracers", outStr);
     solver.outputTracers(outStr.c_str());
+    cout << outStr << endl;
 
     testFormatter.genOutStr("medialAxis", outStr);
     solver.outputMedialAxis(outStr.c_str());
+    cout << outStr << endl;
+}
+
+double getH(double xa, double xb, int nx, double ya, double yb, int ny) {
+    return sqrt(simutils::square(abs(xb - xa)/((double) nx)
+        + simutils::square(abs(yb - ya)/((double) ny))));
 }
 
 // argv: main input_file max_steps save_snapshots
@@ -175,17 +182,11 @@ int main(int argc, char **argv) {
 
     ifstream input_file(input_file_name);
 
-    cout << "Got the input file = " << input_file_name << endl;
-
     // ignore first line, which is a description
     getline(input_file, desc);
 
-    cout << "line 165" << endl;
-
     // Get the output file name
     getline(input_file, outFileName);
-
-    cout << "line 170" << endl;
 
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v >> g_x >> g_y;
@@ -199,15 +200,10 @@ int main(int argc, char **argv) {
     cout << "useEno = " << useEno << endl;
     cout << "bctype = " << boundaryConditionType << endl;
     cout << "tEnd = " << tEnd << endl;
-    cout << "line 175" << endl;
-
-    // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
-    // std::cout << nx << " " << ny << " " << re << " " << tEnd << endl;
 
     // get objects in simulation
     input_file >> num_objects;
     cout << "num_objects " << num_objects << endl;
-    cout << "line 182" << endl;
 
     string objectFunc, paramName;
     int objectType;
@@ -224,38 +220,29 @@ int main(int argc, char **argv) {
         while (paramName != ".") {
             input_file >> paramValue;
             params.addParam(paramName, paramValue);
-            // cout << paramName << " " << paramValue << endl;
 
             input_file >> paramName;
         }
-        // std::cout << u0 << " " << v0 << " " << objectType << " " << objectFunc << endl;
 
         SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 
     cout << "Number of objects = " << shapes.size() << endl;
-    cout << "line 204" << endl;
 
     // actually set up simParams
-    double h = sqrt(simutils::square(1.0/((double) nx)
-        + simutils::square(1.0/((double) ny))));
-    double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+    double h = getH(xa, xb, nx, ya, yb, ny);
+    // double dt = 0.5/((double)nx) + 0.5/((double)ny); 
 
     simParams.setRe(re);
     simParams.setNx(nx);
     simParams.setNy(ny);
-    simParams.setMssNx((nx/((int)(xb - xa)) <= 32) ? 2*nx : 2*nx);
-    simParams.setMssNy(((ny/((int)(yb - ya)) <= 32)) ? 2*ny : 2*ny);
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    // simParams.setRepulseDist(5*sqrt(simutils::square(1/((double)nx)) + simutils::square(1/((double)ny))) );
-    simParams.setRepulseDist(0); // Actually need 0.1
-    // simParams.setCollisionStiffness(2.0);
-    // simParams.setCollisionDist(0.25);
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(10*h);
+    simParams.setCollisionDist(3.0*h);
+    cout << "collisionDist = " << 3.0*h << endl;
     simParams.setUpdateMode(1);
     simParams.setAdmmTol(1e-10);
     simParams.setGx(g_x);
@@ -268,17 +255,12 @@ int main(int argc, char **argv) {
     Boundary boundary(xa, xb, ya, yb);
 
     // Create the Solver object
-    cout << "creating the solver" << endl;
     NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
-
-    cout << "FINISHED creating the solver" << endl;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
     double safetyFactor = 0.5;
-
-    // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -330,6 +312,4 @@ int main(int argc, char **argv) {
     cout << "The total run time of the algorithm: " << duration.count() << endl;
     cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
     cout << "=========================================================" << endl;
-
-
 }

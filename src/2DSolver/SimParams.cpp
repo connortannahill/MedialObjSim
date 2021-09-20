@@ -52,7 +52,7 @@ void SimParams::setMu(double mu) {
 
 bool SimParams::checkParams() {
     return nxSet && nySet && reSet && muSet && repulseModeSet
-            && repulseDistSet && collisionStiffnessSet
+            && collisionStiffnessSet
             && collisionDistSet;
 }
 
@@ -74,11 +74,6 @@ double SimParams::getGx() {
 }
 double SimParams::getGy() {
     return this->gy;
-}
-
-void SimParams::setRepulseDist(double dist) {
-    this->repulseDist = dist;
-    this->repulseDistSet = true;
 }
 
 void SimParams::setCollisionStiffness(double stiffness) {

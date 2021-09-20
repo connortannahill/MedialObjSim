@@ -28,7 +28,6 @@ void PressureSolver3D::setUpMatrixStruct(int nx, int ny, int nz) {
             for (j = 0; j < ny+2; j++) {
                 for (i = 0; i < nx+2; i++) {
                     // TODO: this is actually already handled
-                    // matrixBuilder->set_entry(row,row);
                     row++;
                 }
             }
@@ -39,10 +38,8 @@ void PressureSolver3D::setUpMatrixStruct(int nx, int ny, int nz) {
                     for (i = 0; i < nx+2; i++) {
                         // Dirichlet cond at boundaries
                         if (j == 0 || j == ny+1 || i == 0 || i == nx+1) {
-                            // matrixBuilder->set_entry(row, row);
                         } else {
                             // Centered finite difference stencil
-                            // matrixBuilder->set_entry(row, row); // (i, j, k)
                             
                             matrixBuilder->set_entry(row, row+1); // (i+1, j, k)
                             matrixBuilder->set_entry(row, row-1); // (i-1, j, k)
@@ -61,7 +58,6 @@ void PressureSolver3D::setUpMatrixStruct(int nx, int ny, int nz) {
             // TOP (in height)
             for (j = 0; j < ny+2; j++) {
                 for (i = 0; i < nx+2; i++) {
-                    // matrixBuilder->set_entry(row, row);
                     row++;
                 }
             }
@@ -189,7 +185,6 @@ void PressureSolver3D::setUpPressureMatrix(Pool3D *pool) {
     objects::FSIObject obj;
     int mo = 1;
 
-
     // BOTTOM
     for (j = 0; j < ny+2; j++) {
         for (i = 0; i < nx+2; i++) {
@@ -236,8 +231,6 @@ void PressureSolver3D::setUpPressureMatrix(Pool3D *pool) {
  * 
  * We only need to compute this for the fluid cells.
  * 
- * TODO: generalize indexing into FU, FV based on method order. Going to have more or less ghost cells.
- * TODO: generalize the computation of FU to second order using sided stencils when possible
 */
 void PressureSolver3D::setUpPressureRHS(double dt, double ***FU, double ***FV,
                                         double ***FW, double ***p, Pool3D *pool) {
@@ -253,7 +246,6 @@ void PressureSolver3D::setUpPressureRHS(double dt, double ***FU, double ***FV,
 
         row = 0;
 
-        // double maxB = abs(p[0][0][0]);
         // Set the boundary points
         for (j = 0; j < this->ny+2; j++) {
             for (i = 0; i < this->nx+2; i++) {
@@ -286,8 +278,6 @@ void PressureSolver3D::setUpPressureRHS(double dt, double ***FU, double ***FV,
                         if (pool->isInterface(obj)) {
                             // Use negative pressure value in normal direction. (old)
                             pool->getNormalDir(obj, nDir);
-                            // (this->matrix)->bValue(row) = -p[k+nDir[2]][j+nDir[1]][i+nDir[0]];
-
                             // Get the normal unit vector.
                             nDirNorm[0] = nDir[0];
                             nDirNorm[1] = nDir[1];

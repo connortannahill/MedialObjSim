@@ -617,7 +617,6 @@ void MassSpring3D::copyX(Eigen::VectorXd &tar) {
 }
 
 void MassSpring3D::predictX(double dt, Eigen::VectorXd &xPrev, Eigen::VectorXd &x, Eigen::VectorXd &xBar) {
-    // xBar = 2.0*x - xPrev + (simutils::square(dt)/pntMass)*(*f);
     xBar = x + dt*(*qt) + (simutils::square(dt)/pntMass)*(*f);
 }
 
@@ -691,8 +690,6 @@ MatrixIter* MassSpring3D::createStiffnessMatrix() {
     MatrixStruc *matrixBuilder = NULL;
 
     try {
-        // matrixBuilder = new MatrixStruc(nnz /*Number of unknowns*/,
-        //                                 true /*Don't add non-zeros to diagonals so I don't get mindflooded*/);
         matrixBuilder = new MatrixStruc(3*pntList->size() /*Number of unknowns*/,
                                         true /*Don't add non-zeros to diagonals so I don't get mindflooded*/);
 
@@ -833,30 +830,14 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         - (pntMass/dt)*v_i[1],
         - (pntMass/dt)*v_i[2]
     };
-    // colStress[0] += f_i[0] - pntMass*v_i[0];
-    // colStress[1] += f_i[1] - pntMass*v_i[1];
-    // colStress[2] += f_i[2] - pntMass*v_i[2];
 
     // For each of the collisions this node is involved in, calculate a resisting force
     massPoint3D colPnt;
-    // double collisionNormal[3] = {0.0, 0.0, 0.0};
     double pntDiff[3];
     double pntDist;
     int numNear = 0;
     for (auto near = nodeCols->at(nodeId).begin(); near != nodeCols->at(nodeId).end(); ++near) {
         colPnt = **near;
-
-        // Compute the normal vector for this collision
-        // collisionNormal[0] = mPnt.x - colPnt.x;
-        // collisionNormal[1] = mPnt.y - colPnt.y;
-        // collisionNormal[2] = mPnt.z - colPnt.z;
-        // simutils::normalize3D(collisionNormal);
-
-        // Compute the collision stress to stop the momentum in this direction
-        // double fac = simutils::ddot3d(nodeForces, collisionNormal);
-        // colStress[0] += - fac*collisionNormal[0];
-        // colStress[1] += - fac*collisionNormal[1];
-        // colStress[2] += - fac*collisionNormal[2];
 
         // Compute the spring repulsion force for this node
         pntDiff[0] = mPnt.x - colPnt.x;
@@ -892,9 +873,6 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     colStress[0] += cancelStress[0] - nodeForces[0];
     colStress[1] += cancelStress[1] - nodeForces[1];
     colStress[2] += cancelStress[2] - nodeForces[2];
-    
-    // cout << "colStress = (" << colStress[0] << ", " << colStress[1]
-    //     << ", " << colStress[2] << ")" << endl;
 }
 
 /** 
@@ -1056,10 +1034,6 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3]   +=  s_x;
         (*f)[3*id3+1] +=  s_y;
         (*f)[3*id3+2] +=  s_z;
-
-        // colNet[0] +=  s_x;
-        // colNet[1] +=  s_y;
-        // colNet[2] +=  s_z;
     }
 
     for (int id = 0; id < pntList->size(); id++) {
@@ -1257,7 +1231,6 @@ void MassSpring3D::eulerSolve(double dt, int elementMode, bool initMode) {
     }
 
     // Compute the force vector for the current configuration
-    // cout << "Mean force vector = " << f->mean() << endl;
     for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
         // Extract the points connecting the current spring
         pntId1 = edge->pntIds[0];
@@ -1273,9 +1246,6 @@ void MassSpring3D::eulerSolve(double dt, int elementMode, bool initMode) {
             calcLocalKelvinForce(*edge, pntId1, pnt1, pntId2, pnt2);
         }
     }
-
-    // cout << "Mean force vector = " << f->mean() << endl;
-    // assert(false);
 
     // Now, the force vector has been obtained, we perform an Euler step
     for (int i = 0; i < pntList->size(); i++) {
@@ -1625,8 +1595,6 @@ void MassSpring3D::verletSolve(double dt, int elementMode, bool initMode) {
         }
     }
 
-    // (*q) += dt*(*qt);
-
     E = ETemp;
     eta = etaTemp;
 }
@@ -1675,12 +1643,10 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
 
     // Set the previous solution to current
     *qprev = *q;
-    // cout << "FINISHED start" << endl;
 
     // Loop through all of the points. For each boundary point, add to the force vector.
     double colNet[3] = {0.0, 0.0, 0.0};
     if (!initMode) {
-        // assert(false);
         applyBoundaryForces(pool, stress, ng, fNet, colNet);
         applyBodyForces();
     }
@@ -1694,25 +1660,20 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
     // nodes.
-    // cout << "Doing update" << endl;
     if (updateMode == 0) {
-        // cout << "Doing Euler solve!" << endl;
         eulerSolve(dt, elementMode, initMode);
     } else if (updateMode == 1) {
         linearImplicitSolve(dt, elementMode, initMode);
     } else if (updateMode == 2) {
         admmSolver->step(500, 1e-10);
     }
-    // cout << "FINISHED Doing update" << endl;
 
     // Update the (x, y, z) position of each point in the point list using the updated q.
-    // cout << "updating vecs" << endl;
     for (int i = 0; i < pntList->size(); i++) {
         pntList->at(i).u = (*qt)[3*i];
         pntList->at(i).v = (*qt)[3*i+1];
         pntList->at(i).w = (*qt)[3*i+2];
     }
-    // cout << "FINISHED updating vecs" << endl;
 
     iterCount++;
 
@@ -1785,6 +1746,7 @@ void MassSpring3D::updateSolidLocs(Pool3D &pool, bool interp) {
         assert(false);
     }
 }
+
 /**
  * Output the nodes of the MSS with no explicit knowledge of the connectivity between them.
 */
@@ -1878,8 +1840,6 @@ bool MassSpring3D::redundantEdges() {
             int edgeJPntId0 = edgeList->at(j).pntIds[0];
             int edgeJPntId1 = edgeList->at(j).pntIds[1];
 
-            // if (((edgeIPntId0 == edgeJPntId0) && (edgeIPntId1 == edgeJPntId1)) ||
-            //     ((edgeIPntId0 == edgeJPntId1) && (edgeIPntId1 == edgeJPntId0))) {
             if (((edgeIPntId0 == edgeJPntId0) && (edgeIPntId1 == edgeJPntId1))) {
                 numDup += 1;
             }
@@ -2147,10 +2107,8 @@ void MassSpring3D::interpFaceVels(double inPnt[3], double out[3]) {
     int closestIds[3] = {-1, -1, -1};
     double closestDist = INFINITY;
 
-    // double centroid[3];
     double d;
 
-    // bool triangleFound = false;
     for (auto face = faceList->begin(); face != faceList->end(); ++face) {
         vertIds[0] = face->pntIds[0];
         vertIds[1] = face->pntIds[1];
@@ -2194,7 +2152,6 @@ void MassSpring3D::interpFaceVels(double inPnt[3], double out[3]) {
  * Returns whether a point was found, mutates nearestInterfacePont
 */
 bool MassSpring3D::findNearestGridNormalInterface(Pool3D &pool, int pntId, int nearestInterfacePnt[3]) {
-    // cout << "Computing the gradient" << endl;
     int nx = pool.getNx();
     int ny = pool.getNy();
     int nz = pool.getNz();
@@ -2335,6 +2292,7 @@ bool MassSpring3D::findNearestGridNormalInterface(Pool3D &pool, int pntId, int n
 
     return intFound;
 }
+
 /**
  * Add a triple to the face map. The important part is that the triple (a, b, c)
  * has a < b < c
@@ -2369,7 +2327,6 @@ tuple<int, int, int> MassSpring3D::createOrderedTuple(int a, int b, int c) {
     } 
 
     // Make sure everything is in order.
-    // cout << "(a, b, c) = (" << temp[0] << ", " << temp[1] << ", " << temp[2] << ")" << endl;
     assert((temp[0] < temp[1]) && (temp[1] < temp[2]) && (temp[0] < temp[2]));
 
     return make_tuple(temp[0], temp[1], temp[2]);
@@ -2379,7 +2336,6 @@ tuple<int, int, int> MassSpring3D::createOrderedTuple(int a, int b, int c) {
  * Find closest distance to the boundary faces of the MSS
 */
 double MassSpring3D::closestBoundaryDist(double inPnt[3]) {
-    // int vertIds[3];
     double baryCoords[3];
     double closestDist = INFINITY;
     double d;
@@ -2578,7 +2534,6 @@ void MassSpring3D::createFaceList() {
         pntList->at((faceList->at(i)).pntIds[1]).faceIds.push_back(i);
         pntList->at((faceList->at(i)).pntIds[2]).faceIds.push_back(i);
     }
-
 
     delete[] toBeRemoved;
 }

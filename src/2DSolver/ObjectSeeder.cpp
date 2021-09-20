@@ -11,7 +11,6 @@
 using namespace std;
 
 Eigen::Vector2d getRandom() {
-    // Eigen::Vector2d rand((Eigen::Vector2d::Random().array() + 1.0)/2.0);
     Eigen::Vector2d rand;
     double dummy = std::rand();
     dummy += 1.0;

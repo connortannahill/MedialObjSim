@@ -52,7 +52,6 @@ NSSolver::NSSolver(Boundary &boundary,
 
     // Create the output arrays with required ghost cells for the staggered grid
     // configuration.
-    // TODO: make sure that this is correct
     int hg = this->ny + 2*this->methodOrd;
     int wg = this->nx + 2*this->methodOrd;
 
@@ -111,8 +110,6 @@ NSSolver::NSSolver(Boundary &boundary,
     (this->pressureParams)->north = 10; // number of orthogs for orthomin
 
     // Use initial condition callback function to assign u, v
-    // TODO: make initial conditions more general and perhaps more
-    //       able to handle irregular boundaries.
     initialConditions(this->nx, this->ny, this->methodOrd, this->x, this->y, this->u, this->v);
 
     applyFluidBCs = boundaryConditions;
@@ -122,7 +119,6 @@ NSSolver::NSSolver(Boundary &boundary,
     this->pool = new Pool2D(boundary, solidObjects, params);
 
     // Pre-compute the Barycentric weights
-    // TODO: ensure that this is correct for the FV methods used later
     this->baryWeights = new double[this->methodOrd+1];
     simutils::barycentricInterp(this->methodOrd, this->baryWeights);
 
@@ -140,7 +136,6 @@ void NSSolver::test_setInternal() {
             int xi = i + mo;
             int yi = j + mo;
 
-            // if (pool->isInterface(pool->objAtIndex(i, j))) {
             if (pool->objAtIndex(i, j)!=objects::FLUID_C) {
                 this->u[yi][xi] = (this->pool)->getObjU(i, j);
                 this->u[yi][xi-1] = (this->pool)->getObjU(i, j);
@@ -153,14 +148,12 @@ void NSSolver::test_setInternal() {
             int xi = i + mo;
             int yi = j + mo;
 
-            // if (pool->isInterface(pool->objAtIndex(i, j))) {
             if (pool->objAtIndex(i, j)!=objects::FLUID_C) {
                 this->v[yi][xi] = (this->pool)->getObjV(i, j);
                 this->v[yi-1][xi] = (this->pool)->getObjV(i, j);
             }
         }
     }
-
 }
 
 /**
@@ -246,59 +239,40 @@ void NSSolver::interpolateVelocities() {
 */
 double NSSolver::step(double tEnd, double safetyFactor) {
     // Compute the time step
-    // this->dt = safetyFactor*this->getDt();
     if (params->dtFixSet) {
-        cout << "SETTING POOL DTFIX" << endl;
         this->dt = params->dtFix;
-        cout << "SETTING POOL DTFIX" << endl;
     } else {
         this->dt = safetyFactor*this->getDt();
 
     }
     if (!stepTaken) {
-        // pool->dtFix = this->dt;
         this->dtPrev = this->dt;
     }
-
-    // cout << "dt = " << dt << endl;
 
     // If the time step would exceed tEnd, truncate it
     if (this->t + this->dt > tEnd) {
         this->dt = tEnd - this->t;
     }
 
-    // cout << "applying interface BC's" << endl;
     this->applyInterfaceBCs();
-    // cout << "FINISHED applying interface BC's" << endl;
 
     // Explicit step: advance the velocity-dependent terms using explicit time
     // discretization.
-    // cout << "updating F" << endl;
     this->updateF(pool);
-    // cout << "FINISHED updating F" << endl;
 
     // Implicit step: update the pressure by solving Poisson equation.
-    // cout << "updating P" << endl;
     this->updateP();
-    // cout << "FINISHED updating P" << endl;
 
     // Combine these together to update the fluid velocities.
-    // cout << "updating U" << endl;
     this->updateU();
-    // cout << "FINISHED updating U" << endl;
 
     // Interpolate the velocities to the cell centers
-    // cout << "interpolating velocities" << endl;
     this->interpolateVelocities();
-    // cout << "FINISHED interpolating velocities" << endl;
 
     if (this->nStructs > 0) {
-        // cout << "updating pool" << endl;
         // Update the location of the interfaces
-        // cout << "calling updatePool, methodOrd = " << methodOrd << endl;
         (this->pool)->updatePool(dt, iu, iv, p, methodOrd, true);
 
-        // cout << "FINISHED updating pool" << endl;
         // Apply object velocities to boundary points
         this->test_setInternal();
     }
@@ -651,8 +625,6 @@ double NSSolver::eno_uvy(int i, int j) {
 
 /**
  * Method which interpolate fluid velocities to the cell centers.
- * 
- * TODO: make sure that this implementation makes sense
 */
 void NSSolver::interpolateCellCenterVelocities(int i, int j, double outU[2]) {
     double x, y;
@@ -688,32 +660,6 @@ void NSSolver::updateF(Pool2D *pool) {
 
     int mo = methodOrd;
 
-    // Compute the stabilization parameter
-    // double gam = 0.0;
-    // if (params->useEno) {
-    //     // Get max 
-    //     double maxU = -INFINITY;
-    //     double maxV = -INFINITY;
-    //     for (j = 0; j < this->ny; j++) {
-    //         for (i = 0; i < this->nx-1; i++) {
-    //             int yi = j + mo;
-    //             int xi = i + mo;
-
-    //             maxU = max(maxU, u[yi][xi]);
-    //         }
-    //     }
-    //     for (j = 0; j < this->ny-1; j++) {
-    //         for (i = 0; i < this->nx; i++) {
-    //             int yi = j + mo;
-    //             int xi = i + mo;
-
-    //             maxV = max(maxV, v[yi][xi]);
-    //         }
-    //     }
-
-    //     gam = 
-    // }
-
     // Compute Fu at the internal points.
     double laplacian;
     double convective;
@@ -729,8 +675,6 @@ void NSSolver::updateF(Pool2D *pool) {
                     double gam = max(abs((u[yi][xi]*this->dt)/(this->dx)), abs(v[yi][xi]*this->dt)/(this->dy));
                     convective = discs::firstOrder_conv_usqx_stab(xi, yi, this->dx, this->u, gam)
                         + discs::firstOrder_conv_uvy_stab(xi, yi, this->dy, this->u, this->v, gam);
-                    // eno_usqx(i, j) + eno_uvy(i, j);
-                    // convective = eno_usqx(i,j) + discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
                 } else {
                     convective = discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u)
                         + discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
@@ -752,9 +696,6 @@ void NSSolver::updateF(Pool2D *pool) {
                     double gam = max(abs((u[yi][xi]*this->dt)/(this->dx)), abs(v[yi][xi]*this->dt)/(this->dy));
                     convective = discs::firstOrder_conv_uvx_stab(xi, yi, this->dx, this->u, this->v, gam)
                         + discs::firstOrder_conv_vsqy_stab(xi, yi, this->dy, this->v, gam);
-                    // convective = eno_uvx(i, j) + eno_vsqy(i, j);
-                    // convective = eno_uvx(i, j) + eno_vsqy(i, j);
-                    // convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v) + eno_vsqy(i, j);
                 } else {
                     convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v)
                         + discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
@@ -886,8 +827,6 @@ double NSSolver::getKinematicBoundaryLC(int i, int j, double velObj, double velN
  * 
  * Note: very much assuming no opposing boundary conditions are possible, and no singleton
  *       boundary conditions are possible. Additionally, 1-thick interfaces will fail (which may be OK).
- * 
- * TODO: this should not be virtual, going to be the same for all codes.
 */
 void NSSolver::applyInterfaceBCs() {
     // Set all the boundary conditions to 0.

@@ -15,7 +15,6 @@ using namespace std;
 
 /**
  * Abstract base class for 2D fluid solvers.
- * TODO: lots of design improvements needed if this is going to be generally usable.
 */
 class MomentumSolver2D {
 protected:
@@ -70,7 +69,6 @@ protected:
     PressureSolver *pressureSolver;
     ParamIter *pressureParams;
 
-
     // The barycentric weights used for flexible interpolation.
     double *baryWeights;
 
@@ -98,7 +96,6 @@ public:
     virtual double** getU() = 0;
     virtual double** getV() = 0;
     void writePoolToFile(const char *poolFName, const char *poolVelFName);
-    // virtual double** getP() = 0;
 };
 
 #endif

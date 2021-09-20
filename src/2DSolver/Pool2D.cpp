@@ -21,7 +21,6 @@ using namespace std;
 const double DINFINITY = numeric_limits<double>::infinity();
 
 // Safety factors for various methods
-// const double SFAC_REINIT = 0.1;
 
 int DOMAIN_FLUID = -1;
 int DOMAIN_UNDESCOVERED = -2;
@@ -146,8 +145,6 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             d = phiV + hy;
         }
 
-        // d = phiV + hy;
-
         // Extrapolate velocity
         if (nExtrap) {
             poolU[mo+j][mo+i] = poolU[mo+j+upwindY][mo+i];
@@ -182,10 +179,6 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
         hx = hxPerm;
         hy = hyPerm;
 
-        // phiV = phiReInit[mo+j+upwindY][mo+i];
-        // if (isInterface(objAtIndex(i, j+upwindY)) && objAtIndex(i, j) == objects::STRUCTURE) {
-        //     phiV = 0.0;
-        // }
         if (isInterface(objAtIndex(i, j+upwindY)) && objAtIndex(i, j) == objects::STRUCTURE) {
             double y0 = simutils::midpoint(y[j], y[j+1]);
             double y1 = simutils::midpoint(y[j+upwindY], y[j+upwindY+1]);
@@ -209,13 +202,6 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             phiH = phiReInit[mo+j][mo+i+upwindX];
             d = phiH + hx;
         }
-
-        // phiH = phiReInit[mo+j][mo+i+upwindX];
-
-        // if (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(j, i) == objects::STRUCTURE) {
-        //     phiH = 0.0;
-        // }
-        // d = phiH + hx;
 
         if (phiV < phiH) {
             h = hy;
@@ -252,8 +238,6 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
                 vH = poolV[j+mo][i+mo+upwindX];
                 vV = poolV[j+mo+upwindY][i+mo];
 
-                // poolU[j+mo][i+mo] = (hysq*uH*(d - phiH) + hxsq*uV*(d - phiV))/(hxsq*(d - phiH) + hysq*(d - phiV));
-                // poolV[j+mo][i+mo] = (hysq*vH*(d - phiH) + hxsq*vV*(d - phiV))/(hxsq*(d - phiH) + hysq*(d - phiV));
                 poolU[j+mo][i+mo] = (uH*(d - phiH) + uV*(d - phiV))/((d - phiH) + (d - phiV));
                 poolV[j+mo][i+mo] = (vH*(d - phiH) + vV*(d - phiV))/((d - phiH) + (d - phiV));
                 path = 2;
@@ -278,7 +262,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     phiReInit[mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d > collisionDist/2.0) {
+        if (d >= collisionDist) {
            fastMarchingState[j][i] = ACCEPTED;
            return;
         }
@@ -292,17 +276,16 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
  * Assign the marching state of the current node.
 */
 void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
-    // cout << "assigning domain" << endl;
     int curMembership = domainMembership(i, j);
     int neighMembership;
 
     int iList[4] = {i+1, i-1, i,   i};
     int jList[4] = {j,   j,   j+1, j-1};
 
-    double nIntersections = 0;
+    // double nIntersections = 0;
     bool intersectionFound = false;
-    double medX = 0;
-    double medY = 0;
+    // double medX = 0;
+    // double medY = 0;
 
     for (int l = 0; l < 4; l++) {
         int ni = iList[l];
@@ -317,32 +300,21 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
 
                 // Keep track of the number if intersections about this point. We accumulate
                 // them and take the average.
-                nIntersections++;
+                // nIntersections++;
 
                 int offX = (ni - i > 0) ? 1 : 0;
                 int offY = (nj - j > 0) ? 1 : 0;
 
-                if (!intersectionFound) {
-                    medX += x[i+offX];
-                    medY += y[j+offY];
+                if (mode == 2 && val < collisionDist) {
+                    medialAxisPnts->push_back(make_tuple(x[i+offX], y[j+offY]));
                 }
 
-                // domainTracker[j+offY][i+offX] = DOMAIN_INTERSECTION;
                 domainTracker[nj][ni] = DOMAIN_INTERSECTION;
 
                 // Domain intersection which meets the collision requirement
-                // cout << "val = " << val << " collisionDist/2 = " << (this->collisionDist)/2.0 << endl;
-                intersectionFound = true; //&& val <= (this->collisionDist)/2.0;
-                break;
+                intersectionFound = true;
             }
         }
-    }
-
-    if (intersectionFound) { //&& mode == 2) {
-        // nIntersections = 1;
-        // medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
-        // cout << "Pushing back!" << endl;
-        medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections));
     }
 }
 
@@ -353,9 +325,6 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
  * 
  * Assumes that the current phi approximates a signed distance function. That domain
  * membership has been established and center of mass velocity computer (only rigid body right now)
- * 
- * TODO: can look for massive performance improvements by (somehow) only doing a single loop over all of the
- *       unknowns, rather than the 2nd and 3rd currently required when extrapolating in the object interior.
  * 
  * mode controls what the fast marching algorithm does
  *  mode = 0: the interpolation based reinititialization
@@ -462,6 +431,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
     // In the case where we are only approximating the medial axis, we don't need to perform
     // the structural domain calculation.
     if (mode == 2) {
+        cout << "MODE 2 RUNNING... FOUND " << medialAxisPnts->size() << endl;
         return;
     }
 
@@ -491,7 +461,6 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
                 assert(phiVal >= 0);
 
                 if (this->oneGridFromInterfaceStructure(i, j)) {
-                    // cout << "Getting phi val from vec, domainMem = " << domainMembership(i, j) << endl;
                     if (mode == 0) {
 
                         phiVal = solids->at(domainMembership(i, j)).closestBoundaryDist(pnt);
@@ -581,7 +550,6 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
         }
     }
 
-    cout << "Keeping track number medial axis = " << medialAxisPnts->size() << endl;
 }
 
 /**
@@ -605,8 +573,6 @@ void Pool2D::detectCollisions() {
     set<int> collidingIds;
     vector<pair<double, double>> medialAxisCollisionPnts;
 
-    cout << "In detect collisions. Num axis pnts = " << medialAxisPnts->size() << endl;
-
     for (auto tup = medialAxisPnts->begin(); tup != medialAxisPnts->end(); ++tup) {
         // Find the cell location of the medial axis point
         medX = get<0>(*tup);
@@ -616,10 +582,10 @@ void Pool2D::detectCollisions() {
         yCell = simutils::findLimInfMeshPoint(medY, this->y, this->ny+1);
 
         // Find the value of the level set function in this cell
-        medPhi = interpolatePhi(medX, medY);//phiReInit[yCell+mo][xCell+mo];
+        medPhi = interpolatePhi(medX, medY);
 
         // If this value is beneath the threshold for possible collision, look at which objects are colliding
-        if (medPhi < collisionDist/2.0) {
+        if (medPhi < collisionDist) {
             // Build up a list of the neighbours around this cell to find which unique colliding nodes
             for (int j = yCell-2; j <= yCell+2; j++) {
                 for (int i = xCell-2; i <= xCell+2; i++) {
@@ -641,11 +607,10 @@ void Pool2D::detectCollisions() {
     // If we are using proper repulsive forces, we now build up the KDTree and
     // all of the node collections
     if (repulseMode == 2 && medialAxisCollisionPnts.size() > 0) {
-        // cout << "DETECTED A COLLISION" << endl;
         // Place all of the colliding MSS's into the KDTree
         kdPointCloud->resetCloud();
         for (auto colMss = allCollisions.begin(); colMss != allCollisions.end(); ++colMss) {
-            cout << "Adding MSS " << *colMss << endl;
+            // cout << "COLLISION DETECTED, ADDING MSS " << *colMss << endl;
             kdPointCloud->addMSS(solids->at(*colMss));
         }
 
@@ -653,7 +618,7 @@ void Pool2D::detectCollisions() {
         kdTree->buildIndex();
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
-        double SCAL_FAC = 2.0; 
+        double SCAL_FAC = 1.0; 
         int nMatches;
         for (auto pair = medialAxisCollisionPnts.begin(); pair != medialAxisCollisionPnts.end(); ++pair) {
             medX = pair->first;
@@ -664,7 +629,7 @@ void Pool2D::detectCollisions() {
             // Do a radius search around this medial axis cell to discover all of the
             // potentially interacting nodes
             nMatches = kdTree->radiusSearch(&queryPnt[0],
-                simutils::square(SCAL_FAC*(collisionDist/2.0)), ret_matches, params);
+                simutils::square(SCAL_FAC*(collisionDist)), ret_matches, params);
 
             // cout << "nMatches = " << nMatches << endl;
 
@@ -674,7 +639,6 @@ void Pool2D::detectCollisions() {
             int id = 0;
             for (auto match = ret_matches.begin(); match != ret_matches.end(); ++match) {
                 int mssId = kdPointCloud->points->at(match->first)->structNum;
-                // cout << "mssId of match point: " << mssId  << endl;
 
                 // If this is a new Id, since the array is ordered according to proximity to m, we add it
                 if (std::find(nearestMss.begin(), nearestMss.end(), mssId) == nearestMss.end()) {
@@ -683,11 +647,6 @@ void Pool2D::detectCollisions() {
                 }
                 id++;
             }
-            
-            // if (nearestMss.size() < 2) {
-            //     // cout << "ERROR IN FINDING MSS NODES AT COLLISION POINT" << endl;
-            //     assert(nearestMss.size() < 2);
-            // }
             
             // For each of the matches, we keep track in each MSS of which of the points
             // it is potentially colliding with
@@ -708,7 +667,6 @@ void Pool2D::detectCollisions() {
             ret_matches.clear();
         }
     }
-    // assert(false);
 }
 
 void Pool2D::create2DPool(Boundary &boundary,
@@ -732,7 +690,6 @@ void Pool2D::create2DPool(Boundary &boundary,
     this->nSteps = 0;
 
     // Set the repulsion mode and distance.
-    // this->repulseDist = params.repulseDist;
     this->collisionStiffness = params.collisionStiffness;
     this->collisionDist = params.collisionDist;
     this->repulseDist = 2.0 * this->collisionDist;
@@ -846,9 +803,6 @@ void Pool2D::create2DPool(Boundary &boundary,
                 phi[this->methodOrd+j][this->methodOrd+i] = poolTemp->interpolatePhi(x, y);
             }
         }
-        this->enumeratePool();
-        this->setUpDomainArray();
-
         // Delete the temp Pool
         delete poolTemp;
     } else {
@@ -870,13 +824,9 @@ void Pool2D::create2DPool(Boundary &boundary,
         }
     }
 
+
     // The state of each grid within the fast marching algorithm
     fastMarchingState = simutils::new_constant(ny, nx, FAR);
-
-    // Locate nodes of MSS exactly on isocontour of new MSS
-    // for (int i = 0; i < nStructs; i++) {
-    //     solids->at(i).interpBoundary(*this, true);
-    // }
 
     // Run the fast marching algorithm
     this->fastMarchPool(false, 0);
@@ -885,10 +835,11 @@ void Pool2D::create2DPool(Boundary &boundary,
 
     this->enumeratePool();
 
-
     // Detect any collisions
     if (repulseMode == 2) {
-        detectCollisions();
+        this->setUpDomainArray();
+        this->fastMarchPool(false, 2);
+        this->detectCollisions();
     }
 }
 
@@ -905,7 +856,6 @@ void Pool2D::bfsSearchForEdges(int structNum) {
 
 
     int ri, rj, ni, nj;
-    // objects::FSIObject FL = objects::FLUID_C; // Make the ternary operator more palatable below
 
     // Create the queues for each of the indices (TODO: find a nicer solution than this)
     queue<int> queueX;
@@ -916,11 +866,7 @@ void Pool2D::bfsSearchForEdges(int structNum) {
     queueY.push(j);
 
     // Mark this node as a part of the structure. Otherwise, set it to "discovered"
-    // this->domainTracker[j][i] = (objAtIndex(i, j) != FL) ? structNum : -1;
     pool[j][i] = objects::STRUCTURE;
-
-    // double hx = x[1] - x[0];
-    // double hy = y[1] - y[0];
 
     // Start the DFS
     double curPnt[2];
@@ -935,11 +881,7 @@ void Pool2D::bfsSearchForEdges(int structNum) {
         curPnt[0] = simutils::midpoint(x[ri], x[ri+1]);
         curPnt[1] = simutils::midpoint(y[rj], y[rj+1]);
 
-        // Mark the current node as a structure
-        // objAtIndex(ri, rj) = objects::STRUCTURE;
-
         // Discover the neighbouring points
-        // cout << "ri = " << ri << " rj = " << rj << endl << endl;
         for (nj = rj-1; nj <= rj+1; nj++) {
             for (ni = ri-1; ni <= ri+1; ni++) {
                 if (ni == ri && nj == rj) {
@@ -947,64 +889,28 @@ void Pool2D::bfsSearchForEdges(int structNum) {
                 }
 
                 // If a neighbour is a labelled structure, move onto next iteration
-                // cout << "ni = " << ni << " nj = " << nj << endl;
                 if (objAtIndex(ni, nj) == objects::STRUCTURE || objAtIndex(ni, nj) == objects::UNLABELLED_INTERFACE) {
                     continue;
                 }
 
                 neighPnt[0] = simutils::midpoint(x[ni], x[ni+1]);
                 neighPnt[1] = simutils::midpoint(y[nj], y[nj+1]);
-                // neighPnt[0] = (ni - ri)*hx + curPnt[0];
-                // neighPnt[1] = (nj - rj)*hy + curPnt[1];
 
                 // If there is a structure intersection, we don't label the neighbour cell a structure.
                 // If there is not an intersection, add this structural cell to the queue
                 if (objAtIndex(ni, nj) == objects::UNLABELLED && !solids->at(structNum).intersectsBoundary(curPnt, neighPnt)) {
-                    cout << "adding ni = " << ni << " nj = " << nj << endl;
                     queueX.push(ni);
                     queueY.push(nj);
 
                     this->pool[nj][ni] = objects::STRUCTURE;
                 } else {
                     this->pool[nj][ni] = objects::UNLABELLED_INTERFACE;
-                    // cout << "intersection found!" << endl;
-                    // cout << "ni = " << ni << " nj = " << nj << endl;
-                    // cout << "ri = " << ri << " rj = " << rj << endl;
-                    // cout << "phi_n " << phi[methodOrd+nj][methodOrd+ni] << endl;
-                    // cout << "phi_r " << phi[methodOrd+rj][methodOrd+ri] << endl;
-
-                    // cout << "phi_n interp " << interpolatePhi(curPnt[0], curPnt[1]) << endl;
-                    // cout << "phi_r interp " << interpolatePhi(neighPnt[0], neighPnt[1]) << endl;
-                    // assert(phi[methodOrd+nj][methodOrd+ni] > 0);
-                    // cout << "Intersection detected" << endl;
                 }
-
-
-                // if (this->domainTracker[nj][ni] == DOMAIN_UNDESCOVERED) { // If this node has not been seen
-                //     if (objAtIndex(ni, nj) != FL) {
-                //         // This node belongs to the structure
-                //         queueX.push(ni);
-                //         queueY.push(nj);
-                //     } else {
-                //         // This node belongs to the fluid region
-                //         this->domainTracker[nj][ni] = DOMAIN_FLUID;
-                //     }
-                // }
             }
         }
-
-        printPool();
-        cout << "Press enter to continue... ";
-        getchar();
-        cout << endl;
-
     }
-    cout << "out of loop" << endl;
 
     assert(queueX.empty() && queueY.empty());
-
-    cout << "FINISHED search for edges" << endl;
-
 }
 
 /**
@@ -1145,7 +1051,6 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         // Use the closest point result to compute initial stepsize, ensuring that the updated point will be
         // within the negative part of the domain
         double alpha = 0.1;
-        // double alpha = phi_ij/simutils::eucNorm2D(gradPhi_ij);
 
         // First gradient update
         double xStep = tracers[structNum].x - alpha*gradPhi_ij[0];
@@ -1247,7 +1152,6 @@ void Pool2D::embedShape(SolidObject &struc, int structNum) {
 */
 void Pool2D::labelInterface(int i, int j) {
     int n, e, s, w;
-    // int mo = methodOrd;
 
     // Use the definition of the enum (prime factors for N, E, S, W) to
     // quickly decide the interface
@@ -1272,7 +1176,6 @@ void Pool2D::enumeratePool() {
 
     // If there is not a signed distance function defined, set all internal points to fluids
     if (this->nStructs != 0) {
-        // TODO: refactor this to be more efficient if possible
         for (j = 1; j < ny-1; j++) {
             // Higher level labels: interface and structure-based
             for (i = 1; i < nx-1; i++) {
@@ -1393,11 +1296,9 @@ void tvdRK3HJ(double dt, double **arr, Pool2D *pool, int bcType,
     // Stage 1 Euler method
     for (j = start; j <= endy; j++) {
         for (i = start; i <= endx; i++) {
-            // arr[mo+j][mo+i] = arr[mo+j][mo+i] + dt*pool->phiRk1[mo+j][mo+i];
             pool->phiRk2[mo+j][mo+i] = arr[mo+j][mo+i] + dt*pool->phiRk1[mo+j][mo+i];
         }
     }
-    // return;
 
     // Stage 2
     if (bcType != 1) {
@@ -1479,7 +1380,6 @@ void rhsHJENO(double hx, double hy, double **in, double **out, int bcType, Pool2
 
     // If using Neumann BCs, apply the condition on the spatial discretization.
     if (bcType == 1) {
-        // cout << "Updating Nuemann BCs" << endl;
         (pool->*bcFun)(out);
     }
 }
@@ -1491,9 +1391,6 @@ double Pool2D::levelSetRHS_ENO3(int i, int j, double *mxVals, double *xVals,
                                 double *myVals, double *yVals, int maxOrd) {
     bool stencil[7] = {true, true, true, true, true, true, true};
     int mo = this->methodOrd;
-
-    // double g[2];
-    // this->levelSetGradient(i, j, g);
 
     int upwindU = (poolU[j+mo][i+mo] > 0) ? -1 : 1;
     int upwindV = (poolV[j+mo][i+mo] > 0) ? -1 : 1;
@@ -1691,7 +1588,6 @@ void Pool2D::levelSetGradient(int i, int j, double g[2]) {
     ip1Less = phi[mo+j+1][mo+i] < phi[mo+j-1][mo+i];
     phi_min = (ip1Less) ? phi[mo+j+1][mo+i] : phi[mo+j-1][mo+i];
 
-    // if (phi_min < phi[mo+j][mo+i]) {
     if (ip1Less) {
         g[1] = (phi[mo+j+1][mo+i] - phi[mo+j][mo+i])/hy;
     } else {
@@ -1735,15 +1631,7 @@ double Pool2D::velocityExtrapolationRHS_ENO3(int i, int j, double *mxVals,
     double sign;
     bool stencil[7] = {true, true, true, true, true, true, true};
     
-
-    // bool xStencil[7];
-    // bool yStencil[7];
-    // double lvlNormal[2];
     int mo = this->methodOrd;
-
-    // Create the widest stencils possible for the ENO schemes, avoiding the ghost cells.
-    // this->getWidestStencil(0, nx-1, i, xStencil);
-    // this->getWidestStencil(0, ny-1, j, yStencil);
 
     double hx, hy, h;
     hx = x[1] - x[0];
@@ -1764,36 +1652,6 @@ double Pool2D::velocityExtrapolationRHS_ENO3(int i, int j, double *mxVals,
     } else {
         phiGrad[0] = (phi[mo+j][mo+i+1] - phi[mo+j][mo+i-1])/(2.0*hx);
     }
-
-    // Compute gradient of phi using upwind finite differences
-    // double phi_l = phi[mo+j][mo+i-1];
-    // double phi_c = phi[mo+j][mo+i];
-    // double phi_r = phi[mo+j][mo+i+1];
-    // if (phi_l < phi_c || phi_r < phi_c) {
-    //     if (phi_l < phi_r) {
-    //         phiGrad[0] = (phi_c - phi_l)/hx;
-    //     } else {
-    //         phiGrad[0] = (phi_r - phi_c)/hx;
-    //     }
-    // } else {
-    //     // phiGrad[0] = 0.0;
-    //     phiGrad[0] = (phi_r - phi_l)/(2.0*hx);
-    // }
-
-    // phi_l = phi[mo+j-1][mo+i];
-    // phi_c = phi[mo+j][mo+i];
-    // phi_r = phi[mo+j+1][mo+i];
-    // if (phi_l < phi_c || phi_r < phi_c) {
-    //     if (phi_l < phi_r) {
-    //         phiGrad[1] = (phi_c - phi_l)/hy;
-    //     } else {
-    //         phiGrad[1] = (phi_r - phi_c)/hy;
-    //     }
-    // } else {
-    //     // phiGrad[1] = 0.0;
-    //     phiGrad[1] = (phi_r - phi_l)/(2.0*hy);
-    // }
-
     if (j == 0) {
         phiGrad[1] = (-(3.0/2.0)*phi[mo+j][mo+i] + 2.0*phi[mo+j+1][mo+i] - 0.5*phi[mo+j+2][mo+i])/hy;
     } else if (j == ny-1) {
@@ -1830,20 +1688,17 @@ double Pool2D::velocityExtrapolationRHS_ENO3(int i, int j, double *mxVals,
  * 
  * Returns: the size of the largest possible stencil
 */
-int Pool2D::getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil) {//, bool ghostSkip) {
+int Pool2D::getPossibleStencil(int i, int j, int axis, int methodOrd, bool *stencil) {
     
 
     for (int k = 0; k < 2*methodOrd+1; k++) {
         if (axis == 0) {
-            stencil[k] = isUsableU(i-methodOrd+k, j);///this->objAtIndex(i-methodOrd+k, j) == objects::FLUID_C;
+            stencil[k] = isUsableU(i-methodOrd+k, j);
         } else if (axis == 1) {
-            // cout << "j = " << j-methodOrd+k << " ";
-            stencil[k] = isUsableV(i, j-methodOrd+k);//this->objAtIndex(i, j-methodOrd+k) == objects::FLUID_C;
+            stencil[k] = isUsableV(i, j-methodOrd+k);
         }
     }
-    // if (axis == 1) {
-    //     cout << endl;
-    // }
+
     return simutils::sum(2*methodOrd+1, (int*)stencil);
 }
 
@@ -2049,15 +1904,12 @@ void Pool2D::calculateLocalFNet(int i, int j, objects::FSIObject obj, int ng,
         vGrad[1] = (v[ng+js][ng+i] - v[ng+js_mv][ng+i])/hy;
     }
 
-    // cout << "n is normalized now" << endl;
     simutils::normalize2D(n);
-    // assert(false);
 
     tracers[domainMembership(i, j)].fNetX += ((-pres + 2.0*this->mu*uGrad[0])*n[0]
         + this->mu*(uGrad[1] + vGrad[0])*n[1])*dA; 
     tracers[domainMembership(i, j)].fNetY += this->mu*((uGrad[1] + vGrad[0])*n[0]
         + (-pres + 2.0*this->mu*vGrad[1])*n[1])*dA;
-    // }
 }
 
 /** 
@@ -2102,8 +1954,6 @@ void Pool2D::computeBoundaryStress(int i, int j, objects::FSIObject obj, int ng,
 
     // Compute the information for the hydrodynamic stress tensor.
     // By taking the value the unit normal points to.
-    // cout << "Accessing Pres (" << ng+i+(int)n[0] << ", " << ng+j+(int)n[1] << endl;
-    // cout << "norm = (" << n[0] << ", " << n[1] << endl;
     pres = p[ng+j+(int)n[1]][ng+i+(int)n[0]];
 
     // Use either backwards or forwards difference formula to compute the derivatives
@@ -2128,11 +1978,7 @@ void Pool2D::computeBoundaryStress(int i, int j, objects::FSIObject obj, int ng,
         vGrad[1] = (v[js][i] - v[js_mv][i])/hy;
     }
 
-
-    // cout << "N is normalized now!!" << endl;
     simutils::normalize2D(n);
-    // assert(false);
-    // cout << "Stresses are attained" << endl;
 
     // Compute the stresses (assigning them to the pool velocities temporarily for memory saving)
     poolU[mo+j][mo+i] = ((-pres + 2.0*this->mu*uGrad[0])*n[0]
@@ -2149,7 +1995,6 @@ void Pool2D::multiStructureVelocitySet(double **u, double **v, int ng) {
     int mo = this->methodOrd;
     objects::FSIObject obj;
     
-    cout << "Setting the pool velocity field. Printing tracer vels" << endl;
     for (i = 0; i < this->nStructs; i++) {
         cout << "tracer " << i << " u = " << tracers[i].u << " v = " << tracers[i].v << endl;
     }
@@ -2190,7 +2035,6 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
     if (this->nStructs >= 1) {
 
         // Re-initialize the tracer partical forces to 0
-        cout << "Calculating the forces on each node and such" << endl;
         for (i = 0; i < nStructs; i++) {
             tracers[i].fNetX = 0.0;
             tracers[i].fNetY = 0.0;
@@ -2215,7 +2059,6 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
                 }
             }
         }
-        cout << "Finished calculating the forces on each node and such" << endl;
 
         // Use the net force being applied on the object to update the tracer velocities using Newton's
         // second law
@@ -2256,22 +2099,14 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
             // and update the positions of the tracer particals.
             double **stress[2] = {poolU, poolV};
 
-            cout << "Detecting the collisions" << endl;
-            cout << "repulseMode = " << repulseMode << endl;
             if (repulseMode != 0) {
                 this->fastMarchPool(false, 2);
                 this->detectCollisions();
                 this->setUpDomainArray();
             }
-            cout << "FINISHED Detecting the collisions" << endl;
-
-            // assert(false);
 
             double fNet[2] = {0, 0};
-            // int elementMode = 0;
-            cout << "Updating the MSS vels" << endl;
             for (int i = 0; i < nStructs; i++) {
-                // cout << "OBJ " << i << endl;
                 solids->at(i).updateSolidVels(dt, *this, stress, fNet, mo, false);
 
                 // Update the tracer info (not particularly necissary perhaps but will be nice for testing)
@@ -2284,24 +2119,8 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
                 fNet[0] = 0.0;
                 fNet[1] = 0.0;
             }
-            cout << "FINISHED updating the MSS vels" << endl;
-            // assert(false);
-            // cout << "in pool finished updating all structs" << endl;
-            // assert(false);
 
-            //
-
-            // Now that we have the velocities, we can apply the fast marching algorithm.
-            // if (repulseMode != 0) {
-            //     this->fastMarchPool(true);
-            // } else {
-            //     this->fastMarchPool(true);
-            //     this->detectCollisions();
-            //     this->fastMarchPool(true);
-            // }
-            cout << "fast marching" << endl;
             this->fastMarchPool(true, 0);
-            cout << "FINISHED fast marching" << endl;
         }
         
     } else {
@@ -2318,7 +2137,6 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
 */
 void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, bool reinitialize) {
     int k;
-    // cout << "in updatePool" << endl;
 
     // If this is called but there are no immersed structures, simply return
     if (this->nStructs < 1) {
@@ -2329,21 +2147,14 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     setUpDomainArray();
 
     // Update the velocity field
-    // cout << "Getting the pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, p, ng);
 
     if (reinitialize) {
         simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
-
-        // Update the enumeration and domain array
-        // TODO: are these necissary?
-        // enumeratePool();
-        // setUpDomainArray();
     }
 
     // Update the pool using the third order ENO scheme to test level set in the equation.
     // Using periodic boundary condition.
-    // cout << "Running update" << endl;
     tvdRK3HJ(dt, phi, this, 0, &Pool2D::levelSetRHS_ENO3,
              &Pool2D::applyLevelSetPeriodicBCs);
 
@@ -2353,13 +2164,10 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
     
     // Update the enumeration and domain array for the shifted level set.
-    // cout << "Running update" << endl;
     enumeratePool();
     setUpDomainArray();
 
     // Update the position of the solids
-    // cout << "Updating the solid locations" << endl;
-    // cout << "Updating locs" << endl;
     if (isDeformable) {
         for (int i = 0; i < nStructs; i++) {
             solids->at(i).updateSolidLocs(*this, false);
@@ -2367,15 +2175,12 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
 
     // If significant drift from the interface detected, correct.
-    // cout << "refitting SDF" << endl;
     if (shouldRefitSDF(min(hx, hy))) {
         assert(false);
         refitToSolids(ng);
     }
-    // cout << "finsihed refitting SDF" << endl;
 
     nSteps++;
-    // cout << "finished  updatePool" << endl;
 }
 
 /**
@@ -2385,13 +2190,11 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
  * as a signed distance function.
 */
 bool Pool2D::shouldRefitSDF(double tol) {
-    // cout << "in refit" << endl;
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
     massPoint2D pnt;
     for (auto solid = solids->begin(); solid != solids->end(); ++solid) {
-        // for (auto pnt = solid->pntList->begin(); pnt != solid->pntList->end(); ++pnt) {
         for (auto bId = solid->boundaryNodeIdList->begin(); bId != solid->boundaryNodeIdList->end(); ++bId) {
             pnt = solid->pntList->at(*bId);
             squeeze = abs(interpolatePhi(pnt.x, pnt.y)) > tol;
@@ -2401,8 +2204,6 @@ bool Pool2D::shouldRefitSDF(double tol) {
             }
         }
     }
-
-    // cout << "FINISHEd in refit" << endl;
 
     return squeeze;
 }
@@ -2416,8 +2217,6 @@ double Pool2D::buildSqeezeField() {
     double near[2];
     double maxU = -1;
     double maxV = -1;
-    // double maxDist = -1;
-    // double dist;
 
     enumeratePool();
     setUpDomainArray();
@@ -2457,9 +2256,6 @@ double Pool2D::buildSqeezeField() {
  * TODO: may need to reinitialize before using this
 */
 void Pool2D::refitToSolids(int ng) {
-    // int mo = this->methodOrd;
-    cout << "Refitting to solids!!!" << endl;
-
     double t = 0;
 
     double CFL = buildSqeezeField();
@@ -2512,6 +2308,7 @@ void Pool2D::printTracers() {
 
 void Pool2D::outputMedialAxisApprox(const char *fname) {
     double x, y;
+    double phiVal;
 
     ofstream outFile;
     outFile.open(fname);
@@ -2520,12 +2317,15 @@ void Pool2D::outputMedialAxisApprox(const char *fname) {
         x = get<0>(*tup);
         y = get<1>(*tup);
 
+        phiVal = interpolatePhi(x, y);
+
+
         outFile << x << ", ";
-        outFile << y << endl;
+        outFile << y << ", ";
+        outFile << phiVal << endl;
     }
 
     outFile.close();
-
 }
 
 void Pool2D::outputPool(const char *fname) {
@@ -2613,7 +2413,6 @@ void Pool2D::outputAllStructureVels(const char *baseName) {
 
 void Pool2D::outputTracers(const char *fname) {
     double x, y;
-    // int mo = this->methodOrd;
 
     ofstream outFile;
     outFile.open(fname);
@@ -2677,7 +2476,6 @@ bool Pool2D::enoInRangeY(int val) {
  * Set of function to indicate if a cell value is usable within an ENO stencil
 */
 bool Pool2D::isUsableU(int i, int j) {
-    // return pool[j][i] == objects::FLUID_C || pool[j][i+1] == objects::FLUID_C;
     if (enoInRangeX(i) && enoInRangeY(j)) {
         return (pool[j][i] != objects::STRUCTURE || pool[j][i+1] == objects::FLUID_C);
     } else {
@@ -2686,7 +2484,6 @@ bool Pool2D::isUsableU(int i, int j) {
 }
 
 bool Pool2D::isUsableV(int i, int j) {
-    // return pool[j][i] == objects::FLUID_C || pool[j+1][i] == objects::FLUID_C;
     if (enoInRangeX(i) && enoInRangeY(j)) {
         return pool[j][i] != objects::STRUCTURE || pool[j+1][i] == objects::FLUID_C;
     } else {
@@ -2925,8 +2722,6 @@ void Pool2D::interpolatePhiGrad(double x, double y, double phiGrad[2]) {
         xMesh[0] = xim;
         xMesh[1] = xi;
 
-        // xl = mo+il;
-        // xr = mo+il+1;
         xl = mo+il-1;
         xr = mo+il;
     } else {
@@ -2981,10 +2776,6 @@ void Pool2D::getClosestInterfacePoint(double P[2], double XC[2]) {
 
     // Normalize the gradient to get the outward normal vector of the signed distance function
     simutils::normalize2D(phiGrad);
-
-    // cout << "phi = " << phiVal << endl;
-    // cout << "phiGrad[0] " << phiGrad[0] << " phiGrad[1] = " << phiGrad[1] << endl;
-    // cout << "||grad|| " << simutils::eucNorm2D(phiGrad) << endl;
 
     // Now, use the gradient values to calculate the closest interface point
     XC[0] = P[0] - phiVal*phiGrad[0];
@@ -3054,7 +2845,6 @@ void Pool2D::printDomainMatrix() {
  * Uses the domain tracers, so these must be properly updated at all times.
 */
 void Pool2D::setUpDomainArray() {
-    // cout << "Setting up the domain array" << endl;
     // Set all of the domain member array to "undescovered"
     simutils::set_constant(ny, nx, DOMAIN_UNDESCOVERED, this->domainTracker);
 
@@ -3095,7 +2885,6 @@ void Pool2D::bfsFromTracer(int structNum) {
     int i = simutils::findLimInfMeshPoint(tracers[structNum].x, this->x, this->nx+1);
     int j = simutils::findLimInfMeshPoint(tracers[structNum].y, this->y, this->ny+1);
 
-    // cout << "For stuct num " << structNum << " tracker grid location is x = " << i << " y = " << j << endl;
     int ri, rj, ni, nj;
     objects::FSIObject FL = objects::FLUID_C; // Make the ternary operator more palatable below
 
@@ -3177,6 +2966,4 @@ Pool2D::~Pool2D() {
     simutils::free_double(this->ny+2*this->methodOrd, this->nx+2*this->methodOrd, this->poolV);
     simutils::free_int(this->ny, this->nx, this->domainTracker);
     simutils::free_int(this->ny, this->nx, this->fastMarchingState);
-
-    // delete this->changedBoundaries;
 }
