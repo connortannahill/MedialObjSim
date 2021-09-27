@@ -279,7 +279,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     phiReInit[mo+k][mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d > collisionDist/2.0) {
+        if (d > collisionDist) {
             fastMarchingState[k][j][i] = ACCEPTED;
             return;
         }
@@ -292,7 +292,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
 /**
  * Assign the marching state of the current node.
 */
-void Pool3D::assignDomainMemberships(int i, int j, int k, int mode) {
+void Pool3D::assignDomainMemberships(int i, int j, int k, double val, int mode) {
     int curMembership = domainMembership(i, j, k);
     int neighMembership;
 
@@ -320,27 +320,22 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, int mode) {
 
                 // Keep track of the number if intersections about this point. We accumulate
                 // them and take the average.
-                nIntersections++;
 
                 int offX = (ni - i > 0) ? 1 : 0;
                 int offY = (nj - j > 0) ? 1 : 0;
                 int offZ = (nk - k > 0) ? 1 : 0;
 
-                medX += x[i+offX];
-                medY += y[i+offY];
-                medZ += z[i+offZ];
+                medX = x[i+offX];
+                medY = y[i+offY];
+                medZ = z[i+offZ];
+
+                if (mode == 2 && val < collisionDist) {
+                    medialAxisPnts->push_back(make_tuple(medX, medY, medZ));
+                }
 
                 domainTracker[k+offZ][j+offY][i+offX] = DOMAIN_INTERSECTION_3D;
-
-                intersectionFound = true;
-                break;
             }
         }
-    }
-
-    if (intersectionFound) {
-        medialAxisPnts->push_back(make_tuple(medX/nIntersections, medY/nIntersections,
-                                             medZ/nIntersections));
     }
 }
 
@@ -444,7 +439,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
         // Assign the domain memberships of the neighbouring points
         if (domainTracker[k][j][i] != DOMAIN_INTERSECTION_3D) {
-            assignDomainMemberships(i, j, k, mode);
+            assignDomainMemberships(i, j, k, val, mode);
         }
 
         // Update all of the neighbours according to the fast marching algorithm
@@ -625,7 +620,7 @@ void Pool3D::detectCollisions() {
         medPhi = interpolatePhi(medX, medY, medZ);
 
         // If this value is beneath the threshold for possible collision, look at which objects are colliding
-        if (medPhi < collisionDist / 2.0) {
+        if (medPhi < collisionDist) {
             // Build up a list of the neighbours around this cell to find which unique colliding nodes
             for (int k = zCell-2; k <= zCell+2; k++) {
                 for (int j = yCell-2; j <= yCell+2; j++) {
@@ -661,7 +656,7 @@ void Pool3D::detectCollisions() {
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
-        double SCAL_FAC = 1.5;
+        double SCAL_FAC = 1.0;
         int nMatches;
         for (auto tup = medialAxisCollisionPnts.begin(); tup != medialAxisCollisionPnts.end(); ++tup) {
             medX = get<0>(*tup);
@@ -695,10 +690,10 @@ void Pool3D::detectCollisions() {
                 id++;
             }
 
-            if (nearestMss.size() < 2) {
-                cout << "ERROR IN FINDING MSS NODES AT COLLISION POINT" << endl;
-                assert(nearestMss.size() < 2);
-            }
+            // if (nearestMss.size() < 2) {
+            //     cout << "ERROR IN FINDING MSS NODES AT COLLISION POINT" << endl;
+            //     assert(nearestMss.size() < 2);
+            // }
 
             // For each of the matches, we keep track in each MSS of which of the points
             // it is potentially colliding with
@@ -2735,6 +2730,46 @@ void Pool3D::outputAllStructureVels(const char *baseName) {
     }
 }
 
+void Pool3D::outputTracers(const char *fname) {
+    double x, y, z;
+
+    ofstream outFile;
+    outFile.open(fname);
+
+    for (int i = 0; i < nStructs; i++) {
+        x = tracers[i].x;
+        y = tracers[i].y;
+        z = tracers[i].z;
+
+        outFile << x << ", ";
+        outFile << y << ", ";
+        outFile << z << endl;
+    }
+}
+
+void Pool3D::outputMedialAxis(const char *fname) {
+    double x, y, z;
+    double phiVal;
+
+    ofstream outFile;
+    outFile.open(fname);
+
+    for (auto tup = medialAxisPnts->begin(); tup != medialAxisPnts->end(); ++tup) {
+        x = get<0>(*tup);
+        y = get<1>(*tup);
+        z = get<2>(*tup);
+
+        phiVal = interpolatePhi(x, y, z);
+
+
+        outFile << x << ", ";
+        outFile << y << ", ";
+        outFile << z << ", ";
+        outFile << phiVal << endl;
+    }
+
+    outFile.close();
+}
 /**
  * Return the object type at the given index.
 */

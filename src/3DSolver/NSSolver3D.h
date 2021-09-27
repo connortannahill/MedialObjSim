@@ -36,6 +36,8 @@ public:
     double*** getW();
 
     void outputStructure(int structNum, const char *fname);
+    void outputTracers(const char *fname);
+    void outputMedialAxis(const char *fname);
     void outputStructureNodes(int structNum, const char *fname);
     void outputStructureVels(int structNum, const char *fname);
     void outputAllStructures(const char *fname);

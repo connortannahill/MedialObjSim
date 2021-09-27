@@ -1,0 +1,23 @@
+Q3ManyObject
+2
+0 10
+0 5
+320 160
+0.1 0.0
+0.0 0.0
+1000
+1
+directionalFlowBC
+100
+0.5 6.0
+0.5 4.5
+bloodCellShapeFun
+0.1
+0.05
+mass 1
+density 1
+E 10
+eta 0.0
+a 0.3
+c 0.105
+None -1

@@ -1,0 +1,19 @@
+A fixed-grid scaling test for the number of objects
+TestObj0.48
+
+
+0
+1
+0
+1
+160
+160
+0.0
+0.0
+1000.0
+1
+downDirFlowBC
+100.0
+
+
+0

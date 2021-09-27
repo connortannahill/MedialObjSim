@@ -711,3 +711,11 @@ void NSSolver3D::outputStructureVels(int structNum, const char *fname) {
 void NSSolver3D::outputAllStructureVels(const char *fname) {
     pool->outputAllStructureVels(fname);
 }
+
+void NSSolver3D::outputTracers(const char *fname) {
+    pool->outputTracers(fname);
+}
+
+void NSSolver3D::outputMedialAxis(const char *fname) {
+    pool->outputMedialAxis(fname);
+}

@@ -1,0 +1,275 @@
+A fixed-grid scaling test for the number of objects
+TestObj0.04
+
+
+0
+1
+0
+1
+160
+160
+0.0
+0.0
+1000.0
+1
+downDirFlowBC
+100.0
+
+
+16
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 359
+cx 0.1404029130879204
+cy 0.1404029130879204
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 111
+cx 0.1404029130879204
+cy 0.3095970869120796
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 279
+cx 0.1404029130879204
+cy 0.47879126073623884
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 5
+cx 0.1404029130879204
+cy 0.6479854345603981
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 214
+cx 0.3095970869120796
+cy 0.1404029130879204
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 350
+cx 0.3095970869120796
+cy 0.3095970869120796
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 54
+cx 0.3095970869120796
+cy 0.47879126073623884
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 311
+cx 0.3095970869120796
+cy 0.6479854345603981
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 95
+cx 0.47879126073623884
+cy 0.1404029130879204
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 247
+cx 0.47879126073623884
+cy 0.3095970869120796
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 234
+cx 0.47879126073623884
+cy 0.47879126073623884
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 156
+cx 0.47879126073623884
+cy 0.6479854345603981
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 42
+cx 0.6479854345603981
+cy 0.1404029130879204
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 215
+cx 0.6479854345603981
+cy 0.3095970869120796
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 221
+cx 0.6479854345603981
+cy 0.47879126073623884
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.04040291308792039
+E 10
+eta 0
+a 0
+c 0
+deg 283
+cx 0.6479854345603981
+cy 0.6479854345603981
+.

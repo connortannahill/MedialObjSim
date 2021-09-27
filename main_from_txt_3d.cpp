@@ -126,7 +126,7 @@ void outputData(string f_name, NSSolver3D &solver) {
     testFormatter.genOutStr("pool3DOut", outStr);
     testFormatter.genOutStr("pool3DVel", outStr2);
     solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
-    cout << outStr << endl;
+
     cout << outStr2 << endl;
 
     testFormatter.genOutStr("MSS3DEdges", outStr);
@@ -141,11 +141,13 @@ void outputData(string f_name, NSSolver3D &solver) {
     solver.outputAllStructureVels(outStr.c_str());
     cout << outStr << endl;
 
-    // testFormatter.genOutStr("MSSTracers", outStr);
-    // solver.outputTracers(outStr.c_str());
+    testFormatter.genOutStr("MSS3DTracers", outStr);
+    solver.outputTracers(outStr.c_str());
+    cout << outStr << endl;
 
-    // testFormatter.genOutStr("medialAxis", outStr);
-    // solver.outputMedialAxis(outStr.c_str());
+    testFormatter.genOutStr("medialAxis3D", outStr);
+    solver.outputMedialAxis(outStr.c_str());
+    cout << outStr << endl;
 }
 
 // argv: main input_file max_steps save_snapshots
@@ -195,9 +197,6 @@ int main(int argc, char **argv) {
     input_file >> cons_u >> cons_v >> cons_w >> g_x >> g_y >> g_z;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
-    // std::cout << xa << " " << xb << " " << ya << " " << yb << endl;
-    // std::cout << nx << " " << ny << " " << re << " " << tEnd << endl;
-
     // get objects in simulation
     input_file >> num_objects;
 
@@ -212,21 +211,18 @@ int main(int argc, char **argv) {
         while (paramName != ".") {
             input_file >> paramValue;
             params.addParam(paramName, paramValue);
-            // cout << paramName << " " << paramValue << endl;
 
             input_file >> paramName;
         }
-        // std::cout << u0 << " " << v0 << " " << objectType << " " << objectFunc << endl;
 
         SolidObject3D object(u0, v0, w0, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 
     // actually set up simParams
-    double h = sqrt(simutils::square(1.0/((double) nx)
-        + simutils::square(1.0/((double) ny)
-        + simutils::square(1.0/((double) nz)))));
-    // double dt = 0.5/((double)nx) + 0.5/((double)ny); // TODO: compute this more generally, perhaps make the time step computation method static.
+    double h = sqrt(simutils::square(abs(xa - xb)/((double) nx)
+        + simutils::square(abs(ya - yb)/((double) ny)
+        + simutils::square(abs(za - zb)/((double) nz)))));
 
     simParams.setRe(re);
     simParams.setMu(1.0/simParams.Re);

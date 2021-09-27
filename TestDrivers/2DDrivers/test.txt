@@ -1,0 +1,34 @@
+Many object test generic, can be from many sources
+test
+
+0
+1
+0
+1
+40
+40
+0
+0
+0
+0
+1000
+1
+downDirFlowBC
+10
+
+
+1
+
+coneShapeFun
+1
+0
+0
+mass 1
+density 1
+r 0.1
+E 10
+eta 0
+a 0
+c 0
+deg 211
+.

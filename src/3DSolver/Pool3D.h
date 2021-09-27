@@ -172,7 +172,7 @@ protected:
 
     void fastMarch(bool nExtrap, int mode);
     void fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode);
-    void assignDomainMemberships(int i, int j, int k, int mode);
+    void assignDomainMemberships(int i, int j, int k, double val, int mode);
     bool indInRange(int i, int j, int k);
     double buildSqeezeField();
     bool shouldRefitSDF(double tol);
@@ -251,6 +251,8 @@ public:
     void setUpDomainArray();
     void printPool();
     void outputPool(const char *fname);
+    void outputTracers(const char *fname);
+    void outputMedialAxis(const char *fname);
     void outputPoolVelocity(const char *fname);
     void outputSurfaceCentroids(int structNum, const char *fname);
     void outputStructure(int structNum, const char *fname);

@@ -97,7 +97,7 @@ bool SimParams3D::checkParams() {
     cout << repulseDistSet << endl;
     cout << collisionStiffnessSet << endl;
     cout << collisionDistSet << endl;
-    return nxSet && nySet && nzSet && reSet && muSet && repulseModeSet && repulseDistSet
+    return nxSet && nySet && nzSet && reSet && muSet && repulseModeSet
             && collisionStiffnessSet && collisionDistSet;
 }
 

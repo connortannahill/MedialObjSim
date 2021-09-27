@@ -282,11 +282,6 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
     int iList[4] = {i+1, i-1, i,   i};
     int jList[4] = {j,   j,   j+1, j-1};
 
-    // double nIntersections = 0;
-    bool intersectionFound = false;
-    // double medX = 0;
-    // double medY = 0;
-
     for (int l = 0; l < 4; l++) {
         int ni = iList[l];
         int nj = jList[l];
@@ -300,8 +295,6 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
 
                 // Keep track of the number if intersections about this point. We accumulate
                 // them and take the average.
-                // nIntersections++;
-
                 int offX = (ni - i > 0) ? 1 : 0;
                 int offY = (nj - j > 0) ? 1 : 0;
 
@@ -310,9 +303,6 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
                 }
 
                 domainTracker[nj][ni] = DOMAIN_INTERSECTION;
-
-                // Domain intersection which meets the collision requirement
-                intersectionFound = true;
             }
         }
     }
@@ -630,8 +620,6 @@ void Pool2D::detectCollisions() {
             // potentially interacting nodes
             nMatches = kdTree->radiusSearch(&queryPnt[0],
                 simutils::square(SCAL_FAC*(collisionDist)), ret_matches, params);
-
-            // cout << "nMatches = " << nMatches << endl;
 
             // Find the nearest points on each colliding object to the medial axis point
             vector<int> nearestMss;

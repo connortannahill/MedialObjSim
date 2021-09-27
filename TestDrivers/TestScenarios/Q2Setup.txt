@@ -1,0 +1,23 @@
+Q2ManyObject
+2
+0 5
+0 10
+160 320
+0 -0.1
+0.0 0.0
+1000
+1
+downDirFlowBC
+100
+1.0 5.0
+7.0 9.0 
+coneShapeFun
+0.2
+0.15
+mass 1
+density 1
+E 10
+eta 0.0
+a 0.38
+c 0.105
+None -1

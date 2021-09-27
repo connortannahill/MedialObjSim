@@ -255,6 +255,7 @@ int main(int argc, char **argv) {
     Boundary boundary(xa, xb, ya, yb);
 
     // Create the Solver object
+    cout << "Creating the solver" << endl;
     NSSolver solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
 
     ///////////////////////////////////////////////////////////////////////////////////
@@ -265,11 +266,13 @@ int main(int argc, char **argv) {
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
     auto start = high_resolution_clock::now();
+    cout << "hi" << endl;
 
     int nsteps = 0;
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
+            cout << "hi 274" << endl;
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 10 == 0) {
