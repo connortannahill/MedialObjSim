@@ -334,8 +334,6 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
     // Initialize the velocity fields and the temp signed distance function to infinity (negative
     // infinity in the interior of the domain.)
 
-    assert(heap.empty());
-
     double phiVal = 0.0;
     objects::FSIObject obj;
     double pnt[2];

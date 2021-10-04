@@ -1,3 +1,0 @@
-A grid-based scaling test for performance
-TestTwo10
-

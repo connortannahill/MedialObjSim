@@ -275,12 +275,13 @@ elif mode == 10:
 
     out = np.genfromtxt(f_name+'medialAxis', delimiter=',')
 
-    x = out[:,0]
-    y = out[:,1]
+    if len(out) > 0:
+        x = out[:,0]
+        y = out[:,1]
 
-    plt.scatter(x, y)
+        plt.scatter(x, y)
     
-    plt.title('$t = 1.73$')
+    # plt.title('$t = 1.73$')
 
     plt.gca().set_aspect('equal')
     # plt.axis('off')

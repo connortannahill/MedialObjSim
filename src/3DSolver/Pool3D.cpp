@@ -455,6 +455,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
     }
 
     if (mode == 2) {
+        cout << "MODE 2 RUNNING... FOUND " << medialAxisPnts->size() << endl;
         return;
     }
 

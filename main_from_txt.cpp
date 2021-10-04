@@ -192,10 +192,10 @@ int main(int argc, char **argv) {
     input_file >> xa >> xb >> ya >> yb >> nx >> ny >> cons_u >> cons_v >> g_x >> g_y;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
-    cout << "xa = " << xa << " " << xb << endl;
-    cout << "ya = " << ya << " " << yb << endl;
-    cout << "nx = " << nx << " " << ny << endl;
-    cout << "u = " << cons_u << " " << cons_v << endl;
+    cout << "xa = " << xa << ", xb = " << xb << endl;
+    cout << "ya = " << ya << ", yb = " << yb << endl;
+    cout << "nx = " << nx << ", ny = " << ny << endl;
+    cout << "u = " << cons_u << ", v = " << cons_v << endl;
     cout << "re = " << re << endl;
     cout << "useEno = " << useEno << endl;
     cout << "bctype = " << boundaryConditionType << endl;
@@ -232,7 +232,6 @@ int main(int argc, char **argv) {
 
     // actually set up simParams
     double h = getH(xa, xb, nx, ya, yb, ny);
-    // double dt = 0.5/((double)nx) + 0.5/((double)ny); 
 
     simParams.setRe(re);
     simParams.setNx(nx);

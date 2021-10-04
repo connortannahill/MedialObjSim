@@ -1,19 +1,22 @@
 A grid-based scaling test for performance
-TestTwo80
+ScaleTestTwo640
 
 
-0
-5
-0
-10
-80
-160
-0
-0
+0.0
+5.0
+0.0
+10.0
+640
+1280
+0.0
+-0.1
+0.0
+0.0
 1000
 1
 downDirFlowBC
-100
+100.0
+
 
 
 1
@@ -29,7 +32,8 @@ E 10
 eta 0
 a 0
 c 0
-deg 182
-cx = 1.1
-cy = 7.1
+
+deg 74
+cx 2.5
+cy 6.1
 .

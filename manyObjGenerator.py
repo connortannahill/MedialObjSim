@@ -21,13 +21,16 @@ TEMPLATES AND MISC
 
 FUNS = """
 create_test()
-grid_scale_test_2d()
-obj_scale_test_2d()
-full_scale_test_2d()
+grid_scale_test()
+obj_scale_test()
+full_scale_test()
 run_mesh_scale_experiment()
 create_scale_plot()
 exit()
 """
+
+def removePadding(s):
+    return ''.join([str.strip()+'\n' for str in s.split('\n')])
 
 def exit():
     import sys
@@ -45,6 +48,8 @@ def getTemplate2D():
         $yb
         $nx
         $ny
+        $cons_u
+        $cons_v
         $g_x
         $g_y
         $Re
@@ -94,6 +99,23 @@ def getObjTemplate2D():
         """
     return OBJ_TEMPLATE
 
+def getObjTemplate3D():
+    OBJ_TEMPLATE = """
+        $objType
+        $objMove
+        $cons_u
+        $cons_v
+        $cons_w
+        mass $massVal
+        density $densityVal
+        r $r
+        E $Eval
+        eta $etaVal
+        a $aVal
+        c $cVal
+        """
+    return OBJ_TEMPLATE
+
 def plot_scale_experiment(testName, nums, times, ax, color, label):
     
     import statsmodels.stats.api as sms
@@ -128,6 +150,7 @@ def plot_scale_experiment(testName, nums, times, ax, color, label):
 
 
 def create_input_from_dict(in_dict, template, f):
+    template = removePadding(template)
     s = Template(template)
     inFile = s.substitute(in_dict)
 
@@ -141,7 +164,6 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
         XA, XB, YA, YB = lims
     else:
         XA, XB, YA, YB, ZA, ZB = lims
-
     
     r = float(obj_dict['r'])
     b = r+eps
@@ -187,16 +209,18 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
         
         f.write('.\n')
 
-def full_scale_test_2d():
-    nVals = [(2**i)*10 for i in range(6)]
+def full_scale_test():
+    nVals = [(2**i)*10 for i in range(2, 8)]
 
     outFileName = input('test name = ')
-    dim = 2
+    dim = int(input(('dim = ')))
 
     paramList = [s[1:] for s in (getTemplate2D() if dim == 2 else getTemplate3D()).split()]
 
     paramList.remove('nx')
     paramList.remove('ny')
+    if dim == 3:
+        paramList.remove('nz')
 
     in_dict = {s: input('{} = '.format(s)) for s in paramList}
 
@@ -214,24 +238,36 @@ def full_scale_test_2d():
     else:
         lims = [XA, XB, YA, YB]
 
-    hx = abs(in_dict['xb'] - in_dict['xa'])/in_dict['nx']
-    hy = abs(in_dict['yb'] - in_dict['ya'])/in_dict['ny']
+    hx = abs(float(in_dict['xb']) - float(in_dict['xa']))/float(in_dict['nx'])
+    hy = abs(float(in_dict['yb']) - float(in_dict['ya']))/float(in_dict['ny'])
+    hz = 1
+    if dim == 3:
+        hz = abs(float(in_dict['zb']) - float(in_dict['za']))/float(in_dict['zy'])
 
-    epsMin = np.linalg.norm([5*hx, 5*hy])
+    if dim == 2:
+        epsMin = np.linalg.norm([5*hx, 5*hy])
+    else:
+        epsMin = np.linalg.norm([5*hx, 5*hy, 5*hz])
 
     xa, xb = float(in_dict['xa']), float(in_dict['xb'])
     ya, yb = float(in_dict['ya']), float(in_dict['yb'])
-    x_diff = xb - xa
-    y_diff = yb - ya
-    for n in nVals:
-        if (min(x_diff, y_diff) == x_diff):
-            scal = y_diff / x_diff
-            nTups.append((n, int(scal*n)))
-        else:
-            scal = x_diff / y_diff
-            nTups.append((int(scal*n), n))
+    za, zb = float(in_dict['za']), float(in_dict['zb'])
 
-    objParamList = [s[1:] for s in getObjTemplate2D().split() if s[0] == '$']
+    diffs = [xb - xa, yb - ya, zb - za]
+
+    for n in nVals:
+        min_edge = min(diffs)
+
+        min_idx = diffs.index(min_edge)
+
+        if min_idx == 0:
+            nTups.append((n, int((diffs[1]/min_edge)*n), int((diffs[2]/min_edge)*n)))
+        elif min_idx == 1:
+            nTups.append((int((diffs[0]/min_edge)*n), n, int((diffs[2]/min_edge)*n)))
+        else:
+            nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
+
+    objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
 
     obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
 
@@ -245,11 +281,14 @@ def full_scale_test_2d():
             in_dict['nx'] = str(n[0])
             in_dict['ny'] = str(n[1])
 
+            if dim == 3:
+                in_dict['nz'] = str(n[2])
+
             outputPacking(dim, in_dict, obj_dict, f, lims, epsMin)
 
-def obj_scale_test_2d():
+def obj_scale_test():
     outFileName = input('test name = ')
-    dim = 2
+    dim = int(input)
 
     paramList = [s[1:] for s in (getTemplate2D() if dim == 2 else getTemplate3D()).split()]
     print(paramList)
@@ -295,16 +334,18 @@ def obj_scale_test_2d():
 
             outputPacking(dim, in_dict, obj_dict, f, lims, epsMin)
 
-def grid_scale_test_2d():
+def grid_scale_test():
     nVals = [(2**i)*10 for i in range(2, 8)]
 
     outFileName = input('test name = ')
-    dim = 2
+    dim = int(input('dim = '))
 
     paramList = [s[1:] for s in (getTemplate2D() if dim == 2 else getTemplate3D()).split()]
 
     paramList.remove('nx')
     paramList.remove('ny')
+    if dim == 3:
+        paramList.remove('nz')
 
     in_dict = {s: input('{} = '.format(s)) for s in paramList}
 
@@ -325,17 +366,31 @@ def grid_scale_test_2d():
 
     xa, xb = float(in_dict['xa']), float(in_dict['xb'])
     ya, yb = float(in_dict['ya']), float(in_dict['yb'])
-    x_diff = xb - xa
-    y_diff = yb - ya
-    for n in nVals:
-        if (min(x_diff, y_diff) == x_diff):
-            scal = y_diff / x_diff
-            nTups.append((n, int(scal*n)))
-        else:
-            scal = x_diff / y_diff
-            nTups.append((int(scal*n), n))
+    za = zb = 0
+    if dim == 3:
+        za, zb = float(in_dict['za']), float(in_dict['zb'])
 
-    objParamList = [s[1:] for s in getObjTemplate2D().split() if s[0] == '$']
+    diffs = [xb - xa, yb - ya, zb - za]
+
+    for n in nVals:
+        min_edge = min(diffs[:dim])
+
+        min_idx = diffs.index(min_edge)
+
+        if dim == 2:
+            if min_idx == 0:
+                nTups.append((n, int((diffs[1]/min_edge)*n)))
+            elif min_idx == 1:
+                nTups.append((int((diffs[0]/min_edge)*n), n))
+        else:
+            if min_idx == 0:
+                nTups.append((n, int((diffs[1]/min_edge)*n), int((diffs[2]/min_edge)*n)))
+            elif min_idx == 1:
+                nTups.append((int((diffs[0]/min_edge)*n), n, int((diffs[2]/min_edge)*n)))
+            else:
+                nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
+
+    objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
 
     obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
 
@@ -350,6 +405,8 @@ def grid_scale_test_2d():
 
             in_dict['nx'] = str(n[0])
             in_dict['ny'] = str(n[1])
+            if dim == 3:
+                in_dict['nz'] = str(n[2])
 
             if i == 0:
                 nx = n[0]
@@ -478,7 +535,6 @@ def create_scale_plot():
 
         # Make modified ticks
         ticks = ['${}$'.format(num) for num in num_list]
-        ticks.insert(0, '$1$')
         ax.set_xticklabels(ticks)
 
         plt.xlabel('$N^{}$'.format(dim))
@@ -490,7 +546,6 @@ def create_scale_plot():
         print(pName)
         Path(pName).mkdir(parents=True, exist_ok=True)
         plt.savefig('{0}ParTest{1}{2}.png'.format(pName, testName, num_list[i]))
-        
 
 while(True):
     print('====================================')

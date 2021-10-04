@@ -1,19 +1,22 @@
 A grid-based scaling test for performance
-TestTwo20
+ScaleTestTwo320
 
 
-0
-5
-0
-10
-20
-40
-0
-0
+0.0
+5.0
+0.0
+10.0
+320
+640
+0.0
+-0.1
+0.0
+0.0
 1000
 1
 downDirFlowBC
-100
+100.0
+
 
 
 1
@@ -24,10 +27,13 @@ coneShapeFun
 -0.1
 mass 1
 density 1
-r 0.1
+r 0.10
 E 10
 eta 0
 a 0
 c 0
-deg 234
+
+deg 301
+cx 2.5
+cy 6.1
 .
