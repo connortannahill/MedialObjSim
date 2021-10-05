@@ -274,7 +274,7 @@ def full_scale_test():
     for n in nTups:
         testName = outFileName + str(min(n))
 
-        with open(out_dir_template.format(dim, str(testName)+'.txt'), 'w') as f:
+        with open(out_dir_template.format(dim, str(testName)), 'w') as f:
             f.write('A grid-based scaling test for performance\n')
             f.write(testName + '\n\n')
 
@@ -326,7 +326,7 @@ def obj_scale_test():
     for r in rVals:
         testName = outFileName + 'Radius{0:.2}'.format(float(r))
 
-        with open(out_dir_template.format(dim, str(testName)+'.txt'), 'w') as f:
+        with open(out_dir_template.format(dim, str(testName)), 'w') as f:
             f.write('A fixed-grid scaling test for the number of objects\n')
             f.write(testName + '\n\n')
 
@@ -399,7 +399,7 @@ def grid_scale_test():
     for i, n in enumerate(nTups):
         testName = outFileName + str(min(n))
 
-        with open(out_dir_template.format(dim, str(testName)+'.txt'), 'w') as f:
+        with open(out_dir_template.format(dim, str(testName)), 'w') as f:
             f.write('A grid-based scaling test for performance\n')
             f.write(testName + '\n\n')
 
@@ -441,7 +441,7 @@ def create_test():
 
     objs = []
 
-    with open(out_dir_template.format(dim, str(testName)+'.txt'), 'w') as f:
+    with open(out_dir_template.format(dim, str(testName)), 'w') as f:
         f.write('Many object test generic, can be from many sources\n')
         f.write(testName + '\n')
 
@@ -469,18 +469,22 @@ def create_test():
 
 def run_mesh_scale_experiment():
 
+    MAX_STEPS = 100000
+
     testName = input('test name = ')
     dim = int(input('dimension = '))
 
     # Get all input file names
     inputFiles = [file for file in glob.glob('./TestDrivers/{0}DDrivers/{1}*'.format(str(dim), testName))]
-    inputFiles_dirgone = [file for file[file.rfind('/')+1:] in inputFiles]
-    num_list = np.argsort([int(file[len(testName):]) for file in inputFiles_dirgone])
+    print(inputFiles)
+    inputFiles = [file[file.rfind('/')+1:]  for file in inputFiles]
+    print(inputFiles)
+    num_list = np.argsort([int(file[len(testName):]) for file in inputFiles])
 
     inputFiles = list(np.array(inputFiles)[num_list])
-    inputFiles_dirgone = list(np.array(inputFiles_dirgone)[num_list])
 
     subprocess.run('make')
+    assert(False)
 
     for i in range(len(inputFiles)):
         times = []
@@ -489,13 +493,13 @@ def run_mesh_scale_experiment():
         for run in num_runs:
             start = time.time()
 
-            subprocess.run('./mesh.exe {0}'.format(inputFiles[i]).split())
+            subprocess.run('./mesh.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
             times.append(time.time() - start)
         
         # Dump the data file
         Path("output/ScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
 
-        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles_dirgone), 'w+') as f:
+        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles), 'w+') as f:
             f.write('{}\n'.format(num_runs))
             for time in times():
                 f.write(str(time) + ' ')

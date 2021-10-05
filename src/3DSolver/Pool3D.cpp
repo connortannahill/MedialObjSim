@@ -300,8 +300,8 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, double val, int mode) 
     int jList[6] = {j,   j,   j,   j,   j+1, j-1};
     int kList[6] = {k+1, k-1, k,   k,   k,   k};
 
-    double nIntersections = 0;
-    bool intersectionFound = false;
+    // double nIntersections = 0;
+    // bool intersectionFound = false;
     double medX = 0;
     double medY = 0;
     double medZ = 0;

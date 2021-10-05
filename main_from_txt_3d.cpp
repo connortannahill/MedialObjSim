@@ -168,7 +168,9 @@ int main(int argc, char **argv) {
       return 0;
     }
 
-    string input_file_name = argv[1];
+    string testInputDir = "./TestDrivers/3DDrivers/";
+    string testTitle = argv[1];
+    string input_file_name =  testInputDir + testTitle;
     int max_steps = (argc == 2) ? 1 : atoi(argv[2]);
     // bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
     bool save_snapshots = 0; // not implemented in 3D yet
