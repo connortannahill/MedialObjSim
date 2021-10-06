@@ -18,8 +18,8 @@ void SimParams3D::setMssNy(int mssNy) {
     mssNySet = true;
 }
 
-void SimParams3D::setMssNz(int mssNy) {
-    this->mssNy = mssNy;
+void SimParams3D::setMssNz(int mssNz) {
+    this->mssNz = mssNz;
     mssNySet = true;
 }
 

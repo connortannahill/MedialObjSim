@@ -55,6 +55,17 @@ double SolidObject3D::shapeEval(double x, double y, double z) {
     return this->shapeFun(x, y, z, this->params);
 }
 
+
+// double SolidObject3D::getCx() {
+//     return this->cx;
+// }
+// double SolidObject3D::getCy() {
+//     return this->cy;
+// }
+// double SolidObject3D::getCz() {
+//     return this-cz;
+// }
+
 double SolidObject3D::getMass() {
     return this->mass;
 }

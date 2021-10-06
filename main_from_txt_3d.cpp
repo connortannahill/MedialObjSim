@@ -181,7 +181,8 @@ int main(int argc, char **argv) {
     string desc, boundaryConditionType;
     string testName;
     double xa, xb, ya, yb, za, zb, cons_u, cons_v, cons_w, g_x, g_y, g_z, tEnd;
-    int nx, ny, nz, re, num_objects;
+    double re;
+    int nx, ny, nz, num_objects;
     bool useEno;
     vector<SolidObject3D> shapes;
     SimParams3D simParams;
@@ -199,19 +200,51 @@ int main(int argc, char **argv) {
     input_file >> cons_u >> cons_v >> cons_w >> g_x >> g_y >> g_z;
     input_file >> re >> useEno >> boundaryConditionType >> tEnd;
 
+    cout << "Reading in everything" << endl;
+    cout << "xa = " << xa << endl;
+    cout << "xb = " << xb << endl;
+    cout << "ya = " << ya << endl;
+    cout << "yb = " << yb << endl;
+    cout << "za = " << za << endl;
+    cout << "zb = " << zb << endl;
+
+    cout << "nx = " << nx << endl;
+    cout << "ny = " << ny << endl;
+    cout << "nz = " << nz << endl;
+
+    cout << "cons_u = " << cons_u << endl;
+    cout << "cons_v = " << cons_v << endl;
+    cout << "cons_w = " << cons_w << endl;
+
+    cout << "g_x = " << g_x << endl;
+    cout << "g_y = " << g_y << endl;
+    cout << "g_z = " << g_z << endl;
+
+    cout << "Re = " << re << endl;
+
+    cout << "useEno = " << useEno << endl;
+
+    cout << "bcType = " << boundaryConditionType << endl;
+
     // get objects in simulation
     input_file >> num_objects;
+
+    cout << "numObjects = " << num_objects << endl;
 
     string objectFunc, paramName;
     int objectType;
     double u0, v0, w0, paramValue;
     for (int i = 0; i < num_objects; i++) {
         input_file >> objectFunc >> objectType >> u0 >> v0 >> w0;
+
+        cout << "objectFunc = " << objectFunc << endl;
+        cout << "objectType = " << objectType << endl;
         
         SolidParams params;
         input_file >> paramName;
         while (paramName != ".") {
             input_file >> paramValue;
+            cout << "Adding paramName = " << paramName << " paramValue = " << paramValue << endl;
             params.addParam(paramName, paramValue);
 
             input_file >> paramName;
@@ -235,9 +268,9 @@ int main(int argc, char **argv) {
     simParams.setMssNy(ny);
     simParams.setMssNz(nz);
     simParams.setUseEno(useEno);
-    simParams.setRepulseMode(0);
+    simParams.setRepulseMode(2);
     simParams.setRepulseDist(3*h); // Actually need 0.1
-    simParams.setCollisionStiffness(2.0);
+    simParams.setCollisionStiffness(5.0);
     simParams.setCollisionDist(3*h);
     simParams.setUpdateMode(1);
     simParams.setGx(g_x);
@@ -250,7 +283,9 @@ int main(int argc, char **argv) {
     Boundary3D boundary(xa, xb, ya, yb, za, zb);
 
     // Create the Solver object
+    cout << "Making solver" << endl;
     NSSolver3D solver(boundary, shapes, simParams, initialConditions, boundaryCondition);
+    cout << "Finished Making solver" << endl;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time

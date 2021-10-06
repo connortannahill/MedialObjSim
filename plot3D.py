@@ -2,8 +2,9 @@ import plotly.graph_objects as go
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
+import glob
 
-base_dir = './output/3D'
+# base_dir = './output/3D'
 
 if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
@@ -13,10 +14,11 @@ test = sys.argv[1]
 mode = int(sys.argv[2])
 f_name = './output/{0}/'.format(test)
 
-nMss = int(sys.argv[3])
-narg = 1
-if len(sys.argv) == 3:
-    narg = int(sys.argv[2])
+nMSS= len(glob.glob(f_name+'MSS3DEdges*'))
+# nMss = int(sys.argv[3])
+# narg = 1
+# if len(sys.argv) == 3:
+#     narg = int(sys.argv[2])
 
 
 # fluid_fname = 'out3D'
@@ -53,8 +55,8 @@ if mode == -2:
 
     fig.show()
 
-if mode == 0:
-    f_temp = f_name
+def plot_3D(num):
+    f_temp = f_name + ('{}/'.format(num) if num >= 0 else '')
 
     pool_iso_fname = f_temp + 'pool3DOut'
     # pool_vel_fname = 'pool3DVel'
@@ -84,20 +86,20 @@ if mode == 0:
     y_pool = out_pool[:,1]
     z_pool = out_pool[:,2]
     phi    = out_pool[:,3]
-    cx = 0.5
-    cy = 0.5
-    cz = 0.5
-    a = 0.38
-    c = 0.15
-    r = 0.3
-    b = 1.75 * r
+    # cx = 0.5
+    # cy = 0.5
+    # cz = 0.5
+    # a = 0.38
+    # c = 0.15
+    # r = 0.3
+    # b = 1.75 * r
 
-    for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
-        x, y, z = pnt
-        xsq = ((x-cx)/b)**2
-        ysq = ((y-cy)/b)**2
-        zsq = ((z-cz)/b)**2
-        phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
+    # for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
+    #     x, y, z = pnt
+    #     xsq = ((x-cx)/b)**2
+    #     ysq = ((y-cy)/b)**2
+    #     zsq = ((z-cz)/b)**2
+    #     phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
 
 
     fig = go.Figure(data=[
@@ -106,6 +108,16 @@ if mode == 0:
                         isomax=0.0001, colorscale=[(0, 'blue'), (1, 'red')])])
 
     fig.show()
+
+    # import plotly.io as pio
+    fig.write_image("{0}{1}.png".format(f_temp, test))
+
+
+if mode == 0:
+    if len(sys.argv) == 4:
+        plot_3D(int(sys.argv[3]))
+    else:
+        plot_3D(-1)
 elif mode == 1:
     pool_fname = f_name + 'pool3DOut'
 
