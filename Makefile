@@ -1,6 +1,6 @@
 CC=g++
-IDIRS=../src
-CFLAGS=-Wall -std=c++11 -I$(IDIRS) -O3
+IDIRS=-I../src -I./lib/eigen/ -I./lib/nanoflann/include/
+CFLAGS=-Wall -std=c++17 $(IDIRS) -O3
 DRIVERS2D = ./TestDrivers/2DDrivers
 DRIVERS3D = ./TestDrivers/3DDrivers
 

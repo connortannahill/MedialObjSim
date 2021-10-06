@@ -18,14 +18,17 @@ import re
 """
 TEMPLATES AND MISC
 """
+MAX_STEPS = 100000
+
 
 FUNS = """
 create_test()
 grid_scale_test()
 obj_scale_test()
 full_scale_test()
-run_mesh_scale_experiment()
+run_scale_experiment()
 create_scale_plot()
+run_solver()
 exit()
 """
 
@@ -467,9 +470,7 @@ def create_test():
 
         outputPacking(dim, in_dict, obj_dict, f, lims)
 
-def run_mesh_scale_experiment():
-
-    MAX_STEPS = 100000
+def run_scale_experiment():
 
     testName = input('test name = ')
     dim = int(input('dimension = '))
@@ -483,8 +484,10 @@ def run_mesh_scale_experiment():
 
     inputFiles = list(np.array(inputFiles)[num_list])
 
-    subprocess.run('make')
-    assert(False)
+    if dim == 2
+        subprocess.run('make')
+    else:
+        subprocess.run('make sol3d')
 
     for i in range(len(inputFiles)):
         times = []
@@ -493,7 +496,10 @@ def run_mesh_scale_experiment():
         for run in num_runs:
             start = time.time()
 
-            subprocess.run('./mesh.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+            if dim == 2
+                subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+            else:
+                subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
             times.append(time.time() - start)
         
         # Dump the data file
@@ -524,7 +530,6 @@ def create_scale_plot():
     for i, dataFile in enumerate(dataFiles):
         times = {}
         print(dataFile)
-        num_runs = 0
         times = []
         with open('output/ScaleTest/{0}/{1}'.format(testName, dataFile)) as f:
             input = [float(num) for num in f.readlines()]
@@ -550,6 +555,25 @@ def create_scale_plot():
         print(pName)
         Path(pName).mkdir(parents=True, exist_ok=True)
         plt.savefig('{0}ParTest{1}{2}.png'.format(pName, testName, num_list[i]))
+
+def run_solver():
+    test_name = input('test name = ')
+    dim = int(input('dim = '))
+
+    if dim == 2:
+        subprocess.run('make')
+    else:
+        subprocess.run('make sol3d')
+
+    start = time.time()
+
+    if dim == 2
+        subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+    else:
+        subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+    times = (time.time() - start)
+
+    print('took {} secs'.format(times))
 
 while(True):
     print('====================================')

@@ -6,7 +6,7 @@ using namespace std;
 
 #if __APPLE__
 namespace fs = std::__fs::filesystem;
-#else
+#else /* */
 namespace fs = std::filesystem;
 #endif
 
