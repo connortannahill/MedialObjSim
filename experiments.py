@@ -20,7 +20,6 @@ TEMPLATES AND MISC
 """
 MAX_STEPS = 100000
 
-
 FUNS = """
 create_test()
 grid_scale_test()
@@ -58,8 +57,7 @@ def getTemplate2D():
         $Re
         $useEno
         $bcType
-        $tEnd
-        """
+        $tEnd"""
     return TEMPLATE_2D
 
 def getTemplate3D():
@@ -82,8 +80,7 @@ def getTemplate3D():
         $Re
         $useEno
         $bcType
-        $tEnd
-        """
+        $tEnd"""
     return TEMPLATE_3D
 
 def getObjTemplate2D():
@@ -98,8 +95,7 @@ def getObjTemplate2D():
         E $Eval
         eta $etaVal
         a $aVal
-        c $cVal
-        """
+        c $cVal"""
     return OBJ_TEMPLATE
 
 def getObjTemplate3D():
@@ -115,8 +111,7 @@ def getObjTemplate3D():
         E $Eval
         eta $etaVal
         a $aVal
-        c $cVal
-        """
+        c $cVal"""
     return OBJ_TEMPLATE
 
 def plot_scale_experiment(testName, nums, times, ax, color, label):
@@ -162,7 +157,7 @@ def create_input_from_dict(in_dict, template, f):
 def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     # Compute the locations
     XA = XB = YA = YB = ZA = ZB = 0
-    print(lims)
+    print('lims = {}'.format(lims))
     if dim == 2:
         XA, XB, YA, YB = lims
     else:
@@ -179,7 +174,7 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     jMax = int(np.floor((YB - YA)/(2*(r + eps))))
     kMax = 1
     if dim == 3:
-        kMax = np.floor((ZB - ZA)/(2*(r + eps)))
+        kMax = int(np.floor((ZB - ZA)/(2*(r + eps))))
     
     numObjs = iMax*jMax*kMax
 
@@ -193,14 +188,16 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     if dim == 2:
         centerList = [(XA+tup[0]*2*b+r, YA+tup[1]*2*b+r) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*2*(b)+(r), YA+tup[1]*2*(b)+(r), ZA+tup[2]*2*(b)+(r)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax+1))]
+        centerList = [(XA+tup[0]*2*(b)+(r), YA+tup[1]*2*(b)+(r), ZA+tup[2]*2*(b)+(r)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
+    
+    print('size of centerList = {}'.format(len(centerList)))
     
     """ For each of these centers, give the output for the file! """
 
     # fig, ax = plt.subplots() # note we must use plt.subplots, not plt.subplot
     for center in centerList:
         
-        create_input_from_dict(obj_dict, getObjTemplate2D(), f)
+        create_input_from_dict(obj_dict, (getObjTemplate2D() if dim == 2 else getObjTemplate3D()), f)
         
         # Add a random rotation between 0 and 360
         f.write('deg {}\n'.format(random.randint(0, 360)))
@@ -208,7 +205,7 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
         f.write('cx {0}\n'.format(center[0]))
         f.write('cy {0}\n'.format(center[1]))
         if dim == 3:
-            f.write('cz = {0}\n'.format(center[2]))
+            f.write('cz {0}\n'.format(center[2]))
         
         f.write('.\n')
 
@@ -320,7 +317,7 @@ def obj_scale_test():
     
     rVals = [rBase / (2**i) - epsMin/2.0 for i in range(6)]
 
-    objParamList = [s[1:] for s in getObjTemplate2D().split() if s[0] == '$']
+    objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
     print(objParamList)
 
     obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
@@ -452,7 +449,7 @@ def create_test():
 
         in_dict = {s: input('{} = '.format(s)) for s in paramList}
 
-        objParamList = [s[1:] for s in getObjTemplate2D().split() if s[0] == '$']
+        objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
 
         obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
 
@@ -467,8 +464,45 @@ def create_test():
             lims = [XA, XB, YA, YB, ZA, ZB]
         else:
             lims = [XA, XB, YA, YB]
+        
+        n = None
+        if dim == 2:
+            n = (int(in_dict['nx']), int(in_dict['ny']))
+        else:
+            n = (int(in_dict['nx']), int(in_dict['ny']), int(in_dict['nz']) )
+        
+        print('n = {}'.format(n))
+        print('xa = {0} xb = {1}'.format(in_dict['xa'], in_dict['xb']))
+        print('ya = {0} yb = {1}'.format(in_dict['ya'], in_dict['yb']))
+        print('za = {0} zb = {1}'.format(in_dict['za'], in_dict['zb']))
 
-        outputPacking(dim, in_dict, obj_dict, f, lims)
+        nx = n[0]
+        ny = n[1]
+
+        hx = abs(float(in_dict['xb']) - float(in_dict['xa']))/nx
+        print('h_x = {}'.format(hx))
+        hy = abs(float(in_dict['yb']) - float(in_dict['ya']))/ny
+        print('h_y = {}'.format(hy))
+
+        hz = 0
+        if dim == 3:
+            nz = n[2]
+            hz = abs(float(in_dict['zb']) - float(in_dict['za']))/nz
+            print('h_z = {}'.format(hz))
+
+        # Compute the tolerance for the embedding 5h
+        epsMin = 0
+        if dim == 2:
+            epsMin = 5*np.linalg.norm([hx, hy])
+        else:
+            epsMin = 5*np.linalg.norm([hx, hy, hz])
+        print('epsMin = {}'.format(epsMin))
+
+        eps = float(input('eps = '))
+        while eps < epsMin:
+            eps = float(input('This packing tolerance {0} will be too low for the chosen grid density, please choose another > {1}: '.format(eps, epsMin)))
+
+        outputPacking(dim, in_dict, obj_dict, f, lims, eps)
 
 def run_scale_experiment():
 

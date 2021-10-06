@@ -27,6 +27,10 @@ public:
 
     /* Wrapped evaluation of the shape function */
     double shapeEval(double x, double y, double z);
+    // double getCx();
+    // double getCy();
+    // double getCz();
+    // double cx, cy, cz;
 
     /* Getters & setters */
     double getMass();

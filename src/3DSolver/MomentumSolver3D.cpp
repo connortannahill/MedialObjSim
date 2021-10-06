@@ -49,7 +49,9 @@ MomentumSolver3D::MomentumSolver3D(
 
     // Create the pool object for this solver
     this->nStructs = solidObjects.size();
+    cout << "Creating the pool" << endl;
     this->pool = new Pool3D(boundary, solidObjects, params);
+    cout << "Finished Creating the pool" << endl;
 
     // Copy the input parameters using the default copy ctor
     this->params = &params;

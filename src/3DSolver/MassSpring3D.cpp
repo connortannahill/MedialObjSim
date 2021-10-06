@@ -20,6 +20,7 @@ const double EPS = 1e-14;
  * Just the copy ctor
 */
 MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
+    cout << "In copy CTOR" << endl;
     this->pntList = new vector<massPoint3D>(*cpy.pntList);
     this->edgeList = new vector<edge3D>(*cpy.edgeList);
     this->boundaryEdgeIdList = new vector<int>(*cpy.boundaryEdgeIdList);
@@ -89,10 +90,12 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
         setD(3);
         this->admmSolver = new ADMMPG((cpy.admmSolver)->dt, *this);
     }
+    cout << "FINSIHED In copy CTOR" << endl;
 }
 
 MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         int updateMode, int elementMode) : Assembly() {
+    cout << "in CTOR" << endl;
     // Create the vectors for the edge and point lists
     pntList = new vector<massPoint3D>();
     edgeList = new vector<edge3D>();
@@ -144,18 +147,27 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     map<tuple<int, int, int>, int> objectPointLabels;
 
     // First loop. Build up point set and HashMap for point numbers
+    set<int> domainSet;
+    int numNotFluid = 0;
     for (int k = 0; k < pool.getNz(); k++) {
         for (int j = 0; j < pool.getNy(); j++) {
             for (int i = 0; i < pool.getNx(); i++) {
                 domain = pool.domainMembership(i, j, k);
                 poolObj = pool.objAtIndex(i, j, k);
 
-                // if (domain == structNum && poolObj == objects::STRUCTURE) {
+                domainSet.insert(domain);
+
+                // cout << "domain = " << domain << endl;
+                // assert(domain != 0);
+
+                if (poolObj != objects::FLUID_C && structNum == 1) {
+                    numNotFluid++;
+                }
+
                 if (domain == structNum && poolObj != objects::FLUID_C) {
                     // x, y coordinate of the current point. Interpolate in the normal direction to
                     // find the interface if this is a boundary cell
                     if (pool.isInterface(poolObj)) {
-                        // cout << "This should not be hit" << endl;
                         double pnt[3];
                         this->interpolateBoundaryLocation(pool, i, j, k, pnt);
 
@@ -209,8 +221,6 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                     pntList->at(pntId).nodeId = pntId;
 
                     // If this is a boundary point, it should be indicated
-                    // TODO: when we add proper boundary points, we should reconsider this.
-                    // pntList->at(pntId).boundaryPnt = pool.oneGridFromInterface(i, j, k);
                     pntList->at(pntId).boundaryPnt = pool.isInterface(poolObj);
 
                     // If it is a boundary point, add to container of boundary lists for faster looping
@@ -232,9 +242,22 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                     
                     pntId++;
                 }
+
             }
         }
     }
+
+    cout << "domain set" << endl;
+    for (auto i = domainSet.begin(); i != domainSet.end(); i++) {
+        cout << *i << ", ";
+    }
+    cout << endl;
+    if (structNum == 1) {
+        cout << "num not fluid = " << numNotFluid << endl;
+    }
+    cout << "Finshed all struct points" << endl;
+    cout << "Loop ran " << pool.getNx() * pool.getNy() * pool.getNz() << endl;
+    cout << "at end pntId = " << pntId << endl;
 
     // Compute and then assign the point masses. Additionally, create the q vector.
     this->pntMass = obj.getMass()/pntList->size();
@@ -249,6 +272,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     f     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
 
     int qoff = 0;
+    cout << "b4 making the pnts size = " << pntList->size() << endl;
     for (int i = 0; i < pntList->size(); i++) {
         pntList->at(i).mass = pntMass;
 
@@ -276,6 +300,8 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         qoff += 3;
     }
 
+    cout << "Finsihed all the q's" << endl;
+
     // Second loop, go through the bounding box and build the edge connections
     // Note: we take advantage of the fact that we start from the bottom left,
     //       and move toward the top right.
@@ -300,7 +326,6 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                 if (domain == structNum && poolObj != objects::FLUID_C) {
                     // Get the ID of the current point.
                     pntId = objectPointLabels[make_tuple(i, j, k)];
-                    // cout << "pntId = " << pntId << endl;
 
                     // Coordinates of the current point
                     pntLoc[0] = pntList->at(pntId).x;
@@ -371,15 +396,16 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                             pntList->at(neighId).edgeIds.push_back(edgeId);
                         }
                     }
-                    // cout << endl;
                 }
             }
         }
     }
-    // cout << "DONE OBJECT " << structNum << endl;
 
+    cout << "Finsihed edge addition" << endl;
+    cout << "before createFaceList " << pntList->size() << endl;
     // Create the list of triangular faces to be used in the surface of the structure.
     this->createFaceList();
+    cout << "Finsihed face creation" << endl;
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
@@ -1619,7 +1645,6 @@ void MassSpring3D::applyBodyForces() {
 void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
         double ****stress, double fNet[3], int ng, bool initMode) {
     
-    cout << "start" << endl;
     this->initMode = initMode;
     int temp;
 
@@ -2416,6 +2441,8 @@ void MassSpring3D::createFaceList() {
         toBeRemoved[i] = false;
     }
 
+    // cout << "size of pntList = " << pntList->size() << endl;
+
     /* Part 1: brute-force algorithm to create a set of unique faces */
     // This is a freaking mess lol, but it works
     for (int pntOneIdx = 0; pntOneIdx < pntList->size(); pntOneIdx++) {
@@ -2455,6 +2482,7 @@ void MassSpring3D::createFaceList() {
         }
     }
 
+    // cout << "entering face assign loop" << endl;
     int faceId = 0;
     for (auto tup = faceSet.begin(); tup != faceSet.end(); ++tup) {
         faceList->push_back(face3D());
@@ -2464,6 +2492,7 @@ void MassSpring3D::createFaceList() {
 
         faceId++;
     }
+    // cout << "FINSIHED face assign loop" << endl;
 
     // Use the Barycentric coordinates of the centroid to detect which faces are intersecting.
     // Remove those who have a barycentric coordinate too close to 0.
@@ -2475,8 +2504,11 @@ void MassSpring3D::createFaceList() {
     vector<int> removedIdx;
     int curIdx = 0;
     while (!finished) {
+        // cout << "comp roid" << endl;
+        // cout << "size of faceList = " << faceList->size() << endl;
         face3D faceOne = faceList->at(curIdx);
         computeCentroid(faceOne.pntIds[0], faceOne.pntIds[1], faceOne.pntIds[2], centroidOne);
+        // cout << "finsihed comp roid" << endl;
 
         for (int i = curIdx+1; i < faceList->size()-1; i++) {
             // Compute the centroid of the second face
@@ -2495,6 +2527,7 @@ void MassSpring3D::createFaceList() {
 
             if (num_matches >= 2) {
                 // Check if their centroids do not belong inside of each other
+                // cout << "doing proj" << endl;
                 projTriangle(centroidTwo, faceOne.pntIds[0],
                                 faceOne.pntIds[1], faceOne.pntIds[2],
                                 bCoor1);
@@ -2507,16 +2540,19 @@ void MassSpring3D::createFaceList() {
                         (bCoor2[0] >= -EPS && bCoor2[1] >= -EPS && bCoor2[2] >= -EPS)) {
                     removedIdx.push_back(i);
                 }
+                // cout << "finsihed doing proj" << endl;
             }
         }
 
         // Remove all of the elements from faceList which overlap
+        // cout << "removing elements" << endl;
         int len = removedIdx.size();
         int nRem = 0;
         for (int i = 0; i < len; i++) {
             faceList->erase(faceList->begin()+removedIdx.at(i)-nRem);
             nRem++;
         }
+        // cout << "finsihed removing elements" << endl;
 
         // Clear the vector
         removedIdx.clear();
@@ -2525,15 +2561,17 @@ void MassSpring3D::createFaceList() {
         curIdx++;
 
         // Update finished, based on whether we have looked at all of the points
-        finished = curIdx == faceList->size()-1;
+        finished = (curIdx == faceList->size()-1);
     }
     
     // For each point in the face, indicate its membership
+    // cout << "indicating membership" << endl;
     for (int i = 0; i < faceList->size(); i++) {
         pntList->at((faceList->at(i)).pntIds[0]).faceIds.push_back(i);
         pntList->at((faceList->at(i)).pntIds[1]).faceIds.push_back(i);
         pntList->at((faceList->at(i)).pntIds[2]).faceIds.push_back(i);
     }
+    // cout << "FINISHED indicating membership" << endl;
 
     delete[] toBeRemoved;
 }
@@ -2616,6 +2654,7 @@ double MassSpring3D::pointDiff(massPoint3D pnt1, massPoint3D pnt2) {
 }
 
 MassSpring3D::~MassSpring3D() {
+    cout << "In destructor" << endl;
     delete edgeList;
     delete pntList;
     delete faceList;
@@ -2639,4 +2678,5 @@ MassSpring3D::~MassSpring3D() {
     } else if (updateMode == 2) {
         delete admmSolver;
     }
+    cout << "FINISHED In destructor" << endl;
 }

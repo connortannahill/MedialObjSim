@@ -743,7 +743,6 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     this->repulseDist = 2.0 * this->collisionDist;
     this->repulseMode = params.repulseMode;
 
-
     // Create the kdTree data object and point cloud
     kdPointCloud = new KDPointCloud3D();
     kdTree = new KDTree3D(3, *kdPointCloud, KDTreeSingleIndexAdaptorParams(10));
@@ -810,6 +809,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     
     // Apply the boundaries using the implicit SolidObject functions.
     // Also places the tracer particals
+    cout << "Embedding the shapes" << endl;
     if (nStructs > 0) {
         this->tracers = new simstructs::tracer3D[nStructs];
         if (structures.size() != 0) {
@@ -820,6 +820,8 @@ void Pool3D::create3DPool(Boundary3D &boundary,
             assert(false);
         }
     }
+    // assert(false);
+    cout << "FINISHED Embedding the shapes" << endl;
 
     // Set the initial pool object velocities based on the information from the particles. Important
     // For assigning initial boundary values around the structure.
@@ -861,7 +863,9 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         
         // Copy the Mass Spring objects from the old array to the new one
         for (int i = 0; i < nStructs; i++) {
+            cout << "Adding MSS " << i << endl;
             solids->push_back(MassSpring3D((poolTemp->solids)->at(i)));
+            cout << "FINISHED Adding MSS " << i << endl;
         }
 
         double x, y, z;
@@ -889,11 +893,16 @@ void Pool3D::create3DPool(Boundary3D &boundary,
             assert(false);
         }
 
+        cout << "nStructs = " << nStructs << endl;
         for (int i = 0; i < nStructs; i++) {
+            cout << "i = " << i << endl;
             solids->push_back(MassSpring3D(*this, i, structures.at(i),
                                 params.updateMode, params.elementMode));
             if (params.updateMode == 2) {
+                cout << "i = " << i << endl;
+                cout << "size of solids vector " << solids->size() << endl;
                 solids->at(i).setAdmmTol(params.admmTol);
+                assert(false);
             }
         }
     }
@@ -1303,13 +1312,15 @@ void Pool3D::embedShape(SolidObject3D &struc, int structNum) {
     if (this->nStructs >= 0) {
         this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
         this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
-        this->tracers[structNum].z = simutils::midpoint(this->y[min_z-1], this->y[min_z]);
+        this->tracers[structNum].z = simutils::midpoint(this->z[min_z-1], this->z[min_z]);
         this->tracers[structNum].mass = struc.getMass();
         this->tracers[structNum].u = struc.getU0(); // Velocity of the stucture, useful for update rules
         this->tracers[structNum].v = struc.getV0();
         this->tracers[structNum].w = struc.getW0();
         this->tracers[structNum].isDeformable = struc.getObjType() == SolidObject3D::ObjectType::DEFORMABLE;
         this->isDeformable = this->isDeformable || struc.getObjType() == SolidObject3D::ObjectType::DEFORMABLE;
+        
+        cout << "tracer for the first (x, y, z) = (" << this->tracers[structNum].x << ", " << this->tracers[structNum].y << ", " << this->tracers[structNum].z << ")" << endl;
     }
 
     if (structNum == 0) {
