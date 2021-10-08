@@ -1,7 +1,7 @@
 #include "KDPointCloud3D.h"
 #include <stdlib.h>
 #include <vector>
-#include "./MassSpring3D.h"
+#include "MassSpring3D.h"
 
 using namespace std;
 using namespace mass_spring;

@@ -518,7 +518,7 @@ def run_scale_experiment():
 
     inputFiles = list(np.array(inputFiles)[num_list])
 
-    if dim == 2
+    if dim == 2:
         subprocess.run('make')
     else:
         subprocess.run('make sol3d')
@@ -530,7 +530,7 @@ def run_scale_experiment():
         for run in num_runs:
             start = time.time()
 
-            if dim == 2
+            if dim == 2:
                 subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
             else:
                 subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
@@ -601,7 +601,7 @@ def run_solver():
 
     start = time.time()
 
-    if dim == 2
+    if dim == 2:
         subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
     else:
         subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())

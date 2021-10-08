@@ -57,6 +57,8 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
     qprevBackup = new Eigen::VectorXd(*(cpy.qprevBackup));
     f = new Eigen::VectorXd(*(cpy.f));
 
+    this->structNum = cpy.structNum;
+
     this->eta = cpy.eta;
     this->E = cpy.E;
     this->iterCount = cpy.iterCount;
@@ -107,6 +109,8 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     this->gy = pool.gy;
     this->gz = pool.gz;
 
+    this->structNum = structNum;
+
     this->elementMode = elementMode;
     this->updateMode = updateMode;
 
@@ -147,25 +151,15 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     map<tuple<int, int, int>, int> objectPointLabels;
 
     // First loop. Build up point set and HashMap for point numbers
-    set<int> domainSet;
-    int numNotFluid = 0;
+    // int numNotFluid = 0;
     for (int k = 0; k < pool.getNz(); k++) {
         for (int j = 0; j < pool.getNy(); j++) {
             for (int i = 0; i < pool.getNx(); i++) {
                 domain = pool.domainMembership(i, j, k);
                 poolObj = pool.objAtIndex(i, j, k);
 
-                domainSet.insert(domain);
-
-                // cout << "domain = " << domain << endl;
-                // assert(domain != 0);
-
-                if (poolObj != objects::FLUID_C && structNum == 1) {
-                    numNotFluid++;
-                }
-
                 if (domain == structNum && poolObj != objects::FLUID_C) {
-                    // x, y coordinate of the current point. Interpolate in the normal direction to
+                    // x, y, z coordinate of the current point. Interpolate in the normal direction to
                     // find the interface if this is a boundary cell
                     if (pool.isInterface(poolObj)) {
                         double pnt[3];
@@ -247,17 +241,6 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         }
     }
 
-    cout << "domain set" << endl;
-    for (auto i = domainSet.begin(); i != domainSet.end(); i++) {
-        cout << *i << ", ";
-    }
-    cout << endl;
-    if (structNum == 1) {
-        cout << "num not fluid = " << numNotFluid << endl;
-    }
-    cout << "Finshed all struct points" << endl;
-    cout << "Loop ran " << pool.getNx() * pool.getNy() * pool.getNz() << endl;
-    cout << "at end pntId = " << pntId << endl;
 
     // Compute and then assign the point masses. Additionally, create the q vector.
     this->pntMass = obj.getMass()/pntList->size();
@@ -415,13 +398,13 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     cout << "init the thing" << endl;
     double fNet[3] = {0.0, 0.0, 0.0};
 
-    do  {
-        this->updateSolidVels(dt, pool, NULL, fNet, 1, true);
-        this->updateSolidLocs(pool, false);
+    // do  {
+    //     this->updateSolidVels(dt, pool, NULL, fNet, 1, true);
+    //     this->updateSolidLocs(pool, false);
 
-        iters ++;
-    }
-    while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
+    //     iters ++;
+    // }
+    // while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
     cout << "FINISHED init the thing" << endl;
 
@@ -1219,7 +1202,7 @@ void MassSpring3D::interpolateBoundaryLocation(Pool3D &pool, int i, int j, int k
     // Coordinates of the structure point in the neighbouring direction
     double structPnt[3] = {simutils::midpoint(pool.getXMeshVal(i+nDir[0]), pool.getXMeshVal(i+nDir[0]+1)),
                         simutils::midpoint(pool.getYMeshVal(j+nDir[1]), pool.getYMeshVal(j+nDir[1]+1)),
-                        simutils::midpoint(pool.getZMeshVal(k+nDir[2]), pool.getYMeshVal(k+nDir[2]+1))};
+                        simutils::midpoint(pool.getZMeshVal(k+nDir[2]), pool.getZMeshVal(k+nDir[2]+1))};
     
     // Compute the unit inward normal
     double inN[3] = {(double)nDir[0], (double)nDir[1], (double)nDir[2]};
@@ -1229,9 +1212,22 @@ void MassSpring3D::interpolateBoundaryLocation(Pool3D &pool, int i, int j, int k
     double phiOut = pool.getPhiVal(i, j, k);
     double phiIn = pool.getPhiVal(i+nDir[0], j+nDir[1], k+nDir[2]);
 
+
+    // if (abs(phiOut - phiIn) < 1e-12) {
+    //     cout << "diff = " << abs(phiOut - phiIn)  << endl;
+    //     assert(abs(phiOut - phiIn) < 1e-12);
+
+    // }
+    // cout << abs(phiOut - phiIn) << endl;
+    // cout << (abs(phiOut - phiIn) < 1e-12) << endl;
+    // assert((abs(phiOut - phiIn) > 1e-12));
+
     // Compute the distance to the interface
     double distVec[3] = {bndPnt[0] - structPnt[0], bndPnt[1] - structPnt[1], bndPnt[2] - structPnt[2]};
     double d = abs(phiOut/(phiIn - phiOut))*simutils::eucNorm3D(distVec);
+    cout << "phiIn = " << phiIn << ", phiOut = " << phiOut << endl;
+    cout << "||distVec|| = " << simutils::eucNorm3D(distVec) << endl;
+    cout << "d = " << d << endl;
 
     // Finally, compute the interface point location
     X[0] = bndPnt[0] + d*inN[0];
@@ -1781,6 +1777,9 @@ void MassSpring3D::outputNodes(const char* fname) {
     outFile.open(fname);
 
     for (auto pnt = pntList->begin(); pnt != pntList->end(); ++pnt) {
+        if (!(pnt->boundaryPnt)) {
+            continue;
+        }
         outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << pnt->sigU
             << ", " << pnt->sigV << ", " << pnt->sigW << endl;
     }
@@ -1969,7 +1968,7 @@ double MassSpring3D::distToClosestBoundaryEdge(double x[3]) {
 }
 
 /**
- * Compute the Barycentric coordaintes of point x projected into the plane
+ * Compute the Barycentric coordinates of point x projected into the plane
  * defined by pnt1, pnt2, pnt3. Done as in Heindrich 2005.
  * 
 */
@@ -2072,9 +2071,10 @@ double MassSpring3D::projTriangleDist(double x[3], int pntId1, int pntId2,
     baryCoords[1] = beta;
     baryCoords[2] = gamma;
 
-    if (simutils::in_range(baryCoords[0], 0.0, 1.0)
-            && simutils::in_range(baryCoords[1], 0.0, 1.0)
-            && simutils::in_range(baryCoords[2], 0.0, 1.0)) {
+    if (false) {
+    // if (simutils::in_range(baryCoords[0], -EPS, 1.0+EPS)
+    //         && simutils::in_range(baryCoords[1], -EPS, 1.0+EPS)
+    //         && simutils::in_range(baryCoords[2], -EPS, 1.0+EPS)) {
         // Compute the coordinates of the projected point
         double projPnt[3] = {alpha*r1[0] + beta*r2[0] + gamma*r3[0],
                              alpha*r1[1] + beta*r2[1] + gamma*r3[1],
@@ -2360,65 +2360,133 @@ tuple<int, int, int> MassSpring3D::createOrderedTuple(int a, int b, int c) {
 /**
  * Find closest distance to the boundary faces of the MSS
 */
-double MassSpring3D::closestBoundaryDist(double inPnt[3]) {
-    double baryCoords[3];
-    double closestDist = INFINITY;
-    double d;
+// double MassSpring3D::closestBoundaryDist(double inPnt[3], KDTree3D *tree, KDPointCloud3D *pntCloud) {
+//     double baryCoords[3];
+//     double closestDist = INFINITY;
+//     double d;
 
-    for (auto face = faceList->begin(); face != faceList->end(); ++face) {
-        // Get the distance of the input point to this triangle (baryCoords are irrelevant)
-        d = projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+//     const int MAXCANDS = 10;
+//     vector<pair<size_t,double> > ret_matches;
+//     std::vector<size_t> ret_index(MAXCANDS);
+//     std::vector<double> out_dist_sqr(MAXCANDS);
 
-        if (d < closestDist) {
-            // Record the closest distance
-            closestDist = d;
-        }
-    }
-    return closestDist;
-}
+//     // Candidate list
+//     int numFound = tree->knnSearch(&inPnt[0],
+//                     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
+    
+//     assert(numFound > 0);
+    
+//     for (int i = 0; i < numFound; i++) {
+//         mass_spring::massPoint3D pnt = *pntCloud->points->at(ret_index.at(i));
+
+//         // Must correspond to this one
+//         if (pnt.structNum != this->structNum) {
+//             continue;
+//         }
+
+//         // Iterate through faces
+//         for (auto face = pnt.faceIds.begin(); face != pnt.faceIds.end(); ++face) {
+//             face3D faceLoc = faceList->at(*face);
+//             d = projTriangleDist(inPnt, faceLoc.pntIds[0], faceLoc.pntIds[1], faceLoc.pntIds[2], baryCoords);
+
+//             if (d < closestDist) {
+//                 // Record the closest distance
+//                 closestDist = d;
+//             }
+
+//         }
+//     }
+
+
+//     // for (auto face = faceList->begin(); face != faceList->end(); ++face) {
+//     //     // Get the distance of the input point to this triangle (baryCoords are irrelevant)
+//     //     d = projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+
+//     //     if (d < closestDist) {
+//     //         // Record the closest distance
+//     //         closestDist = d;
+//     //     }
+//     // }
+//     return closestDist;
+// }
 
 /**
  * Find closest distance to the boundary faces of the MSS
 */
-void MassSpring3D::closestBoundaryPnt(double inPnt[3], double outPnt[3]) {
-    double baryCoords[3];
-    double closestDist = INFINITY;
-    double d;
+// void MassSpring3D::closestBoundaryPnt(double inPnt[3], double outPnt[3], KDTree3D *tree, KDPointCloud3D *pntCloud) {
+//     double baryCoords[3];
+//     double closestDist = INFINITY;
+//     double d;
 
-    int closestId = -1;
-    double baryCoordsClosest[3];
+//     int closestId = -1;
 
-    for (auto face = faceList->begin(); face != faceList->end(); ++face) {
-        // Get the distance of the input point to this triangle (baryCoords are irrelevant)
-        d = projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+//     double baryCoordsClosest[3];
+//     const int MAXCANDS = 10;
+//     vector<pair<size_t,double> > ret_matches;
+//     std::vector<size_t> ret_index(MAXCANDS);
+//     std::vector<double> out_dist_sqr(MAXCANDS);
 
-        if (d < closestDist) {
-            // Record the closest distance
-            closestDist = d;
+//     // Candidate list
+//     int numFound = tree->knnSearch(&inPnt[0],
+//                     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
+    
+//     assert(numFound > 0);
+    
+//     for (int i = 0; i < numFound; i++) {
+//         mass_spring::massPoint3D pnt = *pntCloud->points->at(ret_index.at(i));
 
-            // Record the nearest IDs and coordinates
-            closestId = face - faceList->begin();
+//         // Must correspond to this one
+//         if (pnt.structNum != this->structNum) {
+//             continue;
+//         }
 
-            simutils::copyVals(3, baryCoords, baryCoordsClosest);
-        }
-    }
+//         // Iterate through faces
+//         for (auto face = pnt.faceIds.begin(); face != pnt.faceIds.end(); ++face) {
+//             face3D faceLoc = faceList->at(*face);
+//             d = projTriangleDist(inPnt, faceLoc.pntIds[0], faceLoc.pntIds[1], faceLoc.pntIds[2], baryCoords);
 
-    // Make the output point the Barycentric reconstruction of the closest point recorded
-    for (int j = 0; j < 3; j++) {
-        outPnt[j] = 0.0;
-    }
+//             if (d < closestDist) {
+//                 // Record the closest distance
+//                 closestDist = d;
+//                 closestId = *face;
 
-    double pnt[3];
-    for (int i = 0; i < 3; i++) {
-        pnt[0] = pntList->at(faceList->at(closestId).pntIds[i]).x;
-        pnt[1] = pntList->at(faceList->at(closestId).pntIds[i]).y;
-        pnt[2] = pntList->at(faceList->at(closestId).pntIds[i]).z;
+//                 simutils::copyVals(3, baryCoords, baryCoordsClosest);
+//             }
 
-        for (int j = 0; j < 3; j++) {
-            outPnt[j] += baryCoordsClosest[i]*pnt[j];
-        }
-    }
-}
+//         }
+//     }
+
+//     // for (auto face = faceList->begin(); face != faceList->end(); ++face) {
+//     //     // Get the distance of the input point to this triangle (baryCoords are irrelevant)
+//     //     d = projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+
+//     //     if (d < closestDist) {
+//     //         // Record the closest distance
+//     //         closestDist = d;
+
+//     //         // Record the nearest IDs and coordinates
+//     //         closestId = face - faceList->begin();
+
+//     //         simutils::copyVals(3, baryCoords, baryCoordsClosest);
+//     //     }
+//     // }
+
+//     // Make the output point the Barycentric reconstruction of the closest point recorded
+//     for (int j = 0; j < 3; j++) {
+//         outPnt[j] = 0.0;
+//     }
+
+//     double pnt[3];
+//     for (int i = 0; i < 3; i++) {
+//         pnt[0] = pntList->at(faceList->at(closestId).pntIds[i]).x;
+//         pnt[1] = pntList->at(faceList->at(closestId).pntIds[i]).y;
+//         pnt[2] = pntList->at(faceList->at(closestId).pntIds[i]).z;
+
+//         for (int j = 0; j < 3; j++) {
+//             outPnt[j] += baryCoordsClosest[i]*pnt[j];
+//         }
+//     }
+// }
 
 /**
  * Create the list of faces for the MSS.
@@ -2503,66 +2571,63 @@ void MassSpring3D::createFaceList() {
     double bCoor2[3];
     vector<int> removedIdx;
     int curIdx = 0;
-    while (!finished) {
-        // cout << "comp roid" << endl;
-        // cout << "size of faceList = " << faceList->size() << endl;
-        face3D faceOne = faceList->at(curIdx);
-        computeCentroid(faceOne.pntIds[0], faceOne.pntIds[1], faceOne.pntIds[2], centroidOne);
-        // cout << "finsihed comp roid" << endl;
+    // while (!finished) {
+    //     // cout << "comp roid" << endl;
+    //     // cout << "size of faceList = " << faceList->size() << endl;
+    //     face3D faceOne = faceList->at(curIdx);
+    //     computeCentroid(faceOne.pntIds[0], faceOne.pntIds[1], faceOne.pntIds[2], centroidOne);
+    //     // cout << "finsihed comp roid" << endl;
 
-        for (int i = curIdx+1; i < faceList->size()-1; i++) {
-            // Compute the centroid of the second face
-            face3D faceTwo = faceList->at(i);
-            computeCentroid(faceTwo.pntIds[0], faceTwo.pntIds[1], faceTwo.pntIds[2], centroidTwo);
+    //     for (int i = curIdx+1; i < faceList->size()-1; i++) {
+    //         // Compute the centroid of the second face
+    //         face3D faceTwo = faceList->at(i);
+    //         computeCentroid(faceTwo.pntIds[0], faceTwo.pntIds[1], faceTwo.pntIds[2], centroidTwo);
 
-            int num_matches = 0;
-            for (int n = 0; n < 3; n++) {
-                for (int m = 0; m < 3; m++) {
-                    if (faceOne.pntIds[n] == faceTwo.pntIds[m]) {
-                        num_matches++;
-                        break;
-                    }
-                }
-            }
+    //         int num_matches = 0;
+    //         for (int n = 0; n < 3; n++) {
+    //             for (int m = 0; m < 3; m++) {
+    //                 if (faceOne.pntIds[n] == faceTwo.pntIds[m]) {
+    //                     num_matches++;
+    //                     break;
+    //                 }
+    //             }
+    //         }
 
-            if (num_matches >= 2) {
-                // Check if their centroids do not belong inside of each other
-                // cout << "doing proj" << endl;
-                projTriangle(centroidTwo, faceOne.pntIds[0],
-                                faceOne.pntIds[1], faceOne.pntIds[2],
-                                bCoor1);
-                projTriangle(centroidOne, faceTwo.pntIds[0],
-                                faceTwo.pntIds[1], faceTwo.pntIds[2],
-                                bCoor2);
+    //         if (num_matches >= 2) {
+    //             // Check if their centroids do not belong inside of each other
+    //             projTriangle(centroidTwo, faceOne.pntIds[0],
+    //                             faceOne.pntIds[1], faceOne.pntIds[2],
+    //                             bCoor1);
+    //             projTriangle(centroidOne, faceTwo.pntIds[0],
+    //                             faceTwo.pntIds[1], faceTwo.pntIds[2],
+    //                             bCoor2);
 
-                // if (d1 < EPS) {
-                if ((bCoor1[0] >= -EPS && bCoor1[1] >= -EPS && bCoor1[2] >= -EPS) ||
-                        (bCoor2[0] >= -EPS && bCoor2[1] >= -EPS && bCoor2[2] >= -EPS)) {
-                    removedIdx.push_back(i);
-                }
-                // cout << "finsihed doing proj" << endl;
-            }
-        }
+    //             if ((bCoor1[0] >= -EPS && bCoor1[1] >= -EPS && bCoor1[2] >= -EPS) ||
+    //                     (bCoor2[0] >= -EPS && bCoor2[1] >= -EPS && bCoor2[2] >= -EPS)) {
+    //                 removedIdx.push_back(i);
+    //             }
+    //         }
+    //     }
 
-        // Remove all of the elements from faceList which overlap
-        // cout << "removing elements" << endl;
-        int len = removedIdx.size();
-        int nRem = 0;
-        for (int i = 0; i < len; i++) {
-            faceList->erase(faceList->begin()+removedIdx.at(i)-nRem);
-            nRem++;
-        }
-        // cout << "finsihed removing elements" << endl;
+    //     // Remove all of the elements from faceList which overlap
+    //     // cout << "removing elements" << endl;
+    //     int len = removedIdx.size();
+    //     int nRem = 0;
+    //     for (int i = 0; i < len; i++) {
+    //         faceList->erase(faceList->begin()+removedIdx.at(i)-nRem);
+    //         nRem++;
+    //     }
+    //     // cout << "finsihed removing elements" << endl;
 
-        // Clear the vector
-        removedIdx.clear();
+    //     // Clear the vector
+    //     removedIdx.clear();
 
-        // Increment the index we are looking at
-        curIdx++;
+    //     // Increment the index we are looking at
+    //     curIdx++;
 
-        // Update finished, based on whether we have looked at all of the points
-        finished = (curIdx == faceList->size()-1);
-    }
+    //     // Update finished, based on whether we have looked at all of the points
+    //     finished = (curIdx == faceList->size()-1);
+    // }
     
     // For each point in the face, indicate its membership
     // cout << "indicating membership" << endl;

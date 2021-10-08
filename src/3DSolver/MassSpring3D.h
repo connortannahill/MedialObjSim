@@ -13,6 +13,7 @@
 #include "../Utils/ADMMPG.h"
 
 class Pool3D;
+// class KDPointCloud3D;
 
 using namespace SparseItObj;
 using namespace std;
@@ -60,6 +61,7 @@ struct face3D {
 
 class MassSpring3D : Assembly {
 public:
+
     /* Data for MSS stucture */
     vector<massPoint3D> *pntList;
     vector<edge3D> *edgeList;
@@ -89,6 +91,8 @@ public:
     double hx, hy, hz;
     double gx, gy, gz;
     double pntMass;
+
+    int structNum;
 
     double eta;
     double E;
@@ -133,10 +137,9 @@ public:
     void outputSurfaceCentroids(const char *fname);
     void interpFaceVels(double inPnt[3], double out[3]);
     void setAdmmTol(double tol);
-    double closestBoundaryDist(double inPnt[3]);
-    void closestBoundaryPnt(double inPnt[3], double outPnt[3]);
+    // double closestBoundaryDist(double inPnt[3], KDTree3D *tree, KDPointCloud3D *cloud);
+    // void closestBoundaryPnt(double inPnt[3], double outPnt[3], KDTree3D *tree, KDPointCloud3D *cloud);
     ~MassSpring3D();
-protected:
     /* Helper functions */
     void applyBoundaryForces(Pool3D &pool, double ****stress, int ng, double fNet[3], double colNet[3]);
     void calcLocalElasticForce(edge3D edge, int pntId1, massPoint3D pnt1, int pntId2, massPoint3D pnt2);

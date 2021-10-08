@@ -1,10 +1,12 @@
 #ifndef KD_POINT_CLOUD_3D_H
 #define KD_POINT_CLOUD_3D_H
 
-#include "./MassSpring3D.h"
+#include "MassSpring3D.h"
 
 #include <stdlib.h>
 #include <vector>
+
+// class MassSpring3D;
 
 using namespace std;
 using namespace mass_spring;
@@ -13,13 +15,12 @@ class KDPointCloud3D {
 public:
     KDPointCloud3D();
 	void resetCloud();
-	void addMSS(MassSpring3D &mss);
-
+	void addMSS(mass_spring::MassSpring3D &mss);
 
     // Must return the number of data points
 	inline size_t kdtree_get_point_count() const {
 		return points->size();
-	}
+	};
 
 	// Returns the dim'th component of the idx'th point in the class:
 	// Since this is inlined and the "dim" argument is typically an immediate value, the
@@ -30,10 +31,9 @@ public:
 		} else if (dim == 1) {
 			return points->at(idx)->y;
 		} else {
-			// assert(false);
 			return points->at(idx)->z;
 		}
-	}
+	};
 
 	// Optional bounding-box computation: return false to default to a standard bbox computation loop.
 	//   Return true if the BBOX was already computed by the class and returned in "bb" so it can be avoided to redo it again.
@@ -41,7 +41,7 @@ public:
 	template <class BBOX>
 	bool kdtree_get_bbox(BBOX& /* bb */) const {
 		return false;
-	}
+	};
 
 
     ~KDPointCloud3D();

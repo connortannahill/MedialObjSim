@@ -131,7 +131,7 @@ protected:
     double eps;
 
     // The mass-spring systems that are used for representation of the deformable solids.
-    vector<MassSpring3D> *solids;
+    vector<mass_spring::MassSpring3D> *solids;
 
     // Number of structs
     int nStructs;
@@ -180,6 +180,9 @@ protected:
     bool enoInRangeX(int val);
     bool enoInRangeY(int val);
     bool enoInRangeZ(int val);
+
+    double closestBoundaryDist(int structNum, double inPnt[3]);
+    void closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]);
 
     /* Functions for discretizations of HJ equations */
 
@@ -272,7 +275,6 @@ public:
     void getNormalDir(objects::FSIObject obj, int nDir[3]);
     double interpolatePhi(double x, double y, double z);
     void interpolatePhiGrad(double x, double y, double z, double phiGrad[3]);
-    double closestBoundaryDist(double inPnt[3]);
 
 
     // Getters and setters

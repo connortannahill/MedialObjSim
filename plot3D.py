@@ -131,14 +131,27 @@ elif mode == 1:
 
     mssList = []
     
-    for i in range(nMss):
-        f_name_t = f_name + 'MSS3DEdges{0}'.format(i)
+    # for i in range(nMSS):
+    i = 0
+    f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
 
-        out = np.genfromtxt(f_name_t, delimiter=',')
-        x_mss = out[:,0]
-        y_mss = out[:,1]
-        z_mss = out[:,2]
-        mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss))
+    out = np.genfromtxt(f_name_t, delimiter=',')
+    x_mss = out[:,0]
+    y_mss = out[:,1]
+    z_mss = out[:,2]
+    from matplotlib import pyplot
+    from mpl_toolkits.mplot3d import Axes3D
+    import random
+
+
+    fig = pyplot.figure()
+    ax = Axes3D(fig)
+
+    ax.scatter(x_mss, y_mss, z_mss)
+    pyplot.show()
+
+
+    # mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss))
         # for i in range(0, x.size, 3):
         #     mssList.append(go.Scatter3d(x=x[i:i+3], y=y[i:i+3], z=z[i:i+3]))
             # ax.plot(x[i:i+2], y[i:i+2], z[i:i+2], 'ro-', ms=0.5)
@@ -153,15 +166,15 @@ elif mode == 1:
     #     for i in range(0, x.size, 2):
     #         ax.plot(x[i:i+2], y[i:i+2], z[i:i+2], 'ro-', ms=0.5)
 
-    # fig = go.Figure(data=[go.Isosurface(
-    #     x=x,
-    #     y=y,
-    #     z=z,
-    #     value=phi,
-    #     isomin=-0.0001,
-    #     isomax=0.0001,
-    #     colorscale=[(0,"blue"), (1,"red")],
-    #     opacity=0.3), go.Scatter3d(x=x_mss, y=y_mss, z=z_mss)])
+    fig = go.Figure(data=[go.Isosurface(
+        x=x,
+        y=y,
+        z=z,
+        value=phi,
+        isomin=-0.0001,
+        isomax=0.0001,
+        colorscale=[(0,"blue"), (1,"red")],
+        opacity=0.3)])#, go.Scatter3d(x=x_mss, y=y_mss, z=z_mss)])
     # fig = go.Figure(data=[go.Isosurface(
     #     x=x,
     #     y=y,
@@ -171,7 +184,7 @@ elif mode == 1:
     #     isomax=0.0001,
     #     colorscale=[(0,"blue"), (1,"red")],
     #     opacity=0.3)]+mssList)
-    fig = go.Figure(data=mssList)
+    # fig = go.Figure(data=mssList)
 
     fig.show()
 elif mode == 2:
