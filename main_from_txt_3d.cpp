@@ -172,8 +172,8 @@ int main(int argc, char **argv) {
     string testTitle = argv[1];
     string input_file_name =  testInputDir + testTitle;
     int max_steps = (argc == 2) ? 1 : atoi(argv[2]);
-    // bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
-    bool save_snapshots = 0; // not implemented in 3D yet
+    bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
+    // bool save_snapshots = 0; // not implemented in 3D yet
 
     /* Parse from input file */
     ///////////////////////////////////
@@ -301,7 +301,7 @@ int main(int argc, char **argv) {
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 20 == 0) {
-                string f_name = testName + std::to_string(nsteps);
+                string f_name = testName + "/" + std::to_string(nsteps);
                 outputData(f_name, solver);
             }
 

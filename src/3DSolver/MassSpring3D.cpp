@@ -398,13 +398,13 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     cout << "init the thing" << endl;
     double fNet[3] = {0.0, 0.0, 0.0};
 
-    // do  {
-    //     this->updateSolidVels(dt, pool, NULL, fNet, 1, true);
-    //     this->updateSolidLocs(pool, false);
+    do  {
+        this->updateSolidVels(dt, pool, NULL, fNet, 1, true);
+        this->updateSolidLocs(pool, false);
 
-    //     iters ++;
-    // }
-    // while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
+        iters ++;
+    }
+    while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
     cout << "FINISHED init the thing" << endl;
 
@@ -1225,9 +1225,9 @@ void MassSpring3D::interpolateBoundaryLocation(Pool3D &pool, int i, int j, int k
     // Compute the distance to the interface
     double distVec[3] = {bndPnt[0] - structPnt[0], bndPnt[1] - structPnt[1], bndPnt[2] - structPnt[2]};
     double d = abs(phiOut/(phiIn - phiOut))*simutils::eucNorm3D(distVec);
-    cout << "phiIn = " << phiIn << ", phiOut = " << phiOut << endl;
-    cout << "||distVec|| = " << simutils::eucNorm3D(distVec) << endl;
-    cout << "d = " << d << endl;
+    // cout << "phiIn = " << phiIn << ", phiOut = " << phiOut << endl;
+    // cout << "||distVec|| = " << simutils::eucNorm3D(distVec) << endl;
+    // cout << "d = " << d << endl;
 
     // Finally, compute the interface point location
     X[0] = bndPnt[0] + d*inN[0];
@@ -1682,7 +1682,8 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     // Loop through all of the edges, using the potential energy to compute the displacement of the
     // nodes.
     if (updateMode == 0) {
-        eulerSolve(dt, elementMode, initMode);
+        // eulerSolve(dt, elementMode, initMode);
+        verletSolve(dt, elementMode, initMode);
     } else if (updateMode == 1) {
         linearImplicitSolve(dt, elementMode, initMode);
     } else if (updateMode == 2) {
@@ -2719,13 +2720,20 @@ double MassSpring3D::pointDiff(massPoint3D pnt1, massPoint3D pnt2) {
 }
 
 MassSpring3D::~MassSpring3D() {
-    cout << "In destructor" << endl;
+    cout << "In destructor MSS" << endl;
+    cout << "edgeList" << endl;
     delete edgeList;
+    cout << "pntList" << endl;
     delete pntList;
+    cout << "faceList" << endl;
     delete faceList;
+    cout << "bedgeIdList" << endl;
     delete boundaryEdgeIdList;
+    cout << "bNodeIdList" << endl;
     delete boundaryNodeIdList;
+    cout << "finsihed deleting boundary stuff" << endl;
 
+    cout << "deleting newtons homies" << endl;
     delete f;
     delete q;
     delete qt;
@@ -2734,12 +2742,15 @@ MassSpring3D::~MassSpring3D() {
     delete qtBackup;
     delete qprevBackup;
     delete fBackup;
+    cout << "finished deleting newtons homies" << endl;
 
     if (updateMode == 1) {
+        cout << "deleting CG" << endl;
         delete[] pcgRHS;
         delete[] pcgTol;
         delete matrix;
         delete params;
+        cout << "FINSIHED deleting CG" << endl;
     } else if (updateMode == 2) {
         delete admmSolver;
     }

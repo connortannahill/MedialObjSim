@@ -430,8 +430,6 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, double val, int mode) 
     int jList[6] = {j,   j,   j,   j,   j+1, j-1};
     int kList[6] = {k+1, k-1, k,   k,   k,   k};
 
-    // double nIntersections = 0;
-    // bool intersectionFound = false;
     double medX = 0;
     double medY = 0;
     double medZ = 0;
@@ -496,7 +494,6 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
     double phiVal = 0.0;
     objects::FSIObject obj;
-
     double pnt[3];
     double vTemp[3];
 
@@ -507,6 +504,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
             for (int i = 0; i < this->nx; i++) {
                 pnt[0] = simutils::midpoint(x[i], x[i+1]);
 
+                phiVal = INFINITY;
                 obj = this->objAtIndex(i, j, k);
 
                 // Set the default values in the fluid region.
@@ -539,11 +537,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                 }
 
                 // Label each of the points
-                if (obj == objects::FLUID_C) {
-                    fastMarchingState[k][j][i] = FAR;
-                } else if (obj == objects::STRUCTURE) {
-                    fastMarchingState[k][j][i] = ACCEPTED;
-                }
+                fastMarchingState[k][j][i] = (obj == objects::FLUID_C) ? FAR : ACCEPTED;
 
                 // Add the value of the curent level set (assumed SDF) at the interfaces.
                 if (this->isInterface(obj)) {
@@ -2550,16 +2544,25 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
             // and update the positions of the tracer particals.
             if (repulseMode != 0) {
                 // TODO: maybe think about a more efficient 
+                cout << "Doing first fast march" << endl;
                 this->fastMarch(false, 2);
+                cout << "Finished the fast march" << endl;
+                cout << "Doing detect collisions" << endl;
                 this->detectCollisions();
+                cout << "Finished Doing detect collisions" << endl;
+                cout << "setting up domain array" << endl;
                 this->setUpDomainArray();
+                cout << "FINISHED setting up domain array" << endl;
             }
 
+            cout << "stress" << endl;
             double ***stress[3] = {poolU, poolV, poolW};
+            cout << "done stress" << endl;
 
             // TODO: don't actually need the net force in principal
             double fNet[3] = {0.0, 0.0, 0.0};
 
+            cout << "updating tracers" << endl;
             for (int i = 0; i < nStructs; i++) {
                 solids->at(i).updateSolidVels(dt, *this, stress, fNet, mo, false);
 
@@ -2572,10 +2575,12 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
                 tracers[i].v = tracers[i].v + ((tracers[i].fNetY)/(tracers[i].mass))*dt;
                 tracers[i].w = tracers[i].w + ((tracers[i].fNetZ)/(tracers[i].mass))*dt;
             }
+            cout << "done updating tracers" << endl;
 
             // Compute the velocities on the interface points
             double inPnt[3];
             double vel[3];
+            cout << "computing face velocities" << endl;
             for (int k = 0; k < nz; k++) {
                 inPnt[2] = simutils::midpoint(z[k], z[k+1]);
                 for (int j = 0; j < ny; j++) {
@@ -2603,9 +2608,12 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
                     }
                 }
             }
+            cout << "done computing face velocities" << endl;
 
             // Now that we have the velocities, we can apply the fast marching algorithm.
+            cout << "fast march the velocities with interp" << endl;
             this->fastMarch(true, 0);
+            cout << "done fast march the velocities" << endl;
         }
     } else {
         cout << "Multiple structures are not yet considered in the pool algorithms" << endl;
@@ -2642,7 +2650,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     // Update the velocity field
     setUpDomainArray();
+    cout << "updating pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, w, p, ng);
+    cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
     if (reinitialize) {
@@ -2652,14 +2662,19 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     // Update the position of the tracer particals
 
     // Advance the level set function
+    cout << "updaitng phi" << endl;
     tvdRK3HJ(dt, phi, this, 0, &Pool3D::levelSetRHS_ENO3,
              &Pool3D::applyLevelSetPeriodicBCs);
+    cout << "finished updaitng phi" << endl;
 
     for (int k = 0; k < nStructs; k++) {
+        cout << "updating tracers" << endl;
         updateTracer(k, dt, 1);
+        cout << "FINSIHED updating tracers" << endl;
     }
     
     // Update the enumeration and domain array
+    cout << "last section" << endl;
     enumeratePool();
     setUpDomainArray();
 
@@ -2671,6 +2686,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     if (shouldRefitSDF(min(hx, min(hy, hz)))) {
         refitToSolids(ng);
     }
+    cout << "finished last section" << endl;
 }
 
 /**
@@ -2729,7 +2745,7 @@ double Pool3D::buildSqeezeField() {
  * as a signed distance function.
 */
 bool Pool3D::shouldRefitSDF(double tol) {
-    assert(false);
+    // assert(false);
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;
@@ -2744,6 +2760,8 @@ bool Pool3D::shouldRefitSDF(double tol) {
             }
         }
     }
+
+    assert(!squeeze);
 
     return squeeze;
 }
@@ -2821,8 +2839,8 @@ void Pool3D::outputPool(const char *fname) {
                 outFile << y << ", ";
                 outFile << z << ", ";
 
-                double inPnt[3] = {x, y, z};
-                double phi =  this->interpolatePhi(x, y, z);
+                // double inPnt[3] = {x, y, z};
+                // double phi =  this->interpolatePhi(x, y, z);
 
                 outFile << this->interpolatePhi(x, y, z) << endl;
                 // if (phi > 0) {
