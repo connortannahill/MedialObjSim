@@ -10,7 +10,7 @@ from matplotlib.pyplot import cm
 from itertools import product
 import matplotlib.pyplot as plt
 import glob
-import time
+from time import time
 from pathlib import Path
 import json
 import re
@@ -524,19 +524,21 @@ def run_scale_experiment():
         subprocess.run('make')
     else:
         subprocess.run('make sol3d')
+    
+    from time import time
 
     for i in range(len(inputFiles)):
         times = []
         num_runs = 1
 
         for run in num_runs:
-            start = time.time()
+            start = time()
 
             if dim == 2:
                 subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
             else:
                 subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
-            times.append(time.time() - start)
+            times.append(time() - start)
         
         # Dump the data file
         Path("output/ObjScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
@@ -560,6 +562,8 @@ def run_obj_scale_experiment():
 
     inputFiles = list(np.array(inputFiles)[num_list])
 
+    from time import time
+
     if dim == 2:
         subprocess.run('make')
     else:
@@ -569,21 +573,21 @@ def run_obj_scale_experiment():
         times = []
         num_runs = 1
 
-        for run in num_runs:
-            start = time.time()
+        for run in range(num_runs):
+            start = time()
 
             if dim == 2:
                 subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
             else:
                 subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
-            times.append(time.time() - start)
+            times.append(time() - start)
         
         # Dump the data file
-        Path("output/ScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
+        Path("output/ScaleTest/{0}".format(testName)).mkdir(parents=True, exist_ok=True)
 
-        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles), 'w+') as f:
+        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles[i]), 'w+') as f:
             f.write('{}\n'.format(num_runs))
-            for time in times():
+            for time in times:
                 f.write(str(time) + ' ')
 
 def create_scale_plot():
