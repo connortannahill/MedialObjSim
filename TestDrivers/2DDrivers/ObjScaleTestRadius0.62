@@ -1,0 +1,37 @@
+A fixed-grid scaling test for the number of objects
+ObjScaleTestRadius0.62
+
+
+0.0
+5.0
+0.0
+10.0
+160
+160
+0.0
+-0.1
+0.0
+0.0
+1000
+1
+downDirFlowBC
+100.0
+
+
+1
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r 0.625
+E 10
+eta 0
+a 0
+c 0
+deg 324
+cx 1.974385621484342
+cy 6.974385621484342
+.

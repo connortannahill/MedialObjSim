@@ -171,11 +171,11 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     f.write('\n')
     
     # Compute the maximum
-    iMax = int(np.floor((XB - XA)/(2*(r + eps))))
-    jMax = int(np.floor((YB - YA)/(2*(r + eps))))
+    iMax = int(np.floor((XB - XA)/(2*r + eps)))
+    jMax = int(np.floor((YB - YA)/(2*r + eps)))
     kMax = 1
     if dim == 3:
-        kMax = int(np.floor((ZB - ZA)/(2*(r + eps))))
+        kMax = int(np.floor((ZB - ZA)/(2*r + eps)))
     
     numObjs = iMax*jMax*kMax
 
@@ -187,9 +187,9 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     """ Now generate the centers for each object """
     centerList = []
     if dim == 2:
-        centerList = [(XA+tup[0]*2*b+r, YA+tup[1]*2*b+r) for tup in product(range(0, iMax), range(0, jMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*2*(b)+(r), YA+tup[1]*2*(b)+(r), ZA+tup[2]*2*(b)+(r)) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps, ZA+tup[2]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
     
     print('size of centerList = {}'.format(len(centerList)))
     
@@ -312,11 +312,14 @@ def obj_scale_test():
     hy = abs(float(in_dict['yb']) - float(in_dict['ya']))/int(in_dict['ny'])
 
     epsMin = np.linalg.norm([5*hx, 5*hy])
+    print('\nepsMin = {}'.format(epsMin))
+    # assert(False)
 
     # Get the initial r value
     rBase = min((XA + XB)/2.0, (YA + YB)/2.0)
     
-    rVals = [rBase / (2**i) - epsMin/2.0 for i in range(6)]
+    # rVals = [rBase / (2**i) - epsMin/2.0 for i in range(6) if rBase / (2**i) - epsMin/2.0 > 0 ]
+    rVals = [rBase / (2**i) for i in range(6) if rBase / (2**i) > 0 ]
 
     objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
     objParamList.remove('r')
