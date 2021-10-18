@@ -27,7 +27,7 @@ coneShapeFun
 -0.1
 mass 1
 density 1
-r 0.10
+r 0.5
 E 10
 eta 0
 a 0
@@ -35,5 +35,5 @@ c 0
 
 deg 306
 cx 2.5
-cy 6.1
+cy 5.0
 .
