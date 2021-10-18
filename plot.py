@@ -19,10 +19,12 @@ print(f_name)
 #     numObj = int(sys.argv[3])
 
 # Get the number of objects
-cur_dir = os.getcwd()
-os.chdir(f_name)
+# cur_dir = os.getcwd()
+# os.chdir(f_name)
+print('looking for numObj in {}'.format(f_name+'MSSEdges*'))
+print('glob = {}'.format(glob.glob(f_name+'MSSEdges*')))
 numObj = len(glob.glob(f_name+'MSSEdges*'))
-os.chdir(cur_dir)
+# os.chdir(cur_dir)
 
 
 """
@@ -213,8 +215,8 @@ elif mode == 10:
     f_name += 'poolOut'
     out = np.genfromtxt(f_name, delimiter=',')
 
-    nx = 100
-    ny = 100
+    # nx = 100
+    # ny = 100
 
     x = out[:,0]
     y = out[:,1]
