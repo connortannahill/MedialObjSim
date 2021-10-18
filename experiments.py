@@ -26,6 +26,7 @@ grid_scale_test()
 obj_scale_test()
 full_scale_test()
 run_scale_experiment()
+run_obj_scale_experiment()
 create_scale_plot()
 run_solver()
 exit()
@@ -288,7 +289,7 @@ def full_scale_test():
 
 def obj_scale_test():
     outFileName = input('test name = ')
-    dim = int(input)
+    dim = int(input('dim = '))
 
     paramList = [s[1:] for s in (getTemplate2D() if dim == 2 else getTemplate3D()).split()]
     print(paramList)
@@ -318,10 +319,11 @@ def obj_scale_test():
     rVals = [rBase / (2**i) - epsMin/2.0 for i in range(6)]
 
     objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
+    objParamList.remove('r')
     print(objParamList)
 
     obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
-    del obj_dict['r']
+    # del obj_dict['r']
 
     for r in rVals:
         testName = outFileName + 'Radius{0:.2}'.format(float(r))
@@ -525,7 +527,47 @@ def run_scale_experiment():
 
     for i in range(len(inputFiles)):
         times = []
-        num_runs = 10
+        num_runs = 1
+
+        for run in num_runs:
+            start = time.time()
+
+            if dim == 2:
+                subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+            else:
+                subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+            times.append(time.time() - start)
+        
+        # Dump the data file
+        Path("output/ObjScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
+
+        with open('output/ObjScaleTest/{0}/{1}.out'.format(testName, inputFiles), 'w+') as f:
+            f.write('{}\n'.format(num_runs))
+            for time in times():
+                f.write(str(time) + ' ')
+
+def run_obj_scale_experiment():
+
+    testName = input('test name = ')
+    dim = int(input('dimension = '))
+
+    # Get all input file names
+    inputFiles = [file for file in glob.glob('./TestDrivers/{0}DDrivers/{1}*'.format(str(dim), testName))]
+    print(inputFiles)
+    inputFiles = [file[file.rfind('/')+1:]  for file in inputFiles]
+    print(inputFiles)
+    num_list = np.argsort([float(file[len(testName):]) for file in inputFiles])
+
+    inputFiles = list(np.array(inputFiles)[num_list])
+
+    if dim == 2:
+        subprocess.run('make')
+    else:
+        subprocess.run('make sol3d')
+
+    for i in range(len(inputFiles)):
+        times = []
+        num_runs = 1
 
         for run in num_runs:
             start = time.time()

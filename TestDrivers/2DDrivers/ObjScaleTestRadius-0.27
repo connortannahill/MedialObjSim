@@ -1,0 +1,165 @@
+A fixed-grid scaling test for the number of objects
+ObjScaleTestRadius-0.27
+
+
+0.0
+5.0
+0.0
+10.0
+80
+80
+0.0
+-0.1
+0.0
+0.0
+1000
+1
+downDirFlowBC
+100.0
+
+
+9
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 66
+cx 0.7287393785156578
+cy 5.728739378515658
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 164
+cx 0.7287393785156578
+cy 6.583760621484342
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 199
+cx 0.7287393785156578
+cy 7.438781864453026
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 200
+cx 1.583760621484342
+cy 5.728739378515658
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 91
+cx 1.583760621484342
+cy 6.583760621484342
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 172
+cx 1.583760621484342
+cy 7.438781864453026
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 148
+cx 2.4387818644530266
+cy 5.728739378515658
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 144
+cx 2.4387818644530266
+cy 6.583760621484342
+.
+
+coneShapeFun
+1
+0.0
+-0.1
+mass 1
+density 1
+r -0.27126062148434216
+E 10
+eta 0
+a 0
+c 0
+deg 162
+cx 2.4387818644530266
+cy 7.438781864453026
+.
