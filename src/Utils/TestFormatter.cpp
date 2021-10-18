@@ -1,6 +1,7 @@
 #include "TestFormatter.h"
 #include <iostream>
 #include <filesystem>
+#include <assert.h>
 
 using namespace std;
 
@@ -17,6 +18,28 @@ TestFormatter::TestFormatter(const char *testName) {
     testDir->append("/");
 
     // Make the test directory if it does not already exist
+    cout << "testdir = " << *testDir << endl;
+    if (!fs::exists(*testDir)) {
+        fs::create_directory(*testDir);
+    }
+    // assert(false);
+}
+
+TestFormatter::TestFormatter(const char *testName, int testNum) {
+
+    this->testDir = new string("./output/");
+    testDir->append(testName);
+    testDir->append("/");
+
+    // Make the test directory if it does not already exist
+    cout << "testdir = " << *testDir << endl;
+    if (!fs::exists(*testDir)) {
+        fs::create_directory(*testDir);
+    }
+
+    // string num(testNum);
+    testDir->append(to_string(testNum));
+    testDir->append("/");
     if (!fs::exists(*testDir)) {
         fs::create_directory(*testDir);
     }

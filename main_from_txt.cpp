@@ -142,6 +142,44 @@ void outputData(string f_name, NSSolver &solver) {
     cout << outStr << endl;
 }
 
+void outputData(string f_name, NSSolver &solver, int testNum) {
+    TestFormatter testFormatter(f_name.c_str(), testNum);
+    std::cout << "Outputting data" << std::endl;
+
+    string outStr;
+    string outStr2;
+
+    testFormatter.genOutStr("out", outStr);
+    solver.writeToFile(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("poolOut", outStr);
+    testFormatter.genOutStr("poolVel", outStr2);
+    solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
+    cout << outStr << endl;
+    cout << outStr2 << endl;
+
+    testFormatter.genOutStr("MSSEdges", outStr);
+    solver.outputAllStructures(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSNodes", outStr);
+    solver.outputAllStructureNodes(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSVels", outStr);
+    solver.outputAllStructureVels(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("MSSTracers", outStr);
+    solver.outputTracers(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("medialAxis", outStr);
+    solver.outputMedialAxis(outStr.c_str());
+    cout << outStr << endl;
+}
+
 double getH(double xa, double xb, int nx, double ya, double yb, int ny) {
     return sqrt(simutils::square(abs(xb - xa)/((double) nx)
         + simutils::square(abs(yb - ya)/((double) ny))));
@@ -277,8 +315,8 @@ int main(int argc, char **argv) {
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 10 == 0) {
-                string f_name = outFileName + "/" + std::to_string(nsteps);
-                outputData(f_name, solver);
+                string f_name = outFileName;
+                outputData(f_name, solver, nsteps);
             }
 
             nsteps++;

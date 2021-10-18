@@ -525,9 +525,10 @@ def run_scale_experiment():
 
     for i in range(len(inputFiles)):
         times = []
-        num_runs = 10
+        num_runs = 1
+        import time
 
-        for run in num_runs:
+        for run in range(num_runs):
             start = time.time()
 
             if dim == 2:
@@ -537,11 +538,11 @@ def run_scale_experiment():
             times.append(time.time() - start)
         
         # Dump the data file
-        Path("output/ScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
+        Path("output/ScaleTest/{0}".format(testName)).mkdir(parents=True, exist_ok=True)
 
-        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles), 'w+') as f:
+        with open('output/ScaleTest/{0}/{1}.out'.format(testName, inputFiles[i]), 'w+') as f:
             f.write('{}\n'.format(num_runs))
-            for time in times():
+            for time in times:
                 f.write(str(time) + ' ')
 
 def create_scale_plot():
