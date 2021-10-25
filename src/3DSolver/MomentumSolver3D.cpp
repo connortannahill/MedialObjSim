@@ -49,9 +49,9 @@ MomentumSolver3D::MomentumSolver3D(
 
     // Create the pool object for this solver
     this->nStructs = solidObjects.size();
-    cout << "Creating the pool" << endl;
+    // cout << "Creating the pool" << endl;
     this->pool = new Pool3D(boundary, solidObjects, params);
-    cout << "Finished Creating the pool" << endl;
+    // cout << "Finished Creating the pool" << endl;
 
     // Copy the input parameters using the default copy ctor
     this->params = &params;
@@ -323,21 +323,21 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     this->updateP();
 
     // Combine these together to update the fluid velocities.
-    cout << "Updating u" << endl;
+    // cout << "Updating u" << endl;
     this->updateU();
-    cout << "FINISHED updating u" << endl;
+    // cout << "FINISHED updating u" << endl;
 
     // Interpolate the velocities to the cell centers
-    cout << "interping velocities" << endl;
+    // cout << "interping velocities" << endl;
     this->interpolateVelocities();
-    cout << "FINISHED interping velocities" << endl;
+    // cout << "FINISHED interping velocities" << endl;
 
     // If there are any structures in the pool, update the pool location.
     if (this->nStructs > 0) {
-        cout << "Updating pool" << endl;
+        // cout << "Updating pool" << endl;
         // Update the location of the interfaces
         (this->pool)->updatePool(dt, iu, iv, w, p, methodOrd, true);
-        cout << "FINISHED Updating pool" << endl;
+        // cout << "FINISHED Updating pool" << endl;
 
         // Apply object velocities to boundary points
         this->test_setInternal();

@@ -1,0 +1,7761 @@
+====================================
+Functions available:
+
+create_test()
+grid_scale_test()
+obj_scale_test()
+full_scale_test()
+run_scale_experiment()
+run_obj_scale_experiment()
+create_scale_plot()
+run_solver()
+exit()
+
+====================================
+call function() = test name = dimension = g++ -Wall -std=c++17 -I../src -I./lib/eigen/ -I./lib/nanoflann/include/ -O3 main_from_txt.cpp src/2DSolver/PressureSolver.cpp src/2DSolver/MomentumSolver2D.cpp src/2DSolver/KDPointCloud.cpp src/2DSolver/MassSpring2D.cpp src/2DSolver/Boundary.cpp src/2DSolver/SolidObject.cpp src/2DSolver/SimParams.cpp src/2DSolver/NSSolver.cpp src/2DSolver/ObjectSeeder.cpp src/2DSolver/Pool2D.cpp src/LASolver/accel_class.cpp src/LASolver/MatrixIter.cpp src/LASolver/rcm.cpp src/LASolver/SparseItUtil.cpp src/LASolver/ILU_class.cpp src/Utils/GridValComparator.cpp src/Utils/Assembly.cpp src/Utils/GridVal2D.cpp src/Utils/GridVal3D.cpp src/Utils/SolidParams.cpp src/Utils/TestFormatter.cpp src/Utils/ADMMPG.cpp -o fluidsolver2d.exe
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpMatrixStruct(int, int)’:
+src/2DSolver/PressureSolver.cpp:87:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   87 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp:105:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  105 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureMatrix(Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:157:15: warning: variable ‘off’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |               ^~~
+src/2DSolver/PressureSolver.cpp:157:20: warning: variable ‘offp’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |                    ^~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureRHS(double, double**, double**, double**, Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:291:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  291 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::solvePCG(double, Pool2D*, double**, double**, double**, bool, SparseItObj::ParamIter&)’:
+src/2DSolver/PressureSolver.cpp:346:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  346 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In copy constructor ‘mass_spring::MassSpring2D::MassSpring2D(const mass_spring::MassSpring2D&)’:
+src/2DSolver/MassSpring2D.cpp:73:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   73 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In constructor ‘mass_spring::MassSpring2D::MassSpring2D(Pool2D&, int, SolidObject&, int, int)’:
+src/2DSolver/MassSpring2D.cpp:229:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  229 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:359:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  359 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildDMatrix()’:
+src/2DSolver/MassSpring2D.cpp:445:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  445 |     for (int col = 0; col < edgeList->size(); col++) {
+      |                       ~~~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildWMatrix(double)’:
+src/2DSolver/MassSpring2D.cpp:512:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  512 |     for (int i = 0; i < d*edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘SparseItObj::MatrixIter* mass_spring::MassSpring2D::createStiffnessMatrix()’:
+src/2DSolver/MassSpring2D.cpp:598:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  598 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:628:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  628 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:646:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  646 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryDist(double*)’:
+src/2DSolver/MassSpring2D.cpp:714:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  714 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryPnt(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:739:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  739 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::interpFaceVels(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:773:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  773 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBoundaryForces(Pool2D&, double***, int, double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:1125:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1125 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::eulerSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1390:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1390 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::linearImplicitSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1428:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1428 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1463:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1463 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1479:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1479 |     for (int i = 0; i < 2*pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1502:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+ 1502 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::verletSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1558:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1558 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBodyForces()’:
+src/2DSolver/MassSpring2D.cpp:1606:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1606 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1654:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1654 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1671:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1671 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::reset()’:
+src/2DSolver/MassSpring2D.cpp:1699:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1699 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidLocs(Pool2D&, bool)’:
+src/2DSolver/MassSpring2D.cpp:1761:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1761 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1765:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1765 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1773:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1773 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::prox(double, Eigen::VectorXd&, Eigen::VectorXd&, Eigen::VectorXd&)’:
+src/2DSolver/MassSpring2D.cpp:1840:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1840 |     for (int i = 0; i < edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::computeCollisionStress(int, double*, double)’:
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[0]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  974 |     double intStress[2];
+      |            ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[1]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1687:26: warning: ‘temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1687 |         this->updateMode = temp;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvx(int, int)’:
+src/2DSolver/NSSolver.cpp:469:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  469 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvy(int, int)’:
+src/2DSolver/NSSolver.cpp:550:10: warning: variable ‘sten’ set but not used [-Wunused-but-set-variable]
+  550 |     bool sten[7] = {false, false, false, false, false, false, false};
+      |          ^~~~
+src/2DSolver/NSSolver.cpp:560:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  560 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘void NSSolver::interpolateCellCenterVelocities(int, int, double*)’:
+src/2DSolver/NSSolver.cpp:630:12: warning: variable ‘x’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |            ^
+src/2DSolver/NSSolver.cpp:630:15: warning: variable ‘y’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |               ^
+src/2DSolver/ObjectSeeder.cpp: In member function ‘std::vector<SolidObject> ObjectSeeder::randomInitialize(int, SolidObject::ObjectType, double, double, Boundary&, double (*)(double, double, SolidParams&), SolidParams&)’:
+src/2DSolver/ObjectSeeder.cpp:138:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Eigen::Matrix<double, 2, 1> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  138 |     for (int i = 0; i < circs.size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::fastMarchSetNVal(int, int, bool, int)’:
+src/2DSolver/Pool2D.cpp:128:9: warning: variable ‘path’ set but not used [-Wunused-but-set-variable]
+  128 |     int path;
+      |         ^~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::detectCollisions()’:
+src/2DSolver/Pool2D.cpp:645:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  645 |                 for (int i = 0; i < nearestMss.size(); i++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp:610:13: warning: variable ‘nMatches’ set but not used [-Wunused-but-set-variable]
+  610 |         int nMatches;
+      |             ^~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::levelSetGradient(int, int, double*)’:
+src/2DSolver/Pool2D.cpp:1553:12: warning: variable ‘phi_min’ set but not used [-Wunused-but-set-variable]
+ 1553 |     double phi_min;
+      |            ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘double Pool2D::velocityExtrapolationRHS_ENO3(int, int, double*, double*, double*, double*)’:
+src/2DSolver/Pool2D.cpp:1622:20: warning: variable ‘h’ set but not used [-Wunused-but-set-variable]
+ 1622 |     double hx, hy, h;
+      |                    ^
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::updatePoolVelocities(double, double**, double**, double**, int)’:
+src/2DSolver/Pool2D.cpp:2057:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2057 |                 for (int k = 0; k < solids->at(i).pntList->size(); k++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructures(const char*)’:
+src/2DSolver/Pool2D.cpp:2364:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2364 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureNodes(const char*)’:
+src/2DSolver/Pool2D.cpp:2378:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2378 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureVels(const char*)’:
+src/2DSolver/Pool2D.cpp:2393:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2393 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘bool Pool2D::isNormalInterface(objects::FSIObject)’:
+src/2DSolver/Pool2D.cpp:2450:56: warning: enum constant in boolean context [-Wint-in-bool-context]
+ 2450 |                 || obj == objects::FLUID_E || objects::FLUID_W;
+      |                                                        ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::embedShape(SolidObject&, int)’:
+src/2DSolver/Pool2D.cpp:1100:83: warning: ‘min_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1100 |         this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
+      |                                                                                   ^~~~~
+src/2DSolver/Pool2D.cpp:1099:83: warning: ‘min_x’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1099 |         this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
+      |                                                                                   ^~~~~
+src/LASolver/accel_class.cpp: In constructor ‘SparseItObj::scaler_orthomin::scaler_orthomin(int, double*, int)’:
+src/LASolver/accel_class.cpp:62:16: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   62 |     catch(std::bad_alloc) {
+      |                ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::sfac2(const int*, const int*, int, int*, int*)’:
+src/LASolver/ILU_class.cpp:171:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  171 |   catch(std::bad_alloc){// catch
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp:135:7: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  135 |   int itemp, nrow;
+      |       ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::factor(const int*, const int*, const double*)’:
+src/LASolver/ILU_class.cpp:356:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  356 |   catch(std::bad_alloc){// catch block
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::facdrp(const int*, const int*, double*, double, int*, int*)’:
+src/LASolver/ILU_class.cpp:699:11: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  699 |       int itemp, nrow;
+      |           ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::merged(int, int*, int, double*, double, double*)’:
+src/LASolver/ILU_class.cpp:640:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  640 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+  641 |                             odiag[ rowsp[row].jaf[ii] ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/LASolver/ILU_class.cpp:644:17: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  644 |                 if( fabs( temp) > test){
+      |                 ^~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::elimrow(int, double*, double*, int*, int&, int&, int*, int*, double)’:
+src/LASolver/ILU_class.cpp:1503:21: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1503 |                     if( fabs(temp) > test ){ // insert new entry
+      |                     ^~
+src/LASolver/ILU_class.cpp:1494:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1494 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+ 1495 |                             odiag[ invord[ rowsp[row].jaf[ii] ]  ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 640, ny = 1280
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 100
+num_objects 1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 1
+collisionDist = 0.0236206
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+hi 274
+Solved pressure in 96
+Mean pressure (sorta) 2.42891e-05MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/0/out
+./output/ScaleTestTwo640/0/poolOut
+./output/ScaleTestTwo640/0/poolVel
+./output/ScaleTestTwo640/0/MSSEdges
+./output/ScaleTestTwo640/0/MSSNodes
+./output/ScaleTestTwo640/0/MSSVels
+./output/ScaleTestTwo640/0/MSSTracers
+./output/ScaleTestTwo640/0/medialAxis
+t = 0.00762939
+step = 1
+
+hi 274
+Solved pressure in 91
+Mean pressure (sorta) 3.86849e-05MODE 2 RUNNING... FOUND 0
+t = 0.0152588
+step = 2
+
+hi 274
+Solved pressure in 106
+Mean pressure (sorta) -0.000277381MODE 2 RUNNING... FOUND 0
+t = 0.0228882
+step = 3
+
+hi 274
+Solved pressure in 117
+Mean pressure (sorta) -0.000770629MODE 2 RUNNING... FOUND 0
+t = 0.0305176
+step = 4
+
+hi 274
+Solved pressure in 110
+Mean pressure (sorta) -0.000263497MODE 2 RUNNING... FOUND 0
+t = 0.038147
+step = 5
+
+hi 274
+Solved pressure in 109
+Mean pressure (sorta) 0.000207166MODE 2 RUNNING... FOUND 0
+t = 0.0457764
+step = 6
+
+hi 274
+Solved pressure in 133
+Mean pressure (sorta) 0.000454213MODE 2 RUNNING... FOUND 0
+t = 0.0534058
+step = 7
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) 0.00140853MODE 2 RUNNING... FOUND 0
+t = 0.0610352
+step = 8
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) 0.00249962MODE 2 RUNNING... FOUND 0
+t = 0.0686646
+step = 9
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) 0.00383983MODE 2 RUNNING... FOUND 0
+t = 0.0762939
+step = 10
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.00475117MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/10/out
+./output/ScaleTestTwo640/10/poolOut
+./output/ScaleTestTwo640/10/poolVel
+./output/ScaleTestTwo640/10/MSSEdges
+./output/ScaleTestTwo640/10/MSSNodes
+./output/ScaleTestTwo640/10/MSSVels
+./output/ScaleTestTwo640/10/MSSTracers
+./output/ScaleTestTwo640/10/medialAxis
+t = 0.0839233
+step = 11
+
+hi 274
+Solved pressure in 164
+Mean pressure (sorta) 0.00563562MODE 2 RUNNING... FOUND 0
+t = 0.0915527
+step = 12
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) 0.00631783MODE 2 RUNNING... FOUND 0
+t = 0.0991821
+step = 13
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.00681419MODE 2 RUNNING... FOUND 0
+t = 0.106812
+step = 14
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) 0.00712588MODE 2 RUNNING... FOUND 0
+t = 0.114441
+step = 15
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) 0.00731581MODE 2 RUNNING... FOUND 0
+t = 0.12207
+step = 16
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.00744825MODE 2 RUNNING... FOUND 0
+t = 0.1297
+step = 17
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0074778MODE 2 RUNNING... FOUND 0
+t = 0.137329
+step = 18
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.00735614MODE 2 RUNNING... FOUND 0
+t = 0.144958
+step = 19
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00713095MODE 2 RUNNING... FOUND 0
+t = 0.152588
+step = 20
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.00689033MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/20/out
+./output/ScaleTestTwo640/20/poolOut
+./output/ScaleTestTwo640/20/poolVel
+./output/ScaleTestTwo640/20/MSSEdges
+./output/ScaleTestTwo640/20/MSSNodes
+./output/ScaleTestTwo640/20/MSSVels
+./output/ScaleTestTwo640/20/MSSTracers
+./output/ScaleTestTwo640/20/medialAxis
+t = 0.160217
+step = 21
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0067004MODE 2 RUNNING... FOUND 0
+t = 0.167847
+step = 22
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) 0.00635892MODE 2 RUNNING... FOUND 0
+t = 0.175476
+step = 23
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.00584599MODE 2 RUNNING... FOUND 0
+t = 0.183105
+step = 24
+
+hi 274
+Solved pressure in 145
+Mean pressure (sorta) 0.00552778MODE 2 RUNNING... FOUND 0
+t = 0.190735
+step = 25
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.00508335MODE 2 RUNNING... FOUND 0
+t = 0.198364
+step = 26
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.0046569MODE 2 RUNNING... FOUND 0
+t = 0.205994
+step = 27
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.00450335MODE 2 RUNNING... FOUND 0
+t = 0.213623
+step = 28
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.00444852MODE 2 RUNNING... FOUND 0
+t = 0.221252
+step = 29
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.00458191MODE 2 RUNNING... FOUND 0
+t = 0.228882
+step = 30
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) 0.00484879MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/30/out
+./output/ScaleTestTwo640/30/poolOut
+./output/ScaleTestTwo640/30/poolVel
+./output/ScaleTestTwo640/30/MSSEdges
+./output/ScaleTestTwo640/30/MSSNodes
+./output/ScaleTestTwo640/30/MSSVels
+./output/ScaleTestTwo640/30/MSSTracers
+./output/ScaleTestTwo640/30/medialAxis
+t = 0.236511
+step = 31
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.00526133MODE 2 RUNNING... FOUND 0
+t = 0.244141
+step = 32
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.00609355MODE 2 RUNNING... FOUND 0
+t = 0.25177
+step = 33
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.00712627MODE 2 RUNNING... FOUND 0
+t = 0.259399
+step = 34
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.00830198MODE 2 RUNNING... FOUND 0
+t = 0.267029
+step = 35
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.009476MODE 2 RUNNING... FOUND 0
+t = 0.274658
+step = 36
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.010623MODE 2 RUNNING... FOUND 0
+t = 0.282288
+step = 37
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0120791MODE 2 RUNNING... FOUND 0
+t = 0.289917
+step = 38
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0135432MODE 2 RUNNING... FOUND 0
+t = 0.297546
+step = 39
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0148642MODE 2 RUNNING... FOUND 0
+t = 0.305176
+step = 40
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) 0.015978MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/40/out
+./output/ScaleTestTwo640/40/poolOut
+./output/ScaleTestTwo640/40/poolVel
+./output/ScaleTestTwo640/40/MSSEdges
+./output/ScaleTestTwo640/40/MSSNodes
+./output/ScaleTestTwo640/40/MSSVels
+./output/ScaleTestTwo640/40/MSSTracers
+./output/ScaleTestTwo640/40/medialAxis
+t = 0.312805
+step = 41
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0169209MODE 2 RUNNING... FOUND 0
+t = 0.320435
+step = 42
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.0176632MODE 2 RUNNING... FOUND 0
+t = 0.328064
+step = 43
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) 0.0181026MODE 2 RUNNING... FOUND 0
+t = 0.335693
+step = 44
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) 0.0185921MODE 2 RUNNING... FOUND 0
+t = 0.343323
+step = 45
+
+hi 274
+Solved pressure in 207
+Mean pressure (sorta) 0.0186673MODE 2 RUNNING... FOUND 0
+t = 0.350952
+step = 46
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) 0.018421MODE 2 RUNNING... FOUND 0
+t = 0.358582
+step = 47
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0177396MODE 2 RUNNING... FOUND 0
+t = 0.366211
+step = 48
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0167856MODE 2 RUNNING... FOUND 0
+t = 0.37384
+step = 49
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0158008MODE 2 RUNNING... FOUND 0
+t = 0.38147
+step = 50
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0147216MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/50/out
+./output/ScaleTestTwo640/50/poolOut
+./output/ScaleTestTwo640/50/poolVel
+./output/ScaleTestTwo640/50/MSSEdges
+./output/ScaleTestTwo640/50/MSSNodes
+./output/ScaleTestTwo640/50/MSSVels
+./output/ScaleTestTwo640/50/MSSTracers
+./output/ScaleTestTwo640/50/medialAxis
+t = 0.389099
+step = 51
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0134332MODE 2 RUNNING... FOUND 0
+t = 0.396729
+step = 52
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) 0.0122134MODE 2 RUNNING... FOUND 0
+t = 0.404358
+step = 53
+
+hi 274
+Solved pressure in 164
+Mean pressure (sorta) 0.0110589MODE 2 RUNNING... FOUND 0
+t = 0.411987
+step = 54
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0101156MODE 2 RUNNING... FOUND 0
+t = 0.419617
+step = 55
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) 0.00909338MODE 2 RUNNING... FOUND 0
+t = 0.427246
+step = 56
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) 0.00786332MODE 2 RUNNING... FOUND 0
+t = 0.434875
+step = 57
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) 0.00704279MODE 2 RUNNING... FOUND 0
+t = 0.442505
+step = 58
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) 0.00629033MODE 2 RUNNING... FOUND 0
+t = 0.450134
+step = 59
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.00584552MODE 2 RUNNING... FOUND 0
+t = 0.457764
+step = 60
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.00564803MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/60/out
+./output/ScaleTestTwo640/60/poolOut
+./output/ScaleTestTwo640/60/poolVel
+./output/ScaleTestTwo640/60/MSSEdges
+./output/ScaleTestTwo640/60/MSSNodes
+./output/ScaleTestTwo640/60/MSSVels
+./output/ScaleTestTwo640/60/MSSTracers
+./output/ScaleTestTwo640/60/medialAxis
+t = 0.465393
+step = 61
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.00571234MODE 2 RUNNING... FOUND 0
+t = 0.473022
+step = 62
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.00601238MODE 2 RUNNING... FOUND 0
+t = 0.480652
+step = 63
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.00660684MODE 2 RUNNING... FOUND 0
+t = 0.488281
+step = 64
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.00748875MODE 2 RUNNING... FOUND 0
+t = 0.495911
+step = 65
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.00823529MODE 2 RUNNING... FOUND 0
+t = 0.50354
+step = 66
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) 0.009307MODE 2 RUNNING... FOUND 0
+t = 0.511169
+step = 67
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.0108343MODE 2 RUNNING... FOUND 0
+t = 0.518799
+step = 68
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0125035MODE 2 RUNNING... FOUND 0
+t = 0.526428
+step = 69
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.0140675MODE 2 RUNNING... FOUND 0
+t = 0.534058
+step = 70
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.0159374MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/70/out
+./output/ScaleTestTwo640/70/poolOut
+./output/ScaleTestTwo640/70/poolVel
+./output/ScaleTestTwo640/70/MSSEdges
+./output/ScaleTestTwo640/70/MSSNodes
+./output/ScaleTestTwo640/70/MSSVels
+./output/ScaleTestTwo640/70/MSSTracers
+./output/ScaleTestTwo640/70/medialAxis
+t = 0.541687
+step = 71
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) 0.0176495MODE 2 RUNNING... FOUND 0
+t = 0.549316
+step = 72
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.019459MODE 2 RUNNING... FOUND 0
+t = 0.556946
+step = 73
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0210633MODE 2 RUNNING... FOUND 0
+t = 0.564575
+step = 74
+
+hi 274
+Solved pressure in 145
+Mean pressure (sorta) 0.0226112MODE 2 RUNNING... FOUND 0
+t = 0.572205
+step = 75
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0237492MODE 2 RUNNING... FOUND 0
+t = 0.579834
+step = 76
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.0247454MODE 2 RUNNING... FOUND 0
+t = 0.587463
+step = 77
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0257407MODE 2 RUNNING... FOUND 0
+t = 0.595093
+step = 78
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.026291MODE 2 RUNNING... FOUND 0
+t = 0.602722
+step = 79
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0264876MODE 2 RUNNING... FOUND 0
+t = 0.610352
+step = 80
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0262868MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/80/out
+./output/ScaleTestTwo640/80/poolOut
+./output/ScaleTestTwo640/80/poolVel
+./output/ScaleTestTwo640/80/MSSEdges
+./output/ScaleTestTwo640/80/MSSNodes
+./output/ScaleTestTwo640/80/MSSVels
+./output/ScaleTestTwo640/80/MSSTracers
+./output/ScaleTestTwo640/80/medialAxis
+t = 0.617981
+step = 81
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) 0.0258217MODE 2 RUNNING... FOUND 0
+t = 0.62561
+step = 82
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0250892MODE 2 RUNNING... FOUND 0
+t = 0.63324
+step = 83
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) 0.0240123MODE 2 RUNNING... FOUND 0
+t = 0.640869
+step = 84
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0225956MODE 2 RUNNING... FOUND 0
+t = 0.648499
+step = 85
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0209625MODE 2 RUNNING... FOUND 0
+t = 0.656128
+step = 86
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0194207MODE 2 RUNNING... FOUND 0
+t = 0.663757
+step = 87
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0181722MODE 2 RUNNING... FOUND 0
+t = 0.671387
+step = 88
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) 0.0170305MODE 2 RUNNING... FOUND 0
+t = 0.679016
+step = 89
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0157939MODE 2 RUNNING... FOUND 0
+t = 0.686646
+step = 90
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) 0.0144715MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/90/out
+./output/ScaleTestTwo640/90/poolOut
+./output/ScaleTestTwo640/90/poolVel
+./output/ScaleTestTwo640/90/MSSEdges
+./output/ScaleTestTwo640/90/MSSNodes
+./output/ScaleTestTwo640/90/MSSVels
+./output/ScaleTestTwo640/90/MSSTracers
+./output/ScaleTestTwo640/90/medialAxis
+t = 0.694275
+step = 91
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0130883MODE 2 RUNNING... FOUND 0
+t = 0.701904
+step = 92
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.0115528MODE 2 RUNNING... FOUND 0
+t = 0.709534
+step = 93
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.0101912MODE 2 RUNNING... FOUND 0
+t = 0.717163
+step = 94
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00911757MODE 2 RUNNING... FOUND 0
+t = 0.724792
+step = 95
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.00862866MODE 2 RUNNING... FOUND 0
+t = 0.732422
+step = 96
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.00856488MODE 2 RUNNING... FOUND 0
+t = 0.740051
+step = 97
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0089085MODE 2 RUNNING... FOUND 0
+t = 0.747681
+step = 98
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.00967543MODE 2 RUNNING... FOUND 0
+t = 0.75531
+step = 99
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.010797MODE 2 RUNNING... FOUND 0
+t = 0.762939
+step = 100
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0119426MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/100/out
+./output/ScaleTestTwo640/100/poolOut
+./output/ScaleTestTwo640/100/poolVel
+./output/ScaleTestTwo640/100/MSSEdges
+./output/ScaleTestTwo640/100/MSSNodes
+./output/ScaleTestTwo640/100/MSSVels
+./output/ScaleTestTwo640/100/MSSTracers
+./output/ScaleTestTwo640/100/medialAxis
+t = 0.770569
+step = 101
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0129374MODE 2 RUNNING... FOUND 0
+t = 0.778198
+step = 102
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0138812MODE 2 RUNNING... FOUND 0
+t = 0.785828
+step = 103
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0150126MODE 2 RUNNING... FOUND 0
+t = 0.793457
+step = 104
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.0166895MODE 2 RUNNING... FOUND 0
+t = 0.801086
+step = 105
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.0184542MODE 2 RUNNING... FOUND 0
+t = 0.808716
+step = 106
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.0205832MODE 2 RUNNING... FOUND 0
+t = 0.816345
+step = 107
+
+hi 274
+Solved pressure in 152
+Mean pressure (sorta) 0.0228648MODE 2 RUNNING... FOUND 0
+t = 0.823975
+step = 108
+
+hi 274
+Solved pressure in 147
+Mean pressure (sorta) 0.0249306MODE 2 RUNNING... FOUND 0
+t = 0.831604
+step = 109
+
+hi 274
+Solved pressure in 141
+Mean pressure (sorta) 0.0264541MODE 2 RUNNING... FOUND 0
+t = 0.839233
+step = 110
+
+hi 274
+Solved pressure in 129
+Mean pressure (sorta) 0.0275317MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/110/out
+./output/ScaleTestTwo640/110/poolOut
+./output/ScaleTestTwo640/110/poolVel
+./output/ScaleTestTwo640/110/MSSEdges
+./output/ScaleTestTwo640/110/MSSNodes
+./output/ScaleTestTwo640/110/MSSVels
+./output/ScaleTestTwo640/110/MSSTracers
+./output/ScaleTestTwo640/110/medialAxis
+t = 0.846863
+step = 111
+
+hi 274
+Solved pressure in 126
+Mean pressure (sorta) 0.0281556MODE 2 RUNNING... FOUND 0
+t = 0.854492
+step = 112
+
+hi 274
+Solved pressure in 139
+Mean pressure (sorta) 0.0285784MODE 2 RUNNING... FOUND 0
+t = 0.862122
+step = 113
+
+hi 274
+Solved pressure in 122
+Mean pressure (sorta) 0.0289087MODE 2 RUNNING... FOUND 0
+t = 0.869751
+step = 114
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0291777MODE 2 RUNNING... FOUND 0
+t = 0.87738
+step = 115
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) 0.0293832MODE 2 RUNNING... FOUND 0
+t = 0.88501
+step = 116
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0297802MODE 2 RUNNING... FOUND 0
+t = 0.892639
+step = 117
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0302871MODE 2 RUNNING... FOUND 0
+t = 0.900269
+step = 118
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0297152MODE 2 RUNNING... FOUND 0
+t = 0.907898
+step = 119
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.028882MODE 2 RUNNING... FOUND 0
+t = 0.915527
+step = 120
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) 0.0275335MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/120/out
+./output/ScaleTestTwo640/120/poolOut
+./output/ScaleTestTwo640/120/poolVel
+./output/ScaleTestTwo640/120/MSSEdges
+./output/ScaleTestTwo640/120/MSSNodes
+./output/ScaleTestTwo640/120/MSSVels
+./output/ScaleTestTwo640/120/MSSTracers
+./output/ScaleTestTwo640/120/medialAxis
+t = 0.923157
+step = 121
+
+hi 274
+Solved pressure in 155
+Mean pressure (sorta) 0.02574MODE 2 RUNNING... FOUND 0
+t = 0.930786
+step = 122
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) 0.0239013MODE 2 RUNNING... FOUND 0
+t = 0.938416
+step = 123
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.022658MODE 2 RUNNING... FOUND 0
+t = 0.946045
+step = 124
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) 0.0217124MODE 2 RUNNING... FOUND 0
+t = 0.953674
+step = 125
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0212255MODE 2 RUNNING... FOUND 0
+t = 0.961304
+step = 126
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0207199MODE 2 RUNNING... FOUND 0
+t = 0.968933
+step = 127
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0201125MODE 2 RUNNING... FOUND 0
+t = 0.976562
+step = 128
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0193282MODE 2 RUNNING... FOUND 0
+t = 0.984192
+step = 129
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0182158MODE 2 RUNNING... FOUND 0
+t = 0.991821
+step = 130
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) 0.0169451MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/130/out
+./output/ScaleTestTwo640/130/poolOut
+./output/ScaleTestTwo640/130/poolVel
+./output/ScaleTestTwo640/130/MSSEdges
+./output/ScaleTestTwo640/130/MSSNodes
+./output/ScaleTestTwo640/130/MSSVels
+./output/ScaleTestTwo640/130/MSSTracers
+./output/ScaleTestTwo640/130/medialAxis
+t = 0.999451
+step = 131
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0159686MODE 2 RUNNING... FOUND 0
+t = 1.00708
+step = 132
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0156289MODE 2 RUNNING... FOUND 0
+t = 1.01471
+step = 133
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0158718MODE 2 RUNNING... FOUND 0
+t = 1.02234
+step = 134
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0162481MODE 2 RUNNING... FOUND 0
+t = 1.02997
+step = 135
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0170753MODE 2 RUNNING... FOUND 0
+t = 1.0376
+step = 136
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.017897MODE 2 RUNNING... FOUND 0
+t = 1.04523
+step = 137
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) 0.0188464MODE 2 RUNNING... FOUND 0
+t = 1.05286
+step = 138
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0191922MODE 2 RUNNING... FOUND 0
+t = 1.06049
+step = 139
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0193833MODE 2 RUNNING... FOUND 0
+t = 1.06812
+step = 140
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0196579MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/140/out
+./output/ScaleTestTwo640/140/poolOut
+./output/ScaleTestTwo640/140/poolVel
+./output/ScaleTestTwo640/140/MSSEdges
+./output/ScaleTestTwo640/140/MSSNodes
+./output/ScaleTestTwo640/140/MSSVels
+./output/ScaleTestTwo640/140/MSSTracers
+./output/ScaleTestTwo640/140/medialAxis
+t = 1.07574
+step = 141
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0204576MODE 2 RUNNING... FOUND 0
+t = 1.08337
+step = 142
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.021764MODE 2 RUNNING... FOUND 0
+t = 1.091
+step = 143
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0229611MODE 2 RUNNING... FOUND 0
+t = 1.09863
+step = 144
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0242577MODE 2 RUNNING... FOUND 0
+t = 1.10626
+step = 145
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) 0.0256123MODE 2 RUNNING... FOUND 0
+t = 1.11389
+step = 146
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.0266495MODE 2 RUNNING... FOUND 0
+t = 1.12152
+step = 147
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) 0.0273568MODE 2 RUNNING... FOUND 0
+t = 1.12915
+step = 148
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0275775MODE 2 RUNNING... FOUND 0
+t = 1.13678
+step = 149
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0274586MODE 2 RUNNING... FOUND 0
+t = 1.14441
+step = 150
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0276599MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/150/out
+./output/ScaleTestTwo640/150/poolOut
+./output/ScaleTestTwo640/150/poolVel
+./output/ScaleTestTwo640/150/MSSEdges
+./output/ScaleTestTwo640/150/MSSNodes
+./output/ScaleTestTwo640/150/MSSVels
+./output/ScaleTestTwo640/150/MSSTracers
+./output/ScaleTestTwo640/150/medialAxis
+t = 1.15204
+step = 151
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) 0.0279162MODE 2 RUNNING... FOUND 0
+t = 1.15967
+step = 152
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0284299MODE 2 RUNNING... FOUND 0
+t = 1.1673
+step = 153
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) 0.0287986MODE 2 RUNNING... FOUND 0
+t = 1.17493
+step = 154
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0288439MODE 2 RUNNING... FOUND 0
+t = 1.18256
+step = 155
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0286233MODE 2 RUNNING... FOUND 0
+t = 1.19019
+step = 156
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0282253MODE 2 RUNNING... FOUND 0
+t = 1.19781
+step = 157
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0273782MODE 2 RUNNING... FOUND 0
+t = 1.20544
+step = 158
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0264463MODE 2 RUNNING... FOUND 0
+t = 1.21307
+step = 159
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.0257427MODE 2 RUNNING... FOUND 0
+t = 1.2207
+step = 160
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0251233MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/160/out
+./output/ScaleTestTwo640/160/poolOut
+./output/ScaleTestTwo640/160/poolVel
+./output/ScaleTestTwo640/160/MSSEdges
+./output/ScaleTestTwo640/160/MSSNodes
+./output/ScaleTestTwo640/160/MSSVels
+./output/ScaleTestTwo640/160/MSSTracers
+./output/ScaleTestTwo640/160/medialAxis
+t = 1.22833
+step = 161
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0245542MODE 2 RUNNING... FOUND 0
+t = 1.23596
+step = 162
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0241674MODE 2 RUNNING... FOUND 0
+t = 1.24359
+step = 163
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0234998MODE 2 RUNNING... FOUND 0
+t = 1.25122
+step = 164
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.0227751MODE 2 RUNNING... FOUND 0
+t = 1.25885
+step = 165
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0220195MODE 2 RUNNING... FOUND 0
+t = 1.26648
+step = 166
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.0211775MODE 2 RUNNING... FOUND 0
+t = 1.27411
+step = 167
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0203905MODE 2 RUNNING... FOUND 0
+t = 1.28174
+step = 168
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0199015MODE 2 RUNNING... FOUND 0
+t = 1.28937
+step = 169
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) 0.0194235MODE 2 RUNNING... FOUND 0
+t = 1.297
+step = 170
+
+hi 274
+Solved pressure in 146
+Mean pressure (sorta) 0.0190476MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/170/out
+./output/ScaleTestTwo640/170/poolOut
+./output/ScaleTestTwo640/170/poolVel
+./output/ScaleTestTwo640/170/MSSEdges
+./output/ScaleTestTwo640/170/MSSNodes
+./output/ScaleTestTwo640/170/MSSVels
+./output/ScaleTestTwo640/170/MSSTracers
+./output/ScaleTestTwo640/170/medialAxis
+t = 1.30463
+step = 171
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) 0.0186506MODE 2 RUNNING... FOUND 0
+t = 1.31226
+step = 172
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0183868MODE 2 RUNNING... FOUND 0
+t = 1.31989
+step = 173
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) 0.0180413MODE 2 RUNNING... FOUND 0
+t = 1.32751
+step = 174
+
+hi 274
+Solved pressure in 154
+Mean pressure (sorta) 0.0179551MODE 2 RUNNING... FOUND 0
+t = 1.33514
+step = 175
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0177434MODE 2 RUNNING... FOUND 0
+t = 1.34277
+step = 176
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0176427MODE 2 RUNNING... FOUND 0
+t = 1.3504
+step = 177
+
+hi 274
+Solved pressure in 135
+Mean pressure (sorta) 0.0176244MODE 2 RUNNING... FOUND 0
+t = 1.35803
+step = 178
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0175996MODE 2 RUNNING... FOUND 0
+t = 1.36566
+step = 179
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.0174878MODE 2 RUNNING... FOUND 0
+t = 1.37329
+step = 180
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0174098MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/180/out
+./output/ScaleTestTwo640/180/poolOut
+./output/ScaleTestTwo640/180/poolVel
+./output/ScaleTestTwo640/180/MSSEdges
+./output/ScaleTestTwo640/180/MSSNodes
+./output/ScaleTestTwo640/180/MSSVels
+./output/ScaleTestTwo640/180/MSSTracers
+./output/ScaleTestTwo640/180/medialAxis
+t = 1.38092
+step = 181
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.0174381MODE 2 RUNNING... FOUND 0
+t = 1.38855
+step = 182
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0175222MODE 2 RUNNING... FOUND 0
+t = 1.39618
+step = 183
+
+hi 274
+Solved pressure in 150
+Mean pressure (sorta) 0.01743MODE 2 RUNNING... FOUND 0
+t = 1.40381
+step = 184
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0172747MODE 2 RUNNING... FOUND 0
+t = 1.41144
+step = 185
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0171689MODE 2 RUNNING... FOUND 0
+t = 1.41907
+step = 186
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0170413MODE 2 RUNNING... FOUND 0
+t = 1.4267
+step = 187
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) 0.0169319MODE 2 RUNNING... FOUND 0
+t = 1.43433
+step = 188
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0168504MODE 2 RUNNING... FOUND 0
+t = 1.44196
+step = 189
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.0168092MODE 2 RUNNING... FOUND 0
+t = 1.44958
+step = 190
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.016814MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/190/out
+./output/ScaleTestTwo640/190/poolOut
+./output/ScaleTestTwo640/190/poolVel
+./output/ScaleTestTwo640/190/MSSEdges
+./output/ScaleTestTwo640/190/MSSNodes
+./output/ScaleTestTwo640/190/MSSVels
+./output/ScaleTestTwo640/190/MSSTracers
+./output/ScaleTestTwo640/190/medialAxis
+t = 1.45721
+step = 191
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) 0.0170064MODE 2 RUNNING... FOUND 0
+t = 1.46484
+step = 192
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.0170445MODE 2 RUNNING... FOUND 0
+t = 1.47247
+step = 193
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0168233MODE 2 RUNNING... FOUND 0
+t = 1.4801
+step = 194
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0169201MODE 2 RUNNING... FOUND 0
+t = 1.48773
+step = 195
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.0169662MODE 2 RUNNING... FOUND 0
+t = 1.49536
+step = 196
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0170475MODE 2 RUNNING... FOUND 0
+t = 1.50299
+step = 197
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0171797MODE 2 RUNNING... FOUND 0
+t = 1.51062
+step = 198
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0175032MODE 2 RUNNING... FOUND 0
+t = 1.51825
+step = 199
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0177899MODE 2 RUNNING... FOUND 0
+t = 1.52588
+step = 200
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0182787MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/200/out
+./output/ScaleTestTwo640/200/poolOut
+./output/ScaleTestTwo640/200/poolVel
+./output/ScaleTestTwo640/200/MSSEdges
+./output/ScaleTestTwo640/200/MSSNodes
+./output/ScaleTestTwo640/200/MSSVels
+./output/ScaleTestTwo640/200/MSSTracers
+./output/ScaleTestTwo640/200/medialAxis
+t = 1.53351
+step = 201
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) 0.0184784MODE 2 RUNNING... FOUND 0
+t = 1.54114
+step = 202
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) 0.0184429MODE 2 RUNNING... FOUND 0
+t = 1.54877
+step = 203
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0184686MODE 2 RUNNING... FOUND 0
+t = 1.5564
+step = 204
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.0184071MODE 2 RUNNING... FOUND 0
+t = 1.56403
+step = 205
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0183302MODE 2 RUNNING... FOUND 0
+t = 1.57166
+step = 206
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.0181418MODE 2 RUNNING... FOUND 0
+t = 1.57928
+step = 207
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.0179334MODE 2 RUNNING... FOUND 0
+t = 1.58691
+step = 208
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0176559MODE 2 RUNNING... FOUND 0
+t = 1.59454
+step = 209
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) 0.0174831MODE 2 RUNNING... FOUND 0
+t = 1.60217
+step = 210
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0172573MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/210/out
+./output/ScaleTestTwo640/210/poolOut
+./output/ScaleTestTwo640/210/poolVel
+./output/ScaleTestTwo640/210/MSSEdges
+./output/ScaleTestTwo640/210/MSSNodes
+./output/ScaleTestTwo640/210/MSSVels
+./output/ScaleTestTwo640/210/MSSTracers
+./output/ScaleTestTwo640/210/medialAxis
+t = 1.6098
+step = 211
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) 0.016873MODE 2 RUNNING... FOUND 0
+t = 1.61743
+step = 212
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0163921MODE 2 RUNNING... FOUND 0
+t = 1.62506
+step = 213
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0158855MODE 2 RUNNING... FOUND 0
+t = 1.63269
+step = 214
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0154154MODE 2 RUNNING... FOUND 0
+t = 1.64032
+step = 215
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0148293MODE 2 RUNNING... FOUND 0
+t = 1.64795
+step = 216
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0138962MODE 2 RUNNING... FOUND 0
+t = 1.65558
+step = 217
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0129477MODE 2 RUNNING... FOUND 0
+t = 1.66321
+step = 218
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.0121968MODE 2 RUNNING... FOUND 0
+t = 1.67084
+step = 219
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.0115221MODE 2 RUNNING... FOUND 0
+t = 1.67847
+step = 220
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0110061MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/220/out
+./output/ScaleTestTwo640/220/poolOut
+./output/ScaleTestTwo640/220/poolVel
+./output/ScaleTestTwo640/220/MSSEdges
+./output/ScaleTestTwo640/220/MSSNodes
+./output/ScaleTestTwo640/220/MSSVels
+./output/ScaleTestTwo640/220/MSSTracers
+./output/ScaleTestTwo640/220/medialAxis
+t = 1.6861
+step = 221
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) 0.0105252MODE 2 RUNNING... FOUND 0
+t = 1.69373
+step = 222
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) 0.0102193MODE 2 RUNNING... FOUND 0
+t = 1.70135
+step = 223
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0101303MODE 2 RUNNING... FOUND 0
+t = 1.70898
+step = 224
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) 0.0099624MODE 2 RUNNING... FOUND 0
+t = 1.71661
+step = 225
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00990517MODE 2 RUNNING... FOUND 0
+t = 1.72424
+step = 226
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.00966626MODE 2 RUNNING... FOUND 0
+t = 1.73187
+step = 227
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) 0.00945575MODE 2 RUNNING... FOUND 0
+t = 1.7395
+step = 228
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00954704MODE 2 RUNNING... FOUND 0
+t = 1.74713
+step = 229
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) 0.00992119MODE 2 RUNNING... FOUND 0
+t = 1.75476
+step = 230
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) 0.0104464MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/230/out
+./output/ScaleTestTwo640/230/poolOut
+./output/ScaleTestTwo640/230/poolVel
+./output/ScaleTestTwo640/230/MSSEdges
+./output/ScaleTestTwo640/230/MSSNodes
+./output/ScaleTestTwo640/230/MSSVels
+./output/ScaleTestTwo640/230/MSSTracers
+./output/ScaleTestTwo640/230/medialAxis
+t = 1.76239
+step = 231
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.0111364MODE 2 RUNNING... FOUND 0
+t = 1.77002
+step = 232
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0119515MODE 2 RUNNING... FOUND 0
+t = 1.77765
+step = 233
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.012694MODE 2 RUNNING... FOUND 0
+t = 1.78528
+step = 234
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0132121MODE 2 RUNNING... FOUND 0
+t = 1.79291
+step = 235
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) 0.0135757MODE 2 RUNNING... FOUND 0
+t = 1.80054
+step = 236
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.0141542MODE 2 RUNNING... FOUND 0
+t = 1.80817
+step = 237
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0147282MODE 2 RUNNING... FOUND 0
+t = 1.8158
+step = 238
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.0154186MODE 2 RUNNING... FOUND 0
+t = 1.82343
+step = 239
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.0159861MODE 2 RUNNING... FOUND 0
+t = 1.83105
+step = 240
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) 0.0164449MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/240/out
+./output/ScaleTestTwo640/240/poolOut
+./output/ScaleTestTwo640/240/poolVel
+./output/ScaleTestTwo640/240/MSSEdges
+./output/ScaleTestTwo640/240/MSSNodes
+./output/ScaleTestTwo640/240/MSSVels
+./output/ScaleTestTwo640/240/MSSTracers
+./output/ScaleTestTwo640/240/medialAxis
+t = 1.83868
+step = 241
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.0165858MODE 2 RUNNING... FOUND 0
+t = 1.84631
+step = 242
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0164622MODE 2 RUNNING... FOUND 0
+t = 1.85394
+step = 243
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) 0.0161945MODE 2 RUNNING... FOUND 0
+t = 1.86157
+step = 244
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0157651MODE 2 RUNNING... FOUND 0
+t = 1.8692
+step = 245
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) 0.0151817MODE 2 RUNNING... FOUND 0
+t = 1.87683
+step = 246
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) 0.0144682MODE 2 RUNNING... FOUND 0
+t = 1.88446
+step = 247
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.013751MODE 2 RUNNING... FOUND 0
+t = 1.89209
+step = 248
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.0130703MODE 2 RUNNING... FOUND 0
+t = 1.89972
+step = 249
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.0119578MODE 2 RUNNING... FOUND 0
+t = 1.90735
+step = 250
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) 0.0108415MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/250/out
+./output/ScaleTestTwo640/250/poolOut
+./output/ScaleTestTwo640/250/poolVel
+./output/ScaleTestTwo640/250/MSSEdges
+./output/ScaleTestTwo640/250/MSSNodes
+./output/ScaleTestTwo640/250/MSSVels
+./output/ScaleTestTwo640/250/MSSTracers
+./output/ScaleTestTwo640/250/medialAxis
+t = 1.91498
+step = 251
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00955978MODE 2 RUNNING... FOUND 0
+t = 1.92261
+step = 252
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00837204MODE 2 RUNNING... FOUND 0
+t = 1.93024
+step = 253
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) 0.00707126MODE 2 RUNNING... FOUND 0
+t = 1.93787
+step = 254
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00594942MODE 2 RUNNING... FOUND 0
+t = 1.9455
+step = 255
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) 0.00493146MODE 2 RUNNING... FOUND 0
+t = 1.95312
+step = 256
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.00409977MODE 2 RUNNING... FOUND 0
+t = 1.96075
+step = 257
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.0034272MODE 2 RUNNING... FOUND 0
+t = 1.96838
+step = 258
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.00270212MODE 2 RUNNING... FOUND 0
+t = 1.97601
+step = 259
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) 0.00211748MODE 2 RUNNING... FOUND 0
+t = 1.98364
+step = 260
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.00154174MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/260/out
+./output/ScaleTestTwo640/260/poolOut
+./output/ScaleTestTwo640/260/poolVel
+./output/ScaleTestTwo640/260/MSSEdges
+./output/ScaleTestTwo640/260/MSSNodes
+./output/ScaleTestTwo640/260/MSSVels
+./output/ScaleTestTwo640/260/MSSTracers
+./output/ScaleTestTwo640/260/medialAxis
+t = 1.99127
+step = 261
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00113527MODE 2 RUNNING... FOUND 0
+t = 1.9989
+step = 262
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.000888587MODE 2 RUNNING... FOUND 0
+t = 2.00653
+step = 263
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.000907655MODE 2 RUNNING... FOUND 0
+t = 2.01416
+step = 264
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.00121983MODE 2 RUNNING... FOUND 0
+t = 2.02179
+step = 265
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) 0.00176734MODE 2 RUNNING... FOUND 0
+t = 2.02942
+step = 266
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) 0.00236431MODE 2 RUNNING... FOUND 0
+t = 2.03705
+step = 267
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.00280327MODE 2 RUNNING... FOUND 0
+t = 2.04468
+step = 268
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.00324391MODE 2 RUNNING... FOUND 0
+t = 2.05231
+step = 269
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) 0.00387889MODE 2 RUNNING... FOUND 0
+t = 2.05994
+step = 270
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) 0.00471876MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/270/out
+./output/ScaleTestTwo640/270/poolOut
+./output/ScaleTestTwo640/270/poolVel
+./output/ScaleTestTwo640/270/MSSEdges
+./output/ScaleTestTwo640/270/MSSNodes
+./output/ScaleTestTwo640/270/MSSVels
+./output/ScaleTestTwo640/270/MSSTracers
+./output/ScaleTestTwo640/270/medialAxis
+t = 2.06757
+step = 271
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.00561289MODE 2 RUNNING... FOUND 0
+t = 2.0752
+step = 272
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00658372MODE 2 RUNNING... FOUND 0
+t = 2.08282
+step = 273
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) 0.00749146MODE 2 RUNNING... FOUND 0
+t = 2.09045
+step = 274
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.00848611MODE 2 RUNNING... FOUND 0
+t = 2.09808
+step = 275
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) 0.00916343MODE 2 RUNNING... FOUND 0
+t = 2.10571
+step = 276
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) 0.00954614MODE 2 RUNNING... FOUND 0
+t = 2.11334
+step = 277
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.00969799MODE 2 RUNNING... FOUND 0
+t = 2.12097
+step = 278
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) 0.00963005MODE 2 RUNNING... FOUND 0
+t = 2.1286
+step = 279
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) 0.00972703MODE 2 RUNNING... FOUND 0
+t = 2.13623
+step = 280
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) 0.0097475MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/280/out
+./output/ScaleTestTwo640/280/poolOut
+./output/ScaleTestTwo640/280/poolVel
+./output/ScaleTestTwo640/280/MSSEdges
+./output/ScaleTestTwo640/280/MSSNodes
+./output/ScaleTestTwo640/280/MSSVels
+./output/ScaleTestTwo640/280/MSSTracers
+./output/ScaleTestTwo640/280/medialAxis
+t = 2.14386
+step = 281
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.00967586MODE 2 RUNNING... FOUND 0
+t = 2.15149
+step = 282
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.00948116MODE 2 RUNNING... FOUND 0
+t = 2.15912
+step = 283
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.00891189MODE 2 RUNNING... FOUND 0
+t = 2.16675
+step = 284
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) 0.00818716MODE 2 RUNNING... FOUND 0
+t = 2.17438
+step = 285
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) 0.00734637MODE 2 RUNNING... FOUND 0
+t = 2.18201
+step = 286
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) 0.00616115MODE 2 RUNNING... FOUND 0
+t = 2.18964
+step = 287
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) 0.00509902MODE 2 RUNNING... FOUND 0
+t = 2.19727
+step = 288
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) 0.00419899MODE 2 RUNNING... FOUND 0
+t = 2.2049
+step = 289
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) 0.00329183MODE 2 RUNNING... FOUND 0
+t = 2.21252
+step = 290
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) 0.00235376MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/290/out
+./output/ScaleTestTwo640/290/poolOut
+./output/ScaleTestTwo640/290/poolVel
+./output/ScaleTestTwo640/290/MSSEdges
+./output/ScaleTestTwo640/290/MSSNodes
+./output/ScaleTestTwo640/290/MSSVels
+./output/ScaleTestTwo640/290/MSSTracers
+./output/ScaleTestTwo640/290/medialAxis
+t = 2.22015
+step = 291
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) 0.00130392MODE 2 RUNNING... FOUND 0
+t = 2.22778
+step = 292
+
+hi 274
+Solved pressure in 152
+Mean pressure (sorta) 0.000323292MODE 2 RUNNING... FOUND 0
+t = 2.23541
+step = 293
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.000691114MODE 2 RUNNING... FOUND 0
+t = 2.24304
+step = 294
+
+hi 274
+Solved pressure in 149
+Mean pressure (sorta) -0.00169965MODE 2 RUNNING... FOUND 0
+t = 2.25067
+step = 295
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.00246413MODE 2 RUNNING... FOUND 0
+t = 2.2583
+step = 296
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.00299712MODE 2 RUNNING... FOUND 0
+t = 2.26593
+step = 297
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.00336261MODE 2 RUNNING... FOUND 0
+t = 2.27356
+step = 298
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.00377086MODE 2 RUNNING... FOUND 0
+t = 2.28119
+step = 299
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.00384352MODE 2 RUNNING... FOUND 0
+t = 2.28882
+step = 300
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) -0.00392955MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/300/out
+./output/ScaleTestTwo640/300/poolOut
+./output/ScaleTestTwo640/300/poolVel
+./output/ScaleTestTwo640/300/MSSEdges
+./output/ScaleTestTwo640/300/MSSNodes
+./output/ScaleTestTwo640/300/MSSVels
+./output/ScaleTestTwo640/300/MSSTracers
+./output/ScaleTestTwo640/300/medialAxis
+t = 2.29645
+step = 301
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.00393709MODE 2 RUNNING... FOUND 0
+t = 2.30408
+step = 302
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.00382509MODE 2 RUNNING... FOUND 0
+t = 2.31171
+step = 303
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.00370644MODE 2 RUNNING... FOUND 0
+t = 2.31934
+step = 304
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.00320648MODE 2 RUNNING... FOUND 0
+t = 2.32697
+step = 305
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.00256833MODE 2 RUNNING... FOUND 0
+t = 2.33459
+step = 306
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0021522MODE 2 RUNNING... FOUND 0
+t = 2.34222
+step = 307
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.00166779MODE 2 RUNNING... FOUND 0
+t = 2.34985
+step = 308
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.00117437MODE 2 RUNNING... FOUND 0
+t = 2.35748
+step = 309
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.000787418MODE 2 RUNNING... FOUND 0
+t = 2.36511
+step = 310
+
+hi 274
+Solved pressure in 154
+Mean pressure (sorta) -0.000254976MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/310/out
+./output/ScaleTestTwo640/310/poolOut
+./output/ScaleTestTwo640/310/poolVel
+./output/ScaleTestTwo640/310/MSSEdges
+./output/ScaleTestTwo640/310/MSSNodes
+./output/ScaleTestTwo640/310/MSSVels
+./output/ScaleTestTwo640/310/MSSTracers
+./output/ScaleTestTwo640/310/medialAxis
+t = 2.37274
+step = 311
+
+hi 274
+Solved pressure in 132
+Mean pressure (sorta) 0.000296302MODE 2 RUNNING... FOUND 0
+t = 2.38037
+step = 312
+
+hi 274
+Solved pressure in 127
+Mean pressure (sorta) 0.000916541MODE 2 RUNNING... FOUND 0
+t = 2.388
+step = 313
+
+hi 274
+Solved pressure in 130
+Mean pressure (sorta) 0.00150936MODE 2 RUNNING... FOUND 0
+t = 2.39563
+step = 314
+
+hi 274
+Solved pressure in 139
+Mean pressure (sorta) 0.00162167MODE 2 RUNNING... FOUND 0
+t = 2.40326
+step = 315
+
+hi 274
+Solved pressure in 119
+Mean pressure (sorta) 0.00181466MODE 2 RUNNING... FOUND 0
+t = 2.41089
+step = 316
+
+hi 274
+Solved pressure in 125
+Mean pressure (sorta) 0.00189263MODE 2 RUNNING... FOUND 0
+t = 2.41852
+step = 317
+
+hi 274
+Solved pressure in 123
+Mean pressure (sorta) 0.00169972MODE 2 RUNNING... FOUND 0
+t = 2.42615
+step = 318
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) 0.0014915MODE 2 RUNNING... FOUND 0
+t = 2.43378
+step = 319
+
+hi 274
+Solved pressure in 155
+Mean pressure (sorta) 0.0012249MODE 2 RUNNING... FOUND 0
+t = 2.44141
+step = 320
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) 0.000994296MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/320/out
+./output/ScaleTestTwo640/320/poolOut
+./output/ScaleTestTwo640/320/poolVel
+./output/ScaleTestTwo640/320/MSSEdges
+./output/ScaleTestTwo640/320/MSSNodes
+./output/ScaleTestTwo640/320/MSSVels
+./output/ScaleTestTwo640/320/MSSTracers
+./output/ScaleTestTwo640/320/medialAxis
+t = 2.44904
+step = 321
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) 0.000628958MODE 2 RUNNING... FOUND 0
+t = 2.45667
+step = 322
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.000150496MODE 2 RUNNING... FOUND 0
+t = 2.46429
+step = 323
+
+hi 274
+Solved pressure in 165
+Mean pressure (sorta) -0.000958919MODE 2 RUNNING... FOUND 0
+t = 2.47192
+step = 324
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.00176959MODE 2 RUNNING... FOUND 0
+t = 2.47955
+step = 325
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) -0.00268491MODE 2 RUNNING... FOUND 0
+t = 2.48718
+step = 326
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.00343043MODE 2 RUNNING... FOUND 0
+t = 2.49481
+step = 327
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.004215MODE 2 RUNNING... FOUND 0
+t = 2.50244
+step = 328
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.00478506MODE 2 RUNNING... FOUND 0
+t = 2.51007
+step = 329
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.00528501MODE 2 RUNNING... FOUND 0
+t = 2.5177
+step = 330
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.00588619MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/330/out
+./output/ScaleTestTwo640/330/poolOut
+./output/ScaleTestTwo640/330/poolVel
+./output/ScaleTestTwo640/330/MSSEdges
+./output/ScaleTestTwo640/330/MSSNodes
+./output/ScaleTestTwo640/330/MSSVels
+./output/ScaleTestTwo640/330/MSSTracers
+./output/ScaleTestTwo640/330/medialAxis
+t = 2.52533
+step = 331
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.00625216MODE 2 RUNNING... FOUND 0
+t = 2.53296
+step = 332
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.00676852MODE 2 RUNNING... FOUND 0
+t = 2.54059
+step = 333
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) -0.00695654MODE 2 RUNNING... FOUND 0
+t = 2.54822
+step = 334
+
+hi 274
+Solved pressure in 141
+Mean pressure (sorta) -0.00705302MODE 2 RUNNING... FOUND 0
+t = 2.55585
+step = 335
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.00728032MODE 2 RUNNING... FOUND 0
+t = 2.56348
+step = 336
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.00751546MODE 2 RUNNING... FOUND 0
+t = 2.57111
+step = 337
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.00772886MODE 2 RUNNING... FOUND 0
+t = 2.57874
+step = 338
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.00799694MODE 2 RUNNING... FOUND 0
+t = 2.58636
+step = 339
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.00800802MODE 2 RUNNING... FOUND 0
+t = 2.59399
+step = 340
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.00800698MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/340/out
+./output/ScaleTestTwo640/340/poolOut
+./output/ScaleTestTwo640/340/poolVel
+./output/ScaleTestTwo640/340/MSSEdges
+./output/ScaleTestTwo640/340/MSSNodes
+./output/ScaleTestTwo640/340/MSSVels
+./output/ScaleTestTwo640/340/MSSTracers
+./output/ScaleTestTwo640/340/medialAxis
+t = 2.60162
+step = 341
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.00824872MODE 2 RUNNING... FOUND 0
+t = 2.60925
+step = 342
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.00825628MODE 2 RUNNING... FOUND 0
+t = 2.61688
+step = 343
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.00810174MODE 2 RUNNING... FOUND 0
+t = 2.62451
+step = 344
+
+hi 274
+Solved pressure in 146
+Mean pressure (sorta) -0.00809434MODE 2 RUNNING... FOUND 0
+t = 2.63214
+step = 345
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.00810038MODE 2 RUNNING... FOUND 0
+t = 2.63977
+step = 346
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) -0.00830826MODE 2 RUNNING... FOUND 0
+t = 2.6474
+step = 347
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.00860802MODE 2 RUNNING... FOUND 0
+t = 2.65503
+step = 348
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.00886966MODE 2 RUNNING... FOUND 0
+t = 2.66266
+step = 349
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0093988MODE 2 RUNNING... FOUND 0
+t = 2.67029
+step = 350
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.00949913MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/350/out
+./output/ScaleTestTwo640/350/poolOut
+./output/ScaleTestTwo640/350/poolVel
+./output/ScaleTestTwo640/350/MSSEdges
+./output/ScaleTestTwo640/350/MSSNodes
+./output/ScaleTestTwo640/350/MSSVels
+./output/ScaleTestTwo640/350/MSSTracers
+./output/ScaleTestTwo640/350/medialAxis
+t = 2.67792
+step = 351
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) -0.00972385MODE 2 RUNNING... FOUND 0
+t = 2.68555
+step = 352
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) -0.00999917MODE 2 RUNNING... FOUND 0
+t = 2.69318
+step = 353
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.010223MODE 2 RUNNING... FOUND 0
+t = 2.70081
+step = 354
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0103843MODE 2 RUNNING... FOUND 0
+t = 2.70844
+step = 355
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.0105162MODE 2 RUNNING... FOUND 0
+t = 2.71606
+step = 356
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0106639MODE 2 RUNNING... FOUND 0
+t = 2.72369
+step = 357
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0109236MODE 2 RUNNING... FOUND 0
+t = 2.73132
+step = 358
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0110556MODE 2 RUNNING... FOUND 0
+t = 2.73895
+step = 359
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0113472MODE 2 RUNNING... FOUND 0
+t = 2.74658
+step = 360
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0114428MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/360/out
+./output/ScaleTestTwo640/360/poolOut
+./output/ScaleTestTwo640/360/poolVel
+./output/ScaleTestTwo640/360/MSSEdges
+./output/ScaleTestTwo640/360/MSSNodes
+./output/ScaleTestTwo640/360/MSSVels
+./output/ScaleTestTwo640/360/MSSTracers
+./output/ScaleTestTwo640/360/medialAxis
+t = 2.75421
+step = 361
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0115818MODE 2 RUNNING... FOUND 0
+t = 2.76184
+step = 362
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0115798MODE 2 RUNNING... FOUND 0
+t = 2.76947
+step = 363
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0115867MODE 2 RUNNING... FOUND 0
+t = 2.7771
+step = 364
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0119101MODE 2 RUNNING... FOUND 0
+t = 2.78473
+step = 365
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0118902MODE 2 RUNNING... FOUND 0
+t = 2.79236
+step = 366
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0121035MODE 2 RUNNING... FOUND 0
+t = 2.79999
+step = 367
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.0123171MODE 2 RUNNING... FOUND 0
+t = 2.80762
+step = 368
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0123249MODE 2 RUNNING... FOUND 0
+t = 2.81525
+step = 369
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0122819MODE 2 RUNNING... FOUND 0
+t = 2.82288
+step = 370
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.0124163MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/370/out
+./output/ScaleTestTwo640/370/poolOut
+./output/ScaleTestTwo640/370/poolVel
+./output/ScaleTestTwo640/370/MSSEdges
+./output/ScaleTestTwo640/370/MSSNodes
+./output/ScaleTestTwo640/370/MSSVels
+./output/ScaleTestTwo640/370/MSSTracers
+./output/ScaleTestTwo640/370/medialAxis
+t = 2.83051
+step = 371
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0127507MODE 2 RUNNING... FOUND 0
+t = 2.83813
+step = 372
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0129327MODE 2 RUNNING... FOUND 0
+t = 2.84576
+step = 373
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.0132343MODE 2 RUNNING... FOUND 0
+t = 2.85339
+step = 374
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0136447MODE 2 RUNNING... FOUND 0
+t = 2.86102
+step = 375
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0141203MODE 2 RUNNING... FOUND 0
+t = 2.86865
+step = 376
+
+hi 274
+Solved pressure in 147
+Mean pressure (sorta) -0.0146486MODE 2 RUNNING... FOUND 0
+t = 2.87628
+step = 377
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0150218MODE 2 RUNNING... FOUND 0
+t = 2.88391
+step = 378
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0155524MODE 2 RUNNING... FOUND 0
+t = 2.89154
+step = 379
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0157853MODE 2 RUNNING... FOUND 0
+t = 2.89917
+step = 380
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0161206MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/380/out
+./output/ScaleTestTwo640/380/poolOut
+./output/ScaleTestTwo640/380/poolVel
+./output/ScaleTestTwo640/380/MSSEdges
+./output/ScaleTestTwo640/380/MSSNodes
+./output/ScaleTestTwo640/380/MSSVels
+./output/ScaleTestTwo640/380/MSSTracers
+./output/ScaleTestTwo640/380/medialAxis
+t = 2.9068
+step = 381
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.0165843MODE 2 RUNNING... FOUND 0
+t = 2.91443
+step = 382
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0168735MODE 2 RUNNING... FOUND 0
+t = 2.92206
+step = 383
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.017375MODE 2 RUNNING... FOUND 0
+t = 2.92969
+step = 384
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0179027MODE 2 RUNNING... FOUND 0
+t = 2.93732
+step = 385
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0184997MODE 2 RUNNING... FOUND 0
+t = 2.94495
+step = 386
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0187534MODE 2 RUNNING... FOUND 0
+t = 2.95258
+step = 387
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.019085MODE 2 RUNNING... FOUND 0
+t = 2.96021
+step = 388
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.0197442MODE 2 RUNNING... FOUND 0
+t = 2.96783
+step = 389
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.0201936MODE 2 RUNNING... FOUND 0
+t = 2.97546
+step = 390
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0204432MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/390/out
+./output/ScaleTestTwo640/390/poolOut
+./output/ScaleTestTwo640/390/poolVel
+./output/ScaleTestTwo640/390/MSSEdges
+./output/ScaleTestTwo640/390/MSSNodes
+./output/ScaleTestTwo640/390/MSSVels
+./output/ScaleTestTwo640/390/MSSTracers
+./output/ScaleTestTwo640/390/medialAxis
+t = 2.98309
+step = 391
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0207003MODE 2 RUNNING... FOUND 0
+t = 2.99072
+step = 392
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0209681MODE 2 RUNNING... FOUND 0
+t = 2.99835
+step = 393
+
+hi 274
+Solved pressure in 149
+Mean pressure (sorta) -0.0209689MODE 2 RUNNING... FOUND 0
+t = 3.00598
+step = 394
+
+hi 274
+Solved pressure in 154
+Mean pressure (sorta) -0.0210156MODE 2 RUNNING... FOUND 0
+t = 3.01361
+step = 395
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0213968MODE 2 RUNNING... FOUND 0
+t = 3.02124
+step = 396
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0216644MODE 2 RUNNING... FOUND 0
+t = 3.02887
+step = 397
+
+hi 274
+Solved pressure in 165
+Mean pressure (sorta) -0.0217053MODE 2 RUNNING... FOUND 0
+t = 3.0365
+step = 398
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0216257MODE 2 RUNNING... FOUND 0
+t = 3.04413
+step = 399
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0214631MODE 2 RUNNING... FOUND 0
+t = 3.05176
+step = 400
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0211914MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/400/out
+./output/ScaleTestTwo640/400/poolOut
+./output/ScaleTestTwo640/400/poolVel
+./output/ScaleTestTwo640/400/MSSEdges
+./output/ScaleTestTwo640/400/MSSNodes
+./output/ScaleTestTwo640/400/MSSVels
+./output/ScaleTestTwo640/400/MSSTracers
+./output/ScaleTestTwo640/400/medialAxis
+t = 3.05939
+step = 401
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.0208544MODE 2 RUNNING... FOUND 0
+t = 3.06702
+step = 402
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0208237MODE 2 RUNNING... FOUND 0
+t = 3.07465
+step = 403
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.020777MODE 2 RUNNING... FOUND 0
+t = 3.08228
+step = 404
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.020662MODE 2 RUNNING... FOUND 0
+t = 3.0899
+step = 405
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.020629MODE 2 RUNNING... FOUND 0
+t = 3.09753
+step = 406
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0205542MODE 2 RUNNING... FOUND 0
+t = 3.10516
+step = 407
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0200783MODE 2 RUNNING... FOUND 0
+t = 3.11279
+step = 408
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.019996MODE 2 RUNNING... FOUND 0
+t = 3.12042
+step = 409
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0202977MODE 2 RUNNING... FOUND 0
+t = 3.12805
+step = 410
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0204562MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/410/out
+./output/ScaleTestTwo640/410/poolOut
+./output/ScaleTestTwo640/410/poolVel
+./output/ScaleTestTwo640/410/MSSEdges
+./output/ScaleTestTwo640/410/MSSNodes
+./output/ScaleTestTwo640/410/MSSVels
+./output/ScaleTestTwo640/410/MSSTracers
+./output/ScaleTestTwo640/410/medialAxis
+t = 3.13568
+step = 411
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0207019MODE 2 RUNNING... FOUND 0
+t = 3.14331
+step = 412
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.0210455MODE 2 RUNNING... FOUND 0
+t = 3.15094
+step = 413
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0213855MODE 2 RUNNING... FOUND 0
+t = 3.15857
+step = 414
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.0215715MODE 2 RUNNING... FOUND 0
+t = 3.1662
+step = 415
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.021634MODE 2 RUNNING... FOUND 0
+t = 3.17383
+step = 416
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.0222916MODE 2 RUNNING... FOUND 0
+t = 3.18146
+step = 417
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0230533MODE 2 RUNNING... FOUND 0
+t = 3.18909
+step = 418
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0238766MODE 2 RUNNING... FOUND 0
+t = 3.19672
+step = 419
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0245485MODE 2 RUNNING... FOUND 0
+t = 3.20435
+step = 420
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0251767MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/420/out
+./output/ScaleTestTwo640/420/poolOut
+./output/ScaleTestTwo640/420/poolVel
+./output/ScaleTestTwo640/420/MSSEdges
+./output/ScaleTestTwo640/420/MSSNodes
+./output/ScaleTestTwo640/420/MSSVels
+./output/ScaleTestTwo640/420/MSSTracers
+./output/ScaleTestTwo640/420/medialAxis
+t = 3.21198
+step = 421
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0258786MODE 2 RUNNING... FOUND 0
+t = 3.2196
+step = 422
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0263956MODE 2 RUNNING... FOUND 0
+t = 3.22723
+step = 423
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0272191MODE 2 RUNNING... FOUND 0
+t = 3.23486
+step = 424
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0281154MODE 2 RUNNING... FOUND 0
+t = 3.24249
+step = 425
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0289337MODE 2 RUNNING... FOUND 0
+t = 3.25012
+step = 426
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0298245MODE 2 RUNNING... FOUND 0
+t = 3.25775
+step = 427
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.0301207MODE 2 RUNNING... FOUND 0
+t = 3.26538
+step = 428
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0302798MODE 2 RUNNING... FOUND 0
+t = 3.27301
+step = 429
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.030225MODE 2 RUNNING... FOUND 0
+t = 3.28064
+step = 430
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0305035MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/430/out
+./output/ScaleTestTwo640/430/poolOut
+./output/ScaleTestTwo640/430/poolVel
+./output/ScaleTestTwo640/430/MSSEdges
+./output/ScaleTestTwo640/430/MSSNodes
+./output/ScaleTestTwo640/430/MSSVels
+./output/ScaleTestTwo640/430/MSSTracers
+./output/ScaleTestTwo640/430/medialAxis
+t = 3.28827
+step = 431
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0308013MODE 2 RUNNING... FOUND 0
+t = 3.2959
+step = 432
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0312705MODE 2 RUNNING... FOUND 0
+t = 3.30353
+step = 433
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.0316088MODE 2 RUNNING... FOUND 0
+t = 3.31116
+step = 434
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.031836MODE 2 RUNNING... FOUND 0
+t = 3.31879
+step = 435
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.0317191MODE 2 RUNNING... FOUND 0
+t = 3.32642
+step = 436
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0311484MODE 2 RUNNING... FOUND 0
+t = 3.33405
+step = 437
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.0312601MODE 2 RUNNING... FOUND 0
+t = 3.34167
+step = 438
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0312821MODE 2 RUNNING... FOUND 0
+t = 3.3493
+step = 439
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.0312135MODE 2 RUNNING... FOUND 0
+t = 3.35693
+step = 440
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.0308869MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/440/out
+./output/ScaleTestTwo640/440/poolOut
+./output/ScaleTestTwo640/440/poolVel
+./output/ScaleTestTwo640/440/MSSEdges
+./output/ScaleTestTwo640/440/MSSNodes
+./output/ScaleTestTwo640/440/MSSVels
+./output/ScaleTestTwo640/440/MSSTracers
+./output/ScaleTestTwo640/440/medialAxis
+t = 3.36456
+step = 441
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0302913MODE 2 RUNNING... FOUND 0
+t = 3.37219
+step = 442
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) -0.0299528MODE 2 RUNNING... FOUND 0
+t = 3.37982
+step = 443
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0298094MODE 2 RUNNING... FOUND 0
+t = 3.38745
+step = 444
+
+hi 274
+Solved pressure in 165
+Mean pressure (sorta) -0.0297184MODE 2 RUNNING... FOUND 0
+t = 3.39508
+step = 445
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0298293MODE 2 RUNNING... FOUND 0
+t = 3.40271
+step = 446
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0301403MODE 2 RUNNING... FOUND 0
+t = 3.41034
+step = 447
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.0301075MODE 2 RUNNING... FOUND 0
+t = 3.41797
+step = 448
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) -0.0300736MODE 2 RUNNING... FOUND 0
+t = 3.4256
+step = 449
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0302583MODE 2 RUNNING... FOUND 0
+t = 3.43323
+step = 450
+
+hi 274
+Solved pressure in 149
+Mean pressure (sorta) -0.0307162MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/450/out
+./output/ScaleTestTwo640/450/poolOut
+./output/ScaleTestTwo640/450/poolVel
+./output/ScaleTestTwo640/450/MSSEdges
+./output/ScaleTestTwo640/450/MSSNodes
+./output/ScaleTestTwo640/450/MSSVels
+./output/ScaleTestTwo640/450/MSSTracers
+./output/ScaleTestTwo640/450/medialAxis
+t = 3.44086
+step = 451
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.031889MODE 2 RUNNING... FOUND 0
+t = 3.44849
+step = 452
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) -0.0330795MODE 2 RUNNING... FOUND 0
+t = 3.45612
+step = 453
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0339569MODE 2 RUNNING... FOUND 0
+t = 3.46375
+step = 454
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0348005MODE 2 RUNNING... FOUND 0
+t = 3.47137
+step = 455
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0355016MODE 2 RUNNING... FOUND 0
+t = 3.479
+step = 456
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0358395MODE 2 RUNNING... FOUND 0
+t = 3.48663
+step = 457
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0366653MODE 2 RUNNING... FOUND 0
+t = 3.49426
+step = 458
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0375081MODE 2 RUNNING... FOUND 0
+t = 3.50189
+step = 459
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0383626MODE 2 RUNNING... FOUND 0
+t = 3.50952
+step = 460
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0392617MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/460/out
+./output/ScaleTestTwo640/460/poolOut
+./output/ScaleTestTwo640/460/poolVel
+./output/ScaleTestTwo640/460/MSSEdges
+./output/ScaleTestTwo640/460/MSSNodes
+./output/ScaleTestTwo640/460/MSSVels
+./output/ScaleTestTwo640/460/MSSTracers
+./output/ScaleTestTwo640/460/medialAxis
+t = 3.51715
+step = 461
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0397798MODE 2 RUNNING... FOUND 0
+t = 3.52478
+step = 462
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0402618MODE 2 RUNNING... FOUND 0
+t = 3.53241
+step = 463
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.0405356MODE 2 RUNNING... FOUND 0
+t = 3.54004
+step = 464
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.040632MODE 2 RUNNING... FOUND 0
+t = 3.54767
+step = 465
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0408073MODE 2 RUNNING... FOUND 0
+t = 3.5553
+step = 466
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.041064MODE 2 RUNNING... FOUND 0
+t = 3.56293
+step = 467
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.041351MODE 2 RUNNING... FOUND 0
+t = 3.57056
+step = 468
+
+hi 274
+Solved pressure in 155
+Mean pressure (sorta) -0.041605MODE 2 RUNNING... FOUND 0
+t = 3.57819
+step = 469
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.0414602MODE 2 RUNNING... FOUND 0
+t = 3.58582
+step = 470
+
+hi 274
+Solved pressure in 148
+Mean pressure (sorta) -0.0414056MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/470/out
+./output/ScaleTestTwo640/470/poolOut
+./output/ScaleTestTwo640/470/poolVel
+./output/ScaleTestTwo640/470/MSSEdges
+./output/ScaleTestTwo640/470/MSSNodes
+./output/ScaleTestTwo640/470/MSSVels
+./output/ScaleTestTwo640/470/MSSTracers
+./output/ScaleTestTwo640/470/medialAxis
+t = 3.59344
+step = 471
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0416288MODE 2 RUNNING... FOUND 0
+t = 3.60107
+step = 472
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0417515MODE 2 RUNNING... FOUND 0
+t = 3.6087
+step = 473
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0415372MODE 2 RUNNING... FOUND 0
+t = 3.61633
+step = 474
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0411MODE 2 RUNNING... FOUND 0
+t = 3.62396
+step = 475
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.0410577MODE 2 RUNNING... FOUND 0
+t = 3.63159
+step = 476
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0405296MODE 2 RUNNING... FOUND 0
+t = 3.63922
+step = 477
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0405774MODE 2 RUNNING... FOUND 0
+t = 3.64685
+step = 478
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.040771MODE 2 RUNNING... FOUND 0
+t = 3.65448
+step = 479
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.0410915MODE 2 RUNNING... FOUND 0
+t = 3.66211
+step = 480
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.0409139MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/480/out
+./output/ScaleTestTwo640/480/poolOut
+./output/ScaleTestTwo640/480/poolVel
+./output/ScaleTestTwo640/480/MSSEdges
+./output/ScaleTestTwo640/480/MSSNodes
+./output/ScaleTestTwo640/480/MSSVels
+./output/ScaleTestTwo640/480/MSSTracers
+./output/ScaleTestTwo640/480/medialAxis
+t = 3.66974
+step = 481
+
+hi 274
+Solved pressure in 147
+Mean pressure (sorta) -0.0405575MODE 2 RUNNING... FOUND 0
+t = 3.67737
+step = 482
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0403127MODE 2 RUNNING... FOUND 0
+t = 3.685
+step = 483
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0404643MODE 2 RUNNING... FOUND 0
+t = 3.69263
+step = 484
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0413637MODE 2 RUNNING... FOUND 0
+t = 3.70026
+step = 485
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0417177MODE 2 RUNNING... FOUND 0
+t = 3.70789
+step = 486
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0421693MODE 2 RUNNING... FOUND 0
+t = 3.71552
+step = 487
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.0428445MODE 2 RUNNING... FOUND 0
+t = 3.72314
+step = 488
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0428304MODE 2 RUNNING... FOUND 0
+t = 3.73077
+step = 489
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0432102MODE 2 RUNNING... FOUND 0
+t = 3.7384
+step = 490
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.044352MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/490/out
+./output/ScaleTestTwo640/490/poolOut
+./output/ScaleTestTwo640/490/poolVel
+./output/ScaleTestTwo640/490/MSSEdges
+./output/ScaleTestTwo640/490/MSSNodes
+./output/ScaleTestTwo640/490/MSSVels
+./output/ScaleTestTwo640/490/MSSTracers
+./output/ScaleTestTwo640/490/medialAxis
+t = 3.74603
+step = 491
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.0455866MODE 2 RUNNING... FOUND 0
+t = 3.75366
+step = 492
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0467871MODE 2 RUNNING... FOUND 0
+t = 3.76129
+step = 493
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0480112MODE 2 RUNNING... FOUND 0
+t = 3.76892
+step = 494
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.048273MODE 2 RUNNING... FOUND 0
+t = 3.77655
+step = 495
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0485916MODE 2 RUNNING... FOUND 0
+t = 3.78418
+step = 496
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.048944MODE 2 RUNNING... FOUND 0
+t = 3.79181
+step = 497
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.0492203MODE 2 RUNNING... FOUND 0
+t = 3.79944
+step = 498
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0498627MODE 2 RUNNING... FOUND 0
+t = 3.80707
+step = 499
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0502716MODE 2 RUNNING... FOUND 0
+t = 3.8147
+step = 500
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.0508095MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/500/out
+./output/ScaleTestTwo640/500/poolOut
+./output/ScaleTestTwo640/500/poolVel
+./output/ScaleTestTwo640/500/MSSEdges
+./output/ScaleTestTwo640/500/MSSNodes
+./output/ScaleTestTwo640/500/MSSVels
+./output/ScaleTestTwo640/500/MSSTracers
+./output/ScaleTestTwo640/500/medialAxis
+t = 3.82233
+step = 501
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0505555MODE 2 RUNNING... FOUND 0
+t = 3.82996
+step = 502
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0502199MODE 2 RUNNING... FOUND 0
+t = 3.83759
+step = 503
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0503186MODE 2 RUNNING... FOUND 0
+t = 3.84521
+step = 504
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.050772MODE 2 RUNNING... FOUND 0
+t = 3.85284
+step = 505
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0510475MODE 2 RUNNING... FOUND 0
+t = 3.86047
+step = 506
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0514397MODE 2 RUNNING... FOUND 0
+t = 3.8681
+step = 507
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0520017MODE 2 RUNNING... FOUND 0
+t = 3.87573
+step = 508
+
+hi 274
+Solved pressure in 156
+Mean pressure (sorta) -0.0521101MODE 2 RUNNING... FOUND 0
+t = 3.88336
+step = 509
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0521395MODE 2 RUNNING... FOUND 0
+t = 3.89099
+step = 510
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.0521801MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/510/out
+./output/ScaleTestTwo640/510/poolOut
+./output/ScaleTestTwo640/510/poolVel
+./output/ScaleTestTwo640/510/MSSEdges
+./output/ScaleTestTwo640/510/MSSNodes
+./output/ScaleTestTwo640/510/MSSVels
+./output/ScaleTestTwo640/510/MSSTracers
+./output/ScaleTestTwo640/510/medialAxis
+t = 3.89862
+step = 511
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0522758MODE 2 RUNNING... FOUND 0
+t = 3.90625
+step = 512
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.0530188MODE 2 RUNNING... FOUND 0
+t = 3.91388
+step = 513
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0532563MODE 2 RUNNING... FOUND 0
+t = 3.92151
+step = 514
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0531385MODE 2 RUNNING... FOUND 0
+t = 3.92914
+step = 515
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0527487MODE 2 RUNNING... FOUND 0
+t = 3.93677
+step = 516
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0527974MODE 2 RUNNING... FOUND 0
+t = 3.9444
+step = 517
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.0528736MODE 2 RUNNING... FOUND 0
+t = 3.95203
+step = 518
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0533721MODE 2 RUNNING... FOUND 0
+t = 3.95966
+step = 519
+
+hi 274
+Solved pressure in 153
+Mean pressure (sorta) -0.0538705MODE 2 RUNNING... FOUND 0
+t = 3.96729
+step = 520
+
+hi 274
+Solved pressure in 164
+Mean pressure (sorta) -0.0539985MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/520/out
+./output/ScaleTestTwo640/520/poolOut
+./output/ScaleTestTwo640/520/poolVel
+./output/ScaleTestTwo640/520/MSSEdges
+./output/ScaleTestTwo640/520/MSSNodes
+./output/ScaleTestTwo640/520/MSSVels
+./output/ScaleTestTwo640/520/MSSTracers
+./output/ScaleTestTwo640/520/medialAxis
+t = 3.97491
+step = 521
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.054072MODE 2 RUNNING... FOUND 0
+t = 3.98254
+step = 522
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0538473MODE 2 RUNNING... FOUND 0
+t = 3.99017
+step = 523
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0541826MODE 2 RUNNING... FOUND 0
+t = 3.9978
+step = 524
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0545249MODE 2 RUNNING... FOUND 0
+t = 4.00543
+step = 525
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0545578MODE 2 RUNNING... FOUND 0
+t = 4.01306
+step = 526
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.054308MODE 2 RUNNING... FOUND 0
+t = 4.02069
+step = 527
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.054196MODE 2 RUNNING... FOUND 0
+t = 4.02832
+step = 528
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0544247MODE 2 RUNNING... FOUND 0
+t = 4.03595
+step = 529
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0551603MODE 2 RUNNING... FOUND 0
+t = 4.04358
+step = 530
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0556406MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/530/out
+./output/ScaleTestTwo640/530/poolOut
+./output/ScaleTestTwo640/530/poolVel
+./output/ScaleTestTwo640/530/MSSEdges
+./output/ScaleTestTwo640/530/MSSNodes
+./output/ScaleTestTwo640/530/MSSVels
+./output/ScaleTestTwo640/530/MSSTracers
+./output/ScaleTestTwo640/530/medialAxis
+t = 4.05121
+step = 531
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0561131MODE 2 RUNNING... FOUND 0
+t = 4.05884
+step = 532
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.0563207MODE 2 RUNNING... FOUND 0
+t = 4.06647
+step = 533
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0559575MODE 2 RUNNING... FOUND 0
+t = 4.0741
+step = 534
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0559643MODE 2 RUNNING... FOUND 0
+t = 4.08173
+step = 535
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0568417MODE 2 RUNNING... FOUND 0
+t = 4.08936
+step = 536
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0576795MODE 2 RUNNING... FOUND 0
+t = 4.09698
+step = 537
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0581559MODE 2 RUNNING... FOUND 0
+t = 4.10461
+step = 538
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0582283MODE 2 RUNNING... FOUND 0
+t = 4.11224
+step = 539
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) -0.0585318MODE 2 RUNNING... FOUND 0
+t = 4.11987
+step = 540
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0589001MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/540/out
+./output/ScaleTestTwo640/540/poolOut
+./output/ScaleTestTwo640/540/poolVel
+./output/ScaleTestTwo640/540/MSSEdges
+./output/ScaleTestTwo640/540/MSSNodes
+./output/ScaleTestTwo640/540/MSSVels
+./output/ScaleTestTwo640/540/MSSTracers
+./output/ScaleTestTwo640/540/medialAxis
+t = 4.1275
+step = 541
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.059939MODE 2 RUNNING... FOUND 0
+t = 4.13513
+step = 542
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0608579MODE 2 RUNNING... FOUND 0
+t = 4.14276
+step = 543
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.062204MODE 2 RUNNING... FOUND 0
+t = 4.15039
+step = 544
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0625108MODE 2 RUNNING... FOUND 0
+t = 4.15802
+step = 545
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) -0.0623369MODE 2 RUNNING... FOUND 0
+t = 4.16565
+step = 546
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0625265MODE 2 RUNNING... FOUND 0
+t = 4.17328
+step = 547
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0633211MODE 2 RUNNING... FOUND 0
+t = 4.18091
+step = 548
+
+hi 274
+Solved pressure in 154
+Mean pressure (sorta) -0.0648612MODE 2 RUNNING... FOUND 0
+t = 4.18854
+step = 549
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0655866MODE 2 RUNNING... FOUND 0
+t = 4.19617
+step = 550
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0658032MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/550/out
+./output/ScaleTestTwo640/550/poolOut
+./output/ScaleTestTwo640/550/poolVel
+./output/ScaleTestTwo640/550/MSSEdges
+./output/ScaleTestTwo640/550/MSSNodes
+./output/ScaleTestTwo640/550/MSSVels
+./output/ScaleTestTwo640/550/MSSTracers
+./output/ScaleTestTwo640/550/medialAxis
+t = 4.2038
+step = 551
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0658954MODE 2 RUNNING... FOUND 0
+t = 4.21143
+step = 552
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.0658054MODE 2 RUNNING... FOUND 0
+t = 4.21906
+step = 553
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.0655993MODE 2 RUNNING... FOUND 0
+t = 4.22668
+step = 554
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0659808MODE 2 RUNNING... FOUND 0
+t = 4.23431
+step = 555
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0665842MODE 2 RUNNING... FOUND 0
+t = 4.24194
+step = 556
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.0670922MODE 2 RUNNING... FOUND 0
+t = 4.24957
+step = 557
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0670319MODE 2 RUNNING... FOUND 0
+t = 4.2572
+step = 558
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.0670417MODE 2 RUNNING... FOUND 0
+t = 4.26483
+step = 559
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.0673508MODE 2 RUNNING... FOUND 0
+t = 4.27246
+step = 560
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0670403MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/560/out
+./output/ScaleTestTwo640/560/poolOut
+./output/ScaleTestTwo640/560/poolVel
+./output/ScaleTestTwo640/560/MSSEdges
+./output/ScaleTestTwo640/560/MSSNodes
+./output/ScaleTestTwo640/560/MSSVels
+./output/ScaleTestTwo640/560/MSSTracers
+./output/ScaleTestTwo640/560/medialAxis
+t = 4.28009
+step = 561
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0666453MODE 2 RUNNING... FOUND 0
+t = 4.28772
+step = 562
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0664289MODE 2 RUNNING... FOUND 0
+t = 4.29535
+step = 563
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) -0.0661814MODE 2 RUNNING... FOUND 0
+t = 4.30298
+step = 564
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0658102MODE 2 RUNNING... FOUND 0
+t = 4.31061
+step = 565
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0649639MODE 2 RUNNING... FOUND 0
+t = 4.31824
+step = 566
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0645159MODE 2 RUNNING... FOUND 0
+t = 4.32587
+step = 567
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0648423MODE 2 RUNNING... FOUND 0
+t = 4.3335
+step = 568
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0647381MODE 2 RUNNING... FOUND 0
+t = 4.34113
+step = 569
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0639032MODE 2 RUNNING... FOUND 0
+t = 4.34875
+step = 570
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.0636473MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/570/out
+./output/ScaleTestTwo640/570/poolOut
+./output/ScaleTestTwo640/570/poolVel
+./output/ScaleTestTwo640/570/MSSEdges
+./output/ScaleTestTwo640/570/MSSNodes
+./output/ScaleTestTwo640/570/MSSVels
+./output/ScaleTestTwo640/570/MSSTracers
+./output/ScaleTestTwo640/570/medialAxis
+t = 4.35638
+step = 571
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.0636516MODE 2 RUNNING... FOUND 0
+t = 4.36401
+step = 572
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.06417MODE 2 RUNNING... FOUND 0
+t = 4.37164
+step = 573
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.0651762MODE 2 RUNNING... FOUND 0
+t = 4.37927
+step = 574
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0666247MODE 2 RUNNING... FOUND 0
+t = 4.3869
+step = 575
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.0681969MODE 2 RUNNING... FOUND 0
+t = 4.39453
+step = 576
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0682766MODE 2 RUNNING... FOUND 0
+t = 4.40216
+step = 577
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0686427MODE 2 RUNNING... FOUND 0
+t = 4.40979
+step = 578
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.0695819MODE 2 RUNNING... FOUND 0
+t = 4.41742
+step = 579
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.0703904MODE 2 RUNNING... FOUND 0
+t = 4.42505
+step = 580
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.0714327MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/580/out
+./output/ScaleTestTwo640/580/poolOut
+./output/ScaleTestTwo640/580/poolVel
+./output/ScaleTestTwo640/580/MSSEdges
+./output/ScaleTestTwo640/580/MSSNodes
+./output/ScaleTestTwo640/580/MSSVels
+./output/ScaleTestTwo640/580/MSSTracers
+./output/ScaleTestTwo640/580/medialAxis
+t = 4.43268
+step = 581
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0722099MODE 2 RUNNING... FOUND 0
+t = 4.44031
+step = 582
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.0731693MODE 2 RUNNING... FOUND 0
+t = 4.44794
+step = 583
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.0744464MODE 2 RUNNING... FOUND 0
+t = 4.45557
+step = 584
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.0750535MODE 2 RUNNING... FOUND 0
+t = 4.4632
+step = 585
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.0759392MODE 2 RUNNING... FOUND 0
+t = 4.47083
+step = 586
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.07701MODE 2 RUNNING... FOUND 0
+t = 4.47845
+step = 587
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0778776MODE 2 RUNNING... FOUND 0
+t = 4.48608
+step = 588
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0787012MODE 2 RUNNING... FOUND 0
+t = 4.49371
+step = 589
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0785158MODE 2 RUNNING... FOUND 0
+t = 4.50134
+step = 590
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0795481MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/590/out
+./output/ScaleTestTwo640/590/poolOut
+./output/ScaleTestTwo640/590/poolVel
+./output/ScaleTestTwo640/590/MSSEdges
+./output/ScaleTestTwo640/590/MSSNodes
+./output/ScaleTestTwo640/590/MSSVels
+./output/ScaleTestTwo640/590/MSSTracers
+./output/ScaleTestTwo640/590/medialAxis
+t = 4.50897
+step = 591
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0802137MODE 2 RUNNING... FOUND 0
+t = 4.5166
+step = 592
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.0800147MODE 2 RUNNING... FOUND 0
+t = 4.52423
+step = 593
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0804865MODE 2 RUNNING... FOUND 0
+t = 4.53186
+step = 594
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.0796051MODE 2 RUNNING... FOUND 0
+t = 4.53949
+step = 595
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0791721MODE 2 RUNNING... FOUND 0
+t = 4.54712
+step = 596
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0788619MODE 2 RUNNING... FOUND 0
+t = 4.55475
+step = 597
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0782964MODE 2 RUNNING... FOUND 0
+t = 4.56238
+step = 598
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.0781634MODE 2 RUNNING... FOUND 0
+t = 4.57001
+step = 599
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0779547MODE 2 RUNNING... FOUND 0
+t = 4.57764
+step = 600
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) -0.0766183MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/600/out
+./output/ScaleTestTwo640/600/poolOut
+./output/ScaleTestTwo640/600/poolVel
+./output/ScaleTestTwo640/600/MSSEdges
+./output/ScaleTestTwo640/600/MSSNodes
+./output/ScaleTestTwo640/600/MSSVels
+./output/ScaleTestTwo640/600/MSSTracers
+./output/ScaleTestTwo640/600/medialAxis
+t = 4.58527
+step = 601
+
+hi 274
+Solved pressure in 158
+Mean pressure (sorta) -0.0759414MODE 2 RUNNING... FOUND 0
+t = 4.5929
+step = 602
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0757508MODE 2 RUNNING... FOUND 0
+t = 4.60052
+step = 603
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0757052MODE 2 RUNNING... FOUND 0
+t = 4.60815
+step = 604
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0762905MODE 2 RUNNING... FOUND 0
+t = 4.61578
+step = 605
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0771809MODE 2 RUNNING... FOUND 0
+t = 4.62341
+step = 606
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0772316MODE 2 RUNNING... FOUND 0
+t = 4.63104
+step = 607
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0768145MODE 2 RUNNING... FOUND 0
+t = 4.63867
+step = 608
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.0769863MODE 2 RUNNING... FOUND 0
+t = 4.6463
+step = 609
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.0784739MODE 2 RUNNING... FOUND 0
+t = 4.65393
+step = 610
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0794788MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/610/out
+./output/ScaleTestTwo640/610/poolOut
+./output/ScaleTestTwo640/610/poolVel
+./output/ScaleTestTwo640/610/MSSEdges
+./output/ScaleTestTwo640/610/MSSNodes
+./output/ScaleTestTwo640/610/MSSVels
+./output/ScaleTestTwo640/610/MSSTracers
+./output/ScaleTestTwo640/610/medialAxis
+t = 4.66156
+step = 611
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.0807693MODE 2 RUNNING... FOUND 0
+t = 4.66919
+step = 612
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0823755MODE 2 RUNNING... FOUND 0
+t = 4.67682
+step = 613
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0838447MODE 2 RUNNING... FOUND 0
+t = 4.68445
+step = 614
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.0850687MODE 2 RUNNING... FOUND 0
+t = 4.69208
+step = 615
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.0870406MODE 2 RUNNING... FOUND 0
+t = 4.69971
+step = 616
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0889215MODE 2 RUNNING... FOUND 0
+t = 4.70734
+step = 617
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0906439MODE 2 RUNNING... FOUND 0
+t = 4.71497
+step = 618
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.0916094MODE 2 RUNNING... FOUND 0
+t = 4.7226
+step = 619
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.0922147MODE 2 RUNNING... FOUND 0
+t = 4.73022
+step = 620
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0929094MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/620/out
+./output/ScaleTestTwo640/620/poolOut
+./output/ScaleTestTwo640/620/poolVel
+./output/ScaleTestTwo640/620/MSSEdges
+./output/ScaleTestTwo640/620/MSSNodes
+./output/ScaleTestTwo640/620/MSSVels
+./output/ScaleTestTwo640/620/MSSTracers
+./output/ScaleTestTwo640/620/medialAxis
+t = 4.73785
+step = 621
+
+hi 274
+Solved pressure in 155
+Mean pressure (sorta) -0.0938552MODE 2 RUNNING... FOUND 0
+t = 4.74548
+step = 622
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) -0.0948513MODE 2 RUNNING... FOUND 0
+t = 4.75311
+step = 623
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0957096MODE 2 RUNNING... FOUND 0
+t = 4.76074
+step = 624
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0965017MODE 2 RUNNING... FOUND 0
+t = 4.76837
+step = 625
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0953586MODE 2 RUNNING... FOUND 0
+t = 4.776
+step = 626
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.0947447MODE 2 RUNNING... FOUND 0
+t = 4.78363
+step = 627
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.0949224MODE 2 RUNNING... FOUND 0
+t = 4.79126
+step = 628
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.0948493MODE 2 RUNNING... FOUND 0
+t = 4.79889
+step = 629
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.0936493MODE 2 RUNNING... FOUND 0
+t = 4.80652
+step = 630
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.0931755MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/630/out
+./output/ScaleTestTwo640/630/poolOut
+./output/ScaleTestTwo640/630/poolVel
+./output/ScaleTestTwo640/630/MSSEdges
+./output/ScaleTestTwo640/630/MSSNodes
+./output/ScaleTestTwo640/630/MSSVels
+./output/ScaleTestTwo640/630/MSSTracers
+./output/ScaleTestTwo640/630/medialAxis
+t = 4.81415
+step = 631
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.0932779MODE 2 RUNNING... FOUND 0
+t = 4.82178
+step = 632
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0929442MODE 2 RUNNING... FOUND 0
+t = 4.82941
+step = 633
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.0918813MODE 2 RUNNING... FOUND 0
+t = 4.83704
+step = 634
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.0913787MODE 2 RUNNING... FOUND 0
+t = 4.84467
+step = 635
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.0907246MODE 2 RUNNING... FOUND 0
+t = 4.85229
+step = 636
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0911129MODE 2 RUNNING... FOUND 0
+t = 4.85992
+step = 637
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.0919416MODE 2 RUNNING... FOUND 0
+t = 4.86755
+step = 638
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.0928396MODE 2 RUNNING... FOUND 0
+t = 4.87518
+step = 639
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.093414MODE 2 RUNNING... FOUND 0
+t = 4.88281
+step = 640
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.0930485MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/640/out
+./output/ScaleTestTwo640/640/poolOut
+./output/ScaleTestTwo640/640/poolVel
+./output/ScaleTestTwo640/640/MSSEdges
+./output/ScaleTestTwo640/640/MSSNodes
+./output/ScaleTestTwo640/640/MSSVels
+./output/ScaleTestTwo640/640/MSSTracers
+./output/ScaleTestTwo640/640/medialAxis
+t = 4.89044
+step = 641
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.0941284MODE 2 RUNNING... FOUND 0
+t = 4.89807
+step = 642
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.0962736MODE 2 RUNNING... FOUND 0
+t = 4.9057
+step = 643
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) -0.0976921MODE 2 RUNNING... FOUND 0
+t = 4.91333
+step = 644
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.0997798MODE 2 RUNNING... FOUND 0
+t = 4.92096
+step = 645
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.101289MODE 2 RUNNING... FOUND 0
+t = 4.92859
+step = 646
+
+hi 274
+Solved pressure in 156
+Mean pressure (sorta) -0.101944MODE 2 RUNNING... FOUND 0
+t = 4.93622
+step = 647
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.102827MODE 2 RUNNING... FOUND 0
+t = 4.94385
+step = 648
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.104132MODE 2 RUNNING... FOUND 0
+t = 4.95148
+step = 649
+
+hi 274
+Solved pressure in 167
+Mean pressure (sorta) -0.105121MODE 2 RUNNING... FOUND 0
+t = 4.95911
+step = 650
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.106946MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/650/out
+./output/ScaleTestTwo640/650/poolOut
+./output/ScaleTestTwo640/650/poolVel
+./output/ScaleTestTwo640/650/MSSEdges
+./output/ScaleTestTwo640/650/MSSNodes
+./output/ScaleTestTwo640/650/MSSVels
+./output/ScaleTestTwo640/650/MSSTracers
+./output/ScaleTestTwo640/650/medialAxis
+t = 4.96674
+step = 651
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.107962MODE 2 RUNNING... FOUND 0
+t = 4.97437
+step = 652
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.109396MODE 2 RUNNING... FOUND 0
+t = 4.98199
+step = 653
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.110948MODE 2 RUNNING... FOUND 0
+t = 4.98962
+step = 654
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.112847MODE 2 RUNNING... FOUND 0
+t = 4.99725
+step = 655
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.113822MODE 2 RUNNING... FOUND 0
+t = 5.00488
+step = 656
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.11479MODE 2 RUNNING... FOUND 0
+t = 5.01251
+step = 657
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.115516MODE 2 RUNNING... FOUND 0
+t = 5.02014
+step = 658
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.116406MODE 2 RUNNING... FOUND 0
+t = 5.02777
+step = 659
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.117162MODE 2 RUNNING... FOUND 0
+t = 5.0354
+step = 660
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.117587MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/660/out
+./output/ScaleTestTwo640/660/poolOut
+./output/ScaleTestTwo640/660/poolVel
+./output/ScaleTestTwo640/660/MSSEdges
+./output/ScaleTestTwo640/660/MSSNodes
+./output/ScaleTestTwo640/660/MSSVels
+./output/ScaleTestTwo640/660/MSSTracers
+./output/ScaleTestTwo640/660/medialAxis
+t = 5.04303
+step = 661
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.118634MODE 2 RUNNING... FOUND 0
+t = 5.05066
+step = 662
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.118872MODE 2 RUNNING... FOUND 0
+t = 5.05829
+step = 663
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.117768MODE 2 RUNNING... FOUND 0
+t = 5.06592
+step = 664
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.116598MODE 2 RUNNING... FOUND 0
+t = 5.07355
+step = 665
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.115849MODE 2 RUNNING... FOUND 0
+t = 5.08118
+step = 666
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.11638MODE 2 RUNNING... FOUND 0
+t = 5.08881
+step = 667
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.11686MODE 2 RUNNING... FOUND 0
+t = 5.09644
+step = 668
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.116565MODE 2 RUNNING... FOUND 0
+t = 5.10406
+step = 669
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.115561MODE 2 RUNNING... FOUND 0
+t = 5.11169
+step = 670
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.113913MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/670/out
+./output/ScaleTestTwo640/670/poolOut
+./output/ScaleTestTwo640/670/poolVel
+./output/ScaleTestTwo640/670/MSSEdges
+./output/ScaleTestTwo640/670/MSSNodes
+./output/ScaleTestTwo640/670/MSSVels
+./output/ScaleTestTwo640/670/MSSTracers
+./output/ScaleTestTwo640/670/medialAxis
+t = 5.11932
+step = 671
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.113851MODE 2 RUNNING... FOUND 0
+t = 5.12695
+step = 672
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.1142MODE 2 RUNNING... FOUND 0
+t = 5.13458
+step = 673
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.114743MODE 2 RUNNING... FOUND 0
+t = 5.14221
+step = 674
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.114747MODE 2 RUNNING... FOUND 0
+t = 5.14984
+step = 675
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.115154MODE 2 RUNNING... FOUND 0
+t = 5.15747
+step = 676
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) -0.115994MODE 2 RUNNING... FOUND 0
+t = 5.1651
+step = 677
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.115927MODE 2 RUNNING... FOUND 0
+t = 5.17273
+step = 678
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.116784MODE 2 RUNNING... FOUND 0
+t = 5.18036
+step = 679
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.117993MODE 2 RUNNING... FOUND 0
+t = 5.18799
+step = 680
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.118812MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/680/out
+./output/ScaleTestTwo640/680/poolOut
+./output/ScaleTestTwo640/680/poolVel
+./output/ScaleTestTwo640/680/MSSEdges
+./output/ScaleTestTwo640/680/MSSNodes
+./output/ScaleTestTwo640/680/MSSVels
+./output/ScaleTestTwo640/680/MSSTracers
+./output/ScaleTestTwo640/680/medialAxis
+t = 5.19562
+step = 681
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.119995MODE 2 RUNNING... FOUND 0
+t = 5.20325
+step = 682
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.120875MODE 2 RUNNING... FOUND 0
+t = 5.21088
+step = 683
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.12077MODE 2 RUNNING... FOUND 0
+t = 5.21851
+step = 684
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.122037MODE 2 RUNNING... FOUND 0
+t = 5.22614
+step = 685
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.123104MODE 2 RUNNING... FOUND 0
+t = 5.23376
+step = 686
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.124624MODE 2 RUNNING... FOUND 0
+t = 5.24139
+step = 687
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.125661MODE 2 RUNNING... FOUND 0
+t = 5.24902
+step = 688
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.126526MODE 2 RUNNING... FOUND 0
+t = 5.25665
+step = 689
+
+hi 274
+Solved pressure in 155
+Mean pressure (sorta) -0.127505MODE 2 RUNNING... FOUND 0
+t = 5.26428
+step = 690
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.128647MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/690/out
+./output/ScaleTestTwo640/690/poolOut
+./output/ScaleTestTwo640/690/poolVel
+./output/ScaleTestTwo640/690/MSSEdges
+./output/ScaleTestTwo640/690/MSSNodes
+./output/ScaleTestTwo640/690/MSSVels
+./output/ScaleTestTwo640/690/MSSTracers
+./output/ScaleTestTwo640/690/medialAxis
+t = 5.27191
+step = 691
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.129536MODE 2 RUNNING... FOUND 0
+t = 5.27954
+step = 692
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.129636MODE 2 RUNNING... FOUND 0
+t = 5.28717
+step = 693
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.129732MODE 2 RUNNING... FOUND 0
+t = 5.2948
+step = 694
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.129447MODE 2 RUNNING... FOUND 0
+t = 5.30243
+step = 695
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.130063MODE 2 RUNNING... FOUND 0
+t = 5.31006
+step = 696
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.1312MODE 2 RUNNING... FOUND 0
+t = 5.31769
+step = 697
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.132877MODE 2 RUNNING... FOUND 0
+t = 5.32532
+step = 698
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.133081MODE 2 RUNNING... FOUND 0
+t = 5.33295
+step = 699
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.131777MODE 2 RUNNING... FOUND 0
+t = 5.34058
+step = 700
+
+hi 274
+Solved pressure in 165
+Mean pressure (sorta) -0.131436MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/700/out
+./output/ScaleTestTwo640/700/poolOut
+./output/ScaleTestTwo640/700/poolVel
+./output/ScaleTestTwo640/700/MSSEdges
+./output/ScaleTestTwo640/700/MSSNodes
+./output/ScaleTestTwo640/700/MSSVels
+./output/ScaleTestTwo640/700/MSSTracers
+./output/ScaleTestTwo640/700/medialAxis
+t = 5.34821
+step = 701
+
+hi 274
+Solved pressure in 156
+Mean pressure (sorta) -0.130046MODE 2 RUNNING... FOUND 0
+t = 5.35583
+step = 702
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.129592MODE 2 RUNNING... FOUND 0
+t = 5.36346
+step = 703
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) -0.130599MODE 2 RUNNING... FOUND 0
+t = 5.37109
+step = 704
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.130581MODE 2 RUNNING... FOUND 0
+t = 5.37872
+step = 705
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.129783MODE 2 RUNNING... FOUND 0
+t = 5.38635
+step = 706
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.129072MODE 2 RUNNING... FOUND 0
+t = 5.39398
+step = 707
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.128759MODE 2 RUNNING... FOUND 0
+t = 5.40161
+step = 708
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.129118MODE 2 RUNNING... FOUND 0
+t = 5.40924
+step = 709
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.128537MODE 2 RUNNING... FOUND 0
+t = 5.41687
+step = 710
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.127984MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/710/out
+./output/ScaleTestTwo640/710/poolOut
+./output/ScaleTestTwo640/710/poolVel
+./output/ScaleTestTwo640/710/MSSEdges
+./output/ScaleTestTwo640/710/MSSNodes
+./output/ScaleTestTwo640/710/MSSVels
+./output/ScaleTestTwo640/710/MSSTracers
+./output/ScaleTestTwo640/710/medialAxis
+t = 5.4245
+step = 711
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.127913MODE 2 RUNNING... FOUND 0
+t = 5.43213
+step = 712
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.127894MODE 2 RUNNING... FOUND 0
+t = 5.43976
+step = 713
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.127163MODE 2 RUNNING... FOUND 0
+t = 5.44739
+step = 714
+
+hi 274
+Solved pressure in 211
+Mean pressure (sorta) -0.127876MODE 2 RUNNING... FOUND 0
+t = 5.45502
+step = 715
+
+hi 274
+Solved pressure in 208
+Mean pressure (sorta) -0.127448MODE 2 RUNNING... FOUND 0
+t = 5.46265
+step = 716
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.127082MODE 2 RUNNING... FOUND 0
+t = 5.47028
+step = 717
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) -0.127345MODE 2 RUNNING... FOUND 0
+t = 5.47791
+step = 718
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.127193MODE 2 RUNNING... FOUND 0
+t = 5.48553
+step = 719
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.127131MODE 2 RUNNING... FOUND 0
+t = 5.49316
+step = 720
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.128561MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/720/out
+./output/ScaleTestTwo640/720/poolOut
+./output/ScaleTestTwo640/720/poolVel
+./output/ScaleTestTwo640/720/MSSEdges
+./output/ScaleTestTwo640/720/MSSNodes
+./output/ScaleTestTwo640/720/MSSVels
+./output/ScaleTestTwo640/720/MSSTracers
+./output/ScaleTestTwo640/720/medialAxis
+t = 5.50079
+step = 721
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.129191MODE 2 RUNNING... FOUND 0
+t = 5.50842
+step = 722
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.129973MODE 2 RUNNING... FOUND 0
+t = 5.51605
+step = 723
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.129863MODE 2 RUNNING... FOUND 0
+t = 5.52368
+step = 724
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.129683MODE 2 RUNNING... FOUND 0
+t = 5.53131
+step = 725
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.129982MODE 2 RUNNING... FOUND 0
+t = 5.53894
+step = 726
+
+hi 274
+Solved pressure in 153
+Mean pressure (sorta) -0.131443MODE 2 RUNNING... FOUND 0
+t = 5.54657
+step = 727
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.132411MODE 2 RUNNING... FOUND 0
+t = 5.5542
+step = 728
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.133059MODE 2 RUNNING... FOUND 0
+t = 5.56183
+step = 729
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.133635MODE 2 RUNNING... FOUND 0
+t = 5.56946
+step = 730
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.13381MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/730/out
+./output/ScaleTestTwo640/730/poolOut
+./output/ScaleTestTwo640/730/poolVel
+./output/ScaleTestTwo640/730/MSSEdges
+./output/ScaleTestTwo640/730/MSSNodes
+./output/ScaleTestTwo640/730/MSSVels
+./output/ScaleTestTwo640/730/MSSTracers
+./output/ScaleTestTwo640/730/medialAxis
+t = 5.57709
+step = 731
+
+hi 274
+Solved pressure in 159
+Mean pressure (sorta) -0.134293MODE 2 RUNNING... FOUND 0
+t = 5.58472
+step = 732
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.133846MODE 2 RUNNING... FOUND 0
+t = 5.59235
+step = 733
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.133544MODE 2 RUNNING... FOUND 0
+t = 5.59998
+step = 734
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.133769MODE 2 RUNNING... FOUND 0
+t = 5.6076
+step = 735
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.134524MODE 2 RUNNING... FOUND 0
+t = 5.61523
+step = 736
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.135794MODE 2 RUNNING... FOUND 0
+t = 5.62286
+step = 737
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.135966MODE 2 RUNNING... FOUND 0
+t = 5.63049
+step = 738
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.13612MODE 2 RUNNING... FOUND 0
+t = 5.63812
+step = 739
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.135991MODE 2 RUNNING... FOUND 0
+t = 5.64575
+step = 740
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.135151MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/740/out
+./output/ScaleTestTwo640/740/poolOut
+./output/ScaleTestTwo640/740/poolVel
+./output/ScaleTestTwo640/740/MSSEdges
+./output/ScaleTestTwo640/740/MSSNodes
+./output/ScaleTestTwo640/740/MSSVels
+./output/ScaleTestTwo640/740/MSSTracers
+./output/ScaleTestTwo640/740/medialAxis
+t = 5.65338
+step = 741
+
+hi 274
+Solved pressure in 157
+Mean pressure (sorta) -0.135292MODE 2 RUNNING... FOUND 0
+t = 5.66101
+step = 742
+
+hi 274
+Solved pressure in 227
+Mean pressure (sorta) -0.135976MODE 2 RUNNING... FOUND 0
+t = 5.66864
+step = 743
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.135664MODE 2 RUNNING... FOUND 0
+t = 5.67627
+step = 744
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.136315MODE 2 RUNNING... FOUND 0
+t = 5.6839
+step = 745
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.13737MODE 2 RUNNING... FOUND 0
+t = 5.69153
+step = 746
+
+hi 274
+Solved pressure in 207
+Mean pressure (sorta) -0.138477MODE 2 RUNNING... FOUND 0
+t = 5.69916
+step = 747
+
+hi 274
+Solved pressure in 222
+Mean pressure (sorta) -0.139355MODE 2 RUNNING... FOUND 0
+t = 5.70679
+step = 748
+
+hi 274
+Solved pressure in 210
+Mean pressure (sorta) -0.141229MODE 2 RUNNING... FOUND 0
+t = 5.71442
+step = 749
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.142863MODE 2 RUNNING... FOUND 0
+t = 5.72205
+step = 750
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.143139MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/750/out
+./output/ScaleTestTwo640/750/poolOut
+./output/ScaleTestTwo640/750/poolVel
+./output/ScaleTestTwo640/750/MSSEdges
+./output/ScaleTestTwo640/750/MSSNodes
+./output/ScaleTestTwo640/750/MSSVels
+./output/ScaleTestTwo640/750/MSSTracers
+./output/ScaleTestTwo640/750/medialAxis
+t = 5.72968
+step = 751
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) -0.14325MODE 2 RUNNING... FOUND 0
+t = 5.7373
+step = 752
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.142829MODE 2 RUNNING... FOUND 0
+t = 5.74493
+step = 753
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.143055MODE 2 RUNNING... FOUND 0
+t = 5.75256
+step = 754
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.142528MODE 2 RUNNING... FOUND 0
+t = 5.76019
+step = 755
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) -0.143065MODE 2 RUNNING... FOUND 0
+t = 5.76782
+step = 756
+
+hi 274
+Solved pressure in 211
+Mean pressure (sorta) -0.143075MODE 2 RUNNING... FOUND 0
+t = 5.77545
+step = 757
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.141044MODE 2 RUNNING... FOUND 0
+t = 5.78308
+step = 758
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.140708MODE 2 RUNNING... FOUND 0
+t = 5.79071
+step = 759
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.141925MODE 2 RUNNING... FOUND 0
+t = 5.79834
+step = 760
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.142459MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/760/out
+./output/ScaleTestTwo640/760/poolOut
+./output/ScaleTestTwo640/760/poolVel
+./output/ScaleTestTwo640/760/MSSEdges
+./output/ScaleTestTwo640/760/MSSNodes
+./output/ScaleTestTwo640/760/MSSVels
+./output/ScaleTestTwo640/760/MSSTracers
+./output/ScaleTestTwo640/760/medialAxis
+t = 5.80597
+step = 761
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.144791MODE 2 RUNNING... FOUND 0
+t = 5.8136
+step = 762
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.146427MODE 2 RUNNING... FOUND 0
+t = 5.82123
+step = 763
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.146224MODE 2 RUNNING... FOUND 0
+t = 5.82886
+step = 764
+
+hi 274
+Solved pressure in 221
+Mean pressure (sorta) -0.146562MODE 2 RUNNING... FOUND 0
+t = 5.83649
+step = 765
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.148646MODE 2 RUNNING... FOUND 0
+t = 5.84412
+step = 766
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.149682MODE 2 RUNNING... FOUND 0
+t = 5.85175
+step = 767
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.14951MODE 2 RUNNING... FOUND 0
+t = 5.85938
+step = 768
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.148207MODE 2 RUNNING... FOUND 0
+t = 5.867
+step = 769
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.147804MODE 2 RUNNING... FOUND 0
+t = 5.87463
+step = 770
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.148806MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/770/out
+./output/ScaleTestTwo640/770/poolOut
+./output/ScaleTestTwo640/770/poolVel
+./output/ScaleTestTwo640/770/MSSEdges
+./output/ScaleTestTwo640/770/MSSNodes
+./output/ScaleTestTwo640/770/MSSVels
+./output/ScaleTestTwo640/770/MSSTracers
+./output/ScaleTestTwo640/770/medialAxis
+t = 5.88226
+step = 771
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.149782MODE 2 RUNNING... FOUND 0
+t = 5.88989
+step = 772
+
+hi 274
+Solved pressure in 162
+Mean pressure (sorta) -0.150015MODE 2 RUNNING... FOUND 0
+t = 5.89752
+step = 773
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.150587MODE 2 RUNNING... FOUND 0
+t = 5.90515
+step = 774
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.149798MODE 2 RUNNING... FOUND 0
+t = 5.91278
+step = 775
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.14929MODE 2 RUNNING... FOUND 0
+t = 5.92041
+step = 776
+
+hi 274
+Solved pressure in 208
+Mean pressure (sorta) -0.149828MODE 2 RUNNING... FOUND 0
+t = 5.92804
+step = 777
+
+hi 274
+Solved pressure in 224
+Mean pressure (sorta) -0.151203MODE 2 RUNNING... FOUND 0
+t = 5.93567
+step = 778
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.15222MODE 2 RUNNING... FOUND 0
+t = 5.9433
+step = 779
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.153202MODE 2 RUNNING... FOUND 0
+t = 5.95093
+step = 780
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.153679MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/780/out
+./output/ScaleTestTwo640/780/poolOut
+./output/ScaleTestTwo640/780/poolVel
+./output/ScaleTestTwo640/780/MSSEdges
+./output/ScaleTestTwo640/780/MSSNodes
+./output/ScaleTestTwo640/780/MSSVels
+./output/ScaleTestTwo640/780/MSSTracers
+./output/ScaleTestTwo640/780/medialAxis
+t = 5.95856
+step = 781
+
+hi 274
+Solved pressure in 208
+Mean pressure (sorta) -0.154871MODE 2 RUNNING... FOUND 0
+t = 5.96619
+step = 782
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.155975MODE 2 RUNNING... FOUND 0
+t = 5.97382
+step = 783
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) -0.156267MODE 2 RUNNING... FOUND 0
+t = 5.98145
+step = 784
+
+hi 274
+Solved pressure in 220
+Mean pressure (sorta) -0.157455MODE 2 RUNNING... FOUND 0
+t = 5.98907
+step = 785
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.158652MODE 2 RUNNING... FOUND 0
+t = 5.9967
+step = 786
+
+hi 274
+Solved pressure in 219
+Mean pressure (sorta) -0.159311MODE 2 RUNNING... FOUND 0
+t = 6.00433
+step = 787
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.159519MODE 2 RUNNING... FOUND 0
+t = 6.01196
+step = 788
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.161778MODE 2 RUNNING... FOUND 0
+t = 6.01959
+step = 789
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) -0.162972MODE 2 RUNNING... FOUND 0
+t = 6.02722
+step = 790
+
+hi 274
+Solved pressure in 220
+Mean pressure (sorta) -0.165892MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/790/out
+./output/ScaleTestTwo640/790/poolOut
+./output/ScaleTestTwo640/790/poolVel
+./output/ScaleTestTwo640/790/MSSEdges
+./output/ScaleTestTwo640/790/MSSNodes
+./output/ScaleTestTwo640/790/MSSVels
+./output/ScaleTestTwo640/790/MSSTracers
+./output/ScaleTestTwo640/790/medialAxis
+t = 6.03485
+step = 791
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.167016MODE 2 RUNNING... FOUND 0
+t = 6.04248
+step = 792
+
+hi 274
+Solved pressure in 227
+Mean pressure (sorta) -0.166384MODE 2 RUNNING... FOUND 0
+t = 6.05011
+step = 793
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.167817MODE 2 RUNNING... FOUND 0
+t = 6.05774
+step = 794
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.170096MODE 2 RUNNING... FOUND 0
+t = 6.06537
+step = 795
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.171153MODE 2 RUNNING... FOUND 0
+t = 6.073
+step = 796
+
+hi 274
+Solved pressure in 219
+Mean pressure (sorta) -0.170735MODE 2 RUNNING... FOUND 0
+t = 6.08063
+step = 797
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.170823MODE 2 RUNNING... FOUND 0
+t = 6.08826
+step = 798
+
+hi 274
+Solved pressure in 220
+Mean pressure (sorta) -0.171263MODE 2 RUNNING... FOUND 0
+t = 6.09589
+step = 799
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.172745MODE 2 RUNNING... FOUND 0
+t = 6.10352
+step = 800
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.17424MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/800/out
+./output/ScaleTestTwo640/800/poolOut
+./output/ScaleTestTwo640/800/poolVel
+./output/ScaleTestTwo640/800/MSSEdges
+./output/ScaleTestTwo640/800/MSSNodes
+./output/ScaleTestTwo640/800/MSSVels
+./output/ScaleTestTwo640/800/MSSTracers
+./output/ScaleTestTwo640/800/medialAxis
+t = 6.11115
+step = 801
+
+hi 274
+Solved pressure in 224
+Mean pressure (sorta) -0.174698MODE 2 RUNNING... FOUND 0
+t = 6.11877
+step = 802
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.17334MODE 2 RUNNING... FOUND 0
+t = 6.1264
+step = 803
+
+hi 274
+Solved pressure in 231
+Mean pressure (sorta) -0.173177MODE 2 RUNNING... FOUND 0
+t = 6.13403
+step = 804
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.173473MODE 2 RUNNING... FOUND 0
+t = 6.14166
+step = 805
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.174876MODE 2 RUNNING... FOUND 0
+t = 6.14929
+step = 806
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.174765MODE 2 RUNNING... FOUND 0
+t = 6.15692
+step = 807
+
+hi 274
+Solved pressure in 221
+Mean pressure (sorta) -0.176286MODE 2 RUNNING... FOUND 0
+t = 6.16455
+step = 808
+
+hi 274
+Solved pressure in 219
+Mean pressure (sorta) -0.175779MODE 2 RUNNING... FOUND 0
+t = 6.17218
+step = 809
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.175741MODE 2 RUNNING... FOUND 0
+t = 6.17981
+step = 810
+
+hi 274
+Solved pressure in 210
+Mean pressure (sorta) -0.176675MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/810/out
+./output/ScaleTestTwo640/810/poolOut
+./output/ScaleTestTwo640/810/poolVel
+./output/ScaleTestTwo640/810/MSSEdges
+./output/ScaleTestTwo640/810/MSSNodes
+./output/ScaleTestTwo640/810/MSSVels
+./output/ScaleTestTwo640/810/MSSTracers
+./output/ScaleTestTwo640/810/medialAxis
+t = 6.18744
+step = 811
+
+hi 274
+Solved pressure in 211
+Mean pressure (sorta) -0.177734MODE 2 RUNNING... FOUND 0
+t = 6.19507
+step = 812
+
+hi 274
+Solved pressure in 224
+Mean pressure (sorta) -0.177505MODE 2 RUNNING... FOUND 0
+t = 6.2027
+step = 813
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.177486MODE 2 RUNNING... FOUND 0
+t = 6.21033
+step = 814
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.178426MODE 2 RUNNING... FOUND 0
+t = 6.21796
+step = 815
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.181443MODE 2 RUNNING... FOUND 0
+t = 6.22559
+step = 816
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) -0.184738MODE 2 RUNNING... FOUND 0
+t = 6.23322
+step = 817
+
+hi 274
+Solved pressure in 225
+Mean pressure (sorta) -0.184772MODE 2 RUNNING... FOUND 0
+t = 6.24084
+step = 818
+
+hi 274
+Solved pressure in 230
+Mean pressure (sorta) -0.18605MODE 2 RUNNING... FOUND 0
+t = 6.24847
+step = 819
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.187543MODE 2 RUNNING... FOUND 0
+t = 6.2561
+step = 820
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.190247MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/820/out
+./output/ScaleTestTwo640/820/poolOut
+./output/ScaleTestTwo640/820/poolVel
+./output/ScaleTestTwo640/820/MSSEdges
+./output/ScaleTestTwo640/820/MSSNodes
+./output/ScaleTestTwo640/820/MSSVels
+./output/ScaleTestTwo640/820/MSSTracers
+./output/ScaleTestTwo640/820/medialAxis
+t = 6.26373
+step = 821
+
+hi 274
+Solved pressure in 207
+Mean pressure (sorta) -0.192614MODE 2 RUNNING... FOUND 0
+t = 6.27136
+step = 822
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.193201MODE 2 RUNNING... FOUND 0
+t = 6.27899
+step = 823
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.193651MODE 2 RUNNING... FOUND 0
+t = 6.28662
+step = 824
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.19489MODE 2 RUNNING... FOUND 0
+t = 6.29425
+step = 825
+
+hi 274
+Solved pressure in 226
+Mean pressure (sorta) -0.196556MODE 2 RUNNING... FOUND 0
+t = 6.30188
+step = 826
+
+hi 274
+Solved pressure in 196
+Mean pressure (sorta) -0.196678MODE 2 RUNNING... FOUND 0
+t = 6.30951
+step = 827
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.196709MODE 2 RUNNING... FOUND 0
+t = 6.31714
+step = 828
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.19654MODE 2 RUNNING... FOUND 0
+t = 6.32477
+step = 829
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.195285MODE 2 RUNNING... FOUND 0
+t = 6.3324
+step = 830
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.196129MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/830/out
+./output/ScaleTestTwo640/830/poolOut
+./output/ScaleTestTwo640/830/poolVel
+./output/ScaleTestTwo640/830/MSSEdges
+./output/ScaleTestTwo640/830/MSSNodes
+./output/ScaleTestTwo640/830/MSSVels
+./output/ScaleTestTwo640/830/MSSTracers
+./output/ScaleTestTwo640/830/medialAxis
+t = 6.34003
+step = 831
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) -0.19514MODE 2 RUNNING... FOUND 0
+t = 6.34766
+step = 832
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.194491MODE 2 RUNNING... FOUND 0
+t = 6.35529
+step = 833
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.194365MODE 2 RUNNING... FOUND 0
+t = 6.36292
+step = 834
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.193192MODE 2 RUNNING... FOUND 0
+t = 6.37054
+step = 835
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.192506MODE 2 RUNNING... FOUND 0
+t = 6.37817
+step = 836
+
+hi 274
+Solved pressure in 209
+Mean pressure (sorta) -0.193116MODE 2 RUNNING... FOUND 0
+t = 6.3858
+step = 837
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.192676MODE 2 RUNNING... FOUND 0
+t = 6.39343
+step = 838
+
+hi 274
+Solved pressure in 228
+Mean pressure (sorta) -0.192601MODE 2 RUNNING... FOUND 0
+t = 6.40106
+step = 839
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) -0.190843MODE 2 RUNNING... FOUND 0
+t = 6.40869
+step = 840
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.190111MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/840/out
+./output/ScaleTestTwo640/840/poolOut
+./output/ScaleTestTwo640/840/poolVel
+./output/ScaleTestTwo640/840/MSSEdges
+./output/ScaleTestTwo640/840/MSSNodes
+./output/ScaleTestTwo640/840/MSSVels
+./output/ScaleTestTwo640/840/MSSTracers
+./output/ScaleTestTwo640/840/medialAxis
+t = 6.41632
+step = 841
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.190105MODE 2 RUNNING... FOUND 0
+t = 6.42395
+step = 842
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.189016MODE 2 RUNNING... FOUND 0
+t = 6.43158
+step = 843
+
+hi 274
+Solved pressure in 214
+Mean pressure (sorta) -0.188534MODE 2 RUNNING... FOUND 0
+t = 6.43921
+step = 844
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.187759MODE 2 RUNNING... FOUND 0
+t = 6.44684
+step = 845
+
+hi 274
+Solved pressure in 222
+Mean pressure (sorta) -0.186582MODE 2 RUNNING... FOUND 0
+t = 6.45447
+step = 846
+
+hi 274
+Solved pressure in 211
+Mean pressure (sorta) -0.187445MODE 2 RUNNING... FOUND 0
+t = 6.4621
+step = 847
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.187562MODE 2 RUNNING... FOUND 0
+t = 6.46973
+step = 848
+
+hi 274
+Solved pressure in 222
+Mean pressure (sorta) -0.189567MODE 2 RUNNING... FOUND 0
+t = 6.47736
+step = 849
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.188483MODE 2 RUNNING... FOUND 0
+t = 6.48499
+step = 850
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.188194MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/850/out
+./output/ScaleTestTwo640/850/poolOut
+./output/ScaleTestTwo640/850/poolVel
+./output/ScaleTestTwo640/850/MSSEdges
+./output/ScaleTestTwo640/850/MSSNodes
+./output/ScaleTestTwo640/850/MSSVels
+./output/ScaleTestTwo640/850/MSSTracers
+./output/ScaleTestTwo640/850/medialAxis
+t = 6.49261
+step = 851
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.188331MODE 2 RUNNING... FOUND 0
+t = 6.50024
+step = 852
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.188201MODE 2 RUNNING... FOUND 0
+t = 6.50787
+step = 853
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.189026MODE 2 RUNNING... FOUND 0
+t = 6.5155
+step = 854
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.190787MODE 2 RUNNING... FOUND 0
+t = 6.52313
+step = 855
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.191521MODE 2 RUNNING... FOUND 0
+t = 6.53076
+step = 856
+
+hi 274
+Solved pressure in 219
+Mean pressure (sorta) -0.192212MODE 2 RUNNING... FOUND 0
+t = 6.53839
+step = 857
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.192776MODE 2 RUNNING... FOUND 0
+t = 6.54602
+step = 858
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.194011MODE 2 RUNNING... FOUND 0
+t = 6.55365
+step = 859
+
+hi 274
+Solved pressure in 225
+Mean pressure (sorta) -0.196016MODE 2 RUNNING... FOUND 0
+t = 6.56128
+step = 860
+
+hi 274
+Solved pressure in 225
+Mean pressure (sorta) -0.19789MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/860/out
+./output/ScaleTestTwo640/860/poolOut
+./output/ScaleTestTwo640/860/poolVel
+./output/ScaleTestTwo640/860/MSSEdges
+./output/ScaleTestTwo640/860/MSSNodes
+./output/ScaleTestTwo640/860/MSSVels
+./output/ScaleTestTwo640/860/MSSTracers
+./output/ScaleTestTwo640/860/medialAxis
+t = 6.56891
+step = 861
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.198099MODE 2 RUNNING... FOUND 0
+t = 6.57654
+step = 862
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.201335MODE 2 RUNNING... FOUND 0
+t = 6.58417
+step = 863
+
+hi 274
+Solved pressure in 209
+Mean pressure (sorta) -0.204019MODE 2 RUNNING... FOUND 0
+t = 6.5918
+step = 864
+
+hi 274
+Solved pressure in 207
+Mean pressure (sorta) -0.205735MODE 2 RUNNING... FOUND 0
+t = 6.59943
+step = 865
+
+hi 274
+Solved pressure in 209
+Mean pressure (sorta) -0.207267MODE 2 RUNNING... FOUND 0
+t = 6.60706
+step = 866
+
+hi 274
+Solved pressure in 212
+Mean pressure (sorta) -0.207081MODE 2 RUNNING... FOUND 0
+t = 6.61469
+step = 867
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.206906MODE 2 RUNNING... FOUND 0
+t = 6.62231
+step = 868
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.20794MODE 2 RUNNING... FOUND 0
+t = 6.62994
+step = 869
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.209063MODE 2 RUNNING... FOUND 0
+t = 6.63757
+step = 870
+
+hi 274
+Solved pressure in 218
+Mean pressure (sorta) -0.210019MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/870/out
+./output/ScaleTestTwo640/870/poolOut
+./output/ScaleTestTwo640/870/poolVel
+./output/ScaleTestTwo640/870/MSSEdges
+./output/ScaleTestTwo640/870/MSSNodes
+./output/ScaleTestTwo640/870/MSSVels
+./output/ScaleTestTwo640/870/MSSTracers
+./output/ScaleTestTwo640/870/medialAxis
+t = 6.6452
+step = 871
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.210105MODE 2 RUNNING... FOUND 0
+t = 6.65283
+step = 872
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.210421MODE 2 RUNNING... FOUND 0
+t = 6.66046
+step = 873
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.210137MODE 2 RUNNING... FOUND 0
+t = 6.66809
+step = 874
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.211376MODE 2 RUNNING... FOUND 0
+t = 6.67572
+step = 875
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.213099MODE 2 RUNNING... FOUND 0
+t = 6.68335
+step = 876
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) -0.214508MODE 2 RUNNING... FOUND 0
+t = 6.69098
+step = 877
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.213009MODE 2 RUNNING... FOUND 0
+t = 6.69861
+step = 878
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.213195MODE 2 RUNNING... FOUND 0
+t = 6.70624
+step = 879
+
+hi 274
+Solved pressure in 224
+Mean pressure (sorta) -0.213769MODE 2 RUNNING... FOUND 0
+t = 6.71387
+step = 880
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.214175MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/880/out
+./output/ScaleTestTwo640/880/poolOut
+./output/ScaleTestTwo640/880/poolVel
+./output/ScaleTestTwo640/880/MSSEdges
+./output/ScaleTestTwo640/880/MSSNodes
+./output/ScaleTestTwo640/880/MSSVels
+./output/ScaleTestTwo640/880/MSSTracers
+./output/ScaleTestTwo640/880/medialAxis
+t = 6.7215
+step = 881
+
+hi 274
+Solved pressure in 226
+Mean pressure (sorta) -0.214367MODE 2 RUNNING... FOUND 0
+t = 6.72913
+step = 882
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.212319MODE 2 RUNNING... FOUND 0
+t = 6.73676
+step = 883
+
+hi 274
+Solved pressure in 234
+Mean pressure (sorta) -0.212638MODE 2 RUNNING... FOUND 0
+t = 6.74438
+step = 884
+
+hi 274
+Solved pressure in 216
+Mean pressure (sorta) -0.211786MODE 2 RUNNING... FOUND 0
+t = 6.75201
+step = 885
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.20981MODE 2 RUNNING... FOUND 0
+t = 6.75964
+step = 886
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.207321MODE 2 RUNNING... FOUND 0
+t = 6.76727
+step = 887
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.206816MODE 2 RUNNING... FOUND 0
+t = 6.7749
+step = 888
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.205095MODE 2 RUNNING... FOUND 0
+t = 6.78253
+step = 889
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.202824MODE 2 RUNNING... FOUND 0
+t = 6.79016
+step = 890
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.202144MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/890/out
+./output/ScaleTestTwo640/890/poolOut
+./output/ScaleTestTwo640/890/poolVel
+./output/ScaleTestTwo640/890/MSSEdges
+./output/ScaleTestTwo640/890/MSSNodes
+./output/ScaleTestTwo640/890/MSSVels
+./output/ScaleTestTwo640/890/MSSTracers
+./output/ScaleTestTwo640/890/medialAxis
+t = 6.79779
+step = 891
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.201483MODE 2 RUNNING... FOUND 0
+t = 6.80542
+step = 892
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.201428MODE 2 RUNNING... FOUND 0
+t = 6.81305
+step = 893
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.202486MODE 2 RUNNING... FOUND 0
+t = 6.82068
+step = 894
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.203962MODE 2 RUNNING... FOUND 0
+t = 6.82831
+step = 895
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.205816MODE 2 RUNNING... FOUND 0
+t = 6.83594
+step = 896
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.20583MODE 2 RUNNING... FOUND 0
+t = 6.84357
+step = 897
+
+hi 274
+Solved pressure in 190
+Mean pressure (sorta) -0.208683MODE 2 RUNNING... FOUND 0
+t = 6.8512
+step = 898
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.209894MODE 2 RUNNING... FOUND 0
+t = 6.85883
+step = 899
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.210392MODE 2 RUNNING... FOUND 0
+t = 6.86646
+step = 900
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.212389MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/900/out
+./output/ScaleTestTwo640/900/poolOut
+./output/ScaleTestTwo640/900/poolVel
+./output/ScaleTestTwo640/900/MSSEdges
+./output/ScaleTestTwo640/900/MSSNodes
+./output/ScaleTestTwo640/900/MSSVels
+./output/ScaleTestTwo640/900/MSSTracers
+./output/ScaleTestTwo640/900/medialAxis
+t = 6.87408
+step = 901
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.215799MODE 2 RUNNING... FOUND 0
+t = 6.88171
+step = 902
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.21834MODE 2 RUNNING... FOUND 0
+t = 6.88934
+step = 903
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.219998MODE 2 RUNNING... FOUND 0
+t = 6.89697
+step = 904
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.222884MODE 2 RUNNING... FOUND 0
+t = 6.9046
+step = 905
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.224817MODE 2 RUNNING... FOUND 0
+t = 6.91223
+step = 906
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.227607MODE 2 RUNNING... FOUND 0
+t = 6.91986
+step = 907
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.230495MODE 2 RUNNING... FOUND 0
+t = 6.92749
+step = 908
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.231281MODE 2 RUNNING... FOUND 0
+t = 6.93512
+step = 909
+
+hi 274
+Solved pressure in 207
+Mean pressure (sorta) -0.230354MODE 2 RUNNING... FOUND 0
+t = 6.94275
+step = 910
+
+hi 274
+Solved pressure in 204
+Mean pressure (sorta) -0.230288MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/910/out
+./output/ScaleTestTwo640/910/poolOut
+./output/ScaleTestTwo640/910/poolVel
+./output/ScaleTestTwo640/910/MSSEdges
+./output/ScaleTestTwo640/910/MSSNodes
+./output/ScaleTestTwo640/910/MSSVels
+./output/ScaleTestTwo640/910/MSSTracers
+./output/ScaleTestTwo640/910/medialAxis
+t = 6.95038
+step = 911
+
+hi 274
+Solved pressure in 224
+Mean pressure (sorta) -0.233234MODE 2 RUNNING... FOUND 0
+t = 6.95801
+step = 912
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.234759MODE 2 RUNNING... FOUND 0
+t = 6.96564
+step = 913
+
+hi 274
+Solved pressure in 221
+Mean pressure (sorta) -0.236558MODE 2 RUNNING... FOUND 0
+t = 6.97327
+step = 914
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.236019MODE 2 RUNNING... FOUND 0
+t = 6.9809
+step = 915
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.236206MODE 2 RUNNING... FOUND 0
+t = 6.98853
+step = 916
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.236885MODE 2 RUNNING... FOUND 0
+t = 6.99615
+step = 917
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.236881MODE 2 RUNNING... FOUND 0
+t = 7.00378
+step = 918
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.235191MODE 2 RUNNING... FOUND 0
+t = 7.01141
+step = 919
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.233489MODE 2 RUNNING... FOUND 0
+t = 7.01904
+step = 920
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.232913MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/920/out
+./output/ScaleTestTwo640/920/poolOut
+./output/ScaleTestTwo640/920/poolVel
+./output/ScaleTestTwo640/920/MSSEdges
+./output/ScaleTestTwo640/920/MSSNodes
+./output/ScaleTestTwo640/920/MSSVels
+./output/ScaleTestTwo640/920/MSSTracers
+./output/ScaleTestTwo640/920/medialAxis
+t = 7.02667
+step = 921
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.232347MODE 2 RUNNING... FOUND 0
+t = 7.0343
+step = 922
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) -0.230685MODE 2 RUNNING... FOUND 0
+t = 7.04193
+step = 923
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.228291MODE 2 RUNNING... FOUND 0
+t = 7.04956
+step = 924
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.226967MODE 2 RUNNING... FOUND 0
+t = 7.05719
+step = 925
+
+hi 274
+Solved pressure in 201
+Mean pressure (sorta) -0.227764MODE 2 RUNNING... FOUND 0
+t = 7.06482
+step = 926
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) -0.228978MODE 2 RUNNING... FOUND 0
+t = 7.07245
+step = 927
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.229989MODE 2 RUNNING... FOUND 0
+t = 7.08008
+step = 928
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.231115MODE 2 RUNNING... FOUND 0
+t = 7.08771
+step = 929
+
+hi 274
+Solved pressure in 197
+Mean pressure (sorta) -0.231665MODE 2 RUNNING... FOUND 0
+t = 7.09534
+step = 930
+
+hi 274
+Solved pressure in 166
+Mean pressure (sorta) -0.23321MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/930/out
+./output/ScaleTestTwo640/930/poolOut
+./output/ScaleTestTwo640/930/poolVel
+./output/ScaleTestTwo640/930/MSSEdges
+./output/ScaleTestTwo640/930/MSSNodes
+./output/ScaleTestTwo640/930/MSSVels
+./output/ScaleTestTwo640/930/MSSTracers
+./output/ScaleTestTwo640/930/medialAxis
+t = 7.10297
+step = 931
+
+hi 274
+Solved pressure in 202
+Mean pressure (sorta) -0.234058MODE 2 RUNNING... FOUND 0
+t = 7.1106
+step = 932
+
+hi 274
+Solved pressure in 206
+Mean pressure (sorta) -0.233779MODE 2 RUNNING... FOUND 0
+t = 7.11823
+step = 933
+
+hi 274
+Solved pressure in 203
+Mean pressure (sorta) -0.235217MODE 2 RUNNING... FOUND 0
+t = 7.12585
+step = 934
+
+hi 274
+Solved pressure in 168
+Mean pressure (sorta) -0.236198MODE 2 RUNNING... FOUND 0
+t = 7.13348
+step = 935
+
+hi 274
+Solved pressure in 198
+Mean pressure (sorta) -0.237403MODE 2 RUNNING... FOUND 0
+t = 7.14111
+step = 936
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.235254MODE 2 RUNNING... FOUND 0
+t = 7.14874
+step = 937
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.234506MODE 2 RUNNING... FOUND 0
+t = 7.15637
+step = 938
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.234055MODE 2 RUNNING... FOUND 0
+t = 7.164
+step = 939
+
+hi 274
+Solved pressure in 213
+Mean pressure (sorta) -0.232944MODE 2 RUNNING... FOUND 0
+t = 7.17163
+step = 940
+
+hi 274
+Solved pressure in 208
+Mean pressure (sorta) -0.232285MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/940/out
+./output/ScaleTestTwo640/940/poolOut
+./output/ScaleTestTwo640/940/poolVel
+./output/ScaleTestTwo640/940/MSSEdges
+./output/ScaleTestTwo640/940/MSSNodes
+./output/ScaleTestTwo640/940/MSSVels
+./output/ScaleTestTwo640/940/MSSTracers
+./output/ScaleTestTwo640/940/medialAxis
+t = 7.17926
+step = 941
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.232484MODE 2 RUNNING... FOUND 0
+t = 7.18689
+step = 942
+
+hi 274
+Solved pressure in 210
+Mean pressure (sorta) -0.232206MODE 2 RUNNING... FOUND 0
+t = 7.19452
+step = 943
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.231815MODE 2 RUNNING... FOUND 0
+t = 7.20215
+step = 944
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.233391MODE 2 RUNNING... FOUND 0
+t = 7.20978
+step = 945
+
+hi 274
+Solved pressure in 165
+Mean pressure (sorta) -0.231738MODE 2 RUNNING... FOUND 0
+t = 7.21741
+step = 946
+
+hi 274
+Solved pressure in 158
+Mean pressure (sorta) -0.232115MODE 2 RUNNING... FOUND 0
+t = 7.22504
+step = 947
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.232704MODE 2 RUNNING... FOUND 0
+t = 7.23267
+step = 948
+
+hi 274
+Solved pressure in 205
+Mean pressure (sorta) -0.234749MODE 2 RUNNING... FOUND 0
+t = 7.2403
+step = 949
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.235363MODE 2 RUNNING... FOUND 0
+t = 7.24792
+step = 950
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.234437MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/950/out
+./output/ScaleTestTwo640/950/poolOut
+./output/ScaleTestTwo640/950/poolVel
+./output/ScaleTestTwo640/950/MSSEdges
+./output/ScaleTestTwo640/950/MSSNodes
+./output/ScaleTestTwo640/950/MSSVels
+./output/ScaleTestTwo640/950/MSSTracers
+./output/ScaleTestTwo640/950/medialAxis
+t = 7.25555
+step = 951
+
+hi 274
+Solved pressure in 191
+Mean pressure (sorta) -0.234054MODE 2 RUNNING... FOUND 0
+t = 7.26318
+step = 952
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.234573MODE 2 RUNNING... FOUND 0
+t = 7.27081
+step = 953
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.236483MODE 2 RUNNING... FOUND 0
+t = 7.27844
+step = 954
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.237411MODE 2 RUNNING... FOUND 0
+t = 7.28607
+step = 955
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.237342MODE 2 RUNNING... FOUND 0
+t = 7.2937
+step = 956
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.238167MODE 2 RUNNING... FOUND 0
+t = 7.30133
+step = 957
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.237926MODE 2 RUNNING... FOUND 0
+t = 7.30896
+step = 958
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.238431MODE 2 RUNNING... FOUND 0
+t = 7.31659
+step = 959
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) -0.237776MODE 2 RUNNING... FOUND 0
+t = 7.32422
+step = 960
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.238378MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/960/out
+./output/ScaleTestTwo640/960/poolOut
+./output/ScaleTestTwo640/960/poolVel
+./output/ScaleTestTwo640/960/MSSEdges
+./output/ScaleTestTwo640/960/MSSNodes
+./output/ScaleTestTwo640/960/MSSVels
+./output/ScaleTestTwo640/960/MSSTracers
+./output/ScaleTestTwo640/960/medialAxis
+t = 7.33185
+step = 961
+
+hi 274
+Solved pressure in 195
+Mean pressure (sorta) -0.239418MODE 2 RUNNING... FOUND 0
+t = 7.33948
+step = 962
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.240523MODE 2 RUNNING... FOUND 0
+t = 7.34711
+step = 963
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.240587MODE 2 RUNNING... FOUND 0
+t = 7.35474
+step = 964
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.242427MODE 2 RUNNING... FOUND 0
+t = 7.36237
+step = 965
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.245007MODE 2 RUNNING... FOUND 0
+t = 7.37
+step = 966
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.248857MODE 2 RUNNING... FOUND 0
+t = 7.37762
+step = 967
+
+hi 274
+Solved pressure in 188
+Mean pressure (sorta) -0.252994MODE 2 RUNNING... FOUND 0
+t = 7.38525
+step = 968
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.254546MODE 2 RUNNING... FOUND 0
+t = 7.39288
+step = 969
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.256064MODE 2 RUNNING... FOUND 0
+t = 7.40051
+step = 970
+
+hi 274
+Solved pressure in 193
+Mean pressure (sorta) -0.257721MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/970/out
+./output/ScaleTestTwo640/970/poolOut
+./output/ScaleTestTwo640/970/poolVel
+./output/ScaleTestTwo640/970/MSSEdges
+./output/ScaleTestTwo640/970/MSSNodes
+./output/ScaleTestTwo640/970/MSSVels
+./output/ScaleTestTwo640/970/MSSTracers
+./output/ScaleTestTwo640/970/medialAxis
+t = 7.40814
+step = 971
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.259629MODE 2 RUNNING... FOUND 0
+t = 7.41577
+step = 972
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.262261MODE 2 RUNNING... FOUND 0
+t = 7.4234
+step = 973
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.264288MODE 2 RUNNING... FOUND 0
+t = 7.43103
+step = 974
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.26513MODE 2 RUNNING... FOUND 0
+t = 7.43866
+step = 975
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.264566MODE 2 RUNNING... FOUND 0
+t = 7.44629
+step = 976
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.265347MODE 2 RUNNING... FOUND 0
+t = 7.45392
+step = 977
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.267396MODE 2 RUNNING... FOUND 0
+t = 7.46155
+step = 978
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.26927MODE 2 RUNNING... FOUND 0
+t = 7.46918
+step = 979
+
+hi 274
+Solved pressure in 151
+Mean pressure (sorta) -0.268493MODE 2 RUNNING... FOUND 0
+t = 7.47681
+step = 980
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.268444MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/980/out
+./output/ScaleTestTwo640/980/poolOut
+./output/ScaleTestTwo640/980/poolVel
+./output/ScaleTestTwo640/980/MSSEdges
+./output/ScaleTestTwo640/980/MSSNodes
+./output/ScaleTestTwo640/980/MSSVels
+./output/ScaleTestTwo640/980/MSSTracers
+./output/ScaleTestTwo640/980/medialAxis
+t = 7.48444
+step = 981
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.268541MODE 2 RUNNING... FOUND 0
+t = 7.49207
+step = 982
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.269507MODE 2 RUNNING... FOUND 0
+t = 7.49969
+step = 983
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.270101MODE 2 RUNNING... FOUND 0
+t = 7.50732
+step = 984
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.272723MODE 2 RUNNING... FOUND 0
+t = 7.51495
+step = 985
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.273683MODE 2 RUNNING... FOUND 0
+t = 7.52258
+step = 986
+
+hi 274
+Solved pressure in 209
+Mean pressure (sorta) -0.274021MODE 2 RUNNING... FOUND 0
+t = 7.53021
+step = 987
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.272816MODE 2 RUNNING... FOUND 0
+t = 7.53784
+step = 988
+
+hi 274
+Solved pressure in 192
+Mean pressure (sorta) -0.273278MODE 2 RUNNING... FOUND 0
+t = 7.54547
+step = 989
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.274238MODE 2 RUNNING... FOUND 0
+t = 7.5531
+step = 990
+
+hi 274
+Solved pressure in 169
+Mean pressure (sorta) -0.274491MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/990/out
+./output/ScaleTestTwo640/990/poolOut
+./output/ScaleTestTwo640/990/poolVel
+./output/ScaleTestTwo640/990/MSSEdges
+./output/ScaleTestTwo640/990/MSSNodes
+./output/ScaleTestTwo640/990/MSSVels
+./output/ScaleTestTwo640/990/MSSTracers
+./output/ScaleTestTwo640/990/medialAxis
+t = 7.56073
+step = 991
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.275573MODE 2 RUNNING... FOUND 0
+t = 7.56836
+step = 992
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.274438MODE 2 RUNNING... FOUND 0
+t = 7.57599
+step = 993
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.273569MODE 2 RUNNING... FOUND 0
+t = 7.58362
+step = 994
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.271458MODE 2 RUNNING... FOUND 0
+t = 7.59125
+step = 995
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.270026MODE 2 RUNNING... FOUND 0
+t = 7.59888
+step = 996
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.271784MODE 2 RUNNING... FOUND 0
+t = 7.60651
+step = 997
+
+hi 274
+Solved pressure in 194
+Mean pressure (sorta) -0.272854MODE 2 RUNNING... FOUND 0
+t = 7.61414
+step = 998
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.275428MODE 2 RUNNING... FOUND 0
+t = 7.62177
+step = 999
+
+hi 274
+Solved pressure in 189
+Mean pressure (sorta) -0.277261MODE 2 RUNNING... FOUND 0
+t = 7.62939
+step = 1000
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.281356MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1000/out
+./output/ScaleTestTwo640/1000/poolOut
+./output/ScaleTestTwo640/1000/poolVel
+./output/ScaleTestTwo640/1000/MSSEdges
+./output/ScaleTestTwo640/1000/MSSNodes
+./output/ScaleTestTwo640/1000/MSSVels
+./output/ScaleTestTwo640/1000/MSSTracers
+./output/ScaleTestTwo640/1000/medialAxis
+t = 7.63702
+step = 1001
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.282484MODE 2 RUNNING... FOUND 0
+t = 7.64465
+step = 1002
+
+hi 274
+Solved pressure in 187
+Mean pressure (sorta) -0.284117MODE 2 RUNNING... FOUND 0
+t = 7.65228
+step = 1003
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.2871MODE 2 RUNNING... FOUND 0
+t = 7.65991
+step = 1004
+
+hi 274
+Solved pressure in 186
+Mean pressure (sorta) -0.290516MODE 2 RUNNING... FOUND 0
+t = 7.66754
+step = 1005
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.293916MODE 2 RUNNING... FOUND 0
+t = 7.67517
+step = 1006
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.293874MODE 2 RUNNING... FOUND 0
+t = 7.6828
+step = 1007
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.294867MODE 2 RUNNING... FOUND 0
+t = 7.69043
+step = 1008
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.296908MODE 2 RUNNING... FOUND 0
+t = 7.69806
+step = 1009
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.297413MODE 2 RUNNING... FOUND 0
+t = 7.70569
+step = 1010
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.297209MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1010/out
+./output/ScaleTestTwo640/1010/poolOut
+./output/ScaleTestTwo640/1010/poolVel
+./output/ScaleTestTwo640/1010/MSSEdges
+./output/ScaleTestTwo640/1010/MSSNodes
+./output/ScaleTestTwo640/1010/MSSVels
+./output/ScaleTestTwo640/1010/MSSTracers
+./output/ScaleTestTwo640/1010/medialAxis
+t = 7.71332
+step = 1011
+
+hi 274
+Solved pressure in 163
+Mean pressure (sorta) -0.297494MODE 2 RUNNING... FOUND 0
+t = 7.72095
+step = 1012
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.2965MODE 2 RUNNING... FOUND 0
+t = 7.72858
+step = 1013
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.295307MODE 2 RUNNING... FOUND 0
+t = 7.73621
+step = 1014
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.294679MODE 2 RUNNING... FOUND 0
+t = 7.74384
+step = 1015
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.293235MODE 2 RUNNING... FOUND 0
+t = 7.75146
+step = 1016
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.292694MODE 2 RUNNING... FOUND 0
+t = 7.75909
+step = 1017
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.290775MODE 2 RUNNING... FOUND 0
+t = 7.76672
+step = 1018
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.293886MODE 2 RUNNING... FOUND 0
+t = 7.77435
+step = 1019
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.294616MODE 2 RUNNING... FOUND 0
+t = 7.78198
+step = 1020
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.291785MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1020/out
+./output/ScaleTestTwo640/1020/poolOut
+./output/ScaleTestTwo640/1020/poolVel
+./output/ScaleTestTwo640/1020/MSSEdges
+./output/ScaleTestTwo640/1020/MSSNodes
+./output/ScaleTestTwo640/1020/MSSVels
+./output/ScaleTestTwo640/1020/MSSTracers
+./output/ScaleTestTwo640/1020/medialAxis
+t = 7.78961
+step = 1021
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.287243MODE 2 RUNNING... FOUND 0
+t = 7.79724
+step = 1022
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.288499MODE 2 RUNNING... FOUND 0
+t = 7.80487
+step = 1023
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.290921MODE 2 RUNNING... FOUND 0
+t = 7.8125
+step = 1024
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.288987MODE 2 RUNNING... FOUND 0
+t = 7.82013
+step = 1025
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.286359MODE 2 RUNNING... FOUND 0
+t = 7.82776
+step = 1026
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.285151MODE 2 RUNNING... FOUND 0
+t = 7.83539
+step = 1027
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.28644MODE 2 RUNNING... FOUND 0
+t = 7.84302
+step = 1028
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.287089MODE 2 RUNNING... FOUND 0
+t = 7.85065
+step = 1029
+
+hi 274
+Solved pressure in 171
+Mean pressure (sorta) -0.286632MODE 2 RUNNING... FOUND 0
+t = 7.85828
+step = 1030
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.290878MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1030/out
+./output/ScaleTestTwo640/1030/poolOut
+./output/ScaleTestTwo640/1030/poolVel
+./output/ScaleTestTwo640/1030/MSSEdges
+./output/ScaleTestTwo640/1030/MSSNodes
+./output/ScaleTestTwo640/1030/MSSVels
+./output/ScaleTestTwo640/1030/MSSTracers
+./output/ScaleTestTwo640/1030/medialAxis
+t = 7.86591
+step = 1031
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.291435MODE 2 RUNNING... FOUND 0
+t = 7.87354
+step = 1032
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.291396MODE 2 RUNNING... FOUND 0
+t = 7.88116
+step = 1033
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.292094MODE 2 RUNNING... FOUND 0
+t = 7.88879
+step = 1034
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.292208MODE 2 RUNNING... FOUND 0
+t = 7.89642
+step = 1035
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.296486MODE 2 RUNNING... FOUND 0
+t = 7.90405
+step = 1036
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.29782MODE 2 RUNNING... FOUND 0
+t = 7.91168
+step = 1037
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.299914MODE 2 RUNNING... FOUND 0
+t = 7.91931
+step = 1038
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.299796MODE 2 RUNNING... FOUND 0
+t = 7.92694
+step = 1039
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.302065MODE 2 RUNNING... FOUND 0
+t = 7.93457
+step = 1040
+
+hi 274
+Solved pressure in 176
+Mean pressure (sorta) -0.304219MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1040/out
+./output/ScaleTestTwo640/1040/poolOut
+./output/ScaleTestTwo640/1040/poolVel
+./output/ScaleTestTwo640/1040/MSSEdges
+./output/ScaleTestTwo640/1040/MSSNodes
+./output/ScaleTestTwo640/1040/MSSVels
+./output/ScaleTestTwo640/1040/MSSTracers
+./output/ScaleTestTwo640/1040/medialAxis
+t = 7.9422
+step = 1041
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.307276MODE 2 RUNNING... FOUND 0
+t = 7.94983
+step = 1042
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.311095MODE 2 RUNNING... FOUND 0
+t = 7.95746
+step = 1043
+
+hi 274
+Solved pressure in 175
+Mean pressure (sorta) -0.313997MODE 2 RUNNING... FOUND 0
+t = 7.96509
+step = 1044
+
+hi 274
+Solved pressure in 217
+Mean pressure (sorta) -0.316814MODE 2 RUNNING... FOUND 0
+t = 7.97272
+step = 1045
+
+hi 274
+Solved pressure in 199
+Mean pressure (sorta) -0.318138MODE 2 RUNNING... FOUND 0
+t = 7.98035
+step = 1046
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.316085MODE 2 RUNNING... FOUND 0
+t = 7.98798
+step = 1047
+
+hi 274
+Solved pressure in 178
+Mean pressure (sorta) -0.315377MODE 2 RUNNING... FOUND 0
+t = 7.99561
+step = 1048
+
+hi 274
+Solved pressure in 173
+Mean pressure (sorta) -0.313633MODE 2 RUNNING... FOUND 0
+t = 8.00323
+step = 1049
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.312062MODE 2 RUNNING... FOUND 0
+t = 8.01086
+step = 1050
+
+hi 274
+Solved pressure in 174
+Mean pressure (sorta) -0.308388MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1050/out
+./output/ScaleTestTwo640/1050/poolOut
+./output/ScaleTestTwo640/1050/poolVel
+./output/ScaleTestTwo640/1050/MSSEdges
+./output/ScaleTestTwo640/1050/MSSNodes
+./output/ScaleTestTwo640/1050/MSSVels
+./output/ScaleTestTwo640/1050/MSSTracers
+./output/ScaleTestTwo640/1050/medialAxis
+t = 8.01849
+step = 1051
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.306051MODE 2 RUNNING... FOUND 0
+t = 8.02612
+step = 1052
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.302486MODE 2 RUNNING... FOUND 0
+t = 8.03375
+step = 1053
+
+hi 274
+Solved pressure in 160
+Mean pressure (sorta) -0.302373MODE 2 RUNNING... FOUND 0
+t = 8.04138
+step = 1054
+
+hi 274
+Solved pressure in 215
+Mean pressure (sorta) -0.298712MODE 2 RUNNING... FOUND 0
+t = 8.04901
+step = 1055
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.29471MODE 2 RUNNING... FOUND 0
+t = 8.05664
+step = 1056
+
+hi 274
+Solved pressure in 181
+Mean pressure (sorta) -0.293251MODE 2 RUNNING... FOUND 0
+t = 8.06427
+step = 1057
+
+hi 274
+Solved pressure in 200
+Mean pressure (sorta) -0.291604MODE 2 RUNNING... FOUND 0
+t = 8.0719
+step = 1058
+
+hi 274
+Solved pressure in 161
+Mean pressure (sorta) -0.291194MODE 2 RUNNING... FOUND 0
+t = 8.07953
+step = 1059
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.288641MODE 2 RUNNING... FOUND 0
+t = 8.08716
+step = 1060
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.284029MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1060/out
+./output/ScaleTestTwo640/1060/poolOut
+./output/ScaleTestTwo640/1060/poolVel
+./output/ScaleTestTwo640/1060/MSSEdges
+./output/ScaleTestTwo640/1060/MSSNodes
+./output/ScaleTestTwo640/1060/MSSVels
+./output/ScaleTestTwo640/1060/MSSTracers
+./output/ScaleTestTwo640/1060/medialAxis
+t = 8.09479
+step = 1061
+
+hi 274
+Solved pressure in 184
+Mean pressure (sorta) -0.282922MODE 2 RUNNING... FOUND 0
+t = 8.10242
+step = 1062
+
+hi 274
+Solved pressure in 179
+Mean pressure (sorta) -0.28535MODE 2 RUNNING... FOUND 0
+t = 8.11005
+step = 1063
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.281034MODE 2 RUNNING... FOUND 0
+t = 8.11768
+step = 1064
+
+hi 274
+Solved pressure in 182
+Mean pressure (sorta) -0.280607MODE 2 RUNNING... FOUND 0
+t = 8.12531
+step = 1065
+
+hi 274
+Solved pressure in 185
+Mean pressure (sorta) -0.280799MODE 2 RUNNING... FOUND 0
+t = 8.13293
+step = 1066
+
+hi 274
+Solved pressure in 180
+Mean pressure (sorta) -0.282399MODE 2 RUNNING... FOUND 0
+t = 8.14056
+step = 1067
+
+hi 274
+Solved pressure in 183
+Mean pressure (sorta) -0.283687MODE 2 RUNNING... FOUND 0
+t = 8.14819
+step = 1068
+
+hi 274
+Solved pressure in 177
+Mean pressure (sorta) -0.28526MODE 2 RUNNING... FOUND 0
+t = 8.15582
+step = 1069
+
+hi 274
+Solved pressure in 172
+Mean pressure (sorta) -0.287207MODE 2 RUNNING... FOUND 0
+t = 8.16345
+step = 1070
+
+hi 274
+Solved pressure in 170
+Mean pressure (sorta) -0.288395MODE 2 RUNNING... FOUND 0
+testdir = ./output/ScaleTestTwo640/
+Outputting data
+./output/ScaleTestTwo640/1070/out
+slurmstepd: error: *** JOB 53478964 ON gra809 CANCELLED AT 2021-10-19T20:57:25 DUE TO TIME LIMIT ***

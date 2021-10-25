@@ -151,7 +151,7 @@ void outputData(string f_name, NSSolver3D &solver) {
 }
 
 
-void outputData(string f_name, NSSolver &solver, int testNum) {
+void outputData(string f_name, NSSolver3D &solver, int testNum) {
     TestFormatter testFormatter(f_name.c_str(), testNum);
     std::cout << "Outputting data" << std::endl;
 
@@ -341,7 +341,7 @@ int main(int argc, char **argv) {
 
             if (nsteps % 20 == 0) {
                 string f_name = testName;
-                outputData(f_name, solver, nSteps);
+                outputData(f_name, solver, nsteps);
             }
 
             nsteps++;

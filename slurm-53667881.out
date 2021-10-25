@@ -1,0 +1,5121 @@
+====================================
+Functions available:
+
+create_test()
+grid_scale_test()
+obj_scale_test()
+full_scale_test()
+run_scale_experiment()
+run_obj_scale_experiment()
+create_scale_plot()
+run_solver()
+exit()
+
+====================================
+call function() = evaling run_obj_scale_experiment()
+test name = dimension = g++ -Wall -std=c++17 -I../src -I./lib/eigen/ -I./lib/nanoflann/include/ -O3 main_from_txt.cpp src/2DSolver/PressureSolver.cpp src/2DSolver/MomentumSolver2D.cpp src/2DSolver/KDPointCloud.cpp src/2DSolver/MassSpring2D.cpp src/2DSolver/Boundary.cpp src/2DSolver/SolidObject.cpp src/2DSolver/SimParams.cpp src/2DSolver/NSSolver.cpp src/2DSolver/ObjectSeeder.cpp src/2DSolver/Pool2D.cpp src/LASolver/accel_class.cpp src/LASolver/MatrixIter.cpp src/LASolver/rcm.cpp src/LASolver/SparseItUtil.cpp src/LASolver/ILU_class.cpp src/Utils/GridValComparator.cpp src/Utils/Assembly.cpp src/Utils/GridVal2D.cpp src/Utils/GridVal3D.cpp src/Utils/SolidParams.cpp src/Utils/TestFormatter.cpp src/Utils/ADMMPG.cpp -o fluidsolver2d.exe
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpMatrixStruct(int, int)’:
+src/2DSolver/PressureSolver.cpp:87:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   87 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp:105:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  105 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureMatrix(Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:157:15: warning: variable ‘off’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |               ^~~
+src/2DSolver/PressureSolver.cpp:157:20: warning: variable ‘offp’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |                    ^~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureRHS(double, double**, double**, double**, Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:291:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  291 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::solvePCG(double, Pool2D*, double**, double**, double**, bool, SparseItObj::ParamIter&)’:
+src/2DSolver/PressureSolver.cpp:346:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  346 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In copy constructor ‘mass_spring::MassSpring2D::MassSpring2D(const mass_spring::MassSpring2D&)’:
+src/2DSolver/MassSpring2D.cpp:73:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   73 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In constructor ‘mass_spring::MassSpring2D::MassSpring2D(Pool2D&, int, SolidObject&, int, int)’:
+src/2DSolver/MassSpring2D.cpp:229:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  229 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:359:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  359 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildDMatrix()’:
+src/2DSolver/MassSpring2D.cpp:445:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  445 |     for (int col = 0; col < edgeList->size(); col++) {
+      |                       ~~~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildWMatrix(double)’:
+src/2DSolver/MassSpring2D.cpp:512:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  512 |     for (int i = 0; i < d*edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘SparseItObj::MatrixIter* mass_spring::MassSpring2D::createStiffnessMatrix()’:
+src/2DSolver/MassSpring2D.cpp:598:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  598 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:628:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  628 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:646:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  646 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryDist(double*)’:
+src/2DSolver/MassSpring2D.cpp:714:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  714 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryPnt(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:739:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  739 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::interpFaceVels(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:773:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  773 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBoundaryForces(Pool2D&, double***, int, double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:1125:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1125 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::eulerSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1390:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1390 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::linearImplicitSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1428:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1428 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1463:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1463 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1479:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1479 |     for (int i = 0; i < 2*pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1502:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+ 1502 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::verletSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1558:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1558 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBodyForces()’:
+src/2DSolver/MassSpring2D.cpp:1606:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1606 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1654:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1654 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1671:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1671 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::reset()’:
+src/2DSolver/MassSpring2D.cpp:1699:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1699 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidLocs(Pool2D&, bool)’:
+src/2DSolver/MassSpring2D.cpp:1761:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1761 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1765:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1765 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1773:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1773 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::prox(double, Eigen::VectorXd&, Eigen::VectorXd&, Eigen::VectorXd&)’:
+src/2DSolver/MassSpring2D.cpp:1840:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1840 |     for (int i = 0; i < edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::computeCollisionStress(int, double*, double)’:
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[0]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  974 |     double intStress[2];
+      |            ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[1]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1687:26: warning: ‘temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1687 |         this->updateMode = temp;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvx(int, int)’:
+src/2DSolver/NSSolver.cpp:469:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  469 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvy(int, int)’:
+src/2DSolver/NSSolver.cpp:550:10: warning: variable ‘sten’ set but not used [-Wunused-but-set-variable]
+  550 |     bool sten[7] = {false, false, false, false, false, false, false};
+      |          ^~~~
+src/2DSolver/NSSolver.cpp:560:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  560 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘void NSSolver::interpolateCellCenterVelocities(int, int, double*)’:
+src/2DSolver/NSSolver.cpp:630:12: warning: variable ‘x’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |            ^
+src/2DSolver/NSSolver.cpp:630:15: warning: variable ‘y’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |               ^
+src/2DSolver/ObjectSeeder.cpp: In member function ‘std::vector<SolidObject> ObjectSeeder::randomInitialize(int, SolidObject::ObjectType, double, double, Boundary&, double (*)(double, double, SolidParams&), SolidParams&)’:
+src/2DSolver/ObjectSeeder.cpp:138:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Eigen::Matrix<double, 2, 1> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  138 |     for (int i = 0; i < circs.size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::fastMarchSetNVal(int, int, bool, int)’:
+src/2DSolver/Pool2D.cpp:128:9: warning: variable ‘path’ set but not used [-Wunused-but-set-variable]
+  128 |     int path;
+      |         ^~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::detectCollisions()’:
+src/2DSolver/Pool2D.cpp:645:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  645 |                 for (int i = 0; i < nearestMss.size(); i++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp:610:13: warning: variable ‘nMatches’ set but not used [-Wunused-but-set-variable]
+  610 |         int nMatches;
+      |             ^~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::levelSetGradient(int, int, double*)’:
+src/2DSolver/Pool2D.cpp:1553:12: warning: variable ‘phi_min’ set but not used [-Wunused-but-set-variable]
+ 1553 |     double phi_min;
+      |            ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘double Pool2D::velocityExtrapolationRHS_ENO3(int, int, double*, double*, double*, double*)’:
+src/2DSolver/Pool2D.cpp:1622:20: warning: variable ‘h’ set but not used [-Wunused-but-set-variable]
+ 1622 |     double hx, hy, h;
+      |                    ^
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::updatePoolVelocities(double, double**, double**, double**, int)’:
+src/2DSolver/Pool2D.cpp:2057:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2057 |                 for (int k = 0; k < solids->at(i).pntList->size(); k++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructures(const char*)’:
+src/2DSolver/Pool2D.cpp:2364:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2364 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureNodes(const char*)’:
+src/2DSolver/Pool2D.cpp:2378:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2378 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureVels(const char*)’:
+src/2DSolver/Pool2D.cpp:2393:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2393 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘bool Pool2D::isNormalInterface(objects::FSIObject)’:
+src/2DSolver/Pool2D.cpp:2450:56: warning: enum constant in boolean context [-Wint-in-bool-context]
+ 2450 |                 || obj == objects::FLUID_E || objects::FLUID_W;
+      |                                                        ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::embedShape(SolidObject&, int)’:
+src/2DSolver/Pool2D.cpp:1100:83: warning: ‘min_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1100 |         this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
+      |                                                                                   ^~~~~
+src/2DSolver/Pool2D.cpp:1099:83: warning: ‘min_x’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1099 |         this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
+      |                                                                                   ^~~~~
+src/LASolver/accel_class.cpp: In constructor ‘SparseItObj::scaler_orthomin::scaler_orthomin(int, double*, int)’:
+src/LASolver/accel_class.cpp:62:16: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   62 |     catch(std::bad_alloc) {
+      |                ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::sfac2(const int*, const int*, int, int*, int*)’:
+src/LASolver/ILU_class.cpp:171:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  171 |   catch(std::bad_alloc){// catch
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp:135:7: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  135 |   int itemp, nrow;
+      |       ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::factor(const int*, const int*, const double*)’:
+src/LASolver/ILU_class.cpp:356:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  356 |   catch(std::bad_alloc){// catch block
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::facdrp(const int*, const int*, double*, double, int*, int*)’:
+src/LASolver/ILU_class.cpp:699:11: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  699 |       int itemp, nrow;
+      |           ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::merged(int, int*, int, double*, double, double*)’:
+src/LASolver/ILU_class.cpp:640:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  640 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+  641 |                             odiag[ rowsp[row].jaf[ii] ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/LASolver/ILU_class.cpp:644:17: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  644 |                 if( fabs( temp) > test){
+      |                 ^~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::elimrow(int, double*, double*, int*, int&, int&, int*, int*, double)’:
+src/LASolver/ILU_class.cpp:1503:21: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1503 |                     if( fabs(temp) > test ){ // insert new entry
+      |                     ^~
+src/LASolver/ILU_class.cpp:1494:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1494 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+ 1495 |                             odiag[ invord[ rowsp[row].jaf[ii] ]  ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 160, ny = 160
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 30
+num_objects 25
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 25
+collisionDist = 0.105469
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+Solved pressure in 38
+Mean pressure (sorta) -0.0117341MODE 2 RUNNING... FOUND 0
+t = 0.195312
+step = 1
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00780765MODE 2 RUNNING... FOUND 0
+t = 0.390625
+step = 2
+
+Solved pressure in 31
+Mean pressure (sorta) -0.00591147MODE 2 RUNNING... FOUND 0
+t = 0.558266
+step = 3
+
+Solved pressure in 33
+Mean pressure (sorta) -0.00428088MODE 2 RUNNING... FOUND 0
+t = 0.73948
+step = 4
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00298318MODE 2 RUNNING... FOUND 0
+t = 0.923696
+step = 5
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00181467MODE 2 RUNNING... FOUND 0
+t = 1.11901
+step = 6
+
+Solved pressure in 32
+Mean pressure (sorta) -0.000579358MODE 2 RUNNING... FOUND 0
+t = 1.31432
+step = 7
+
+Solved pressure in 33
+Mean pressure (sorta) 0.000223069MODE 2 RUNNING... FOUND 0
+t = 1.50963
+step = 8
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000664297MODE 2 RUNNING... FOUND 0
+t = 1.70495
+step = 9
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00102837MODE 2 RUNNING... FOUND 0
+t = 1.90026
+step = 10
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0011737MODE 2 RUNNING... FOUND 0
+t = 2.09557
+step = 11
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00115764MODE 2 RUNNING... FOUND 0
+t = 2.29088
+step = 12
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00112033MODE 2 RUNNING... FOUND 0
+t = 2.4862
+step = 13
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00112532MODE 2 RUNNING... FOUND 0
+t = 2.68151
+step = 14
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00108409MODE 2 RUNNING... FOUND 0
+t = 2.87682
+step = 15
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00115929MODE 2 RUNNING... FOUND 0
+t = 3.07213
+step = 16
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00136622MODE 2 RUNNING... FOUND 0
+t = 3.26745
+step = 17
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00147099MODE 2 RUNNING... FOUND 0
+t = 3.46276
+step = 18
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00157834MODE 2 RUNNING... FOUND 0
+t = 3.65807
+step = 19
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00168759MODE 2 RUNNING... FOUND 0
+t = 3.85338
+step = 20
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00163971MODE 2 RUNNING... FOUND 0
+t = 4.0487
+step = 21
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00158323MODE 2 RUNNING... FOUND 0
+t = 4.24401
+step = 22
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00151668MODE 2 RUNNING... FOUND 0
+t = 4.43932
+step = 23
+
+Solved pressure in 35
+Mean pressure (sorta) 0.00134642MODE 2 RUNNING... FOUND 0
+t = 4.63463
+step = 24
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00120581MODE 2 RUNNING... FOUND 0
+t = 4.82995
+step = 25
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00109995MODE 2 RUNNING... FOUND 0
+t = 5.02526
+step = 26
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00094781MODE 2 RUNNING... FOUND 0
+t = 5.22057
+step = 27
+
+Solved pressure in 36
+Mean pressure (sorta) 0.000838817MODE 2 RUNNING... FOUND 0
+t = 5.41588
+step = 28
+
+Solved pressure in 36
+Mean pressure (sorta) 0.000745985MODE 2 RUNNING... FOUND 0
+t = 5.6112
+step = 29
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000626577MODE 2 RUNNING... FOUND 0
+t = 5.80651
+step = 30
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000537982MODE 2 RUNNING... FOUND 0
+t = 6.00182
+step = 31
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000485745MODE 2 RUNNING... FOUND 0
+t = 6.19713
+step = 32
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000396894MODE 2 RUNNING... FOUND 0
+t = 6.39245
+step = 33
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000337406MODE 2 RUNNING... FOUND 0
+t = 6.58776
+step = 34
+
+Solved pressure in 35
+Mean pressure (sorta) 0.00031985MODE 2 RUNNING... FOUND 0
+t = 6.78307
+step = 35
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000317236MODE 2 RUNNING... FOUND 0
+t = 6.97838
+step = 36
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000310057MODE 2 RUNNING... FOUND 0
+t = 7.1737
+step = 37
+
+Solved pressure in 35
+Mean pressure (sorta) 0.00036435MODE 2 RUNNING... FOUND 0
+t = 7.36901
+step = 38
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000424783MODE 2 RUNNING... FOUND 0
+t = 7.56432
+step = 39
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000450019MODE 2 RUNNING... FOUND 0
+t = 7.75963
+step = 40
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00050206MODE 2 RUNNING... FOUND 0
+t = 7.95495
+step = 41
+
+Solved pressure in 33
+Mean pressure (sorta) 0.000595075MODE 2 RUNNING... FOUND 0
+t = 8.15026
+step = 42
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000620457MODE 2 RUNNING... FOUND 0
+t = 8.34557
+step = 43
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000663517MODE 2 RUNNING... FOUND 0
+t = 8.54088
+step = 44
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000758099MODE 2 RUNNING... FOUND 0
+t = 8.7362
+step = 45
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00077201MODE 2 RUNNING... FOUND 0
+t = 8.93151
+step = 46
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000797MODE 2 RUNNING... FOUND 0
+t = 9.12682
+step = 47
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000886624MODE 2 RUNNING... FOUND 0
+t = 9.32213
+step = 48
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000887439MODE 2 RUNNING... FOUND 0
+t = 9.51745
+step = 49
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000892583MODE 2 RUNNING... FOUND 0
+t = 9.71276
+step = 50
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000940177MODE 2 RUNNING... FOUND 0
+t = 9.90807
+step = 51
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000951052MODE 2 RUNNING... FOUND 0
+t = 10.1034
+step = 52
+
+Solved pressure in 38
+Mean pressure (sorta) 0.000983207MODE 2 RUNNING... FOUND 0
+t = 10.2987
+step = 53
+
+Solved pressure in 36
+Mean pressure (sorta) 0.0010271MODE 2 RUNNING... FOUND 0
+t = 10.494
+step = 54
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00101811MODE 2 RUNNING... FOUND 0
+t = 10.6893
+step = 55
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00106165MODE 2 RUNNING... FOUND 0
+t = 10.8846
+step = 56
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0010951MODE 2 RUNNING... FOUND 0
+t = 11.0799
+step = 57
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00106399MODE 2 RUNNING... FOUND 0
+t = 11.2753
+step = 58
+
+Solved pressure in 36
+Mean pressure (sorta) 0.0011141MODE 2 RUNNING... FOUND 0
+t = 11.4706
+step = 59
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00115438MODE 2 RUNNING... FOUND 0
+t = 11.6659
+step = 60
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0010966MODE 2 RUNNING... FOUND 0
+t = 11.8612
+step = 61
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00114486MODE 2 RUNNING... FOUND 0
+t = 12.0565
+step = 62
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00119621MODE 2 RUNNING... FOUND 0
+t = 12.2518
+step = 63
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00112407MODE 2 RUNNING... FOUND 0
+t = 12.4471
+step = 64
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00117391MODE 2 RUNNING... FOUND 0
+t = 12.6424
+step = 65
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00120258MODE 2 RUNNING... FOUND 0
+t = 12.8378
+step = 66
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00112656MODE 2 RUNNING... FOUND 0
+t = 13.0331
+step = 67
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00117365MODE 2 RUNNING... FOUND 0
+t = 13.2284
+step = 68
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00123038MODE 2 RUNNING... FOUND 0
+t = 13.4237
+step = 69
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00118515MODE 2 RUNNING... FOUND 0
+t = 13.619
+step = 70
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00121995MODE 2 RUNNING... FOUND 0
+t = 13.8143
+step = 71
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00128544MODE 2 RUNNING... FOUND 0
+t = 14.0096
+step = 72
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00129482MODE 2 RUNNING... FOUND 0
+t = 14.2049
+step = 73
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0013351MODE 2 RUNNING... FOUND 0
+t = 14.4003
+step = 74
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00139577MODE 2 RUNNING... FOUND 0
+t = 14.5956
+step = 75
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00143409MODE 2 RUNNING... FOUND 0
+t = 14.7909
+step = 76
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00149197MODE 2 RUNNING... FOUND 0
+t = 14.9862
+step = 77
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00152976MODE 2 RUNNING... FOUND 0
+t = 15.1815
+step = 78
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00157116MODE 2 RUNNING... FOUND 0
+t = 15.3768
+step = 79
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00164112MODE 2 RUNNING... FOUND 0
+t = 15.5721
+step = 80
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00168412MODE 2 RUNNING... FOUND 0
+t = 15.7674
+step = 81
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00172727MODE 2 RUNNING... FOUND 0
+t = 15.9628
+step = 82
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00180374MODE 2 RUNNING... FOUND 0
+t = 16.1581
+step = 83
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00184871MODE 2 RUNNING... FOUND 0
+t = 16.3534
+step = 84
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00189182MODE 2 RUNNING... FOUND 0
+t = 16.5487
+step = 85
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00198134MODE 2 RUNNING... FOUND 0
+t = 16.744
+step = 86
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00199401MODE 2 RUNNING... FOUND 0
+t = 16.9393
+step = 87
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00202364MODE 2 RUNNING... FOUND 1
+t = 17.1346
+step = 88
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00210055MODE 2 RUNNING... FOUND 0
+t = 17.3299
+step = 89
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00207339MODE 2 RUNNING... FOUND 0
+t = 17.5253
+step = 90
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00211703MODE 2 RUNNING... FOUND 0
+t = 17.7206
+step = 91
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00217715MODE 2 RUNNING... FOUND 0
+t = 17.9159
+step = 92
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00220623MODE 2 RUNNING... FOUND 0
+t = 18.1112
+step = 93
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00224614MODE 2 RUNNING... FOUND 0
+t = 18.3065
+step = 94
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00227034MODE 2 RUNNING... FOUND 0
+t = 18.5018
+step = 95
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00232861MODE 2 RUNNING... FOUND 0
+t = 18.6971
+step = 96
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00238214MODE 2 RUNNING... FOUND 0
+t = 18.8924
+step = 97
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00242395MODE 2 RUNNING... FOUND 0
+t = 19.0878
+step = 98
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00252746MODE 2 RUNNING... FOUND 0
+t = 19.2831
+step = 99
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00259283MODE 2 RUNNING... FOUND 0
+t = 19.4784
+step = 100
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0026255MODE 2 RUNNING... FOUND 0
+t = 19.6737
+step = 101
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00272729MODE 2 RUNNING... FOUND 0
+t = 19.869
+step = 102
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0027701MODE 2 RUNNING... FOUND 0
+t = 20.0643
+step = 103
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00277252MODE 2 RUNNING... FOUND 0
+t = 20.2596
+step = 104
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00287774MODE 2 RUNNING... FOUND 2
+t = 20.4549
+step = 105
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00297445MODE 2 RUNNING... FOUND 0
+t = 20.6503
+step = 106
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00298526MODE 2 RUNNING... FOUND 1
+t = 20.8456
+step = 107
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00312584MODE 2 RUNNING... FOUND 3
+t = 21.0409
+step = 108
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00320575MODE 2 RUNNING... FOUND 0
+t = 21.2362
+step = 109
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00323644MODE 2 RUNNING... FOUND 1
+t = 21.4315
+step = 110
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00330253MODE 2 RUNNING... FOUND 3
+t = 21.6268
+step = 111
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00336003MODE 2 RUNNING... FOUND 0
+t = 21.8221
+step = 112
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0033798MODE 2 RUNNING... FOUND 0
+t = 22.0174
+step = 113
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00350206MODE 2 RUNNING... FOUND 2
+t = 22.2128
+step = 114
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00354237MODE 2 RUNNING... FOUND 0
+t = 22.4081
+step = 115
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00358975MODE 2 RUNNING... FOUND 3
+t = 22.6034
+step = 116
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00374844MODE 2 RUNNING... FOUND 1
+t = 22.7987
+step = 117
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0037606MODE 2 RUNNING... FOUND 0
+t = 22.994
+step = 118
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00382601MODE 2 RUNNING... FOUND 6
+t = 23.1893
+step = 119
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00397852MODE 2 RUNNING... FOUND 0
+t = 23.3846
+step = 120
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0039813MODE 2 RUNNING... FOUND 0
+t = 23.5799
+step = 121
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00399927MODE 2 RUNNING... FOUND 5
+t = 23.7753
+step = 122
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00415586MODE 2 RUNNING... FOUND 0
+t = 23.9706
+step = 123
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00418142MODE 2 RUNNING... FOUND 1
+t = 24.1659
+step = 124
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00421775MODE 2 RUNNING... FOUND 5
+t = 24.3612
+step = 125
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00433813MODE 2 RUNNING... FOUND 0
+t = 24.5565
+step = 126
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00441076MODE 2 RUNNING... FOUND 3
+t = 24.7518
+step = 127
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00442701MODE 2 RUNNING... FOUND 5
+t = 24.9471
+step = 128
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0045485MODE 2 RUNNING... FOUND 0
+t = 25.1424
+step = 129
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00464099MODE 2 RUNNING... FOUND 8
+t = 25.3378
+step = 130
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00462801MODE 2 RUNNING... FOUND 5
+t = 25.5331
+step = 131
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00474824MODE 2 RUNNING... FOUND 0
+t = 25.7284
+step = 132
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00492254MODE 2 RUNNING... FOUND 9
+t = 25.9237
+step = 133
+
+Solved pressure in 47
+Mean pressure (sorta) 0.00493097MODE 2 RUNNING... FOUND 4
+t = 26.119
+step = 134
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00507451MODE 2 RUNNING... FOUND 1
+t = 26.3143
+step = 135
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00526131MODE 2 RUNNING... FOUND 9
+t = 26.5096
+step = 136
+
+Solved pressure in 33
+Mean pressure (sorta) 0.00527255MODE 2 RUNNING... FOUND 3
+t = 26.7049
+step = 137
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00536559MODE 2 RUNNING... FOUND 3
+t = 26.9003
+step = 138
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0055014MODE 2 RUNNING... FOUND 7
+t = 27.0956
+step = 139
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00552878MODE 2 RUNNING... FOUND 1
+t = 27.2909
+step = 140
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0056222MODE 2 RUNNING... FOUND 5
+t = 27.4862
+step = 141
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00571786MODE 2 RUNNING... FOUND 7
+t = 27.6815
+step = 142
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00572364MODE 2 RUNNING... FOUND 0
+t = 27.8768
+step = 143
+
+Solved pressure in 45
+Mean pressure (sorta) 0.0057313MODE 2 RUNNING... FOUND 10
+t = 28.0721
+step = 144
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00582254MODE 2 RUNNING... FOUND 6
+t = 28.2674
+step = 145
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00588671MODE 2 RUNNING... FOUND 3
+t = 28.4628
+step = 146
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00602981MODE 2 RUNNING... FOUND 11
+t = 28.6581
+step = 147
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00617868MODE 2 RUNNING... FOUND 7
+t = 28.8534
+step = 148
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0062866MODE 2 RUNNING... FOUND 4
+t = 29.0487
+step = 149
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0064234MODE 2 RUNNING... FOUND 11
+t = 29.244
+step = 150
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00648126MODE 2 RUNNING... FOUND 8
+t = 29.4393
+step = 151
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00663841MODE 2 RUNNING... FOUND 8
+t = 29.6346
+step = 152
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0067568MODE 2 RUNNING... FOUND 11
+t = 29.8299
+step = 153
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00677299MODE 2 RUNNING... FOUND 6
+t = 30
+step = 154
+
+Outputting data
+testdir = ./output/ObjScaleTestRadius0.078/
+Outputting data
+./output/ObjScaleTestRadius0.078/out
+./output/ObjScaleTestRadius0.078/poolOut
+./output/ObjScaleTestRadius0.078/poolVel
+./output/ObjScaleTestRadius0.078/MSSEdges
+./output/ObjScaleTestRadius0.078/MSSNodes
+./output/ObjScaleTestRadius0.078/MSSVels
+./output/ObjScaleTestRadius0.078/MSSTracers
+./output/ObjScaleTestRadius0.078/medialAxis
+=========================================================
+The total run time of the algorithm: 43
+The average run time per step of the algorithm: 0.279221
+=========================================================
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 160, ny = 160
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 30
+num_objects 16
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 16
+collisionDist = 0.105469
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+Solved pressure in 35
+Mean pressure (sorta) -0.0139083MODE 2 RUNNING... FOUND 0
+t = 0.195312
+step = 1
+
+Solved pressure in 43
+Mean pressure (sorta) -0.0102748MODE 2 RUNNING... FOUND 0
+t = 0.390625
+step = 2
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00859452MODE 2 RUNNING... FOUND 0
+t = 0.563348
+step = 3
+
+Solved pressure in 33
+Mean pressure (sorta) -0.00764624MODE 2 RUNNING... FOUND 0
+t = 0.736072
+step = 4
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00680892MODE 2 RUNNING... FOUND 0
+t = 0.92533
+step = 5
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00580397MODE 2 RUNNING... FOUND 0
+t = 1.12064
+step = 6
+
+Solved pressure in 38
+Mean pressure (sorta) -0.00452513MODE 2 RUNNING... FOUND 0
+t = 1.31596
+step = 7
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00346128MODE 2 RUNNING... FOUND 0
+t = 1.51127
+step = 8
+
+Solved pressure in 31
+Mean pressure (sorta) -0.00269673MODE 2 RUNNING... FOUND 0
+t = 1.70658
+step = 9
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00213294MODE 2 RUNNING... FOUND 0
+t = 1.90189
+step = 10
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00169175MODE 2 RUNNING... FOUND 0
+t = 2.09721
+step = 11
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00125345MODE 2 RUNNING... FOUND 0
+t = 2.29252
+step = 12
+
+Solved pressure in 34
+Mean pressure (sorta) -0.000926878MODE 2 RUNNING... FOUND 0
+t = 2.48783
+step = 13
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00065832MODE 2 RUNNING... FOUND 0
+t = 2.68314
+step = 14
+
+Solved pressure in 33
+Mean pressure (sorta) -0.000531007MODE 2 RUNNING... FOUND 0
+t = 2.87846
+step = 15
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00055284MODE 2 RUNNING... FOUND 0
+t = 3.07377
+step = 16
+
+Solved pressure in 37
+Mean pressure (sorta) -0.0006725MODE 2 RUNNING... FOUND 0
+t = 3.26908
+step = 17
+
+Solved pressure in 38
+Mean pressure (sorta) -0.000831565MODE 2 RUNNING... FOUND 0
+t = 3.46439
+step = 18
+
+Solved pressure in 37
+Mean pressure (sorta) -0.000935973MODE 2 RUNNING... FOUND 0
+t = 3.65971
+step = 19
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00101953MODE 2 RUNNING... FOUND 0
+t = 3.85502
+step = 20
+
+Solved pressure in 33
+Mean pressure (sorta) -0.00111277MODE 2 RUNNING... FOUND 0
+t = 4.05033
+step = 21
+
+Solved pressure in 38
+Mean pressure (sorta) -0.00116696MODE 2 RUNNING... FOUND 0
+t = 4.24564
+step = 22
+
+Solved pressure in 36
+Mean pressure (sorta) -0.00117704MODE 2 RUNNING... FOUND 0
+t = 4.44096
+step = 23
+
+Solved pressure in 39
+Mean pressure (sorta) -0.00118876MODE 2 RUNNING... FOUND 0
+t = 4.63627
+step = 24
+
+Solved pressure in 36
+Mean pressure (sorta) -0.00117643MODE 2 RUNNING... FOUND 0
+t = 4.83158
+step = 25
+
+Solved pressure in 37
+Mean pressure (sorta) -0.00120157MODE 2 RUNNING... FOUND 0
+t = 5.02689
+step = 26
+
+Solved pressure in 33
+Mean pressure (sorta) -0.00120437MODE 2 RUNNING... FOUND 0
+t = 5.22221
+step = 27
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00120014MODE 2 RUNNING... FOUND 0
+t = 5.41752
+step = 28
+
+Solved pressure in 37
+Mean pressure (sorta) -0.0013009MODE 2 RUNNING... FOUND 0
+t = 5.61283
+step = 29
+
+Solved pressure in 38
+Mean pressure (sorta) -0.0013891MODE 2 RUNNING... FOUND 0
+t = 5.80814
+step = 30
+
+Solved pressure in 37
+Mean pressure (sorta) -0.00143593MODE 2 RUNNING... FOUND 0
+t = 6.00346
+step = 31
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00159389MODE 2 RUNNING... FOUND 0
+t = 6.19877
+step = 32
+
+Solved pressure in 36
+Mean pressure (sorta) -0.00170005MODE 2 RUNNING... FOUND 0
+t = 6.39408
+step = 33
+
+Solved pressure in 37
+Mean pressure (sorta) -0.00172236MODE 2 RUNNING... FOUND 0
+t = 6.58939
+step = 34
+
+Solved pressure in 35
+Mean pressure (sorta) -0.0018253MODE 2 RUNNING... FOUND 0
+t = 6.78471
+step = 35
+
+Solved pressure in 42
+Mean pressure (sorta) -0.00186185MODE 2 RUNNING... FOUND 0
+t = 6.98002
+step = 36
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00183683MODE 2 RUNNING... FOUND 0
+t = 7.17533
+step = 37
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00184531MODE 2 RUNNING... FOUND 0
+t = 7.37064
+step = 38
+
+Solved pressure in 41
+Mean pressure (sorta) -0.0017975MODE 2 RUNNING... FOUND 0
+t = 7.56596
+step = 39
+
+Solved pressure in 38
+Mean pressure (sorta) -0.00171468MODE 2 RUNNING... FOUND 0
+t = 7.76127
+step = 40
+
+Solved pressure in 42
+Mean pressure (sorta) -0.00165731MODE 2 RUNNING... FOUND 0
+t = 7.95658
+step = 41
+
+Solved pressure in 37
+Mean pressure (sorta) -0.00156477MODE 2 RUNNING... FOUND 0
+t = 8.15189
+step = 42
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00147314MODE 2 RUNNING... FOUND 0
+t = 8.34721
+step = 43
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00138705MODE 2 RUNNING... FOUND 0
+t = 8.54252
+step = 44
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00126963MODE 2 RUNNING... FOUND 0
+t = 8.73783
+step = 45
+
+Solved pressure in 36
+Mean pressure (sorta) -0.00117004MODE 2 RUNNING... FOUND 0
+t = 8.93314
+step = 46
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00107148MODE 2 RUNNING... FOUND 0
+t = 9.12846
+step = 47
+
+Solved pressure in 34
+Mean pressure (sorta) -0.000937977MODE 2 RUNNING... FOUND 0
+t = 9.32377
+step = 48
+
+Solved pressure in 33
+Mean pressure (sorta) -0.000801867MODE 2 RUNNING... FOUND 0
+t = 9.51908
+step = 49
+
+Solved pressure in 35
+Mean pressure (sorta) -0.000675632MODE 2 RUNNING... FOUND 0
+t = 9.71439
+step = 50
+
+Solved pressure in 32
+Mean pressure (sorta) -0.000514102MODE 2 RUNNING... FOUND 0
+t = 9.90971
+step = 51
+
+Solved pressure in 31
+Mean pressure (sorta) -0.000327328MODE 2 RUNNING... FOUND 0
+t = 10.105
+step = 52
+
+Solved pressure in 34
+Mean pressure (sorta) -0.000216417MODE 2 RUNNING... FOUND 0
+t = 10.3003
+step = 53
+
+Solved pressure in 33
+Mean pressure (sorta) -6.66494e-05MODE 2 RUNNING... FOUND 0
+t = 10.4956
+step = 54
+
+Solved pressure in 37
+Mean pressure (sorta) 6.55805e-05MODE 2 RUNNING... FOUND 0
+t = 10.691
+step = 55
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00020961MODE 2 RUNNING... FOUND 0
+t = 10.8863
+step = 56
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000388496MODE 2 RUNNING... FOUND 0
+t = 11.0816
+step = 57
+
+Solved pressure in 38
+Mean pressure (sorta) 0.000534362MODE 2 RUNNING... FOUND 0
+t = 11.2769
+step = 58
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000747499MODE 2 RUNNING... FOUND 0
+t = 11.4722
+step = 59
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00090323MODE 2 RUNNING... FOUND 0
+t = 11.6675
+step = 60
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00103605MODE 2 RUNNING... FOUND 0
+t = 11.8628
+step = 61
+
+Solved pressure in 33
+Mean pressure (sorta) 0.00120964MODE 2 RUNNING... FOUND 0
+t = 12.0581
+step = 62
+
+Solved pressure in 33
+Mean pressure (sorta) 0.00138757MODE 2 RUNNING... FOUND 0
+t = 12.2535
+step = 63
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00149453MODE 2 RUNNING... FOUND 0
+t = 12.4488
+step = 64
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00165932MODE 2 RUNNING... FOUND 0
+t = 12.6441
+step = 65
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00179114MODE 2 RUNNING... FOUND 0
+t = 12.8394
+step = 66
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00189199MODE 2 RUNNING... FOUND 0
+t = 13.0347
+step = 67
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00202646MODE 2 RUNNING... FOUND 2
+t = 13.23
+step = 68
+
+Solved pressure in 44
+Mean pressure (sorta) 0.00218039MODE 2 RUNNING... FOUND 0
+t = 13.4253
+step = 69
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00230104MODE 2 RUNNING... FOUND 0
+t = 13.6206
+step = 70
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00248976MODE 2 RUNNING... FOUND 3
+t = 13.816
+step = 71
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00263045MODE 2 RUNNING... FOUND 0
+t = 14.0113
+step = 72
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00281286MODE 2 RUNNING... FOUND 0
+t = 14.2066
+step = 73
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00306416MODE 2 RUNNING... FOUND 2
+t = 14.4019
+step = 74
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00323671MODE 2 RUNNING... FOUND 0
+t = 14.5972
+step = 75
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0033579MODE 2 RUNNING... FOUND 0
+t = 14.7925
+step = 76
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00356375MODE 2 RUNNING... FOUND 1
+t = 14.9878
+step = 77
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0037111MODE 2 RUNNING... FOUND 2
+t = 15.1831
+step = 78
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00385493MODE 2 RUNNING... FOUND 0
+t = 15.3785
+step = 79
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00398474MODE 2 RUNNING... FOUND 0
+t = 15.5738
+step = 80
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0041326MODE 2 RUNNING... FOUND 0
+t = 15.7691
+step = 81
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00429014MODE 2 RUNNING... FOUND 0
+t = 15.9644
+step = 82
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00449981MODE 2 RUNNING... FOUND 0
+t = 16.1597
+step = 83
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00465969MODE 2 RUNNING... FOUND 0
+t = 16.355
+step = 84
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00490549MODE 2 RUNNING... FOUND 2
+t = 16.5503
+step = 85
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00511319MODE 2 RUNNING... FOUND 1
+t = 16.7456
+step = 86
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00536118MODE 2 RUNNING... FOUND 0
+t = 16.941
+step = 87
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00560421MODE 2 RUNNING... FOUND 3
+t = 17.1363
+step = 88
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00585866MODE 2 RUNNING... FOUND 3
+t = 17.3316
+step = 89
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00614014MODE 2 RUNNING... FOUND 0
+t = 17.5269
+step = 90
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0063934MODE 2 RUNNING... FOUND 3
+t = 17.7222
+step = 91
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00657467MODE 2 RUNNING... FOUND 1
+t = 17.9175
+step = 92
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00681064MODE 2 RUNNING... FOUND 0
+t = 18.1128
+step = 93
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00701629MODE 2 RUNNING... FOUND 5
+t = 18.3081
+step = 94
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00719398MODE 2 RUNNING... FOUND 0
+t = 18.5035
+step = 95
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00733586MODE 2 RUNNING... FOUND 2
+t = 18.6988
+step = 96
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00744852MODE 2 RUNNING... FOUND 7
+t = 18.8941
+step = 97
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00779168MODE 2 RUNNING... FOUND 0
+t = 19.0894
+step = 98
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00806972MODE 2 RUNNING... FOUND 4
+t = 19.2847
+step = 99
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00827356MODE 2 RUNNING... FOUND 6
+t = 19.48
+step = 100
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00855658MODE 2 RUNNING... FOUND 0
+t = 19.6753
+step = 101
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00877994MODE 2 RUNNING... FOUND 6
+t = 19.8706
+step = 102
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00899722MODE 2 RUNNING... FOUND 3
+t = 20.066
+step = 103
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00928031MODE 2 RUNNING... FOUND 0
+t = 20.2613
+step = 104
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0094815MODE 2 RUNNING... FOUND 8
+t = 20.4566
+step = 105
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00971673MODE 2 RUNNING... FOUND 1
+t = 20.6519
+step = 106
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00991551MODE 2 RUNNING... FOUND 1
+t = 20.8472
+step = 107
+
+Solved pressure in 39
+Mean pressure (sorta) 0.010141MODE 2 RUNNING... FOUND 9
+t = 21.0425
+step = 108
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0104791MODE 2 RUNNING... FOUND 0
+t = 21.2378
+step = 109
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0107029MODE 2 RUNNING... FOUND 6
+t = 21.4331
+step = 110
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0109924MODE 2 RUNNING... FOUND 7
+t = 21.6285
+step = 111
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0112615MODE 2 RUNNING... FOUND 0
+t = 21.8238
+step = 112
+
+Solved pressure in 42
+Mean pressure (sorta) 0.011485MODE 2 RUNNING... FOUND 9
+t = 22.0191
+step = 113
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0117762MODE 2 RUNNING... FOUND 5
+t = 22.2144
+step = 114
+
+Solved pressure in 40
+Mean pressure (sorta) 0.012002MODE 2 RUNNING... FOUND 2
+t = 22.4097
+step = 115
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0122473MODE 2 RUNNING... FOUND 10
+t = 22.605
+step = 116
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0125539MODE 2 RUNNING... FOUND 0
+t = 22.8003
+step = 117
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0129133MODE 2 RUNNING... FOUND 6
+t = 22.9956
+step = 118
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0132703MODE 2 RUNNING... FOUND 8
+t = 23.191
+step = 119
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0136157MODE 2 RUNNING... FOUND 2
+t = 23.3863
+step = 120
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0138331MODE 2 RUNNING... FOUND 10
+t = 23.5816
+step = 121
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0141159MODE 2 RUNNING... FOUND 8
+t = 23.7769
+step = 122
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0142884MODE 2 RUNNING... FOUND 4
+t = 23.9722
+step = 123
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0146862MODE 2 RUNNING... FOUND 11
+t = 24.1675
+step = 124
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0151025MODE 2 RUNNING... FOUND 7
+t = 24.3628
+step = 125
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0154497MODE 2 RUNNING... FOUND 6
+t = 24.5581
+step = 126
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0157518MODE 2 RUNNING... FOUND 10
+t = 24.7535
+step = 127
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0160803MODE 2 RUNNING... FOUND 2
+t = 24.9488
+step = 128
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0163928MODE 2 RUNNING... FOUND 10
+t = 25.1441
+step = 129
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0165737MODE 2 RUNNING... FOUND 11
+t = 25.3394
+step = 130
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0167228MODE 2 RUNNING... FOUND 5
+t = 25.5347
+step = 131
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0170327MODE 2 RUNNING... FOUND 11
+t = 25.73
+step = 132
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0172331MODE 2 RUNNING... FOUND 5
+t = 25.9253
+step = 133
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0176128MODE 2 RUNNING... FOUND 6
+t = 26.1206
+step = 134
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0178548MODE 2 RUNNING... FOUND 13
+t = 26.316
+step = 135
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0181891MODE 2 RUNNING... FOUND 4
+t = 26.5113
+step = 136
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0185263MODE 2 RUNNING... FOUND 14
+t = 26.7066
+step = 137
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0187972MODE 2 RUNNING... FOUND 6
+t = 26.9019
+step = 138
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0190305MODE 2 RUNNING... FOUND 6
+t = 27.0972
+step = 139
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0192038MODE 2 RUNNING... FOUND 13
+t = 27.2925
+step = 140
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0195844MODE 2 RUNNING... FOUND 7
+t = 27.4878
+step = 141
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0199336MODE 2 RUNNING... FOUND 11
+t = 27.6831
+step = 142
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0202015MODE 2 RUNNING... FOUND 7
+t = 27.8785
+step = 143
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0204294MODE 2 RUNNING... FOUND 7
+t = 28.0738
+step = 144
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0208045MODE 2 RUNNING... FOUND 14
+t = 28.2691
+step = 145
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0211394MODE 2 RUNNING... FOUND 9
+t = 28.4644
+step = 146
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0215202MODE 2 RUNNING... FOUND 12
+t = 28.6592
+step = 147
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0216654MODE 2 RUNNING... FOUND 8
+t = 28.8545
+step = 148
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0219641MODE 2 RUNNING... FOUND 12
+t = 29.0498
+step = 149
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0224697MODE 2 RUNNING... FOUND 10
+t = 29.2451
+step = 150
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0227074MODE 2 RUNNING... FOUND 8
+t = 29.4404
+step = 151
+
+Solved pressure in 38
+Mean pressure (sorta) 0.023062MODE 2 RUNNING... FOUND 13
+t = 29.6335
+step = 152
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0235326MODE 2 RUNNING... FOUND 9
+t = 29.8288
+step = 153
+
+Solved pressure in 41
+Mean pressure (sorta) 0.023932MODE 2 RUNNING... FOUND 14
+t = 30
+step = 154
+
+Outputting data
+testdir = ./output/ObjScaleTestRadius0.16/
+Outputting data
+./output/ObjScaleTestRadius0.16/out
+./output/ObjScaleTestRadius0.16/poolOut
+./output/ObjScaleTestRadius0.16/poolVel
+./output/ObjScaleTestRadius0.16/MSSEdges
+./output/ObjScaleTestRadius0.16/MSSNodes
+./output/ObjScaleTestRadius0.16/MSSVels
+./output/ObjScaleTestRadius0.16/MSSTracers
+./output/ObjScaleTestRadius0.16/medialAxis
+=========================================================
+The total run time of the algorithm: 45
+The average run time per step of the algorithm: 0.292208
+=========================================================
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 160, ny = 160
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 30
+num_objects 9
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 9
+collisionDist = 0.105469
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+Solved pressure in 41
+Mean pressure (sorta) -0.0166633MODE 2 RUNNING... FOUND 0
+t = 0.195312
+step = 1
+
+Solved pressure in 37
+Mean pressure (sorta) -0.0134337MODE 2 RUNNING... FOUND 0
+t = 0.390625
+step = 2
+
+Solved pressure in 35
+Mean pressure (sorta) -0.0117563MODE 2 RUNNING... FOUND 0
+t = 0.568943
+step = 3
+
+Solved pressure in 31
+Mean pressure (sorta) -0.0105587MODE 2 RUNNING... FOUND 0
+t = 0.74079
+step = 4
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00929038MODE 2 RUNNING... FOUND 0
+t = 0.900945
+step = 5
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00789596MODE 2 RUNNING... FOUND 0
+t = 1.0731
+step = 6
+
+Solved pressure in 36
+Mean pressure (sorta) -0.00632746MODE 2 RUNNING... FOUND 0
+t = 1.24525
+step = 7
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00501381MODE 2 RUNNING... FOUND 0
+t = 1.44056
+step = 8
+
+Solved pressure in 33
+Mean pressure (sorta) -0.00369878MODE 2 RUNNING... FOUND 0
+t = 1.63587
+step = 9
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00285879MODE 2 RUNNING... FOUND 0
+t = 1.83118
+step = 10
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00225206MODE 2 RUNNING... FOUND 0
+t = 2.01844
+step = 11
+
+Solved pressure in 35
+Mean pressure (sorta) -0.00172627MODE 2 RUNNING... FOUND 0
+t = 2.19944
+step = 12
+
+Solved pressure in 34
+Mean pressure (sorta) -0.0012327MODE 2 RUNNING... FOUND 0
+t = 2.38767
+step = 13
+
+Solved pressure in 37
+Mean pressure (sorta) -0.000638712MODE 2 RUNNING... FOUND 0
+t = 2.58298
+step = 14
+
+Solved pressure in 34
+Mean pressure (sorta) -8.88411e-05MODE 2 RUNNING... FOUND 0
+t = 2.77829
+step = 15
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000424158MODE 2 RUNNING... FOUND 0
+t = 2.97361
+step = 16
+
+Solved pressure in 34
+Mean pressure (sorta) 0.000753257MODE 2 RUNNING... FOUND 0
+t = 3.16892
+step = 17
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000888859MODE 2 RUNNING... FOUND 0
+t = 3.36423
+step = 18
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00104289MODE 2 RUNNING... FOUND 0
+t = 3.55954
+step = 19
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00108841MODE 2 RUNNING... FOUND 0
+t = 3.75486
+step = 20
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00100466MODE 2 RUNNING... FOUND 0
+t = 3.95017
+step = 21
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000969142MODE 2 RUNNING... FOUND 0
+t = 4.14548
+step = 22
+
+Solved pressure in 36
+Mean pressure (sorta) 0.000828034MODE 2 RUNNING... FOUND 0
+t = 4.34079
+step = 23
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000655184MODE 2 RUNNING... FOUND 0
+t = 4.53611
+step = 24
+
+Solved pressure in 37
+Mean pressure (sorta) 0.000354378MODE 2 RUNNING... FOUND 0
+t = 4.73142
+step = 25
+
+Solved pressure in 35
+Mean pressure (sorta) 0.00011521MODE 2 RUNNING... FOUND 0
+t = 4.92673
+step = 26
+
+Solved pressure in 35
+Mean pressure (sorta) -6.66696e-05MODE 2 RUNNING... FOUND 0
+t = 5.12204
+step = 27
+
+Solved pressure in 36
+Mean pressure (sorta) -0.000418905MODE 2 RUNNING... FOUND 0
+t = 5.31736
+step = 28
+
+Solved pressure in 38
+Mean pressure (sorta) -0.000602172MODE 2 RUNNING... FOUND 0
+t = 5.51267
+step = 29
+
+Solved pressure in 36
+Mean pressure (sorta) -0.000627047MODE 2 RUNNING... FOUND 0
+t = 5.70798
+step = 30
+
+Solved pressure in 36
+Mean pressure (sorta) -0.000744349MODE 2 RUNNING... FOUND 0
+t = 5.90329
+step = 31
+
+Solved pressure in 38
+Mean pressure (sorta) -0.000683398MODE 2 RUNNING... FOUND 0
+t = 6.09861
+step = 32
+
+Solved pressure in 34
+Mean pressure (sorta) -0.00059058MODE 2 RUNNING... FOUND 0
+t = 6.29392
+step = 33
+
+Solved pressure in 37
+Mean pressure (sorta) -0.000488891MODE 2 RUNNING... FOUND 0
+t = 6.48923
+step = 34
+
+Solved pressure in 32
+Mean pressure (sorta) -0.000215085MODE 2 RUNNING... FOUND 0
+t = 6.68454
+step = 35
+
+Solved pressure in 38
+Mean pressure (sorta) -7.54639e-05MODE 2 RUNNING... FOUND 0
+t = 6.87986
+step = 36
+
+Solved pressure in 35
+Mean pressure (sorta) 0.000125479MODE 2 RUNNING... FOUND 0
+t = 7.07517
+step = 37
+
+Solved pressure in 32
+Mean pressure (sorta) 0.000435451MODE 2 RUNNING... FOUND 0
+t = 7.27048
+step = 38
+
+Solved pressure in 30
+Mean pressure (sorta) 0.000678011MODE 2 RUNNING... FOUND 0
+t = 7.46579
+step = 39
+
+Solved pressure in 31
+Mean pressure (sorta) 0.000901719MODE 2 RUNNING... FOUND 0
+t = 7.66111
+step = 40
+
+Solved pressure in 30
+Mean pressure (sorta) 0.0011747MODE 2 RUNNING... FOUND 0
+t = 7.85642
+step = 41
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00142169MODE 2 RUNNING... FOUND 0
+t = 8.05173
+step = 42
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00161171MODE 2 RUNNING... FOUND 0
+t = 8.24704
+step = 43
+
+Solved pressure in 31
+Mean pressure (sorta) 0.00174317MODE 2 RUNNING... FOUND 0
+t = 8.44236
+step = 44
+
+Solved pressure in 39
+Mean pressure (sorta) 0.00187511MODE 2 RUNNING... FOUND 0
+t = 8.63767
+step = 45
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00190761MODE 2 RUNNING... FOUND 0
+t = 8.83298
+step = 46
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00194988MODE 2 RUNNING... FOUND 0
+t = 9.02829
+step = 47
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00205686MODE 2 RUNNING... FOUND 0
+t = 9.22361
+step = 48
+
+Solved pressure in 35
+Mean pressure (sorta) 0.00203212MODE 2 RUNNING... FOUND 0
+t = 9.41892
+step = 49
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00205451MODE 2 RUNNING... FOUND 0
+t = 9.61423
+step = 50
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00207013MODE 2 RUNNING... FOUND 0
+t = 9.80954
+step = 51
+
+Solved pressure in 32
+Mean pressure (sorta) 0.00210289MODE 2 RUNNING... FOUND 0
+t = 10.0049
+step = 52
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00222481MODE 2 RUNNING... FOUND 0
+t = 10.2002
+step = 53
+
+Solved pressure in 33
+Mean pressure (sorta) 0.00237617MODE 2 RUNNING... FOUND 0
+t = 10.3955
+step = 54
+
+Solved pressure in 34
+Mean pressure (sorta) 0.00262034MODE 2 RUNNING... FOUND 0
+t = 10.5908
+step = 55
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00288383MODE 2 RUNNING... FOUND 0
+t = 10.7861
+step = 56
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00324921MODE 2 RUNNING... FOUND 0
+t = 10.9814
+step = 57
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00359833MODE 2 RUNNING... FOUND 0
+t = 11.1767
+step = 58
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00403514MODE 2 RUNNING... FOUND 0
+t = 11.372
+step = 59
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0045628MODE 2 RUNNING... FOUND 0
+t = 11.5674
+step = 60
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00497604MODE 2 RUNNING... FOUND 0
+t = 11.7627
+step = 61
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0054879MODE 2 RUNNING... FOUND 0
+t = 11.958
+step = 62
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00611935MODE 2 RUNNING... FOUND 0
+t = 12.1533
+step = 63
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00672865MODE 2 RUNNING... FOUND 0
+t = 12.3486
+step = 64
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00734172MODE 2 RUNNING... FOUND 0
+t = 12.5439
+step = 65
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0079673MODE 2 RUNNING... FOUND 0
+t = 12.7392
+step = 66
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00866424MODE 2 RUNNING... FOUND 0
+t = 12.9345
+step = 67
+
+Solved pressure in 36
+Mean pressure (sorta) 0.00925892MODE 2 RUNNING... FOUND 0
+t = 13.1299
+step = 68
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00977087MODE 2 RUNNING... FOUND 0
+t = 13.3252
+step = 69
+
+Solved pressure in 40
+Mean pressure (sorta) 0.010329MODE 2 RUNNING... FOUND 0
+t = 13.5205
+step = 70
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0106788MODE 2 RUNNING... FOUND 0
+t = 13.7158
+step = 71
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0110217MODE 2 RUNNING... FOUND 4
+t = 13.9111
+step = 72
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0113687MODE 2 RUNNING... FOUND 0
+t = 14.1062
+step = 73
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0116316MODE 2 RUNNING... FOUND 0
+t = 14.3013
+step = 74
+
+Solved pressure in 36
+Mean pressure (sorta) 0.0118965MODE 2 RUNNING... FOUND 0
+t = 14.494
+step = 75
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0122602MODE 2 RUNNING... FOUND 0
+t = 14.6848
+step = 76
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0124583MODE 2 RUNNING... FOUND 5
+t = 14.8748
+step = 77
+
+Solved pressure in 36
+Mean pressure (sorta) 0.0128095MODE 2 RUNNING... FOUND 0
+t = 15.064
+step = 78
+
+Solved pressure in 35
+Mean pressure (sorta) 0.0130516MODE 2 RUNNING... FOUND 0
+t = 15.2517
+step = 79
+
+Solved pressure in 39
+Mean pressure (sorta) 0.013298MODE 2 RUNNING... FOUND 0
+t = 15.4377
+step = 80
+
+Solved pressure in 37
+Mean pressure (sorta) 0.013561MODE 2 RUNNING... FOUND 0
+t = 15.6256
+step = 81
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0137754MODE 2 RUNNING... FOUND 7
+t = 15.8129
+step = 82
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0141337MODE 2 RUNNING... FOUND 0
+t = 15.9987
+step = 83
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0145782MODE 2 RUNNING... FOUND 0
+t = 16.1809
+step = 84
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0149506MODE 2 RUNNING... FOUND 6
+t = 16.3639
+step = 85
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0152222MODE 2 RUNNING... FOUND 0
+t = 16.5472
+step = 86
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0157852MODE 2 RUNNING... FOUND 4
+t = 16.7316
+step = 87
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0161954MODE 2 RUNNING... FOUND 0
+t = 16.9142
+step = 88
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0167462MODE 2 RUNNING... FOUND 0
+t = 17.0949
+step = 89
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0174023MODE 2 RUNNING... FOUND 8
+t = 17.2748
+step = 90
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0178348MODE 2 RUNNING... FOUND 0
+t = 17.4537
+step = 91
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0185228MODE 2 RUNNING... FOUND 4
+t = 17.6313
+step = 92
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0190262MODE 2 RUNNING... FOUND 4
+t = 17.8091
+step = 93
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0195354MODE 2 RUNNING... FOUND 0
+t = 17.9853
+step = 94
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0201899MODE 2 RUNNING... FOUND 8
+t = 18.16
+step = 95
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0208094MODE 2 RUNNING... FOUND 0
+t = 18.3337
+step = 96
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0212802MODE 2 RUNNING... FOUND 1
+t = 18.5064
+step = 97
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0218756MODE 2 RUNNING... FOUND 9
+t = 18.6764
+step = 98
+
+Solved pressure in 44
+Mean pressure (sorta) 0.022566MODE 2 RUNNING... FOUND 0
+t = 18.8465
+step = 99
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0230404MODE 2 RUNNING... FOUND 5
+t = 19.0148
+step = 100
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0235593MODE 2 RUNNING... FOUND 8
+t = 19.1826
+step = 101
+
+Solved pressure in 35
+Mean pressure (sorta) 0.0240734MODE 2 RUNNING... FOUND 0
+t = 19.3511
+step = 102
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0244103MODE 2 RUNNING... FOUND 8
+t = 19.5187
+step = 103
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0251089MODE 2 RUNNING... FOUND 5
+t = 19.6851
+step = 104
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0257262MODE 2 RUNNING... FOUND 2
+t = 19.849
+step = 105
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0260133MODE 2 RUNNING... FOUND 12
+t = 20.012
+step = 106
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0267736MODE 2 RUNNING... FOUND 1
+t = 20.1764
+step = 107
+
+Solved pressure in 41
+Mean pressure (sorta) 0.027374MODE 2 RUNNING... FOUND 7
+t = 20.3408
+step = 108
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0277876MODE 2 RUNNING... FOUND 13
+t = 20.5038
+step = 109
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0287727MODE 2 RUNNING... FOUND 2
+t = 20.6646
+step = 110
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0296859MODE 2 RUNNING... FOUND 9
+t = 20.8257
+step = 111
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0302163MODE 2 RUNNING... FOUND 14
+t = 20.9852
+step = 112
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0311878MODE 2 RUNNING... FOUND 2
+t = 21.1442
+step = 113
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0319973MODE 2 RUNNING... FOUND 13
+t = 21.3015
+step = 114
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0325753MODE 2 RUNNING... FOUND 12
+t = 21.4604
+step = 115
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0337387MODE 2 RUNNING... FOUND 5
+t = 21.6185
+step = 116
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0342579MODE 2 RUNNING... FOUND 14
+t = 21.7744
+step = 117
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0349254MODE 2 RUNNING... FOUND 12
+t = 21.9289
+step = 118
+
+Solved pressure in 33
+Mean pressure (sorta) 0.0359183MODE 2 RUNNING... FOUND 9
+t = 22.0834
+step = 119
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0367366MODE 2 RUNNING... FOUND 14
+t = 22.2363
+step = 120
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0372845MODE 2 RUNNING... FOUND 11
+t = 22.3878
+step = 121
+
+Solved pressure in 44
+Mean pressure (sorta) 0.037788MODE 2 RUNNING... FOUND 10
+t = 22.5396
+step = 122
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0385178MODE 2 RUNNING... FOUND 17
+t = 22.6929
+step = 123
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0389006MODE 2 RUNNING... FOUND 11
+t = 22.8431
+step = 124
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0398827MODE 2 RUNNING... FOUND 10
+t = 22.989
+step = 125
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0407696MODE 2 RUNNING... FOUND 15
+t = 23.1396
+step = 126
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0414865MODE 2 RUNNING... FOUND 11
+t = 23.2789
+step = 127
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0418737MODE 2 RUNNING... FOUND 11
+t = 23.4138
+step = 128
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0427324MODE 2 RUNNING... FOUND 15
+t = 23.5525
+step = 129
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0430764MODE 2 RUNNING... FOUND 13
+t = 23.6912
+step = 130
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0432294MODE 2 RUNNING... FOUND 11
+t = 23.837
+step = 131
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0440244MODE 2 RUNNING... FOUND 16
+t = 23.973
+step = 132
+
+Solved pressure in 38
+Mean pressure (sorta) 0.0447136MODE 2 RUNNING... FOUND 15
+t = 24.1187
+step = 133
+
+Solved pressure in 46
+Mean pressure (sorta) 0.04523MODE 2 RUNNING... FOUND 14
+t = 24.2431
+step = 134
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0454534MODE 2 RUNNING... FOUND 19
+t = 24.3756
+step = 135
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0456828MODE 2 RUNNING... FOUND 19
+t = 24.5219
+step = 136
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0462208MODE 2 RUNNING... FOUND 12
+t = 24.6482
+step = 137
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0468672MODE 2 RUNNING... FOUND 23
+t = 24.7784
+step = 138
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0474503MODE 2 RUNNING... FOUND 20
+t = 24.9241
+step = 139
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0478MODE 2 RUNNING... FOUND 13
+t = 25.0685
+step = 140
+
+Solved pressure in 45
+Mean pressure (sorta) 0.0478095MODE 2 RUNNING... FOUND 22
+t = 25.208
+step = 141
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0483385MODE 2 RUNNING... FOUND 20
+t = 25.348
+step = 142
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0490604MODE 2 RUNNING... FOUND 15
+t = 25.4868
+step = 143
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0499404MODE 2 RUNNING... FOUND 21
+t = 25.6104
+step = 144
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0505076MODE 2 RUNNING... FOUND 21
+t = 25.7353
+step = 145
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0512553MODE 2 RUNNING... FOUND 18
+t = 25.8761
+step = 146
+
+Solved pressure in 45
+Mean pressure (sorta) 0.0523741MODE 2 RUNNING... FOUND 20
+t = 26.0048
+step = 147
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0535236MODE 2 RUNNING... FOUND 22
+t = 26.141
+step = 148
+
+Solved pressure in 43
+Mean pressure (sorta) 0.055428MODE 2 RUNNING... FOUND 20
+t = 26.2813
+step = 149
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0569621MODE 2 RUNNING... FOUND 20
+t = 26.4181
+step = 150
+
+Solved pressure in 44
+Mean pressure (sorta) 0.058204MODE 2 RUNNING... FOUND 24
+t = 26.5531
+step = 151
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0592187MODE 2 RUNNING... FOUND 22
+t = 26.69
+step = 152
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0595133MODE 2 RUNNING... FOUND 20
+t = 26.8262
+step = 153
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0599838MODE 2 RUNNING... FOUND 24
+t = 26.9409
+step = 154
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0600953MODE 2 RUNNING... FOUND 24
+t = 27.0754
+step = 155
+
+Solved pressure in 45
+Mean pressure (sorta) 0.0600838MODE 2 RUNNING... FOUND 17
+t = 27.2056
+step = 156
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0602854MODE 2 RUNNING... FOUND 23
+t = 27.3234
+step = 157
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0598404MODE 2 RUNNING... FOUND 23
+t = 27.446
+step = 158
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0587959MODE 2 RUNNING... FOUND 17
+t = 27.5802
+step = 159
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0585897MODE 2 RUNNING... FOUND 23
+t = 27.6887
+step = 160
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0585874MODE 2 RUNNING... FOUND 26
+t = 27.7955
+step = 161
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0580335MODE 2 RUNNING... FOUND 23
+t = 27.9192
+step = 162
+
+Solved pressure in 40
+Mean pressure (sorta) 0.05758MODE 2 RUNNING... FOUND 21
+t = 28.0378
+step = 163
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0580106MODE 2 RUNNING... FOUND 27
+t = 28.1669
+step = 164
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0577892MODE 2 RUNNING... FOUND 28
+t = 28.2908
+step = 165
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0581458MODE 2 RUNNING... FOUND 22
+t = 28.4157
+step = 166
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0590091MODE 2 RUNNING... FOUND 25
+t = 28.5213
+step = 167
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0598505MODE 2 RUNNING... FOUND 27
+t = 28.6264
+step = 168
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0620329MODE 2 RUNNING... FOUND 25
+t = 28.7378
+step = 169
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0633951MODE 2 RUNNING... FOUND 21
+t = 28.8462
+step = 170
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0657024MODE 2 RUNNING... FOUND 26
+t = 28.961
+step = 171
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0682667MODE 2 RUNNING... FOUND 27
+t = 29.076
+step = 172
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0690143MODE 2 RUNNING... FOUND 22
+t = 29.1875
+step = 173
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0701772MODE 2 RUNNING... FOUND 27
+t = 29.317
+step = 174
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0718227MODE 2 RUNNING... FOUND 27
+t = 29.4145
+step = 175
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0731397MODE 2 RUNNING... FOUND 26
+t = 29.5144
+step = 176
+
+Solved pressure in 42
+Mean pressure (sorta) 0.0729848MODE 2 RUNNING... FOUND 24
+t = 29.6297
+step = 177
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0733402MODE 2 RUNNING... FOUND 27
+t = 29.7328
+step = 178
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0731304MODE 2 RUNNING... FOUND 30
+t = 29.837
+step = 179
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0727148MODE 2 RUNNING... FOUND 26
+t = 29.9357
+step = 180
+
+Solved pressure in 38
+Mean pressure (sorta) 0.070739MODE 2 RUNNING... FOUND 23
+t = 30
+step = 181
+
+Outputting data
+testdir = ./output/ObjScaleTestRadius0.31/
+Outputting data
+./output/ObjScaleTestRadius0.31/out
+./output/ObjScaleTestRadius0.31/poolOut
+./output/ObjScaleTestRadius0.31/poolVel
+./output/ObjScaleTestRadius0.31/MSSEdges
+./output/ObjScaleTestRadius0.31/MSSNodes
+./output/ObjScaleTestRadius0.31/MSSVels
+./output/ObjScaleTestRadius0.31/MSSTracers
+./output/ObjScaleTestRadius0.31/medialAxis
+=========================================================
+The total run time of the algorithm: 58
+The average run time per step of the algorithm: 0.320442
+=========================================================
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 160, ny = 160
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 30
+num_objects 1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 1
+collisionDist = 0.105469
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+Solved pressure in 52
+Mean pressure (sorta) -0.00458778MODE 2 RUNNING... FOUND 0
+t = 0.195312
+step = 1
+
+Solved pressure in 42
+Mean pressure (sorta) -0.00283469MODE 2 RUNNING... FOUND 0
+t = 0.390625
+step = 2
+
+Solved pressure in 47
+Mean pressure (sorta) -0.00204968MODE 2 RUNNING... FOUND 0
+t = 0.585938
+step = 3
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00160405MODE 2 RUNNING... FOUND 0
+t = 0.78125
+step = 4
+
+Solved pressure in 42
+Mean pressure (sorta) -0.0013407MODE 2 RUNNING... FOUND 0
+t = 0.976562
+step = 5
+
+Solved pressure in 42
+Mean pressure (sorta) -0.00106147MODE 2 RUNNING... FOUND 0
+t = 1.17188
+step = 6
+
+Solved pressure in 45
+Mean pressure (sorta) -0.00087014MODE 2 RUNNING... FOUND 0
+t = 1.36719
+step = 7
+
+Solved pressure in 45
+Mean pressure (sorta) -0.000659346MODE 2 RUNNING... FOUND 0
+t = 1.5625
+step = 8
+
+Solved pressure in 46
+Mean pressure (sorta) -0.000457853MODE 2 RUNNING... FOUND 0
+t = 1.75781
+step = 9
+
+Solved pressure in 41
+Mean pressure (sorta) -0.000254056MODE 2 RUNNING... FOUND 0
+t = 1.95312
+step = 10
+
+Solved pressure in 44
+Mean pressure (sorta) -3.55709e-05MODE 2 RUNNING... FOUND 0
+t = 2.14844
+step = 11
+
+Solved pressure in 43
+Mean pressure (sorta) 0.000190237MODE 2 RUNNING... FOUND 0
+t = 2.34375
+step = 12
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00031286MODE 2 RUNNING... FOUND 0
+t = 2.53906
+step = 13
+
+Solved pressure in 45
+Mean pressure (sorta) 0.000439374MODE 2 RUNNING... FOUND 0
+t = 2.73438
+step = 14
+
+Solved pressure in 46
+Mean pressure (sorta) 0.00057538MODE 2 RUNNING... FOUND 0
+t = 2.92969
+step = 15
+
+Solved pressure in 51
+Mean pressure (sorta) 0.000654874MODE 2 RUNNING... FOUND 0
+t = 3.125
+step = 16
+
+Solved pressure in 49
+Mean pressure (sorta) 0.000777464MODE 2 RUNNING... FOUND 0
+t = 3.32031
+step = 17
+
+Solved pressure in 49
+Mean pressure (sorta) 0.000882882MODE 2 RUNNING... FOUND 0
+t = 3.51562
+step = 18
+
+Solved pressure in 51
+Mean pressure (sorta) 0.000909633MODE 2 RUNNING... FOUND 0
+t = 3.71094
+step = 19
+
+Solved pressure in 49
+Mean pressure (sorta) 0.000789881MODE 2 RUNNING... FOUND 0
+t = 3.90625
+step = 20
+
+Solved pressure in 48
+Mean pressure (sorta) 0.000938057MODE 2 RUNNING... FOUND 0
+t = 4.10156
+step = 21
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0010094MODE 2 RUNNING... FOUND 0
+t = 4.29688
+step = 22
+
+Solved pressure in 50
+Mean pressure (sorta) 0.000926239MODE 2 RUNNING... FOUND 0
+t = 4.49219
+step = 23
+
+Solved pressure in 46
+Mean pressure (sorta) 0.00100689MODE 2 RUNNING... FOUND 0
+t = 4.6875
+step = 24
+
+Solved pressure in 51
+Mean pressure (sorta) 0.00109368MODE 2 RUNNING... FOUND 0
+t = 4.88281
+step = 25
+
+Solved pressure in 46
+Mean pressure (sorta) 0.00109452MODE 2 RUNNING... FOUND 0
+t = 5.07812
+step = 26
+
+Solved pressure in 47
+Mean pressure (sorta) 0.00117378MODE 2 RUNNING... FOUND 0
+t = 5.27344
+step = 27
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00118673MODE 2 RUNNING... FOUND 0
+t = 5.46875
+step = 28
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00141988MODE 2 RUNNING... FOUND 0
+t = 5.66406
+step = 29
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00155224MODE 2 RUNNING... FOUND 0
+t = 5.85938
+step = 30
+
+Solved pressure in 51
+Mean pressure (sorta) 0.00152426MODE 2 RUNNING... FOUND 0
+t = 6.05469
+step = 31
+
+Solved pressure in 46
+Mean pressure (sorta) 0.00176401MODE 2 RUNNING... FOUND 0
+t = 6.25
+step = 32
+
+Solved pressure in 48
+Mean pressure (sorta) 0.00182649MODE 2 RUNNING... FOUND 0
+t = 6.44531
+step = 33
+
+Solved pressure in 47
+Mean pressure (sorta) 0.00205302MODE 2 RUNNING... FOUND 0
+t = 6.64062
+step = 34
+
+Solved pressure in 43
+Mean pressure (sorta) 0.00222159MODE 2 RUNNING... FOUND 0
+t = 6.83594
+step = 35
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0021058MODE 2 RUNNING... FOUND 0
+t = 7.03125
+step = 36
+
+Solved pressure in 51
+Mean pressure (sorta) 0.00250363MODE 2 RUNNING... FOUND 0
+t = 7.226
+step = 37
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00281094MODE 2 RUNNING... FOUND 0
+t = 7.41837
+step = 38
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0030037MODE 2 RUNNING... FOUND 0
+t = 7.60877
+step = 39
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00320831MODE 2 RUNNING... FOUND 0
+t = 7.79742
+step = 40
+
+Solved pressure in 48
+Mean pressure (sorta) 0.00361261MODE 2 RUNNING... FOUND 0
+t = 7.98361
+step = 41
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00415087MODE 2 RUNNING... FOUND 0
+t = 8.16742
+step = 42
+
+Solved pressure in 48
+Mean pressure (sorta) 0.0043882MODE 2 RUNNING... FOUND 0
+t = 8.3509
+step = 43
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00470846MODE 2 RUNNING... FOUND 0
+t = 8.53245
+step = 44
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00508271MODE 2 RUNNING... FOUND 0
+t = 8.71266
+step = 45
+
+Solved pressure in 51
+Mean pressure (sorta) 0.00552317MODE 2 RUNNING... FOUND 0
+t = 8.8908
+step = 46
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00589898MODE 2 RUNNING... FOUND 0
+t = 9.06787
+step = 47
+
+Solved pressure in 48
+Mean pressure (sorta) 0.00619954MODE 2 RUNNING... FOUND 0
+t = 9.24379
+step = 48
+
+Solved pressure in 47
+Mean pressure (sorta) 0.00687765MODE 2 RUNNING... FOUND 0
+t = 9.41135
+step = 49
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00706489MODE 2 RUNNING... FOUND 0
+t = 9.58304
+step = 50
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00786903MODE 2 RUNNING... FOUND 0
+t = 9.75379
+step = 51
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0084078MODE 2 RUNNING... FOUND 0
+t = 9.92291
+step = 52
+
+Solved pressure in 50
+Mean pressure (sorta) 0.00907833MODE 2 RUNNING... FOUND 0
+t = 10.0904
+step = 53
+
+Solved pressure in 49
+Mean pressure (sorta) 0.00961064MODE 2 RUNNING... FOUND 0
+t = 10.2523
+step = 54
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0101799MODE 2 RUNNING... FOUND 0
+t = 10.4169
+step = 55
+
+Solved pressure in 54
+Mean pressure (sorta) 0.0113262MODE 2 RUNNING... FOUND 0
+t = 10.5801
+step = 56
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0120322MODE 2 RUNNING... FOUND 0
+t = 10.7418
+step = 57
+
+Solved pressure in 50
+Mean pressure (sorta) 0.0127929MODE 2 RUNNING... FOUND 0
+t = 10.9026
+step = 58
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0137155MODE 2 RUNNING... FOUND 0
+t = 11.0612
+step = 59
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0144893MODE 2 RUNNING... FOUND 0
+t = 11.2182
+step = 60
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0157433MODE 2 RUNNING... FOUND 0
+t = 11.3746
+step = 61
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0164783MODE 2 RUNNING... FOUND 0
+t = 11.5294
+step = 62
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0175256MODE 2 RUNNING... FOUND 0
+t = 11.6824
+step = 63
+
+Solved pressure in 55
+Mean pressure (sorta) 0.0183275MODE 2 RUNNING... FOUND 0
+t = 11.8335
+step = 64
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0188238MODE 2 RUNNING... FOUND 0
+t = 11.9836
+step = 65
+
+Solved pressure in 56
+Mean pressure (sorta) 0.0199285MODE 2 RUNNING... FOUND 0
+t = 12.1327
+step = 66
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0208157MODE 2 RUNNING... FOUND 0
+t = 12.2801
+step = 67
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0207496MODE 2 RUNNING... FOUND 0
+t = 12.4254
+step = 68
+
+Solved pressure in 56
+Mean pressure (sorta) 0.0222923MODE 2 RUNNING... FOUND 0
+t = 12.5697
+step = 69
+
+Solved pressure in 56
+Mean pressure (sorta) 0.023355MODE 2 RUNNING... FOUND 0
+t = 12.7139
+step = 70
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0238631MODE 2 RUNNING... FOUND 0
+t = 12.857
+step = 71
+
+Solved pressure in 55
+Mean pressure (sorta) 0.0253136MODE 2 RUNNING... FOUND 0
+t = 12.9989
+step = 72
+
+Solved pressure in 48
+Mean pressure (sorta) 0.0265468MODE 2 RUNNING... FOUND 0
+t = 13.1405
+step = 73
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0273477MODE 2 RUNNING... FOUND 0
+t = 13.2815
+step = 74
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0284604MODE 2 RUNNING... FOUND 0
+t = 13.4239
+step = 75
+
+Solved pressure in 53
+Mean pressure (sorta) 0.0295994MODE 2 RUNNING... FOUND 0
+t = 13.5651
+step = 76
+
+Solved pressure in 58
+Mean pressure (sorta) 0.0316138MODE 2 RUNNING... FOUND 0
+t = 13.7
+step = 77
+
+Solved pressure in 54
+Mean pressure (sorta) 0.0325233MODE 2 RUNNING... FOUND 0
+t = 13.8392
+step = 78
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0343307MODE 2 RUNNING... FOUND 0
+t = 13.9764
+step = 79
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0364415MODE 2 RUNNING... FOUND 0
+t = 14.1117
+step = 80
+
+Solved pressure in 56
+Mean pressure (sorta) 0.0376689MODE 2 RUNNING... FOUND 0
+t = 14.2458
+step = 81
+
+Solved pressure in 57
+Mean pressure (sorta) 0.0393525MODE 2 RUNNING... FOUND 0
+t = 14.3803
+step = 82
+
+Solved pressure in 51
+Mean pressure (sorta) 0.041301MODE 2 RUNNING... FOUND 0
+t = 14.5137
+step = 83
+
+Solved pressure in 55
+Mean pressure (sorta) 0.0432091MODE 2 RUNNING... FOUND 0
+t = 14.647
+step = 84
+
+Solved pressure in 57
+Mean pressure (sorta) 0.0445884MODE 2 RUNNING... FOUND 0
+t = 14.7776
+step = 85
+
+Solved pressure in 57
+Mean pressure (sorta) 0.0450187MODE 2 RUNNING... FOUND 0
+t = 14.9078
+step = 86
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0471659MODE 2 RUNNING... FOUND 0
+t = 15.0371
+step = 87
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0486822MODE 2 RUNNING... FOUND 0
+t = 15.1657
+step = 88
+
+Solved pressure in 52
+Mean pressure (sorta) 0.0504408MODE 2 RUNNING... FOUND 0
+t = 15.294
+step = 89
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0528438MODE 2 RUNNING... FOUND 0
+t = 15.4204
+step = 90
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0542822MODE 2 RUNNING... FOUND 0
+t = 15.546
+step = 91
+
+Solved pressure in 53
+Mean pressure (sorta) 0.0557459MODE 2 RUNNING... FOUND 0
+t = 15.662
+step = 92
+
+Solved pressure in 52
+Mean pressure (sorta) 0.057702MODE 2 RUNNING... FOUND 0
+t = 15.7814
+step = 93
+
+Solved pressure in 54
+Mean pressure (sorta) 0.0602098MODE 2 RUNNING... FOUND 0
+t = 15.9038
+step = 94
+
+Solved pressure in 53
+Mean pressure (sorta) 0.0625929MODE 2 RUNNING... FOUND 0
+t = 16.0249
+step = 95
+
+Solved pressure in 48
+Mean pressure (sorta) 0.0655823MODE 2 RUNNING... FOUND 0
+t = 16.1476
+step = 96
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0675134MODE 2 RUNNING... FOUND 0
+t = 16.265
+step = 97
+
+Solved pressure in 49
+Mean pressure (sorta) 0.06962MODE 2 RUNNING... FOUND 0
+t = 16.3842
+step = 98
+
+Solved pressure in 50
+Mean pressure (sorta) 0.0719609MODE 2 RUNNING... FOUND 0
+t = 16.5031
+step = 99
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0744907MODE 2 RUNNING... FOUND 0
+t = 16.6228
+step = 100
+
+Solved pressure in 50
+Mean pressure (sorta) 0.0765873MODE 2 RUNNING... FOUND 0
+t = 16.7415
+step = 101
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0775116MODE 2 RUNNING... FOUND 0
+t = 16.8617
+step = 102
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0813444MODE 2 RUNNING... FOUND 0
+t = 16.9821
+step = 103
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0833953MODE 2 RUNNING... FOUND 0
+t = 17.1033
+step = 104
+
+Solved pressure in 50
+Mean pressure (sorta) 0.0854009MODE 2 RUNNING... FOUND 0
+t = 17.2231
+step = 105
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0874089MODE 2 RUNNING... FOUND 0
+t = 17.341
+step = 106
+
+Solved pressure in 49
+Mean pressure (sorta) 0.089176MODE 2 RUNNING... FOUND 0
+t = 17.4588
+step = 107
+
+Solved pressure in 50
+Mean pressure (sorta) 0.0917243MODE 2 RUNNING... FOUND 0
+t = 17.5664
+step = 108
+
+Solved pressure in 49
+Mean pressure (sorta) 0.094211MODE 2 RUNNING... FOUND 0
+t = 17.6838
+step = 109
+
+Solved pressure in 56
+Mean pressure (sorta) 0.0964046MODE 2 RUNNING... FOUND 0
+t = 17.7981
+step = 110
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0999181MODE 2 RUNNING... FOUND 0
+t = 17.9107
+step = 111
+
+Solved pressure in 49
+Mean pressure (sorta) 0.102547MODE 2 RUNNING... FOUND 0
+t = 18.0195
+step = 112
+
+Solved pressure in 48
+Mean pressure (sorta) 0.103061MODE 2 RUNNING... FOUND 0
+t = 18.1297
+step = 113
+
+Solved pressure in 50
+Mean pressure (sorta) 0.105173MODE 2 RUNNING... FOUND 0
+t = 18.24
+step = 114
+
+Solved pressure in 50
+Mean pressure (sorta) 0.10714MODE 2 RUNNING... FOUND 0
+t = 18.3432
+step = 115
+
+Solved pressure in 51
+Mean pressure (sorta) 0.110357MODE 2 RUNNING... FOUND 0
+t = 18.4528
+step = 116
+
+Solved pressure in 50
+Mean pressure (sorta) 0.113262MODE 2 RUNNING... FOUND 0
+t = 18.563
+step = 117
+
+Solved pressure in 51
+Mean pressure (sorta) 0.115532MODE 2 RUNNING... FOUND 0
+t = 18.6699
+step = 118
+
+Solved pressure in 48
+Mean pressure (sorta) 0.117524MODE 2 RUNNING... FOUND 0
+t = 18.7779
+step = 119
+
+Solved pressure in 51
+Mean pressure (sorta) 0.120719MODE 2 RUNNING... FOUND 0
+t = 18.8817
+step = 120
+
+Solved pressure in 49
+Mean pressure (sorta) 0.124809MODE 2 RUNNING... FOUND 0
+t = 18.9871
+step = 121
+
+Solved pressure in 50
+Mean pressure (sorta) 0.127362MODE 2 RUNNING... FOUND 0
+t = 19.0945
+step = 122
+
+Solved pressure in 50
+Mean pressure (sorta) 0.130853MODE 2 RUNNING... FOUND 0
+t = 19.2009
+step = 123
+
+Solved pressure in 50
+Mean pressure (sorta) 0.13322MODE 2 RUNNING... FOUND 0
+t = 19.3108
+step = 124
+
+Solved pressure in 51
+Mean pressure (sorta) 0.134069MODE 2 RUNNING... FOUND 0
+t = 19.4205
+step = 125
+
+Solved pressure in 47
+Mean pressure (sorta) 0.135266MODE 2 RUNNING... FOUND 0
+t = 19.531
+step = 126
+
+Solved pressure in 49
+Mean pressure (sorta) 0.135473MODE 2 RUNNING... FOUND 0
+t = 19.643
+step = 127
+
+Solved pressure in 48
+Mean pressure (sorta) 0.13626MODE 2 RUNNING... FOUND 0
+t = 19.7535
+step = 128
+
+Solved pressure in 53
+Mean pressure (sorta) 0.137402MODE 2 RUNNING... FOUND 0
+t = 19.8638
+step = 129
+
+Solved pressure in 52
+Mean pressure (sorta) 0.140919MODE 2 RUNNING... FOUND 0
+t = 19.9713
+step = 130
+
+Solved pressure in 49
+Mean pressure (sorta) 0.144512MODE 2 RUNNING... FOUND 0
+t = 20.0771
+step = 131
+
+Solved pressure in 47
+Mean pressure (sorta) 0.148115MODE 2 RUNNING... FOUND 0
+t = 20.1821
+step = 132
+
+Solved pressure in 50
+Mean pressure (sorta) 0.150125MODE 2 RUNNING... FOUND 0
+t = 20.2889
+step = 133
+
+Solved pressure in 52
+Mean pressure (sorta) 0.153062MODE 2 RUNNING... FOUND 0
+t = 20.3942
+step = 134
+
+Solved pressure in 51
+Mean pressure (sorta) 0.155529MODE 2 RUNNING... FOUND 0
+t = 20.4992
+step = 135
+
+Solved pressure in 48
+Mean pressure (sorta) 0.157728MODE 2 RUNNING... FOUND 0
+t = 20.5973
+step = 136
+
+Solved pressure in 49
+Mean pressure (sorta) 0.158897MODE 2 RUNNING... FOUND 0
+t = 20.6957
+step = 137
+
+Solved pressure in 52
+Mean pressure (sorta) 0.159744MODE 2 RUNNING... FOUND 0
+t = 20.7948
+step = 138
+
+Solved pressure in 49
+Mean pressure (sorta) 0.162977MODE 2 RUNNING... FOUND 0
+t = 20.8858
+step = 139
+
+Solved pressure in 52
+Mean pressure (sorta) 0.166896MODE 2 RUNNING... FOUND 0
+t = 20.9749
+step = 140
+
+Solved pressure in 51
+Mean pressure (sorta) 0.167856MODE 2 RUNNING... FOUND 0
+t = 21.0729
+step = 141
+
+Solved pressure in 48
+Mean pressure (sorta) 0.169728MODE 2 RUNNING... FOUND 0
+t = 21.171
+step = 142
+
+Solved pressure in 49
+Mean pressure (sorta) 0.17118MODE 2 RUNNING... FOUND 0
+t = 21.2594
+step = 143
+
+Solved pressure in 48
+Mean pressure (sorta) 0.173302MODE 2 RUNNING... FOUND 0
+t = 21.3515
+step = 144
+
+Solved pressure in 50
+Mean pressure (sorta) 0.177197MODE 2 RUNNING... FOUND 0
+t = 21.446
+step = 145
+
+Solved pressure in 49
+Mean pressure (sorta) 0.179107MODE 2 RUNNING... FOUND 0
+t = 21.5266
+step = 146
+
+Solved pressure in 49
+Mean pressure (sorta) 0.180263MODE 2 RUNNING... FOUND 0
+t = 21.6195
+step = 147
+
+Solved pressure in 49
+Mean pressure (sorta) 0.180436MODE 2 RUNNING... FOUND 0
+t = 21.7016
+step = 148
+
+Solved pressure in 48
+Mean pressure (sorta) 0.180647MODE 2 RUNNING... FOUND 0
+t = 21.7805
+step = 149
+
+Solved pressure in 50
+Mean pressure (sorta) 0.181013MODE 2 RUNNING... FOUND 0
+t = 21.8566
+step = 150
+
+Solved pressure in 48
+Mean pressure (sorta) 0.186065MODE 2 RUNNING... FOUND 0
+t = 21.9319
+step = 151
+
+Solved pressure in 52
+Mean pressure (sorta) 0.190512MODE 2 RUNNING... FOUND 0
+t = 22.0096
+step = 152
+
+Solved pressure in 48
+Mean pressure (sorta) 0.192208MODE 2 RUNNING... FOUND 0
+t = 22.0977
+step = 153
+
+Solved pressure in 49
+Mean pressure (sorta) 0.195114MODE 2 RUNNING... FOUND 0
+t = 22.1796
+step = 154
+
+Solved pressure in 55
+Mean pressure (sorta) 0.19507MODE 2 RUNNING... FOUND 0
+t = 22.2657
+step = 155
+
+Solved pressure in 50
+Mean pressure (sorta) 0.19554MODE 2 RUNNING... FOUND 0
+t = 22.3548
+step = 156
+
+Solved pressure in 49
+Mean pressure (sorta) 0.192272MODE 2 RUNNING... FOUND 0
+t = 22.4388
+step = 157
+
+Solved pressure in 51
+Mean pressure (sorta) 0.193934MODE 2 RUNNING... FOUND 0
+t = 22.522
+step = 158
+
+Solved pressure in 49
+Mean pressure (sorta) 0.192881MODE 2 RUNNING... FOUND 0
+t = 22.6038
+step = 159
+
+Solved pressure in 43
+Mean pressure (sorta) 0.195751MODE 2 RUNNING... FOUND 0
+t = 22.6768
+step = 160
+
+Solved pressure in 49
+Mean pressure (sorta) 0.19646MODE 2 RUNNING... FOUND 0
+t = 22.7584
+step = 161
+
+Solved pressure in 45
+Mean pressure (sorta) 0.204718MODE 2 RUNNING... FOUND 0
+t = 22.8162
+step = 162
+
+Solved pressure in 47
+Mean pressure (sorta) 0.21334MODE 2 RUNNING... FOUND 0
+t = 22.8675
+step = 163
+
+Solved pressure in 51
+Mean pressure (sorta) 0.215471MODE 2 RUNNING... FOUND 0
+t = 22.9408
+step = 164
+
+Solved pressure in 52
+Mean pressure (sorta) 0.217559MODE 2 RUNNING... FOUND 0
+t = 23.0198
+step = 165
+
+Solved pressure in 46
+Mean pressure (sorta) 0.22094MODE 2 RUNNING... FOUND 0
+t = 23.0822
+step = 166
+
+Solved pressure in 48
+Mean pressure (sorta) 0.22255MODE 2 RUNNING... FOUND 0
+t = 23.1378
+step = 167
+
+Solved pressure in 49
+Mean pressure (sorta) 0.225126MODE 2 RUNNING... FOUND 0
+t = 23.1892
+step = 168
+
+Solved pressure in 47
+Mean pressure (sorta) 0.221164MODE 2 RUNNING... FOUND 0
+t = 23.2607
+step = 169
+
+Solved pressure in 48
+Mean pressure (sorta) 0.225511MODE 2 RUNNING... FOUND 0
+t = 23.3438
+step = 170
+
+Solved pressure in 50
+Mean pressure (sorta) 0.227514MODE 2 RUNNING... FOUND 0
+t = 23.3977
+step = 171
+
+Solved pressure in 46
+Mean pressure (sorta) 0.225971MODE 2 RUNNING... FOUND 0
+t = 23.4734
+step = 172
+
+Solved pressure in 44
+Mean pressure (sorta) 0.224578MODE 2 RUNNING... FOUND 0
+t = 23.514
+step = 173
+
+Solved pressure in 50
+Mean pressure (sorta) 0.223433MODE 2 RUNNING... FOUND 0
+t = 23.5882
+step = 174
+
+Solved pressure in 47
+Mean pressure (sorta) 0.223086MODE 2 RUNNING... FOUND 0
+t = 23.659
+step = 175
+
+Solved pressure in 48
+Mean pressure (sorta) 0.220516MODE 2 RUNNING... FOUND 0
+t = 23.7321
+step = 176
+
+Solved pressure in 45
+Mean pressure (sorta) 0.220393MODE 2 RUNNING... FOUND 0
+t = 23.7727
+step = 177
+
+Solved pressure in 47
+Mean pressure (sorta) 0.222123MODE 2 RUNNING... FOUND 0
+t = 23.8396
+step = 178
+
+Solved pressure in 46
+Mean pressure (sorta) 0.22741MODE 2 RUNNING... FOUND 0
+t = 23.875
+step = 179
+
+Solved pressure in 46
+Mean pressure (sorta) 0.233147MODE 2 RUNNING... FOUND 0
+t = 23.923
+step = 180
+
+Solved pressure in 53
+Mean pressure (sorta) 0.237925MODE 2 RUNNING... FOUND 0
+t = 23.9854
+step = 181
+
+Solved pressure in 52
+Mean pressure (sorta) 0.239763MODE 2 RUNNING... FOUND 0
+t = 24.0566
+step = 182
+
+Solved pressure in 54
+Mean pressure (sorta) 0.244872MODE 2 RUNNING... FOUND 0
+t = 24.1229
+step = 183
+
+Solved pressure in 45
+Mean pressure (sorta) 0.235171MODE 2 RUNNING... FOUND 0
+t = 24.1544
+step = 184
+
+Solved pressure in 45
+Mean pressure (sorta) 0.222699MODE 2 RUNNING... FOUND 0
+t = 24.187
+step = 185
+
+Solved pressure in 46
+Mean pressure (sorta) 0.231139MODE 2 RUNNING... FOUND 0
+t = 24.2276
+step = 186
+
+Solved pressure in 44
+Mean pressure (sorta) 0.231241MODE 2 RUNNING... FOUND 0
+t = 24.2957
+step = 187
+
+Solved pressure in 45
+Mean pressure (sorta) 0.231126MODE 2 RUNNING... FOUND 0
+t = 24.3596
+step = 188
+
+Solved pressure in 46
+Mean pressure (sorta) 0.226291MODE 2 RUNNING... FOUND 0
+t = 24.4231
+step = 189
+
+Solved pressure in 45
+Mean pressure (sorta) 0.215064MODE 2 RUNNING... FOUND 0
+t = 24.4589
+step = 190
+
+Solved pressure in 49
+Mean pressure (sorta) 0.21154MODE 2 RUNNING... FOUND 0
+t = 24.5183
+step = 191
+
+Solved pressure in 44
+Mean pressure (sorta) 0.203418MODE 2 RUNNING... FOUND 0
+t = 24.5489
+step = 192
+
+Solved pressure in 49
+Mean pressure (sorta) 0.211602MODE 2 RUNNING... FOUND 0
+t = 24.5906
+step = 193
+
+Solved pressure in 48
+Mean pressure (sorta) 0.214919MODE 2 RUNNING... FOUND 0
+t = 24.6499
+step = 194
+
+Solved pressure in 50
+Mean pressure (sorta) 0.209873MODE 2 RUNNING... FOUND 0
+t = 24.7157
+step = 195
+
+Solved pressure in 44
+Mean pressure (sorta) 0.200679MODE 2 RUNNING... FOUND 0
+t = 24.7511
+step = 196
+
+Solved pressure in 53
+Mean pressure (sorta) 0.199051MODE 2 RUNNING... FOUND 0
+t = 24.8141
+step = 197
+
+Solved pressure in 47
+Mean pressure (sorta) 0.191345MODE 2 RUNNING... FOUND 0
+t = 24.844
+step = 198
+
+Solved pressure in 43
+Mean pressure (sorta) 0.211581MODE 2 RUNNING... FOUND 0
+t = 24.8748
+step = 199
+
+Solved pressure in 45
+Mean pressure (sorta) 0.216942MODE 2 RUNNING... FOUND 0
+t = 24.9385
+step = 200
+
+Solved pressure in 48
+Mean pressure (sorta) 0.215342MODE 2 RUNNING... FOUND 0
+t = 24.9983
+step = 201
+
+Solved pressure in 48
+Mean pressure (sorta) 0.213604MODE 2 RUNNING... FOUND 0
+t = 25.0572
+step = 202
+
+Solved pressure in 50
+Mean pressure (sorta) 0.212197MODE 2 RUNNING... FOUND 0
+t = 25.1144
+step = 203
+
+Solved pressure in 45
+Mean pressure (sorta) 0.189837MODE 2 RUNNING... FOUND 0
+t = 25.1465
+step = 204
+
+Solved pressure in 43
+Mean pressure (sorta) 0.185195MODE 2 RUNNING... FOUND 0
+t = 25.2005
+step = 205
+
+Solved pressure in 43
+Mean pressure (sorta) 0.1791MODE 2 RUNNING... FOUND 0
+t = 25.2275
+step = 206
+
+Solved pressure in 46
+Mean pressure (sorta) 0.17988MODE 2 RUNNING... FOUND 0
+t = 25.2647
+step = 207
+
+Solved pressure in 47
+Mean pressure (sorta) 0.178654MODE 2 RUNNING... FOUND 0
+t = 25.3148
+step = 208
+
+Solved pressure in 47
+Mean pressure (sorta) 0.170068MODE 2 RUNNING... FOUND 0
+t = 25.3626
+step = 209
+
+Solved pressure in 47
+Mean pressure (sorta) 0.172496MODE 2 RUNNING... FOUND 0
+t = 25.4107
+step = 210
+
+Solved pressure in 43
+Mean pressure (sorta) 0.17055MODE 2 RUNNING... FOUND 0
+t = 25.4592
+step = 211
+
+Solved pressure in 41
+Mean pressure (sorta) 0.162076MODE 2 RUNNING... FOUND 0
+t = 25.5077
+step = 212
+
+Solved pressure in 41
+Mean pressure (sorta) 0.158839MODE 2 RUNNING... FOUND 0
+t = 25.5362
+step = 213
+
+Solved pressure in 42
+Mean pressure (sorta) 0.146604MODE 2 RUNNING... FOUND 0
+t = 25.5658
+step = 214
+
+Solved pressure in 47
+Mean pressure (sorta) 0.15023MODE 2 RUNNING... FOUND 0
+t = 25.616
+step = 215
+
+Solved pressure in 41
+Mean pressure (sorta) 0.154985MODE 2 RUNNING... FOUND 0
+t = 25.666
+step = 216
+
+Solved pressure in 42
+Mean pressure (sorta) 0.157002MODE 2 RUNNING... FOUND 0
+t = 25.7142
+step = 217
+
+Solved pressure in 48
+Mean pressure (sorta) 0.143685MODE 2 RUNNING... FOUND 0
+t = 25.7528
+step = 218
+
+Solved pressure in 45
+Mean pressure (sorta) 0.133083MODE 2 RUNNING... FOUND 0
+t = 25.7875
+step = 219
+
+Solved pressure in 42
+Mean pressure (sorta) 0.13192MODE 2 RUNNING... FOUND 0
+t = 25.82
+step = 220
+
+Solved pressure in 42
+Mean pressure (sorta) 0.133683MODE 2 RUNNING... FOUND 0
+t = 25.8508
+step = 221
+
+Solved pressure in 44
+Mean pressure (sorta) 0.124489MODE 2 RUNNING... FOUND 0
+t = 25.8752
+step = 222
+
+Solved pressure in 40
+Mean pressure (sorta) 0.118326MODE 2 RUNNING... FOUND 0
+t = 25.9043
+step = 223
+
+Solved pressure in 44
+Mean pressure (sorta) 0.14269MODE 2 RUNNING... FOUND 0
+t = 25.9322
+step = 224
+
+Solved pressure in 45
+Mean pressure (sorta) 0.14588MODE 2 RUNNING... FOUND 0
+t = 25.9661
+step = 225
+
+Solved pressure in 50
+Mean pressure (sorta) 0.13661MODE 2 RUNNING... FOUND 0
+t = 25.9955
+step = 226
+
+Solved pressure in 40
+Mean pressure (sorta) 0.113485MODE 2 RUNNING... FOUND 0
+t = 26.0209
+step = 227
+
+Solved pressure in 44
+Mean pressure (sorta) 0.105685MODE 2 RUNNING... FOUND 0
+t = 26.0517
+step = 228
+
+Solved pressure in 44
+Mean pressure (sorta) 0.106454MODE 2 RUNNING... FOUND 0
+t = 26.0882
+step = 229
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0924751MODE 2 RUNNING... FOUND 0
+t = 26.1249
+step = 230
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0863094MODE 2 RUNNING... FOUND 0
+t = 26.1662
+step = 231
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0875241MODE 2 RUNNING... FOUND 0
+t = 26.1915
+step = 232
+
+Solved pressure in 39
+Mean pressure (sorta) 0.0843823MODE 2 RUNNING... FOUND 0
+t = 26.219
+step = 233
+
+Solved pressure in 47
+Mean pressure (sorta) 0.0804092MODE 2 RUNNING... FOUND 0
+t = 26.2651
+step = 234
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0648542MODE 2 RUNNING... FOUND 0
+t = 26.3136
+step = 235
+
+Solved pressure in 46
+Mean pressure (sorta) 0.0445818MODE 2 RUNNING... FOUND 0
+t = 26.3661
+step = 236
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0302583MODE 2 RUNNING... FOUND 0
+t = 26.4187
+step = 237
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0232601MODE 2 RUNNING... FOUND 0
+t = 26.4697
+step = 238
+
+Solved pressure in 37
+Mean pressure (sorta) 0.0154708MODE 2 RUNNING... FOUND 0
+t = 26.4987
+step = 239
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00769111MODE 2 RUNNING... FOUND 0
+t = 26.5496
+step = 240
+
+Solved pressure in 41
+Mean pressure (sorta) 0.0191572MODE 2 RUNNING... FOUND 0
+t = 26.5766
+step = 241
+
+Solved pressure in 44
+Mean pressure (sorta) 0.0272087MODE 2 RUNNING... FOUND 0
+t = 26.6143
+step = 242
+
+Solved pressure in 40
+Mean pressure (sorta) 0.0309703MODE 2 RUNNING... FOUND 0
+t = 26.664
+step = 243
+
+Solved pressure in 43
+Mean pressure (sorta) 0.0235578MODE 2 RUNNING... FOUND 0
+t = 26.7149
+step = 244
+
+Solved pressure in 49
+Mean pressure (sorta) 0.0145394MODE 2 RUNNING... FOUND 0
+t = 26.7665
+step = 245
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00207777MODE 2 RUNNING... FOUND 0
+t = 26.8183
+step = 246
+
+Solved pressure in 41
+Mean pressure (sorta) -0.00958311MODE 2 RUNNING... FOUND 0
+t = 26.8461
+step = 247
+
+Solved pressure in 37
+Mean pressure (sorta) -0.0121383MODE 2 RUNNING... FOUND 0
+t = 26.8746
+step = 248
+
+Solved pressure in 39
+Mean pressure (sorta) -0.0215242MODE 2 RUNNING... FOUND 0
+t = 26.9078
+step = 249
+
+Solved pressure in 46
+Mean pressure (sorta) -0.0252556MODE 2 RUNNING... FOUND 0
+t = 26.9616
+step = 250
+
+Solved pressure in 46
+Mean pressure (sorta) -0.0442733MODE 2 RUNNING... FOUND 0
+t = 27.0072
+step = 251
+
+Solved pressure in 45
+Mean pressure (sorta) -0.0709557MODE 2 RUNNING... FOUND 0
+t = 27.0486
+step = 252
+
+Solved pressure in 41
+Mean pressure (sorta) -0.0925387MODE 2 RUNNING... FOUND 0
+t = 27.0937
+step = 253
+
+Solved pressure in 46
+Mean pressure (sorta) -0.112761MODE 2 RUNNING... FOUND 0
+t = 27.1427
+step = 254
+
+Solved pressure in 44
+Mean pressure (sorta) -0.134251MODE 2 RUNNING... FOUND 0
+t = 27.1912
+step = 255
+
+Solved pressure in 42
+Mean pressure (sorta) -0.143378MODE 2 RUNNING... FOUND 0
+t = 27.2175
+step = 256
+
+Solved pressure in 44
+Mean pressure (sorta) -0.152691MODE 2 RUNNING... FOUND 0
+t = 27.2491
+step = 257
+
+Solved pressure in 43
+Mean pressure (sorta) -0.158152MODE 2 RUNNING... FOUND 0
+t = 27.289
+step = 258
+
+Solved pressure in 45
+Mean pressure (sorta) -0.162254MODE 2 RUNNING... FOUND 0
+t = 27.3359
+step = 259
+
+Solved pressure in 45
+Mean pressure (sorta) -0.170942MODE 2 RUNNING... FOUND 0
+t = 27.3809
+step = 260
+
+Solved pressure in 45
+Mean pressure (sorta) -0.193152MODE 2 RUNNING... FOUND 0
+t = 27.422
+step = 261
+
+Solved pressure in 47
+Mean pressure (sorta) -0.216277MODE 2 RUNNING... FOUND 0
+t = 27.4606
+step = 262
+
+Solved pressure in 46
+Mean pressure (sorta) -0.228184MODE 2 RUNNING... FOUND 0
+t = 27.4985
+step = 263
+
+Solved pressure in 49
+Mean pressure (sorta) -0.245066MODE 2 RUNNING... FOUND 0
+t = 27.5361
+step = 264
+
+Solved pressure in 45
+Mean pressure (sorta) -0.257316MODE 2 RUNNING... FOUND 0
+t = 27.5636
+step = 265
+
+Solved pressure in 43
+Mean pressure (sorta) -0.261946MODE 2 RUNNING... FOUND 0
+t = 27.6033
+step = 266
+
+Solved pressure in 46
+Mean pressure (sorta) -0.277142MODE 2 RUNNING... FOUND 0
+t = 27.6485
+step = 267
+
+Solved pressure in 47
+Mean pressure (sorta) -0.292021MODE 2 RUNNING... FOUND 0
+t = 27.6894
+step = 268
+
+Solved pressure in 45
+Mean pressure (sorta) -0.305127MODE 2 RUNNING... FOUND 0
+t = 27.7402
+step = 269
+
+Solved pressure in 45
+Mean pressure (sorta) -0.321511MODE 2 RUNNING... FOUND 0
+t = 27.7938
+step = 270
+
+Solved pressure in 45
+Mean pressure (sorta) -0.344436MODE 2 RUNNING... FOUND 0
+t = 27.8194
+step = 271
+
+Solved pressure in 48
+Mean pressure (sorta) -0.359779MODE 2 RUNNING... FOUND 0
+t = 27.8775
+step = 272
+
+Solved pressure in 45
+Mean pressure (sorta) -0.395508MODE 2 RUNNING... FOUND 0
+t = 27.9072
+step = 273
+
+Solved pressure in 45
+Mean pressure (sorta) -0.428057MODE 2 RUNNING... FOUND 0
+t = 27.9512
+step = 274
+
+Solved pressure in 46
+Mean pressure (sorta) -0.44811MODE 2 RUNNING... FOUND 0
+t = 28.009
+step = 275
+
+Solved pressure in 46
+Mean pressure (sorta) -0.476496MODE 2 RUNNING... FOUND 0
+t = 28.06
+step = 276
+
+Solved pressure in 46
+Mean pressure (sorta) -0.506165MODE 2 RUNNING... FOUND 0
+t = 28.1073
+step = 277
+
+Solved pressure in 44
+Mean pressure (sorta) -0.532738MODE 2 RUNNING... FOUND 0
+t = 28.1566
+step = 278
+
+Solved pressure in 46
+Mean pressure (sorta) -0.554961MODE 2 RUNNING... FOUND 0
+t = 28.1887
+step = 279
+
+Solved pressure in 46
+Mean pressure (sorta) -0.569412MODE 2 RUNNING... FOUND 0
+t = 28.2248
+step = 280
+
+Solved pressure in 46
+Mean pressure (sorta) -0.590063MODE 2 RUNNING... FOUND 0
+t = 28.266
+step = 281
+
+Solved pressure in 46
+Mean pressure (sorta) -0.599849MODE 2 RUNNING... FOUND 0
+t = 28.3054
+step = 282
+
+Solved pressure in 47
+Mean pressure (sorta) -0.600026MODE 2 RUNNING... FOUND 0
+t = 28.3441
+step = 283
+
+Solved pressure in 49
+Mean pressure (sorta) -0.613607MODE 2 RUNNING... FOUND 0
+t = 28.3916
+step = 284
+
+Solved pressure in 48
+Mean pressure (sorta) -0.612495MODE 2 RUNNING... FOUND 0
+t = 28.4382
+step = 285
+
+Solved pressure in 47
+Mean pressure (sorta) -0.641848MODE 2 RUNNING... FOUND 0
+t = 28.4883
+step = 286
+
+Solved pressure in 46
+Mean pressure (sorta) -0.658075MODE 2 RUNNING... FOUND 0
+t = 28.5296
+step = 287
+
+Solved pressure in 50
+Mean pressure (sorta) -0.653807MODE 2 RUNNING... FOUND 0
+t = 28.5741
+step = 288
+
+Solved pressure in 44
+Mean pressure (sorta) -0.653204MODE 2 RUNNING... FOUND 0
+t = 28.6262
+step = 289
+
+Solved pressure in 51
+Mean pressure (sorta) -0.657152MODE 2 RUNNING... FOUND 0
+t = 28.6778
+step = 290
+
+Solved pressure in 49
+Mean pressure (sorta) -0.65868MODE 2 RUNNING... FOUND 0
+t = 28.7371
+step = 291
+
+Solved pressure in 48
+Mean pressure (sorta) -0.671705MODE 2 RUNNING... FOUND 0
+t = 28.7924
+step = 292
+
+Solved pressure in 48
+Mean pressure (sorta) -0.6898MODE 2 RUNNING... FOUND 0
+t = 28.8378
+step = 293
+
+Solved pressure in 43
+Mean pressure (sorta) -0.70051MODE 2 RUNNING... FOUND 0
+t = 28.8802
+step = 294
+
+Solved pressure in 45
+Mean pressure (sorta) -0.708848MODE 2 RUNNING... FOUND 0
+t = 28.9253
+step = 295
+
+Solved pressure in 46
+Mean pressure (sorta) -0.710921MODE 2 RUNNING... FOUND 0
+t = 28.9837
+step = 296
+
+Solved pressure in 47
+Mean pressure (sorta) -0.724165MODE 2 RUNNING... FOUND 0
+t = 29.0413
+step = 297
+
+Solved pressure in 46
+Mean pressure (sorta) -0.752978MODE 2 RUNNING... FOUND 0
+t = 29.0755
+step = 298
+
+Solved pressure in 52
+Mean pressure (sorta) -0.750601MODE 2 RUNNING... FOUND 0
+t = 29.1223
+step = 299
+
+Solved pressure in 52
+Mean pressure (sorta) -0.757664MODE 2 RUNNING... FOUND 0
+t = 29.171
+step = 300
+
+Solved pressure in 46
+Mean pressure (sorta) -0.751014MODE 2 RUNNING... FOUND 0
+t = 29.222
+step = 301
+
+Solved pressure in 47
+Mean pressure (sorta) -0.732482MODE 2 RUNNING... FOUND 0
+t = 29.2835
+step = 302
+
+Solved pressure in 47
+Mean pressure (sorta) -0.715117MODE 2 RUNNING... FOUND 0
+t = 29.342
+step = 303
+
+Solved pressure in 43
+Mean pressure (sorta) -0.689365MODE 2 RUNNING... FOUND 0
+t = 29.3977
+step = 304
+
+Solved pressure in 47
+Mean pressure (sorta) -0.66886MODE 2 RUNNING... FOUND 0
+t = 29.4557
+step = 305
+
+Solved pressure in 43
+Mean pressure (sorta) -0.681556MODE 2 RUNNING... FOUND 0
+t = 29.5026
+step = 306
+
+Solved pressure in 45
+Mean pressure (sorta) -0.686279MODE 2 RUNNING... FOUND 0
+t = 29.5436
+step = 307
+
+Solved pressure in 46
+Mean pressure (sorta) -0.698737MODE 2 RUNNING... FOUND 0
+t = 29.5847
+step = 308
+
+Solved pressure in 44
+Mean pressure (sorta) -0.714253MODE 2 RUNNING... FOUND 0
+t = 29.6201
+step = 309
+
+Solved pressure in 46
+Mean pressure (sorta) -0.718155MODE 2 RUNNING... FOUND 0
+t = 29.6749
+step = 310
+
+Solved pressure in 47
+Mean pressure (sorta) -0.72908MODE 2 RUNNING... FOUND 0
+t = 29.7249
+step = 311
+
+Solved pressure in 48
+Mean pressure (sorta) -0.74078MODE 2 RUNNING... FOUND 0
+t = 29.7714
+step = 312
+
+Solved pressure in 47
+Mean pressure (sorta) -0.765086MODE 2 RUNNING... FOUND 0
+t = 29.8186
+step = 313
+
+Solved pressure in 48
+Mean pressure (sorta) -0.770459MODE 2 RUNNING... FOUND 0
+t = 29.8538
+step = 314
+
+Solved pressure in 44
+Mean pressure (sorta) -0.761621MODE 2 RUNNING... FOUND 0
+t = 29.9176
+step = 315
+
+Solved pressure in 45
+Mean pressure (sorta) -0.7531MODE 2 RUNNING... FOUND 0
+t = 29.9736
+step = 316
+
+Solved pressure in 44
+Mean pressure (sorta) -0.730448MODE 2 RUNNING... FOUND 0
+t = 30
+step = 317
+
+Outputting data
+testdir = ./output/ObjScaleTestRadius0.62/
+Outputting data
+./output/ObjScaleTestRadius0.62/out
+./output/ObjScaleTestRadius0.62/poolOut
+./output/ObjScaleTestRadius0.62/poolVel
+./output/ObjScaleTestRadius0.62/MSSEdges
+./output/ObjScaleTestRadius0.62/MSSNodes
+./output/ObjScaleTestRadius0.62/MSSVels
+./output/ObjScaleTestRadius0.62/MSSTracers
+./output/ObjScaleTestRadius0.62/medialAxis
+=========================================================
+The total run time of the algorithm: 106
+The average run time per step of the algorithm: 0.334385
+=========================================================
+xa = 0, xb = 5
+ya = 0, yb = 10
+nx = 160, ny = 160
+u = 0, v = -0.1
+re = 1000
+useEno = 1
+bctype = downDirFlowBC
+tEnd = 30
+num_objects 1
+objFunc coneShapeFun
+objType 1
+u0 0
+v0 -0.1
+Number of objects = 1
+collisionDist = 0.105469
+Creating the solver
+MODE 2 RUNNING... FOUND 0
+hi
+Solved pressure in 38
+Mean pressure (sorta) -0.00533158MODE 2 RUNNING... FOUND 0
+t = 0.195312
+step = 1
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00332892MODE 2 RUNNING... FOUND 0
+t = 0.390625
+step = 2
+
+Solved pressure in 38
+Mean pressure (sorta) -0.00239828MODE 2 RUNNING... FOUND 0
+t = 0.585938
+step = 3
+
+Solved pressure in 32
+Mean pressure (sorta) -0.00176214MODE 2 RUNNING... FOUND 0
+t = 0.78125
+step = 4
+
+Solved pressure in 37
+Mean pressure (sorta) -0.00126856MODE 2 RUNNING... FOUND 0
+t = 0.976562
+step = 5
+
+Solved pressure in 38
+Mean pressure (sorta) -0.000722515MODE 2 RUNNING... FOUND 0
+t = 1.17188
+step = 6
+
+Solved pressure in 38
+Mean pressure (sorta) -0.000282371MODE 2 RUNNING... FOUND 0
+t = 1.36719
+step = 7
+
+Solved pressure in 38
+Mean pressure (sorta) 0.000314929MODE 2 RUNNING... FOUND 0
+t = 1.5625
+step = 8
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00095384MODE 2 RUNNING... FOUND 0
+t = 1.75781
+step = 9
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00146787MODE 2 RUNNING... FOUND 0
+t = 1.95312
+step = 10
+
+Solved pressure in 37
+Mean pressure (sorta) 0.00218259MODE 2 RUNNING... FOUND 0
+t = 2.14844
+step = 11
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00271235MODE 2 RUNNING... FOUND 0
+t = 2.33479
+step = 12
+
+Solved pressure in 51
+Mean pressure (sorta) 0.0034019MODE 2 RUNNING... FOUND 0
+t = 2.49808
+step = 13
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00385136MODE 2 RUNNING... FOUND 0
+t = 2.63072
+step = 14
+
+Solved pressure in 45
+Mean pressure (sorta) 0.00510807MODE 2 RUNNING... FOUND 0
+t = 2.75948
+step = 15
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00482432MODE 2 RUNNING... FOUND 0
+t = 2.8827
+step = 16
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00490503MODE 2 RUNNING... FOUND 0
+t = 2.99553
+step = 17
+
+Solved pressure in 38
+Mean pressure (sorta) 0.00423118MODE 2 RUNNING... FOUND 0
+t = 3.09571
+step = 18
+
+Solved pressure in 41
+Mean pressure (sorta) 0.00369576MODE 2 RUNNING... FOUND 0
+t = 3.22144
+step = 19
+
+Solved pressure in 42
+Mean pressure (sorta) 0.00357072MODE 2 RUNNING... FOUND 0
+t = 3.3094
+step = 20
+
+Solved pressure in 40
+Mean pressure (sorta) 0.00166558MODE 2 RUNNING... FOUND 0
+t = 3.38725
+step = 21
+
+Solved pressure in 42
+Mean pressure (sorta) -0.00075362MODE 2 RUNNING... FOUND 0
+t = 3.45959
+step = 22
+
+Solved pressure in 39
+Mean pressure (sorta) -0.00187894MODE 2 RUNNING... FOUND 0
+t = 3.52416
+step = 23
+
+Solved pressure in 40
+Mean pressure (sorta) -0.00514505MODE 2 RUNNING... FOUND 0
+t = 3.59338
+step = 24
+
+Solved pressure in 41
+Mean pressure (sorta) -0.00857965MODE 2 RUNNING... FOUND 0
+t = 3.65681
+step = 25
+
+Solved pressure in 40
+Mean pressure (sorta) -0.0125942MODE 2 RUNNING... FOUND 0
+t = 3.7323
+step = 26
+
+Solved pressure in 39
+Mean pressure (sorta) -0.0166513MODE 2 RUNNING... FOUND 0
+t = 3.79773
+step = 27
+
+Solved pressure in 39
+Mean pressure (sorta) -0.0232962MODE 2 RUNNING... FOUND 0
+t = 3.84477
+step = 28
+
+Solved pressure in 42
+Mean pressure (sorta) -0.0297292MODE 2 RUNNING... FOUND 0
+t = 3.90352
+step = 29
+
+Solved pressure in 38
+Mean pressure (sorta) -0.0435431MODE 2 RUNNING... FOUND 0
+t = 3.94263
+step = 30
+
+Solved pressure in 39
+Mean pressure (sorta) -0.0553922MODE 2 RUNNING... FOUND 0
+t = 3.97958
+step = 31
+
+Solved pressure in 37
+Mean pressure (sorta) -0.0647929MODE 2 RUNNING... FOUND 0
+t = 4.01741
+step = 32
+
+Solved pressure in 44
+Mean pressure (sorta) -0.0775299MODE 2 RUNNING... FOUND 0
+t = 4.05573
+step = 33
+
+Solved pressure in 44
+Mean pressure (sorta) -0.0883959MODE 2 RUNNING... FOUND 0
+t = 4.0936
+step = 34
+
+Solved pressure in 43
+Mean pressure (sorta) -0.103582MODE 2 RUNNING... FOUND 0
+t = 4.1316
+step = 35
+
+Solved pressure in 42
+Mean pressure (sorta) -0.120142MODE 2 RUNNING... FOUND 0
+t = 4.16721
+step = 36
+
+Solved pressure in 41
+Mean pressure (sorta) -0.133818MODE 2 RUNNING... FOUND 0
+t = 4.20936
+step = 37
+
+Solved pressure in 38
+Mean pressure (sorta) -0.145618MODE 2 RUNNING... FOUND 0
+t = 4.23984
+step = 38
+
+Solved pressure in 42
+Mean pressure (sorta) -0.147929MODE 2 RUNNING... FOUND 0
+t = 4.27978
+step = 39
+
+Solved pressure in 45
+Mean pressure (sorta) -0.167439MODE 2 RUNNING... FOUND 0
+t = 4.31451
+step = 40
+
+Solved pressure in 38
+Mean pressure (sorta) -0.186565MODE 2 RUNNING... FOUND 0
+t = 4.34261
+step = 41
+
+Solved pressure in 36
+Mean pressure (sorta) -0.185655MODE 2 RUNNING... FOUND 0
+t = 4.36759
+step = 42
+
+Solved pressure in 36
+Mean pressure (sorta) -0.208151MODE 2 RUNNING... FOUND 0
+t = 4.39277
+step = 43
+
+Solved pressure in 38
+Mean pressure (sorta) -0.239484MODE 2 RUNNING... FOUND 0
+t = 4.41462
+step = 44
+
+Solved pressure in 42
+Mean pressure (sorta) -0.26811MODE 2 RUNNING... FOUND 0
+t = 4.43676
+step = 45
+
+Solved pressure in 41
+Mean pressure (sorta) -0.289075MODE 2 RUNNING... FOUND 0
+t = 4.45515
+step = 46
+
+Solved pressure in 37
+Mean pressure (sorta) -0.334598MODE 2 RUNNING... FOUND 0
+t = 4.47005
+step = 47
+
+Solved pressure in 38
+Mean pressure (sorta) -0.365852MODE 2 RUNNING... FOUND 0
+t = 4.48687
+step = 48
+
+Solved pressure in 40
+Mean pressure (sorta) -0.428499MODE 2 RUNNING... FOUND 0
+t = 4.5043
+step = 49
+
+Solved pressure in 38
+Mean pressure (sorta) -0.446513MODE 2 RUNNING... FOUND 0
+t = 4.52698
+step = 50
+
+Solved pressure in 41
+Mean pressure (sorta) -0.485471MODE 2 RUNNING... FOUND 0
+t = 4.5465
+step = 51
+
+Solved pressure in 40
+Mean pressure (sorta) -0.47509MODE 2 RUNNING... FOUND 0
+t = 4.56271
+step = 52
+
+Solved pressure in 35
+Mean pressure (sorta) -0.462886MODE 2 RUNNING... FOUND 0
+t = 4.5771
+step = 53
+
+Solved pressure in 45
+Mean pressure (sorta) -0.492506MODE 2 RUNNING... FOUND 0
+t = 4.59489
+step = 54
+
+Solved pressure in 35
+Mean pressure (sorta) -0.512967MODE 2 RUNNING... FOUND 0
+t = 4.60937
+step = 55
+
+Solved pressure in 36
+Mean pressure (sorta) -0.488163MODE 2 RUNNING... FOUND 0
+t = 4.62776
+step = 56
+
+Solved pressure in 40
+Mean pressure (sorta) -0.646993MODE 2 RUNNING... FOUND 0
+t = 4.64181
+step = 57
+
+Solved pressure in 35
+Mean pressure (sorta) -0.616748MODE 2 RUNNING... FOUND 0
+t = 4.65819
+step = 58
+
+Solved pressure in 46
+Mean pressure (sorta) -0.59343MODE 2 RUNNING... FOUND 0
+t = 4.67183
+step = 59
+
+Solved pressure in 36
+Mean pressure (sorta) -0.666622MODE 2 RUNNING... FOUND 0
+t = 4.68423
+step = 60
+
+Solved pressure in 36
+Mean pressure (sorta) -0.774241MODE 2 RUNNING... FOUND 0
+t = 4.69547
+step = 61
+
+Solved pressure in 35
+Mean pressure (sorta) -0.924563MODE 2 RUNNING... FOUND 0
+t = 4.70408
+step = 62
+
+Solved pressure in 35
+Mean pressure (sorta) -0.717069MODE 2 RUNNING... FOUND 0
+t = 4.70906
+step = 63
+
+Solved pressure in 38
+Mean pressure (sorta) -1.04111MODE 2 RUNNING... FOUND 0
+t = 4.71409
+step = 64
+
+Solved pressure in 40
+Mean pressure (sorta) -1.4015MODE 2 RUNNING... FOUND 0
+t = 4.7198
+step = 65
+
+Solved pressure in 33
+Mean pressure (sorta) -1.23489MODE 2 RUNNING... FOUND 0
+t = 4.72463
+step = 66
+
+Solved pressure in 41
+Mean pressure (sorta) -1.08388MODE 2 RUNNING... FOUND 0
+t = 4.72812
+step = 67
+
+Solved pressure in 37
+Mean pressure (sorta) -0.576091MODE 2 RUNNING... FOUND 0
+t = 4.73228
+step = 68
+
+Solved pressure in 41
+Mean pressure (sorta) -4.89144MODE 2 RUNNING... FOUND 0
+t = 4.73398
+step = 69
+
+Solved pressure in 40
+Mean pressure (sorta) 70.3333MODE 2 RUNNING... FOUND 0
+t = 4.73454
+step = 70
+
+Solved pressure in 36
+Mean pressure (sorta) -433.856MODE 2 RUNNING... FOUND 0
+t = 4.73467
+step = 71
+
+Solved pressure in 37
+Mean pressure (sorta) -899.588MODE 2 RUNNING... FOUND 0
+t = 4.73479
+step = 72
+
+Solved pressure in 36
+Mean pressure (sorta) 32374.6MODE 2 RUNNING... FOUND 0
+t = 4.73482
+step = 73
+
+Solved pressure in 39
+Mean pressure (sorta) -559687MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 74
+
+Solved pressure in 36
+Mean pressure (sorta) 671582MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 75
+
+Solved pressure in 32
+Mean pressure (sorta) 3.49507e+06MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 76
+
+Solved pressure in 36
+Mean pressure (sorta) 2.72351e+06MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 77
+
+Solved pressure in 39
+Mean pressure (sorta) -5.68123e+06MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 78
+
+Solved pressure in 38
+Mean pressure (sorta) 5.3055e+07MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 79
+
+Solved pressure in 47
+Mean pressure (sorta) -8.21417e+08MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 80
+
+Solved pressure in 44
+Mean pressure (sorta) 5.65505e+09MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 81
+
+Solved pressure in 36
+Mean pressure (sorta) -4.63046e+10MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 82
+
+Solved pressure in 40
+Mean pressure (sorta) 5.91094e+11MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 83
+
+Solved pressure in 33
+Mean pressure (sorta) -3.25704e+12MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 84
+
+Solved pressure in 36
+Mean pressure (sorta) -4.15724e+12MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 85
+
+Solved pressure in 35
+Mean pressure (sorta) 1.23858e+14MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 86
+
+Solved pressure in 39
+Mean pressure (sorta) 5.95325e+14MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 87
+
+Solved pressure in 40
+Mean pressure (sorta) -5.01907e+15MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 88
+
+Solved pressure in 39
+Mean pressure (sorta) 2.50793e+16MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 89
+
+Solved pressure in 43
+Mean pressure (sorta) -2.96504e+17MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 90
+
+Solved pressure in 37
+Mean pressure (sorta) 1.81316e+18MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 91
+
+Solved pressure in 29
+Mean pressure (sorta) -2.40168e+18MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 92
+
+Solved pressure in 41
+Mean pressure (sorta) 2.73995e+20MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 93
+
+Solved pressure in 44
+Mean pressure (sorta) 5.43962e+20MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 94
+
+Solved pressure in 43
+Mean pressure (sorta) 3.22551e+20MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 95
+
+Solved pressure in 40
+Mean pressure (sorta) -2.78449e+20MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 96
+
+Solved pressure in 43
+Mean pressure (sorta) 1.94337e+22MODE 2 RUNNING... FOUND 0
+t = 4.73483
+step = 97
+
+Solved pressure in 39
+Mean pressure (sorta) -1.5238e+24MODE 2 RUNNING... FOUND 0
+terminate called after throwing an instance of 'std::out_of_range'
+  what():  vector::_M_range_check: __n (which is 18446744073709551615) >= this->size() (which is 1)
+['./TestDrivers/2DDrivers/ObjScaleTest0.16', './TestDrivers/2DDrivers/ObjScaleTest0.62', './TestDrivers/2DDrivers/ObjScaleTest0.078', './TestDrivers/2DDrivers/ObjScaleTest1.2', './TestDrivers/2DDrivers/ObjScaleTest0.31']
+['ObjScaleTest0.16', 'ObjScaleTest0.62', 'ObjScaleTest0.078', 'ObjScaleTest1.2', 'ObjScaleTest0.31']
+====================================
+Functions available:
+
+create_test()
+grid_scale_test()
+obj_scale_test()
+full_scale_test()
+run_scale_experiment()
+run_obj_scale_experiment()
+create_scale_plot()
+run_solver()
+exit()
+
+====================================
+call function() = evaling exit()

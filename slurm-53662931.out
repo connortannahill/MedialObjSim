@@ -1,0 +1,903 @@
+g++ -Wall -std=c++17 -I../src -I./lib/eigen/ -I./lib/nanoflann/include/ -O3 main_from_txt_3d.cpp src/3DSolver/Diff3DComparator.cpp src/3DSolver/SolidObject3D.cpp src/3DSolver/NSSolver3D.cpp src/3DSolver/Pool3D.cpp src/3DSolver/Boundary3D.cpp src/3DSolver/MomentumSolver3D.cpp src/3DSolver/KDPointCloud3D.cpp src/3DSolver/PressureSolver3D.cpp src/3DSolver/SimParams3D.cpp src/3DSolver/MassSpring3D.cpp src/LASolver/accel_class.cpp src/LASolver/MatrixIter.cpp src/LASolver/rcm.cpp src/LASolver/SparseItUtil.cpp src/LASolver/ILU_class.cpp src/Utils/GridValComparator.cpp src/Utils/Assembly.cpp src/Utils/GridVal2D.cpp src/Utils/GridVal3D.cpp src/Utils/SolidParams.cpp src/Utils/TestFormatter.cpp src/Utils/ADMMPG.cpp -o fluidsolver3d.exe
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::detectCollisions()’:
+src/3DSolver/Pool3D.cpp:832:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  832 |                 for (int i = 0; i < nearestMss.size(); i++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::updatePoolVelocities(double, double***, double***, double***, double***, int)’:
+src/3DSolver/Pool3D.cpp:2511:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2511 |                 for (int k = 0; k < solids->at(i).pntList->size(); k++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::outputPool(const char*)’:
+src/3DSolver/Pool3D.cpp:2826:9: warning: unused variable ‘onePercent’ [-Wunused-variable]
+ 2826 |     int onePercent = (int) (tot / (100.0));
+      |         ^~~~~~~~~~
+src/3DSolver/Pool3D.cpp:2828:9: warning: unused variable ‘Pct’ [-Wunused-variable]
+ 2828 |     int Pct = 0;
+      |         ^~~
+src/3DSolver/Pool3D.cpp:2829:9: warning: unused variable ‘off’ [-Wunused-variable]
+ 2829 |     int off = 0;
+      |         ^~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::outputAllStructures(const char*)’:
+src/3DSolver/Pool3D.cpp:2908:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2908 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::outputAllStructureNodes(const char*)’:
+src/3DSolver/Pool3D.cpp:2922:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2922 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::outputAllStructureVels(const char*)’:
+src/3DSolver/Pool3D.cpp:2936:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2936 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/3DSolver/Pool3D.cpp: In member function ‘void Pool3D::embedShape(SolidObject3D&, int)’:
+src/3DSolver/Pool3D.cpp:1449:83: warning: ‘min_z’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1449 |         this->tracers[structNum].z = simutils::midpoint(this->z[min_z-1], this->z[min_z]);
+      |                                                                                   ^~~~~
+src/3DSolver/Pool3D.cpp:1448:83: warning: ‘min_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1448 |         this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
+      |                                                                                   ^~~~~
+src/3DSolver/Pool3D.cpp:1447:83: warning: ‘min_x’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1447 |         this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
+      |                                                                                   ^~~~~
+src/3DSolver/PressureSolver3D.cpp: In member function ‘void PressureSolver3D::setUpMatrixStruct(int, int, int)’:
+src/3DSolver/PressureSolver3D.cpp:70:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   70 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/3DSolver/PressureSolver3D.cpp:88:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   88 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/3DSolver/PressureSolver3D.cpp: In member function ‘void PressureSolver3D::setUpPressureRHS(double, double***, double***, double***, double***, Pool3D*)’:
+src/3DSolver/PressureSolver3D.cpp:319:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  319 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/3DSolver/PressureSolver3D.cpp: In member function ‘void PressureSolver3D::solvePCG(double, Pool3D*, double***, double***, double***, double***, bool, SparseItObj::ParamIter&)’:
+src/3DSolver/PressureSolver3D.cpp:375:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  375 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In copy constructor ‘mass_spring::MassSpring3D::MassSpring3D(const mass_spring::MassSpring3D&)’:
+src/3DSolver/MassSpring3D.cpp:82:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   82 |         for (int i = 0; i < 3*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In constructor ‘mass_spring::MassSpring3D::MassSpring3D(Pool3D&, int, SolidObject3D&, int, int)’:
+src/3DSolver/MassSpring3D.cpp:259:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  259 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:427:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  427 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘virtual void mass_spring::MassSpring3D::buildDMatrix()’:
+src/3DSolver/MassSpring3D.cpp:518:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  518 |     for (int col = 0; col < edgeList->size(); col++) {
+      |                       ~~~~^~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘virtual void mass_spring::MassSpring3D::buildWMatrix(double)’:
+src/3DSolver/MassSpring3D.cpp:592:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  592 |     for (int i = 0; i < d*edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘virtual void mass_spring::MassSpring3D::prox(double, Eigen::VectorXd&, Eigen::VectorXd&, Eigen::VectorXd&)’:
+src/3DSolver/MassSpring3D.cpp:608:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  608 |     for (int i = 0; i < edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘SparseItObj::MatrixIter* mass_spring::MassSpring3D::createStiffnessMatrix()’:
+src/3DSolver/MassSpring3D.cpp:710:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  710 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:755:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  755 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:773:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  773 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::applyBoundaryForces(Pool3D&, double****, int, double*, double*)’:
+src/3DSolver/MassSpring3D.cpp:1048:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1048 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::eulerSolve(double, int, bool)’:
+src/3DSolver/MassSpring3D.cpp:1273:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1273 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::linearImplicitSolve(double, int, bool)’:
+src/3DSolver/MassSpring3D.cpp:1450:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1450 |     for (int r = 0; r < 3*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:1483:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1483 |     for (int r = 0; r < 3*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:1496:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1496 |     for (int i = 0; i < 3*pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:1522:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+ 1522 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::verletSolve(double, int, bool)’:
+src/3DSolver/MassSpring3D.cpp:1578:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1578 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::applyBodyForces()’:
+src/3DSolver/MassSpring3D.cpp:1634:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1634 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::updateSolidVels(double, Pool3D&, double****, double*, int, bool)’:
+src/3DSolver/MassSpring3D.cpp:1682:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1682 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:1700:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1700 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::updateSolidLocs(Pool3D&, bool)’:
+src/3DSolver/MassSpring3D.cpp:1765:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1765 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘bool mass_spring::MassSpring3D::redundantEdges()’:
+src/3DSolver/MassSpring3D.cpp:1863:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1863 |     for (int i = 0; i < edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:1867:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1867 |         for (int j = 0; j < edgeList->size(); j++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::createFaceList()’:
+src/3DSolver/MassSpring3D.cpp:2523:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2523 |     for (int pntOneIdx = 0; pntOneIdx < pntList->size(); pntOneIdx++) {
+      |                             ~~~~~~~~~~^~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:2641:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::face3D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2641 |     for (int i = 0; i < faceList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:2574:10: warning: unused variable ‘finished’ [-Wunused-variable]
+ 2574 |     bool finished = false;
+      |          ^~~~~~~~
+src/3DSolver/MassSpring3D.cpp:2575:12: warning: unused variable ‘centroidOne’ [-Wunused-variable]
+ 2575 |     double centroidOne[3];
+      |            ^~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:2576:12: warning: unused variable ‘centroidTwo’ [-Wunused-variable]
+ 2576 |     double centroidTwo[3];
+      |            ^~~~~~~~~~~
+src/3DSolver/MassSpring3D.cpp:2577:12: warning: unused variable ‘bCoor1’ [-Wunused-variable]
+ 2577 |     double bCoor1[3];
+      |            ^~~~~~
+src/3DSolver/MassSpring3D.cpp:2578:12: warning: unused variable ‘bCoor2’ [-Wunused-variable]
+ 2578 |     double bCoor2[3];
+      |            ^~~~~~
+src/3DSolver/MassSpring3D.cpp:2580:9: warning: unused variable ‘curIdx’ [-Wunused-variable]
+ 2580 |     int curIdx = 0;
+      |         ^~~~~~
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::interpFaceVels(double*, double*)’:
+src/3DSolver/MassSpring3D.cpp:2177:81: warning: ‘closestBaryCoords[2]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2177 |     out[2] = alph*(*qt)[3*closestIds[0]+2] + beta*(*qt)[3*closestIds[1]+2] + gam*(*qt)[3*closestIds[2]+2];
+src/3DSolver/MassSpring3D.cpp:2177:50: warning: ‘closestBaryCoords[1]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2177 |     out[2] = alph*(*qt)[3*closestIds[0]+2] + beta*(*qt)[3*closestIds[1]+2] + gam*(*qt)[3*closestIds[2]+2];
+src/3DSolver/MassSpring3D.cpp:2177:18: warning: ‘closestBaryCoords[0]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2177 |     out[2] = alph*(*qt)[3*closestIds[0]+2] + beta*(*qt)[3*closestIds[1]+2] + gam*(*qt)[3*closestIds[2]+2];
+In file included from src/3DSolver/Diff3DComparator.h:4,
+                 from src/3DSolver/MassSpring3D.h:5,
+                 from src/3DSolver/MassSpring3D.cpp:1:
+src/3DSolver/../Utils/SimUtilities.h: In member function ‘bool mass_spring::MassSpring3D::pntAlongEdge(double*, double*, double*)’:
+src/3DSolver/../Utils/SimUtilities.h:82:19: warning: ‘t’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   82 |         return abs(a - b) < eps;
+      |                ~~~^~~~~~~
+src/3DSolver/MassSpring3D.cpp:2697:12: note: ‘t’ was declared here
+ 2697 |     double t;
+      |            ^
+src/3DSolver/MassSpring3D.cpp: In member function ‘void mass_spring::MassSpring3D::updateSolidVels(double, Pool3D&, double****, double*, int, bool)’:
+src/3DSolver/MassSpring3D.cpp:1709:26: warning: ‘temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1709 |         this->updateMode = temp;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~
+src/LASolver/accel_class.cpp: In constructor ‘SparseItObj::scaler_orthomin::scaler_orthomin(int, double*, int)’:
+src/LASolver/accel_class.cpp:62:16: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   62 |     catch(std::bad_alloc) {
+      |                ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::sfac2(const int*, const int*, int, int*, int*)’:
+src/LASolver/ILU_class.cpp:171:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  171 |   catch(std::bad_alloc){// catch
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp:135:7: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  135 |   int itemp, nrow;
+      |       ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::factor(const int*, const int*, const double*)’:
+src/LASolver/ILU_class.cpp:356:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  356 |   catch(std::bad_alloc){// catch block
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::facdrp(const int*, const int*, double*, double, int*, int*)’:
+src/LASolver/ILU_class.cpp:699:11: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  699 |       int itemp, nrow;
+      |           ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::merged(int, int*, int, double*, double, double*)’:
+src/LASolver/ILU_class.cpp:640:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  640 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+  641 |                             odiag[ rowsp[row].jaf[ii] ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/LASolver/ILU_class.cpp:644:17: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  644 |                 if( fabs( temp) > test){
+      |                 ^~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::elimrow(int, double*, double*, int*, int&, int&, int*, int*, double)’:
+src/LASolver/ILU_class.cpp:1503:21: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1503 |                     if( fabs(temp) > test ){ // insert new entry
+      |                     ^~
+src/LASolver/ILU_class.cpp:1494:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1494 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+ 1495 |                             odiag[ invord[ rowsp[row].jaf[ii] ]  ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Reading in everything
+xa = 0
+xb = 5
+ya = 0
+yb = 5
+za = 0
+zb = 10
+nx = 160
+ny = 160
+nz = 320
+cons_u = 0
+cons_v = 0
+cons_w = -0.1
+g_x = 0
+g_y = 0
+g_z = 0
+Re = 1000
+useEno = 1
+bcType = downDirFlowBC
+numObjects = 28
+objectFunc = coneShapeFun
+objectType = 2
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.6
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 52
+Adding paramName = cx paramValue = 2.5
+Adding paramName = cy paramValue = 2.5
+Adding paramName = cz paramValue = 5
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 16
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 335
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 49
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 113
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 60
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 201
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 337
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 331
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 37
+Adding paramName = cx paramValue = 1.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 118
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 131
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 301
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 203
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 192
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 10
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 150
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 270
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 355
+Adding paramName = cx paramValue = 2.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 155
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 315
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 227
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 1.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 123
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 148
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 7
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 2.2
+Adding paramName = cz paramValue = 8.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 36
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 6.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 198
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 7.2
+objectFunc = coneShapeFun
+objectType = 1
+Adding paramName = mass paramValue = 1
+Adding paramName = density paramValue = 1
+Adding paramName = r paramValue = 0.2
+Adding paramName = E paramValue = 10
+Adding paramName = eta paramValue = 0
+Adding paramName = a paramValue = 0
+Adding paramName = c paramValue = 0
+Adding paramName = deg paramValue = 39
+Adding paramName = cx paramValue = 3.2
+Adding paramName = cy paramValue = 3.2
+Adding paramName = cz paramValue = 8.2
+Making solver
+1
+1
+1
+1
+1
+1
+1
+1
+1
+tracer for the first (x, y, z) = (2.45312, 2.45312, 4.95312)
+tracer for the first (x, y, z) = (1.17188, 1.17188, 6.17188)
+tracer for the first (x, y, z) = (1.17188, 1.17188, 7.17188)
+tracer for the first (x, y, z) = (1.17188, 1.17188, 8.17188)
+tracer for the first (x, y, z) = (1.17188, 2.17188, 6.17188)
+tracer for the first (x, y, z) = (1.17188, 2.17188, 7.17188)
+tracer for the first (x, y, z) = (1.17188, 2.17188, 8.17188)
+tracer for the first (x, y, z) = (1.17188, 3.17188, 6.17188)
+tracer for the first (x, y, z) = (1.17188, 3.17188, 7.17188)
+tracer for the first (x, y, z) = (1.17188, 3.17188, 8.17188)
+tracer for the first (x, y, z) = (2.17188, 1.17188, 6.17188)
+tracer for the first (x, y, z) = (2.17188, 1.17188, 7.17188)
+tracer for the first (x, y, z) = (2.17188, 1.17188, 8.17188)
+tracer for the first (x, y, z) = (2.17188, 2.17188, 6.17188)
+tracer for the first (x, y, z) = (2.17188, 2.17188, 7.17188)
+tracer for the first (x, y, z) = (2.17188, 2.17188, 8.17188)
+tracer for the first (x, y, z) = (2.17188, 3.17188, 6.17188)
+tracer for the first (x, y, z) = (2.17188, 3.17188, 7.17188)
+tracer for the first (x, y, z) = (2.17188, 3.17188, 8.17188)
+tracer for the first (x, y, z) = (3.17188, 1.17188, 6.17188)
+tracer for the first (x, y, z) = (3.17188, 1.17188, 7.17188)
+tracer for the first (x, y, z) = (3.17188, 1.17188, 8.17188)
+tracer for the first (x, y, z) = (3.17188, 2.17188, 6.17188)
+tracer for the first (x, y, z) = (3.17188, 2.17188, 7.17188)
+tracer for the first (x, y, z) = (3.17188, 2.17188, 8.17188)
+tracer for the first (x, y, z) = (3.17188, 3.17188, 6.17188)
+tracer for the first (x, y, z) = (3.17188, 3.17188, 7.17188)
+tracer for the first (x, y, z) = (3.17188, 3.17188, 8.17188)
+Finished Making solver
+TAKING 10000 STEPS
+Solved equation in 74
+Mean pressure = 0.00618236
+MODE 2 RUNNING... FOUND 0
+t = 0.0813802
+step = 1
+
+Solved equation in 73
+Mean pressure = 0.0129072
+MODE 2 RUNNING... FOUND 0
+t = 0.16276
+step = 2
+
+Solved equation in 74
+Mean pressure = 0.0199905
+MODE 2 RUNNING... FOUND 0
+t = 0.244141
+step = 3
+
+Solved equation in 73
+Mean pressure = 0.0273416
+MODE 2 RUNNING... FOUND 0
+t = 0.325521
+step = 4
+
+Solved equation in 75
+Mean pressure = 0.0348679
+MODE 2 RUNNING... FOUND 0
+t = 0.406901
+step = 5
+
+Solved equation in 80
+Mean pressure = 0.0424953
+MODE 2 RUNNING... FOUND 0
+t = 0.488281
+step = 6
+
+Solved equation in 71
+Mean pressure = 0.0501797
+MODE 2 RUNNING... FOUND 0
+t = 0.569661
+step = 7
+
+Solved equation in 81
+Mean pressure = 0.0579009
+MODE 2 RUNNING... FOUND 0
+t = 0.651042
+step = 8
+
+Solved equation in 78
+Mean pressure = 0.0656362
+MODE 2 RUNNING... FOUND 0
+t = 0.732422
+step = 9
+
+Solved equation in 83
+Mean pressure = 0.0733344
+MODE 2 RUNNING... FOUND 0
+t = 0.813802
+step = 10
+
+Solved equation in 80
+Mean pressure = 0.0809417
+MODE 2 RUNNING... FOUND 0
+t = 0.895182
+step = 11
+
+Solved equation in 81
+Mean pressure = 0.0884048
+MODE 2 RUNNING... FOUND 0
+t = 0.976563
+step = 12
+
+Solved equation in 76
+Mean pressure = 0.095686
+MODE 2 RUNNING... FOUND 0
+t = 1.05794
+step = 13
+
+Solved equation in 76
+Mean pressure = 0.102756
+MODE 2 RUNNING... FOUND 0
+t = 1.13932
+step = 14
+
+Solved equation in 82
+Mean pressure = 0.109587
+MODE 2 RUNNING... FOUND 0
+t = 1.2207
+step = 15
+
+Solved equation in 77
+Mean pressure = 0.116165
+MODE 2 RUNNING... FOUND 0
+t = 1.30208
+step = 16
+
+Solved equation in 79
+Mean pressure = 0.122479
+MODE 2 RUNNING... FOUND 0
+t = 1.38346
+step = 17
+
+Solved equation in 81
+Mean pressure = 0.128524
+MODE 2 RUNNING... FOUND 0
+t = 1.46484
+step = 18
+
+Solved equation in 88
+Mean pressure = 0.134291
+MODE 2 RUNNING... FOUND 0
+t = 1.54622
+step = 19
+
+Solved equation in 90
+Mean pressure = 0.139765
+MODE 2 RUNNING... FOUND 0
+t = 1.6276
+step = 20
+
+Solved equation in 90
+Mean pressure = 0.144933
+MODE 2 RUNNING... FOUND 0
+t = 1.70898
+step = 21
+
+Solved equation in 81
+Mean pressure = 0.149782
+MODE 2 RUNNING... FOUND 0
+t = 1.79036
+step = 22
+
+Solved equation in 84
+Mean pressure = 0.15429
+MODE 2 RUNNING... FOUND 0
+t = 1.87174
+step = 23
+
+Solved equation in 84
+Mean pressure = 0.158427
+MODE 2 RUNNING... FOUND 0
+t = 1.95312
+step = 24
+
+Solved equation in 83
+Mean pressure = 0.162176
+MODE 2 RUNNING... FOUND 0
+t = 2.03451
+step = 25
+
+Solved equation in 94
+Mean pressure = 0.165534
+MODE 2 RUNNING... FOUND 0
+t = 2.11538
+step = 26
+
+Solved equation in 77
+Mean pressure = 0.168536
+MODE 2 RUNNING... FOUND 0
+t = 2.19445
+step = 27
+
+Solved equation in 81
+Mean pressure = 0.171164
+MODE 2 RUNNING... FOUND 0
+t = 2.2718
+step = 28
+
+Solved equation in 78
+Mean pressure = 0.173388
+MODE 2 RUNNING... FOUND 0
+t = 2.34748
+step = 29
+
+Solved equation in 77
+Mean pressure = 0.175191
+MODE 2 RUNNING... FOUND 0
+t = 2.4215
+step = 30
+
+Solved equation in 80
+Mean pressure = 0.176556
+MODE 2 RUNNING... FOUND 0
+t = 2.49392
+step = 31
+
+Solved equation in 79
+Mean pressure = 0.177465
+MODE 2 RUNNING... FOUND 0
+t = 2.56483
+step = 32
+
+Solved equation in 85
+Mean pressure = 0.177904
+MODE 2 RUNNING... FOUND 0
+t = 2.63429
+step = 33
+
+Solved equation in 75
+Mean pressure = 0.17787
+MODE 2 RUNNING... FOUND 0
+t = 2.70239
+step = 34
+
+Solved equation in 84
+Mean pressure = 0.177356
+MODE 2 RUNNING... FOUND 0
+t = 2.76921
+step = 35
+
+Solved equation in 83
+Mean pressure = 0.17636
+MODE 2 RUNNING... FOUND 0
+t = 2.83484
+step = 36
+
+Solved equation in 83
+Mean pressure = 0.174882
+MODE 2 RUNNING... FOUND 0
+t = 2.89936
+step = 37
+
+Solved equation in 89
+Mean pressure = 0.172928
+MODE 2 RUNNING... FOUND 0
+t = 2.96288
+step = 38
+
+Solved equation in 85
+Mean pressure = 0.17051
+MODE 2 RUNNING... FOUND 0
+t = 3.02547
+step = 39
+
+Solved equation in 93
+Mean pressure = 0.167651
+MODE 2 RUNNING... FOUND 0
+t = 3.08725
+step = 40
+
+Solved equation in 78
+Mean pressure = 0.164372
+MODE 2 RUNNING... FOUND 0
+t = 3.14826
+step = 41
+
+Solved equation in 78
+Mean pressure = 0.160703
+MODE 2 RUNNING... FOUND 0
+t = 3.20859
+step = 42
+
+Solved equation in 82
+Mean pressure = 0.156668
+MODE 2 RUNNING... FOUND 0
+t = 3.26816
+step = 43
+
+Solved equation in 81
+Mean pressure = 0.15229

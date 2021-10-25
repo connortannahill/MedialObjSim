@@ -165,12 +165,14 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
         XA, XB, YA, YB, ZA, ZB = lims
     
     r = float(obj_dict['r'])
-    b = r+eps
 
     create_input_from_dict(in_dict, (getTemplate2D() if dim == 2 else getTemplate3D()), f)
     f.write('\n')
     
     # Compute the maximum
+    print('div = {}'.format(2*r + eps))
+    print('diff = {}'.format(XB - XA))
+    print('imax = {}'.format((XB - XA)/(2*r + eps)))
     iMax = int(np.floor((XB - XA)/(2*r + eps)))
     jMax = int(np.floor((YB - YA)/(2*r + eps)))
     kMax = 1
@@ -187,11 +189,13 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     """ Now generate the centers for each object """
     centerList = []
     if dim == 2:
-        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r, YA+tup[1]*(2*r + eps)+r) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps, ZA+tup[2]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r, YA+tup[1]*(2*r + eps)+r, ZA+tup[2]*(2*r + eps)+r) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
     
+    print('imax = {0}, jmax = {1} , kmax = {2}'.format(iMax, jMax, kMax))
     print('size of centerList = {}'.format(len(centerList)))
+    print('center list = {}'.format(centerList))
     
     """ For each of these centers, give the output for the file! """
 
@@ -377,6 +381,7 @@ def grid_scale_test():
 
     diffs = [xb - xa, yb - ya, zb - za]
 
+
     for n in nVals:
         min_edge = min(diffs[:dim])
 
@@ -394,6 +399,8 @@ def grid_scale_test():
                 nTups.append((int((diffs[0]/min_edge)*n), n, int((diffs[2]/min_edge)*n)))
             else:
                 nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
+    
+    print('NTUP = {}'.format(nTups))
 
     objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
 
@@ -424,6 +431,8 @@ def grid_scale_test():
                 if dim == 3:
                     nz = n[2]
                     hz = abs(float(in_dict['zb']) - float(in_dict['za']))/nz
+                
+                print('hx = {0}, hy = {1}, hz = {2}'.format(hx, hy, hz))
 
                 # Compute the tolerance for the embedding 5h
                 epsMin = 0
@@ -528,27 +537,28 @@ def run_scale_experiment():
     else:
         subprocess.run('make sol3d')
     
-    from time import time
 
     for i in range(len(inputFiles)):
+        import time
+
         times = []
         num_runs = 1
 
-        for run in num_runs:
-            start = time()
+        for run in range(num_runs):
+            start = time.time()
 
             if dim == 2:
-                subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+                subprocess.run('./fluidsolver2d.exe {0} {1}'.format(inputFiles[i], MAX_STEPS).split())
             else:
-                subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
-            times.append(time() - start)
+                subprocess.run('./fluidsolver3d.exe {0} {1}'.format(inputFiles[i], MAX_STEPS).split())
+            times.append(time.time() - start)
         
         # Dump the data file
-        Path("output/ObjScaleTest/{1}".format(testName)).mkdir(parents=True, exist_ok=True)
+        Path("output/ObjScaleTest/{0}".format(testName)).mkdir(parents=True, exist_ok=True)
 
         with open('output/ObjScaleTest/{0}/{1}.out'.format(testName, inputFiles), 'w+') as f:
             f.write('{}\n'.format(num_runs))
-            for time in times():
+            for time in times:
                 f.write(str(time) + ' ')
 
 def run_obj_scale_experiment():
@@ -564,8 +574,8 @@ def run_obj_scale_experiment():
     num_list = np.argsort([float(file[len(testName):]) for file in inputFiles])
 
     inputFiles = list(np.array(inputFiles)[num_list])
+    # inputFiles = [inputFiles[0]]
 
-    from time import time
 
     if dim == 2:
         subprocess.run('make')
@@ -573,17 +583,19 @@ def run_obj_scale_experiment():
         subprocess.run('make sol3d')
 
     for i in range(len(inputFiles)):
+        import time 
+
         times = []
         num_runs = 1
 
         for run in range(num_runs):
-            start = time()
+            start = time.time()
 
             if dim == 2:
-                subprocess.run('./fluidsolver2d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
+                subprocess.run('./fluidsolver2d.exe {0} {1}'.format(inputFiles[i], MAX_STEPS).split())
             else:
-                subprocess.run('./fluidsolver3d.exe {0} {1} 1'.format(inputFiles[i], MAX_STEPS).split())
-            times.append(time() - start)
+                subprocess.run('./fluidsolver3d.exe {0} {1}'.format(inputFiles[i], MAX_STEPS).split())
+            times.append(time.time() - start)
         
         # Dump the data file
         Path("output/ScaleTest/{0}".format(testName)).mkdir(parents=True, exist_ok=True)
@@ -666,6 +678,7 @@ while(True):
 
     mode = input('call function() = ')
     if mode in FUNS_LIST:
+        print('evaling {}'.format(mode))
         eval(mode)
     else:
         print('Function {} does not exist!'.format(mode))

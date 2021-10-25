@@ -1,0 +1,242 @@
+A grid-based scaling test for performance
+ScaleTestTwo1280
+
+
+0
+5
+0
+5
+0
+10
+1280
+1280
+2560
+0.0
+0.0
+-0.1
+0.0
+0.0
+0.0
+1000
+1
+downDirFlowBC
+10.0
+
+
+12
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 8
+cx 0.75
+cy 0.75
+cz 4.25
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 268
+cx 0.75
+cy 0.75
+cz 5.84
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 137
+cx 0.75
+cy 0.75
+cz 7.43
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 328
+cx 0.75
+cy 2.34
+cz 4.25
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 352
+cx 0.75
+cy 2.34
+cz 5.84
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 40
+cx 0.75
+cy 2.34
+cz 7.43
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 108
+cx 2.34
+cy 0.75
+cz 4.25
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 267
+cx 2.34
+cy 0.75
+cz 5.84
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 142
+cx 2.34
+cy 0.75
+cz 7.43
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 213
+cx 2.34
+cy 2.34
+cz 4.25
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 54
+cx 2.34
+cy 2.34
+cz 5.84
+.
+
+coneShapeFun
+1
+0.0
+0.0
+-0.1
+mass 1
+density 1
+r 0.25
+E 10
+eta 0
+a 0
+c 0
+deg 316
+cx 2.34
+cy 2.34
+cz 7.43
+.
