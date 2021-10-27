@@ -395,7 +395,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         if (len(x_med) > 0):
             plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
-        plt.title(test + ', nstep = ' + steps)
+        # plt.title(test + ', nstep = ' + steps)
         plt.gca().set_aspect('equal')
         fig.canvas.draw()
     
