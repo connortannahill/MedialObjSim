@@ -12,6 +12,7 @@ if len(sys.argv) == 1:
 
 test = sys.argv[1]
 mode = int(sys.argv[2])
+print('mode = {}'.format(mode))
 f_name = './output/{0}/'.format(test)
 
 nMSS= len(glob.glob(f_name+'MSS3DEdges*'))
@@ -86,31 +87,34 @@ def plot_3D(num):
     y_pool = out_pool[:,1]
     z_pool = out_pool[:,2]
     phi    = out_pool[:,3]
-    # cx = 0.5
-    # cy = 0.5
-    # cz = 0.5
-    # a = 0.38
-    # c = 0.15
-    # r = 0.3
-    # b = 1.75 * r
+    cx = 0.5
+    cy = 0.5
+    cz = 0.5
+    a = 0.38
+    c = 0.15
+    r = 1
+    b = 1.05 * r
 
-    # for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
-    #     x, y, z = pnt
-    #     xsq = ((x-cx)/b)**2
-    #     ysq = ((y-cy)/b)**2
-    #     zsq = ((z-cz)/b)**2
-    #     phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
+    for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
+        x, y, z = pnt
+        xsq = ((x-cx)/b)**2
+        ysq = ((y-cy)/b)**2
+        zsq = ((z-cz)/b)**2
+        phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
 
 
+    # fig = go.Figure(data=[
+    #     go.Cone(x=x, y=y, z=z, u=u, v=v, w=w, sizemode="absolute"),
+    #     go.Isosurface(x=x_pool, y=y_pool, z=z_pool, value=phi, isomin=-0.0001,
+    #                     isomax=0.0001, colorscale=[(0, 'blue'), (1, 'red')])])
     fig = go.Figure(data=[
-        go.Cone(x=x, y=y, z=z, u=u, v=v, w=w, sizemode="absolute"),
         go.Isosurface(x=x_pool, y=y_pool, z=z_pool, value=phi, isomin=-0.0001,
                         isomax=0.0001, colorscale=[(0, 'blue'), (1, 'red')])])
 
     fig.show()
 
     # import plotly.io as pio
-    fig.write_image("{0}{1}.png".format(f_temp, test))
+    # fig.write_image("{0}{1}.png".format(f_temp, test))
 
 
 if mode == 0:
