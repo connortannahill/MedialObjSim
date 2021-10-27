@@ -373,9 +373,11 @@ void PressureSolver3D::solvePCG(double dt, Pool3D *pool, double ***FU, double **
         assert(niter >= 0);
     }
     catch(bad_alloc) {
+        cout << "line 376" << endl;
         exit(1);
     }
     catch(General_Exception excep) {
+        cout << "line 380" << endl;
         exit(1);
     }
 

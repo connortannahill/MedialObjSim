@@ -1,0 +1,256 @@
+====================================
+Functions available:
+
+create_test()
+grid_scale_test()
+obj_scale_test()
+full_scale_test()
+run_scale_experiment()
+run_obj_scale_experiment()
+create_scale_plot()
+run_solver()
+exit()
+
+====================================
+call function() = evaling run_obj_scale_experiment()
+test name = dimension = g++ -Wall -std=c++17 -I../src -I./lib/eigen/ -I./lib/nanoflann/include/ -O3 main_from_txt.cpp src/2DSolver/PressureSolver.cpp src/2DSolver/MomentumSolver2D.cpp src/2DSolver/KDPointCloud.cpp src/2DSolver/MassSpring2D.cpp src/2DSolver/Boundary.cpp src/2DSolver/SolidObject.cpp src/2DSolver/SimParams.cpp src/2DSolver/NSSolver.cpp src/2DSolver/ObjectSeeder.cpp src/2DSolver/Pool2D.cpp src/LASolver/accel_class.cpp src/LASolver/MatrixIter.cpp src/LASolver/rcm.cpp src/LASolver/SparseItUtil.cpp src/LASolver/ILU_class.cpp src/Utils/GridValComparator.cpp src/Utils/Assembly.cpp src/Utils/GridVal2D.cpp src/Utils/GridVal3D.cpp src/Utils/SolidParams.cpp src/Utils/TestFormatter.cpp src/Utils/ADMMPG.cpp -o fluidsolver2d.exe
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpMatrixStruct(int, int)’:
+src/2DSolver/PressureSolver.cpp:87:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   87 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp:105:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  105 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureMatrix(Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:157:15: warning: variable ‘off’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |               ^~~
+src/2DSolver/PressureSolver.cpp:157:20: warning: variable ‘offp’ set but not used [-Wunused-but-set-variable]
+  157 |     int i, j, off, offp;
+      |                    ^~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::setUpPressureRHS(double, double**, double**, double**, Pool2D*)’:
+src/2DSolver/PressureSolver.cpp:291:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  291 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/PressureSolver.cpp: In member function ‘void PressureSolver::solvePCG(double, Pool2D*, double**, double**, double**, bool, SparseItObj::ParamIter&)’:
+src/2DSolver/PressureSolver.cpp:346:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  346 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In copy constructor ‘mass_spring::MassSpring2D::MassSpring2D(const mass_spring::MassSpring2D&)’:
+src/2DSolver/MassSpring2D.cpp:73:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   73 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In constructor ‘mass_spring::MassSpring2D::MassSpring2D(Pool2D&, int, SolidObject&, int, int)’:
+src/2DSolver/MassSpring2D.cpp:229:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  229 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:359:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  359 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildDMatrix()’:
+src/2DSolver/MassSpring2D.cpp:445:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  445 |     for (int col = 0; col < edgeList->size(); col++) {
+      |                       ~~~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::buildWMatrix(double)’:
+src/2DSolver/MassSpring2D.cpp:512:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  512 |     for (int i = 0; i < d*edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘SparseItObj::MatrixIter* mass_spring::MassSpring2D::createStiffnessMatrix()’:
+src/2DSolver/MassSpring2D.cpp:598:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  598 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:628:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  628 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:646:13: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  646 |     } catch(bad_alloc) {
+      |             ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryDist(double*)’:
+src/2DSolver/MassSpring2D.cpp:714:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  714 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘double mass_spring::MassSpring2D::closestBoundaryPnt(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:739:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  739 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::interpFaceVels(double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:773:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  773 |     for (int i = 0; i < boundaryEdgeIdList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBoundaryForces(Pool2D&, double***, int, double*, double*)’:
+src/2DSolver/MassSpring2D.cpp:1125:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1125 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::eulerSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1390:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1390 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::linearImplicitSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1428:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1428 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1463:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1463 |     for (int r = 0; r < 2*pntList->size(); r++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1479:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1479 |     for (int i = 0; i < 2*pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1502:11: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+ 1502 |     catch(bad_alloc) {
+      |           ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::verletSolve(double, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1558:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1558 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::applyBodyForces()’:
+src/2DSolver/MassSpring2D.cpp:1606:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1606 |     for (int id = 0; id < pntList->size(); id++) {
+      |                      ~~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1654:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1654 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1671:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1671 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::reset()’:
+src/2DSolver/MassSpring2D.cpp:1699:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1699 |     for (int i = 0; i < pntList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidLocs(Pool2D&, bool)’:
+src/2DSolver/MassSpring2D.cpp:1761:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1761 |         for (int i = 0; i < 2*pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1765:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1765 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:1773:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1773 |         for (int i = 0; i < pntList->size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘virtual void mass_spring::MassSpring2D::prox(double, Eigen::VectorXd&, Eigen::VectorXd&, Eigen::VectorXd&)’:
+src/2DSolver/MassSpring2D.cpp:1840:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::edge2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1840 |     for (int i = 0; i < edgeList->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~~~
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::computeCollisionStress(int, double*, double)’:
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[0]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  974 |     double intStress[2];
+      |            ^~~~~~~~~
+src/2DSolver/MassSpring2D.cpp:974:12: warning: ‘intStress[1]’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+src/2DSolver/MassSpring2D.cpp: In member function ‘void mass_spring::MassSpring2D::updateSolidVels(double, Pool2D&, double***, double*, int, bool)’:
+src/2DSolver/MassSpring2D.cpp:1687:26: warning: ‘temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1687 |         this->updateMode = temp;
+      |         ~~~~~~~~~~~~~~~~~^~~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvx(int, int)’:
+src/2DSolver/NSSolver.cpp:469:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  469 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘double NSSolver::eno_uvy(int, int)’:
+src/2DSolver/NSSolver.cpp:550:10: warning: variable ‘sten’ set but not used [-Wunused-but-set-variable]
+  550 |     bool sten[7] = {false, false, false, false, false, false, false};
+      |          ^~~~
+src/2DSolver/NSSolver.cpp:560:12: warning: variable ‘xSten’ set but not used [-Wunused-but-set-variable]
+  560 |     double xSten[7] = {0};
+      |            ^~~~~
+src/2DSolver/NSSolver.cpp: In member function ‘void NSSolver::interpolateCellCenterVelocities(int, int, double*)’:
+src/2DSolver/NSSolver.cpp:630:12: warning: variable ‘x’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |            ^
+src/2DSolver/NSSolver.cpp:630:15: warning: variable ‘y’ set but not used [-Wunused-but-set-variable]
+  630 |     double x, y;
+      |               ^
+src/2DSolver/ObjectSeeder.cpp: In member function ‘std::vector<SolidObject> ObjectSeeder::randomInitialize(int, SolidObject::ObjectType, double, double, Boundary&, double (*)(double, double, SolidParams&), SolidParams&)’:
+src/2DSolver/ObjectSeeder.cpp:138:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<Eigen::Matrix<double, 2, 1> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  138 |     for (int i = 0; i < circs.size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::fastMarchSetNVal(int, int, bool, int)’:
+src/2DSolver/Pool2D.cpp:128:9: warning: variable ‘path’ set but not used [-Wunused-but-set-variable]
+  128 |     int path;
+      |         ^~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::detectCollisions()’:
+src/2DSolver/Pool2D.cpp:645:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  645 |                 for (int i = 0; i < nearestMss.size(); i++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp:610:13: warning: variable ‘nMatches’ set but not used [-Wunused-but-set-variable]
+  610 |         int nMatches;
+      |             ^~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::levelSetGradient(int, int, double*)’:
+src/2DSolver/Pool2D.cpp:1553:12: warning: variable ‘phi_min’ set but not used [-Wunused-but-set-variable]
+ 1553 |     double phi_min;
+      |            ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘double Pool2D::velocityExtrapolationRHS_ENO3(int, int, double*, double*, double*, double*)’:
+src/2DSolver/Pool2D.cpp:1622:20: warning: variable ‘h’ set but not used [-Wunused-but-set-variable]
+ 1622 |     double hx, hy, h;
+      |                    ^
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::updatePoolVelocities(double, double**, double**, double**, int)’:
+src/2DSolver/Pool2D.cpp:2057:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::massPoint2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2057 |                 for (int k = 0; k < solids->at(i).pntList->size(); k++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructures(const char*)’:
+src/2DSolver/Pool2D.cpp:2364:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2364 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureNodes(const char*)’:
+src/2DSolver/Pool2D.cpp:2378:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2378 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::outputAllStructureVels(const char*)’:
+src/2DSolver/Pool2D.cpp:2393:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<mass_spring::MassSpring2D>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 2393 |     for (int i = 0; i < solids->size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘bool Pool2D::isNormalInterface(objects::FSIObject)’:
+src/2DSolver/Pool2D.cpp:2450:56: warning: enum constant in boolean context [-Wint-in-bool-context]
+ 2450 |                 || obj == objects::FLUID_E || objects::FLUID_W;
+      |                                                        ^~~~~~~
+src/2DSolver/Pool2D.cpp: In member function ‘void Pool2D::embedShape(SolidObject&, int)’:
+src/2DSolver/Pool2D.cpp:1100:83: warning: ‘min_y’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1100 |         this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
+      |                                                                                   ^~~~~
+src/2DSolver/Pool2D.cpp:1099:83: warning: ‘min_x’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1099 |         this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
+      |                                                                                   ^~~~~
+src/LASolver/accel_class.cpp: In constructor ‘SparseItObj::scaler_orthomin::scaler_orthomin(int, double*, int)’:
+src/LASolver/accel_class.cpp:62:16: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+   62 |     catch(std::bad_alloc) {
+      |                ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::sfac2(const int*, const int*, int, int*, int*)’:
+src/LASolver/ILU_class.cpp:171:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  171 |   catch(std::bad_alloc){// catch
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp:135:7: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  135 |   int itemp, nrow;
+      |       ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::factor(const int*, const int*, const double*)’:
+src/LASolver/ILU_class.cpp:356:14: warning: catching polymorphic type ‘class std::bad_alloc’ by value [-Wcatch-value=]
+  356 |   catch(std::bad_alloc){// catch block
+      |              ^~~~~~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::facdrp(const int*, const int*, double*, double, int*, int*)’:
+src/LASolver/ILU_class.cpp:699:11: warning: variable ‘itemp’ set but not used [-Wunused-but-set-variable]
+  699 |       int itemp, nrow;
+      |           ^~~~~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::merged(int, int*, int, double*, double, double*)’:
+src/LASolver/ILU_class.cpp:640:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  640 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+  641 |                             odiag[ rowsp[row].jaf[ii] ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/LASolver/ILU_class.cpp:644:17: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  644 |                 if( fabs( temp) > test){
+      |                 ^~
+src/LASolver/ILU_class.cpp: In member function ‘void SparseItObj::scaler_ILU::elimrow(int, double*, double*, int*, int&, int&, int*, int*, double)’:
+src/LASolver/ILU_class.cpp:1503:21: warning: ‘test’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1503 |                     if( fabs(temp) > test ){ // insert new entry
+      |                     ^~
+src/LASolver/ILU_class.cpp:1494:29: warning: ‘drop_temp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1494 |                        test =  drop_temp *
+      |                        ~~~~~^~~~~~~~~~~~~~
+ 1495 |                             odiag[ invord[ rowsp[row].jaf[ii] ]  ] ;
+      |                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+['./TestDrivers/2DDrivers/ObjScaleTest0.16', './TestDrivers/2DDrivers/ObjScaleTest0.62', './TestDrivers/2DDrivers/ObjScaleTest0.078', './TestDrivers/2DDrivers/ObjScaleTest1.2', './TestDrivers/2DDrivers/ObjScaleTest0.31']
+['ObjScaleTest0.16', 'ObjScaleTest0.62', 'ObjScaleTest0.078', 'ObjScaleTest1.2', 'ObjScaleTest0.31']
+Traceback (most recent call last):
+  File "experiments.py", line 674, in <module>
+    eval(mode)
+  File "<string>", line 1, in <module>
+  File "experiments.py", line 584, in run_obj_scale_experiment
+    start = time()
+TypeError: 'module' object is not callable

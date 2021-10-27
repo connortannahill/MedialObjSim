@@ -20,7 +20,7 @@ const double EPS = 1e-14;
  * Just the copy ctor
 */
 MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
-    cout << "In copy CTOR" << endl;
+    // cout << "In copy CTOR" << endl;
     this->pntList = new vector<massPoint3D>(*cpy.pntList);
     this->edgeList = new vector<edge3D>(*cpy.edgeList);
     this->boundaryEdgeIdList = new vector<int>(*cpy.boundaryEdgeIdList);
@@ -92,12 +92,12 @@ MassSpring3D::MassSpring3D(const MassSpring3D &cpy) {
         setD(3);
         this->admmSolver = new ADMMPG((cpy.admmSolver)->dt, *this);
     }
-    cout << "FINSIHED In copy CTOR" << endl;
+    // cout << "FINSIHED In copy CTOR" << endl;
 }
 
 MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         int updateMode, int elementMode) : Assembly() {
-    cout << "in CTOR" << endl;
+    // cout << "in CTOR" << endl;
     // Create the vectors for the edge and point lists
     pntList = new vector<massPoint3D>();
     edgeList = new vector<edge3D>();
@@ -255,7 +255,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     f     = new Eigen::VectorXd(Eigen::VectorXd::Constant(3*pntList->size(), 0.0));
 
     int qoff = 0;
-    cout << "b4 making the pnts size = " << pntList->size() << endl;
+    // cout << "b4 making the pnts size = " << pntList->size() << endl;
     for (int i = 0; i < pntList->size(); i++) {
         pntList->at(i).mass = pntMass;
 
@@ -283,7 +283,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         qoff += 3;
     }
 
-    cout << "Finsihed all the q's" << endl;
+    // cout << "Finsihed all the q's" << endl;
 
     // Second loop, go through the bounding box and build the edge connections
     // Note: we take advantage of the fact that we start from the bottom left,
@@ -384,18 +384,18 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         }
     }
 
-    cout << "Finsihed edge addition" << endl;
-    cout << "before createFaceList " << pntList->size() << endl;
+    // cout << "Finsihed edge addition" << endl;
+    // cout << "before createFaceList " << pntList->size() << endl;
     // Create the list of triangular faces to be used in the surface of the structure.
     this->createFaceList();
-    cout << "Finsihed face creation" << endl;
+    // cout << "Finsihed face creation" << endl;
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
     const int MAX_ITERS = 100;
     double dt = 0.01*simutils::dmin(hx, simutils::dmin(hy, hz));
     int iters = 0;
-    cout << "init the thing" << endl;
+    // cout << "init the thing" << endl;
     double fNet[3] = {0.0, 0.0, 0.0};
 
     do  {
@@ -406,7 +406,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     }
     while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
 
-    cout << "FINISHED init the thing" << endl;
+    // cout << "FINISHED init the thing" << endl;
 
     // After this is done, set the edge length of each spring to its current config to bring the
     // potential energy to 0.
@@ -423,7 +423,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
 
     // Set the derivatives of the locations to what they should be for the uniform initial speed
     // of the solid (positions should be correct).
-    cout << "Setting the vals" << endl;
+    // cout << "Setting the vals" << endl;
     for (int i = 0; i < pntList->size(); i++) {
         (*q)(3*i) = pntList->at(i).x;
         (*q)(3*i+1) = pntList->at(i).y;
@@ -446,7 +446,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
         (*fBackup)(3*i+2) = 0.0;
     }
 
-    cout << "FINISHED Setting the vals" << endl;
+    // cout << "FINISHED Setting the vals" << endl;
     f->setZero();
 
     /* Set vels to zero if this is a static object */
@@ -494,7 +494,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
 
     // Data structures for collision handling
     nodeCols = new vector<set<massPoint3D*>>(pntList->size());
-    cout << "Leaving the CTOR" << endl;
+    // cout << "Leaving the CTOR" << endl;
 }
 
 /**
@@ -1300,6 +1300,9 @@ void MassSpring3D::eulerSolve(double dt, int elementMode, bool initMode) {
 void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
                                         massPoint3D pnt1, int pntId2,
                                         massPoint3D pnt2) {
+    if (pntId1 >= pntId2) {
+        cout << "assert line 1304" << endl;
+    }
     assert(pntId1 < pntId2);
 
     double diff[3] = {pnt2.x - pnt1.x, pnt2.y - pnt1.y, pnt2.z - pnt1.z};
@@ -1511,6 +1514,9 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         // Solve the linear system. Solution is stored in provided vector
         matrix->solve(*this->params, pcgRHS, niter);
 
+        if (niter < 0) {
+            cout << "assert line 1518" << endl;
+        }
         assert(niter >= 0);
     }
     catch(bad_alloc) {
@@ -2720,20 +2726,20 @@ double MassSpring3D::pointDiff(massPoint3D pnt1, massPoint3D pnt2) {
 }
 
 MassSpring3D::~MassSpring3D() {
-    cout << "In destructor MSS" << endl;
-    cout << "edgeList" << endl;
+    // cout << "In destructor MSS" << endl;
+    // cout << "edgeList" << endl;
     delete edgeList;
-    cout << "pntList" << endl;
+    // cout << "pntList" << endl;
     delete pntList;
-    cout << "faceList" << endl;
+    // cout << "faceList" << endl;
     delete faceList;
-    cout << "bedgeIdList" << endl;
+    // cout << "bedgeIdList" << endl;
     delete boundaryEdgeIdList;
-    cout << "bNodeIdList" << endl;
+    // cout << "bNodeIdList" << endl;
     delete boundaryNodeIdList;
-    cout << "finsihed deleting boundary stuff" << endl;
+    // cout << "finsihed deleting boundary stuff" << endl;
 
-    cout << "deleting newtons homies" << endl;
+    // cout << "deleting newtons homies" << endl;
     delete f;
     delete q;
     delete qt;
@@ -2742,17 +2748,17 @@ MassSpring3D::~MassSpring3D() {
     delete qtBackup;
     delete qprevBackup;
     delete fBackup;
-    cout << "finished deleting newtons homies" << endl;
+    // cout << "finished deleting newtons homies" << endl;
 
     if (updateMode == 1) {
-        cout << "deleting CG" << endl;
+        // cout << "deleting CG" << endl;
         delete[] pcgRHS;
         delete[] pcgTol;
         delete matrix;
         delete params;
-        cout << "FINSIHED deleting CG" << endl;
+        // cout << "FINSIHED deleting CG" << endl;
     } else if (updateMode == 2) {
         delete admmSolver;
     }
-    cout << "FINISHED In destructor" << endl;
+    // cout << "FINISHED In destructor" << endl;
 }

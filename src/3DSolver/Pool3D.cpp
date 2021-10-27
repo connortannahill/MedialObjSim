@@ -50,8 +50,8 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
 
     double baryCoordsClosest[3];
     const int MAXCANDS = 100;
-    vector<pair<size_t,double> > ret_matches;
-    std::vector<size_t> ret_index(MAXCANDS);
+    vector<pair<uint32_t,double> > ret_matches;
+    std::vector<uint32_t> ret_index(MAXCANDS);
     std::vector<double> out_dist_sqr(MAXCANDS);
 
     // Candidate list
@@ -125,8 +125,8 @@ double Pool3D::closestBoundaryDist(int structNum, double inPnt[3]) {
     double d;
 
     const int MAXCANDS = 10;
-    vector<pair<size_t,double> > ret_matches;
-    std::vector<size_t> ret_index(MAXCANDS);
+    vector<pair<uint32_t,double> > ret_matches;
+    std::vector<uint32_t> ret_index(MAXCANDS);
     std::vector<double> out_dist_sqr(MAXCANDS);
 
     // Candidate list
@@ -779,7 +779,7 @@ void Pool3D::detectCollisions() {
 
         // // Now rebuild the kdtree for efficient searching.
         // kdTree->buildIndex();
-        vector<pair<size_t,double> > ret_matches;
+        vector<pair<uint32_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
         double SCAL_FAC = 1.0;
@@ -934,7 +934,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     
     // Apply the boundaries using the implicit SolidObject functions.
     // Also places the tracer particals
-    cout << "Embedding the shapes" << endl;
+    // cout << "Embedding the shapes" << endl;
     if (nStructs > 0) {
         this->tracers = new simstructs::tracer3D[nStructs];
         if (structures.size() != 0) {
@@ -945,7 +945,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
             assert(false);
         }
     }
-    cout << "FINISHED Embedding the shapes" << endl;
+    // cout << "FINISHED Embedding the shapes" << endl;
 
     // Set the initial pool object velocities based on the information from the particles. Important
     // For assigning initial boundary values around the structure.
@@ -988,9 +988,9 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         
         // Copy the Mass Spring objects from the old array to the new one
         for (int i = 0; i < nStructs; i++) {
-            cout << "Adding MSS " << i << endl;
+            // cout << "Adding MSS " << i << endl;
             solids->push_back(MassSpring3D((poolTemp->solids)->at(i)));
-            cout << "FINISHED Adding MSS " << i << endl;
+            // cout << "FINISHED Adding MSS " << i << endl;
         }
 
         double x, y, z;
@@ -1018,14 +1018,14 @@ void Pool3D::create3DPool(Boundary3D &boundary,
             assert(false);
         }
 
-        cout << "nStructs = " << nStructs << endl;
+        // cout << "nStructs = " << nStructs << endl;
         for (int i = 0; i < nStructs; i++) {
-            cout << "i = " << i << endl;
+            // cout << "i = " << i << endl;
             solids->push_back(MassSpring3D(*this, i, structures.at(i),
                                 params.updateMode, params.elementMode));
             if (params.updateMode == 2) {
-                cout << "i = " << i << endl;
-                cout << "size of solids vector " << solids->size() << endl;
+                // cout << "i = " << i << endl;
+                // cout << "size of solids vector " << solids->size() << endl;
                 solids->at(i).setAdmmTol(params.admmTol);
                 assert(false);
             }
@@ -2544,25 +2544,25 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
             // and update the positions of the tracer particals.
             if (repulseMode != 0) {
                 // TODO: maybe think about a more efficient 
-                cout << "Doing first fast march" << endl;
+                // cout << "Doing first fast march" << endl;
                 this->fastMarch(false, 2);
-                cout << "Finished the fast march" << endl;
-                cout << "Doing detect collisions" << endl;
+                // cout << "Finished the fast march" << endl;
+                // cout << "Doing detect collisions" << endl;
                 this->detectCollisions();
-                cout << "Finished Doing detect collisions" << endl;
-                cout << "setting up domain array" << endl;
+                // cout << "Finished Doing detect collisions" << endl;
+                // cout << "setting up domain array" << endl;
                 this->setUpDomainArray();
-                cout << "FINISHED setting up domain array" << endl;
+                // cout << "FINISHED setting up domain array" << endl;
             }
 
-            cout << "stress" << endl;
+            // cout << "stress" << endl;
             double ***stress[3] = {poolU, poolV, poolW};
-            cout << "done stress" << endl;
+            // cout << "done stress" << endl;
 
             // TODO: don't actually need the net force in principal
             double fNet[3] = {0.0, 0.0, 0.0};
 
-            cout << "updating tracers" << endl;
+            // cout << "updating tracers" << endl;
             for (int i = 0; i < nStructs; i++) {
                 solids->at(i).updateSolidVels(dt, *this, stress, fNet, mo, false);
 
@@ -2575,12 +2575,12 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
                 tracers[i].v = tracers[i].v + ((tracers[i].fNetY)/(tracers[i].mass))*dt;
                 tracers[i].w = tracers[i].w + ((tracers[i].fNetZ)/(tracers[i].mass))*dt;
             }
-            cout << "done updating tracers" << endl;
+            // cout << "done updating tracers" << endl;
 
             // Compute the velocities on the interface points
             double inPnt[3];
             double vel[3];
-            cout << "computing face velocities" << endl;
+            // cout << "computing face velocities" << endl;
             for (int k = 0; k < nz; k++) {
                 inPnt[2] = simutils::midpoint(z[k], z[k+1]);
                 for (int j = 0; j < ny; j++) {
@@ -2608,12 +2608,12 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
                     }
                 }
             }
-            cout << "done computing face velocities" << endl;
+            // cout << "done computing face velocities" << endl;
 
             // Now that we have the velocities, we can apply the fast marching algorithm.
-            cout << "fast march the velocities with interp" << endl;
+            // cout << "fast march the velocities with interp" << endl;
             this->fastMarch(true, 0);
-            cout << "done fast march the velocities" << endl;
+            // cout << "done fast march the velocities" << endl;
         }
     } else {
         cout << "Multiple structures are not yet considered in the pool algorithms" << endl;
@@ -2650,9 +2650,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     // Update the velocity field
     setUpDomainArray();
-    cout << "updating pool vels" << endl;
+    // cout << "updating pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, w, p, ng);
-    cout << "FINISHED updating pool vels" << endl;
+    // cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
     if (reinitialize) {
@@ -2662,19 +2662,19 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     // Update the position of the tracer particals
 
     // Advance the level set function
-    cout << "updaitng phi" << endl;
+    // cout << "updaitng phi" << endl;
     tvdRK3HJ(dt, phi, this, 0, &Pool3D::levelSetRHS_ENO3,
              &Pool3D::applyLevelSetPeriodicBCs);
-    cout << "finished updaitng phi" << endl;
+    // cout << "finished updaitng phi" << endl;
 
     for (int k = 0; k < nStructs; k++) {
-        cout << "updating tracers" << endl;
+        // cout << "updating tracers" << endl;
         updateTracer(k, dt, 1);
-        cout << "FINSIHED updating tracers" << endl;
+        // cout << "FINSIHED updating tracers" << endl;
     }
     
     // Update the enumeration and domain array
-    cout << "last section" << endl;
+    // cout << "last section" << endl;
     enumeratePool();
     setUpDomainArray();
 
@@ -2686,7 +2686,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     if (shouldRefitSDF(min(hx, min(hy, hz)))) {
         refitToSolids(ng);
     }
-    cout << "finished last section" << endl;
+    // cout << "finished last section" << endl;
 }
 
 /**
