@@ -22,6 +22,7 @@ MAX_STEPS = 100000
 
 FUNS = """
 create_test()
+get_test_data()
 grid_scale_test()
 obj_scale_test()
 full_scale_test()
@@ -449,6 +450,24 @@ def grid_scale_test():
 
             outputPacking(dim, in_dict, obj_dict, f, lims, eps)
 
+def get_test_data():
+    testFile = input('Enter the data file: ')
+
+    testNames = []
+    totalTimes = []
+    averageTimePerStep = []
+    with open(testFile, 'r') as f:
+        for ln in f:
+            if (ln.startswith('testName')):
+                testNames.append(ln[ln.rfind(' ')+1:])
+            elif (ln.startswith('The total run time of the algorithm:')):
+                totalTimes.append(ln[ln.rfind(' ')+1:])
+            elif (ln.startswith('The average run time per step of the algorithm:')):
+                averageTimePerStep.append(ln[ln.rfind(' ')+1:])
+    
+    for testName, totTime, avgTime in zip(testNames, totalTimes, averageTimePerStep):
+        print('{0}: tot = {1}, avg per step = {2}'.format(testName, totTime, avgTime))
+
 def create_test():
     testName = input('Enter the test name: ')
     dim = int(input('Dimension = '))
@@ -535,7 +554,7 @@ def run_scale_experiment():
     if dim == 2:
         subprocess.run('make')
     else:
-        subprocess.run('make sol3d')
+        subprocess.run('make sol3d'.split())
     
 
     for i in range(len(inputFiles)):

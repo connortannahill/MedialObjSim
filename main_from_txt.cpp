@@ -44,7 +44,7 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
     ps.getParam("r", r);
     ps.getParam("deg", deg); // degree of rotation
 
-    double b = 2.25 * r;
+    double b = 1.35 * r;
     double rad = deg * M_PI / 180;
     double rotcx = (x-cx) / (b) * cos(rad) - (y-cy) / (b) * sin(rad);
     double rotcy = (x-cx) / (b) * sin(rad) + (y-cy) / (b) * cos(rad);
@@ -205,6 +205,7 @@ int main(int argc, char **argv) {
 
     string testInputDir = "./TestDrivers/2DDrivers/";
     string testTitle = argv[1];
+    cout << "TestTitle = " << testTitle << endl;
     string input_file_name =  testInputDir + testTitle;
     int max_steps = (argc == 2) ? 1 : atoi(argv[2]);
     bool save_snapshots = (argc <= 3) ? false : strcmp(argv[3], "1") == 0;
@@ -282,11 +283,18 @@ int main(int argc, char **argv) {
     simParams.setCollisionStiffness(5.0);
     simParams.setCollisionDist(3.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
-    simParams.setUpdateMode(1);
+    int updateMode = 1;
+    simParams.setUpdateMode(updateMode);
+    cout << "UpdateMode = " << updateMode << endl;
     simParams.setAdmmTol(1e-10);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
-    // simParams.setDtFix(dt);
+    // double umax = 0.5;
+    // double vmax = 0.5;
+    // double dx = abs((xb- xa)/nx);
+    // double dy = abs((yb- ya)/ny);
+    // double dtFix = (re/2.0)*(1/(simutils::square(1.0/dx) + simutils::square(1.0/dy)));
+    // simParams.setDtFix(dtFix);
 
     // initial/boundary conditions and boundary object
     auto initialConditions = getInitialConditionsFun(cons_u, cons_v);
@@ -326,6 +334,16 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
 
+        auto stop = high_resolution_clock::now();
+
+        auto duration = duration_cast<seconds>(stop - start);
+
+        cout << "=========================================================" << endl;
+        cout << "testName = " << testTitle << endl;
+        cout << "The total run time of the algorithm: " << duration.count() << endl;
+        cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+        cout << "=========================================================" << endl;
+
         string f_name = outFileName + "/" + std::to_string(nsteps);
         outputData(f_name, solver);
 
@@ -341,17 +359,18 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
 
+        auto stop = high_resolution_clock::now();
+
+        auto duration = duration_cast<seconds>(stop - start);
+
+        cout << "=========================================================" << endl;
+        cout << "The total run time of the algorithm: " << duration.count() << endl;
+        cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+        cout << "=========================================================" << endl;
+
         /* Output all of the relevant data */
         std::cout << "Outputting data" << std::endl;
         outputData(outFileName, solver);
 
     }
-    auto stop = high_resolution_clock::now();
-
-    auto duration = duration_cast<seconds>(stop - start);
-
-    cout << "=========================================================" << endl;
-    cout << "The total run time of the algorithm: " << duration.count() << endl;
-    cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
-    cout << "=========================================================" << endl;
 }

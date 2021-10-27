@@ -1,0 +1,117 @@
+A grid-based scaling test for performance
+ScaleTestThree640
+
+
+0
+10
+0
+5
+1280
+640
+0.1
+0.0
+0.0
+0.0
+1000
+1
+directionalFlowBC
+20
+
+
+6
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 66
+cx 1.2
+cy 1.2
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 103
+cx 1.2
+cy 2.49
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 254
+cx 2.49
+cy 1.2
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 334
+cx 2.49
+cy 2.49
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 76
+cx 3.7800000000000002
+cy 1.2
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+mass 1
+density 1
+r 0.2
+E 10
+eta 0
+a 0.3
+c 0.105
+deg 346
+cx 3.7800000000000002
+cy 2.49
+.

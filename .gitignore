@@ -2,6 +2,8 @@
 *.txt
 *.exe
 *.png
+*slurm*
+core*
 output/
 archive/
 !TestDrivers/*/*.txt
