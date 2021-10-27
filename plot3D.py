@@ -12,6 +12,7 @@ if len(sys.argv) == 1:
 
 test = sys.argv[1]
 mode = int(sys.argv[2])
+print('mode = {}'.format(mode))
 f_name = './output/{0}/'.format(test)
 
 nMSS= len(glob.glob(f_name+'MSS3DEdges*'))
@@ -82,17 +83,17 @@ def plot_3D(num):
     w = out_fluid[:,5]
     p = out_fluid[:,6]
 
-    # x_pool = out_pool[:,0]
-    # y_pool = out_pool[:,1]
-    # z_pool = out_pool[:,2]
-    # phi    = out_pool[:,3]
+    x_pool = out_pool[:,0]
+    y_pool = out_pool[:,1]
+    z_pool = out_pool[:,2]
+    phi    = out_pool[:,3]
     cx = 0.5
     cy = 0.5
     cz = 0.5
     a = 0.38
     c = 0.15
-    r = 0.3
-    b = 1.35 * r
+    r = 1
+    b = 1.05 * r
 
     for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
         x, y, z = pnt
