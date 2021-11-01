@@ -267,14 +267,20 @@ double MomentumSolver2D::step(double tEnd, double safetyFactor) {
     this->updateP();
 
     // Combine these together to update the fluid velocities.
+    cout << "updating U" << endl;
     this->updateU();
+    cout << "FINISHED updating U" << endl;
 
     // Interpolate the velocities to the cell centers
+    cout << "Interpolating U" << endl;
     this->interpolateVelocities();
+    cout << "FINISHED Interpolating U" << endl;
 
     if (this->nStructs > 0) {
         // Update the location of the interfaces
+        cout << "Updating Pool" << endl;
         (this->pool)->updatePool(dt, iu, iv, p, methodOrd, true);
+        cout << "FINISHED Updating Pool" << endl;
 
         // Apply object velocities to boundary points
         this->test_setInternal();

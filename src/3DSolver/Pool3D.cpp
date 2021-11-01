@@ -50,8 +50,8 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
 
     double baryCoordsClosest[3];
     const int MAXCANDS = 100;
-    vector<pair<uint32_t,double> > ret_matches;
-    std::vector<uint32_t> ret_index(MAXCANDS);
+    vector<pair<size_t,double> > ret_matches;
+    std::vector<size_t> ret_index(MAXCANDS);
     std::vector<double> out_dist_sqr(MAXCANDS);
 
     // Candidate list
@@ -125,8 +125,8 @@ double Pool3D::closestBoundaryDist(int structNum, double inPnt[3]) {
     double d;
 
     const int MAXCANDS = 10;
-    vector<pair<uint32_t,double> > ret_matches;
-    std::vector<uint32_t> ret_index(MAXCANDS);
+    vector<pair<size_t,double> > ret_matches;
+    std::vector<size_t> ret_index(MAXCANDS);
     std::vector<double> out_dist_sqr(MAXCANDS);
 
     // Candidate list
@@ -779,7 +779,8 @@ void Pool3D::detectCollisions() {
 
         // // Now rebuild the kdtree for efficient searching.
         // kdTree->buildIndex();
-        vector<pair<uint32_t,double> > ret_matches;
+        // vector<pair<uint32_t,double> > ret_matches;
+        vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
         double SCAL_FAC = 1.0;
@@ -1370,7 +1371,7 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
         tracers[structNum].x += dt*uCur;
         tracers[structNum].y += dt*vCur;
         tracers[structNum].w += dt*wCur;
-    } else {
+    } else if (mode == 2) {
         /* Use gradient descent with line search and the interior perserving step limit
            to update the position of the tracer partical */
         
@@ -1409,6 +1410,10 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
             tracers[structNum].y = yStep;
             tracers[structNum].z = yStep;
         }
+    } else {
+        tracers[structNum].x += dt * tracers[structNum].u;
+        tracers[structNum].y += dt * tracers[structNum].v;
+        tracers[structNum].z += dt * tracers[structNum].w;
     }
 }
 
@@ -2551,7 +2556,7 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
                 this->detectCollisions();
                 // cout << "Finished Doing detect collisions" << endl;
                 // cout << "setting up domain array" << endl;
-                this->setUpDomainArray();
+                // this->setUpDomainArray();
                 // cout << "FINISHED setting up domain array" << endl;
             }
 
@@ -2649,7 +2654,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
 
     // Update the velocity field
+    enumeratePool();
     setUpDomainArray();
+
     // cout << "updating pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, w, p, ng);
     // cout << "FINISHED updating pool vels" << endl;
@@ -2669,7 +2676,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     for (int k = 0; k < nStructs; k++) {
         // cout << "updating tracers" << endl;
-        updateTracer(k, dt, 1);
+        updateTracer(k, dt, 3);
         // cout << "FINSIHED updating tracers" << endl;
     }
     

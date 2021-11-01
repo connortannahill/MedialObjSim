@@ -30,6 +30,7 @@ TestFormatter::TestFormatter(const char *testName, int testNum) {
     this->testDir = new string("./output/");
     testDir->append(testName);
     testDir->append("/");
+    cout << "testDir first = " << *this->testDir << endl;
 
     // Make the test directory if it does not already exist
     cout << "testdir = " << *testDir << endl;
@@ -40,6 +41,7 @@ TestFormatter::TestFormatter(const char *testName, int testNum) {
     // string num(testNum);
     testDir->append(to_string(testNum));
     testDir->append("/");
+    cout << "testDir second = " << *this->testDir << endl;
     if (!fs::exists(*testDir)) {
         fs::create_directory(*testDir);
     }

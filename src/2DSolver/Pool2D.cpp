@@ -1026,7 +1026,7 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         // Update the position of the tracer partical
         tracers[structNum].x += dt*uCur;
         tracers[structNum].y += dt*vCur;
-    } else {
+    } else if (mode == 2) {
         /* Use gradient descent with line search and the interior perserving step limit
            to update the position of the tracer partical */
         
@@ -1064,6 +1064,9 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
             tracers[structNum].x = xStep;
             tracers[structNum].y = yStep;
         }
+    } else {
+        tracers[structNum].x += dt * tracers[structNum].u;
+        tracers[structNum].y += dt * tracers[structNum].v;
     }
 }
 
@@ -2130,6 +2133,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
 
     // Set up the domain array
+    enumeratePool();
     setUpDomainArray();
 
     // Update the velocity field
@@ -2146,7 +2150,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
 
     // Update the positions of the tracer particals
     for (k = 0; k < nStructs; k++) {
-        updateTracer(k, dt, 2);
+        updateTracer(k, dt, 3);
     }
     
     // Update the enumeration and domain array for the shifted level set.

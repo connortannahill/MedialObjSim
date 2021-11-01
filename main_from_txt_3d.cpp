@@ -44,7 +44,7 @@ double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
     ps.getParam("r", r);
     ps.getParam("deg", deg);
 
-    double b = 1.75 * r;
+    double b = 2.25 * r;
     double rad = deg * M_PI / 180;
     double rotcy = (y-cy) / (b) * cos(rad) - (z-cz) / (b) * sin(rad);
     double rotcz = (y-cy) / (b) * sin(rad) + (z-cz) / (b) * cos(rad);
@@ -84,6 +84,7 @@ void lidDrivenCavityBC(int nx, int ny, int nz, double ***u, double ***v, double 
 }
 
 void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
+    cout << "In directional flow BC" << endl;
     for (int k = 1; k <= nz; k++) {
         for (int j = 1; j <= ny; j++) {
             // Inflow condition
@@ -93,21 +94,23 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double 
             u[k][j][nx] = u[k][j][nx-1];
         }
     }
+    cout << "OUT directional flow BC" << endl;
 }
+// for (int i = 1; i <= nx; i++) {
+//         // Inflow condition
+//         v[0][i] = v[1][i];
+//         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+
+//         // Outflow condition
+//         v[ny][i] = -0.1;
+//     }
 
 void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
-    for (int k = 1; k <= nz; k++) {
+    for (int j = 1; j <= ny; j++) {
         for (int i = 1; i <= nx; i++) {
-            v[k][0][i] = v[k][1][i];
+            w[0][j][i] = w[1][j][i];
 
-            v[k][ny][i] = -0.1;
-
-
-            // // Inflow condition
-            // u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
-
-            // // Outflow condition
-            // u[k][j][nx] = u[k][j][nx-1];
+            w[nz][j][i] = -0.1;
         }
     }
 }
@@ -234,6 +237,9 @@ int main(int argc, char **argv) {
     // Get the name of the test
     getline(input_file, testName);
 
+    cout << "tsetName = " << testName << endl;
+    // assert(false);
+
     // get simulation params
     input_file >> xa >> xb >> ya >> yb >> za >> zb >> nx >> ny >> nz;
     input_file >> cons_u >> cons_v >> cons_w >> g_x >> g_y >> g_z;
@@ -339,7 +345,7 @@ int main(int argc, char **argv) {
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 20 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }
@@ -351,7 +357,7 @@ int main(int argc, char **argv) {
             std::cout << std::endl;
         }
 
-        string f_name = testName + std::to_string(nsteps);
+        string f_name = testName;
         outputData(f_name, solver);
 
     } else {
