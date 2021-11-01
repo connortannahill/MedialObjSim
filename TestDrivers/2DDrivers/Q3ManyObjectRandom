@@ -4,17 +4,12 @@ Q3ManyObject
 0.0 10.0
 0.0 5.0
 640 320
-<<<<<<< HEAD
-0.2 0.0
-=======
 0.1 0.0
->>>>>>> ffc9a48a2273af6b42a9bf6be1c21278041d0947
 0.0 0.0
 1000.0
 1
 directionalFlowBC
-20.0
-
+100.0
 234
 
 bloodCellShapeFun
@@ -30,7 +25,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 47
 .
 
 bloodCellShapeFun
@@ -46,7 +41,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 341
 .
 
 bloodCellShapeFun
@@ -62,7 +57,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 163
 .
 
 bloodCellShapeFun
@@ -78,7 +73,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 82
 .
 
 bloodCellShapeFun
@@ -94,7 +89,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 294
 .
 
 bloodCellShapeFun
@@ -110,7 +105,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 167
 .
 
 bloodCellShapeFun
@@ -126,7 +121,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 335
 .
 
 bloodCellShapeFun
@@ -142,7 +137,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 354
 .
 
 bloodCellShapeFun
@@ -158,7 +153,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 135
 .
 
 bloodCellShapeFun
@@ -174,7 +169,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 288
 .
 
 bloodCellShapeFun
@@ -190,7 +185,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 183
 .
 
 bloodCellShapeFun
@@ -206,7 +201,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 15
 .
 
 bloodCellShapeFun
@@ -222,7 +217,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 170
 .
 
 bloodCellShapeFun
@@ -238,7 +233,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 209
 .
 
 bloodCellShapeFun
@@ -254,7 +249,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 290
 .
 
 bloodCellShapeFun
@@ -270,7 +265,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 205
 .
 
 bloodCellShapeFun
@@ -286,7 +281,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 280
 .
 
 bloodCellShapeFun
@@ -302,7 +297,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 220
 .
 
 bloodCellShapeFun
@@ -318,7 +313,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 320
 .
 
 bloodCellShapeFun
@@ -334,7 +329,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 283
 .
 
 bloodCellShapeFun
@@ -350,7 +345,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 51
 .
 
 bloodCellShapeFun
@@ -366,7 +361,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 86
 .
 
 bloodCellShapeFun
@@ -382,7 +377,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 172
 .
 
 bloodCellShapeFun
@@ -398,7 +393,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 68
 .
 
 bloodCellShapeFun
@@ -414,7 +409,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 23
 .
 
 bloodCellShapeFun
@@ -430,7 +425,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 200
 .
 
 bloodCellShapeFun
@@ -446,7 +441,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 131
 .
 
 bloodCellShapeFun
@@ -462,7 +457,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 301
 .
 
 bloodCellShapeFun
@@ -478,7 +473,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 338
 .
 
 bloodCellShapeFun
@@ -494,7 +489,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 292
 .
 
 bloodCellShapeFun
@@ -510,7 +505,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 161
 .
 
 bloodCellShapeFun
@@ -526,7 +521,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 19
 .
 
 bloodCellShapeFun
@@ -542,7 +537,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 122
 .
 
 bloodCellShapeFun
@@ -558,7 +553,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 335
 .
 
 bloodCellShapeFun
@@ -574,7 +569,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 123
 .
 
 bloodCellShapeFun
@@ -590,7 +585,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 194
 .
 
 bloodCellShapeFun
@@ -606,7 +601,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 61
 .
 
 bloodCellShapeFun
@@ -622,7 +617,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 60
 .
 
 bloodCellShapeFun
@@ -638,7 +633,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 111
 .
 
 bloodCellShapeFun
@@ -654,7 +649,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 308
 .
 
 bloodCellShapeFun
@@ -670,7 +665,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 176
 .
 
 bloodCellShapeFun
@@ -686,7 +681,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 62
 .
 
 bloodCellShapeFun
@@ -702,7 +697,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 220
 .
 
 bloodCellShapeFun
@@ -718,7 +713,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 142
 .
 
 bloodCellShapeFun
@@ -734,7 +729,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 226
 .
 
 bloodCellShapeFun
@@ -750,7 +745,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 346
 .
 
 bloodCellShapeFun
@@ -766,7 +761,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 216
 .
 
 bloodCellShapeFun
@@ -782,7 +777,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 117
 .
 
 bloodCellShapeFun
@@ -798,7 +793,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 56
 .
 
 bloodCellShapeFun
@@ -814,7 +809,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 115
 .
 
 bloodCellShapeFun
@@ -830,7 +825,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 49
 .
 
 bloodCellShapeFun
@@ -846,7 +841,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 93
 .
 
 bloodCellShapeFun
@@ -862,7 +857,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 165
 .
 
 bloodCellShapeFun
@@ -878,7 +873,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 103
 .
 
 bloodCellShapeFun
@@ -894,7 +889,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 301
 .
 
 bloodCellShapeFun
@@ -910,7 +905,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 199
 .
 
 bloodCellShapeFun
@@ -926,7 +921,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 157
 .
 
 bloodCellShapeFun
@@ -942,7 +937,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 94
 .
 
 bloodCellShapeFun
@@ -958,7 +953,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 40
 .
 
 bloodCellShapeFun
@@ -974,7 +969,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 259
 .
 
 bloodCellShapeFun
@@ -990,7 +985,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 81
 .
 
 bloodCellShapeFun
@@ -1006,7 +1001,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 122
 .
 
 bloodCellShapeFun
@@ -1022,7 +1017,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 28
 .
 
 bloodCellShapeFun
@@ -1038,7 +1033,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 183
 .
 
 bloodCellShapeFun
@@ -1054,7 +1049,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 87
 .
 
 bloodCellShapeFun
@@ -1070,7 +1065,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 23
 .
 
 bloodCellShapeFun
@@ -1086,7 +1081,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 100
 .
 
 bloodCellShapeFun
@@ -1102,7 +1097,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 275
 .
 
 bloodCellShapeFun
@@ -1118,7 +1113,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 173
 .
 
 bloodCellShapeFun
@@ -1134,38 +1129,6 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.1
-0.0
-cx 2.1
-cy 2.1
-r 0.1
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-a 0.3
-c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.1
-0.0
-cx 2.1
-cy 2.4000000000000004
-r 0.1
-mass 1.0
-density 1.0
-E 10.0
-eta 0.0
-a 0.3
-c 0.105
 deg 90
 .
 
@@ -1174,6 +1137,38 @@ bloodCellShapeFun
 0.1
 0.0
 cx 2.1
+cy 2.1
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.3
+c 0.105
+deg 243
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+cx 2.1
+cy 2.4000000000000004
+r 0.1
+mass 1.0
+density 1.0
+E 10.0
+eta 0.0
+a 0.3
+c 0.105
+deg 282
+.
+
+bloodCellShapeFun
+1
+0.1
+0.0
+cx 2.1
 cy 2.7000000000000006
 r 0.1
 mass 1.0
@@ -1182,7 +1177,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 162
 .
 
 bloodCellShapeFun
@@ -1198,7 +1193,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 174
 .
 
 bloodCellShapeFun
@@ -1214,7 +1209,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 150
 .
 
 bloodCellShapeFun
@@ -1230,7 +1225,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 313
 .
 
 bloodCellShapeFun
@@ -1246,7 +1241,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 42
 .
 
 bloodCellShapeFun
@@ -1262,7 +1257,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 121
 .
 
 bloodCellShapeFun
@@ -1278,7 +1273,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 150
 .
 
 bloodCellShapeFun
@@ -1294,7 +1289,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 46
 .
 
 bloodCellShapeFun
@@ -1310,7 +1305,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 335
 .
 
 bloodCellShapeFun
@@ -1326,7 +1321,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 52
 .
 
 bloodCellShapeFun
@@ -1342,7 +1337,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 157
 .
 
 bloodCellShapeFun
@@ -1358,7 +1353,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 354
 .
 
 bloodCellShapeFun
@@ -1374,7 +1369,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 185
 .
 
 bloodCellShapeFun
@@ -1390,7 +1385,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 56
 .
 
 bloodCellShapeFun
@@ -1406,7 +1401,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 185
 .
 
 bloodCellShapeFun
@@ -1422,7 +1417,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 124
 .
 
 bloodCellShapeFun
@@ -1438,7 +1433,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 231
 .
 
 bloodCellShapeFun
@@ -1454,7 +1449,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 37
 .
 
 bloodCellShapeFun
@@ -1470,7 +1465,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 35
 .
 
 bloodCellShapeFun
@@ -1486,7 +1481,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 247
 .
 
 bloodCellShapeFun
@@ -1502,7 +1497,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 146
 .
 
 bloodCellShapeFun
@@ -1518,7 +1513,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 75
 .
 
 bloodCellShapeFun
@@ -1534,7 +1529,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 270
 .
 
 bloodCellShapeFun
@@ -1550,7 +1545,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 82
 .
 
 bloodCellShapeFun
@@ -1566,7 +1561,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 104
 .
 
 bloodCellShapeFun
@@ -1582,7 +1577,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 326
 .
 
 bloodCellShapeFun
@@ -1598,7 +1593,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 24
 .
 
 bloodCellShapeFun
@@ -1614,7 +1609,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 278
 .
 
 bloodCellShapeFun
@@ -1630,7 +1625,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 295
 .
 
 bloodCellShapeFun
@@ -1646,7 +1641,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 48
 .
 
 bloodCellShapeFun
@@ -1662,7 +1657,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 70
 .
 
 bloodCellShapeFun
@@ -1678,7 +1673,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 320
 .
 
 bloodCellShapeFun
@@ -1694,7 +1689,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 330
 .
 
 bloodCellShapeFun
@@ -1710,7 +1705,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 109
 .
 
 bloodCellShapeFun
@@ -1726,7 +1721,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 108
 .
 
 bloodCellShapeFun
@@ -1742,7 +1737,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 33
 .
 
 bloodCellShapeFun
@@ -1758,7 +1753,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 124
 .
 
 bloodCellShapeFun
@@ -1774,7 +1769,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 348
 .
 
 bloodCellShapeFun
@@ -1790,7 +1785,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 48
 .
 
 bloodCellShapeFun
@@ -1806,7 +1801,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 266
 .
 
 bloodCellShapeFun
@@ -1822,7 +1817,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 103
 .
 
 bloodCellShapeFun
@@ -1838,7 +1833,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 174
 .
 
 bloodCellShapeFun
@@ -1854,7 +1849,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 316
 .
 
 bloodCellShapeFun
@@ -1870,7 +1865,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 210
 .
 
 bloodCellShapeFun
@@ -1886,7 +1881,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 335
 .
 
 bloodCellShapeFun
@@ -1902,7 +1897,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 159
 .
 
 bloodCellShapeFun
@@ -1918,7 +1913,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 247
 .
 
 bloodCellShapeFun
@@ -1934,7 +1929,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 200
 .
 
 bloodCellShapeFun
@@ -1950,7 +1945,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 173
 .
 
 bloodCellShapeFun
@@ -1966,7 +1961,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 337
 .
 
 bloodCellShapeFun
@@ -1982,7 +1977,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 62
 .
 
 bloodCellShapeFun
@@ -1998,7 +1993,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 158
 .
 
 bloodCellShapeFun
@@ -2014,7 +2009,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 82
 .
 
 bloodCellShapeFun
@@ -2030,7 +2025,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 141
 .
 
 bloodCellShapeFun
@@ -2046,7 +2041,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 216
 .
 
 bloodCellShapeFun
@@ -2062,7 +2057,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 281
 .
 
 bloodCellShapeFun
@@ -2078,7 +2073,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 131
 .
 
 bloodCellShapeFun
@@ -2094,7 +2089,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 202
 .
 
 bloodCellShapeFun
@@ -2110,7 +2105,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 150
 .
 
 bloodCellShapeFun
@@ -2126,7 +2121,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 146
 .
 
 bloodCellShapeFun
@@ -2142,7 +2137,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 317
 .
 
 bloodCellShapeFun
@@ -2158,7 +2153,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 203
 .
 
 bloodCellShapeFun
@@ -2174,7 +2169,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 189
 .
 
 bloodCellShapeFun
@@ -2190,7 +2185,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 308
 .
 
 bloodCellShapeFun
@@ -2206,7 +2201,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 194
 .
 
 bloodCellShapeFun
@@ -2222,7 +2217,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 158
 .
 
 bloodCellShapeFun
@@ -2238,7 +2233,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 212
 .
 
 bloodCellShapeFun
@@ -2254,7 +2249,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 106
 .
 
 bloodCellShapeFun
@@ -2270,7 +2265,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 40
 .
 
 bloodCellShapeFun
@@ -2286,7 +2281,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 17
 .
 
 bloodCellShapeFun
@@ -2302,7 +2297,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 270
 .
 
 bloodCellShapeFun
@@ -2318,7 +2313,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 360
 .
 
 bloodCellShapeFun
@@ -2334,7 +2329,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 341
 .
 
 bloodCellShapeFun
@@ -2350,7 +2345,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 213
 .
 
 bloodCellShapeFun
@@ -2366,7 +2361,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 315
 .
 
 bloodCellShapeFun
@@ -2382,7 +2377,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 43
 .
 
 bloodCellShapeFun
@@ -2398,7 +2393,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 237
 .
 
 bloodCellShapeFun
@@ -2414,7 +2409,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 163
 .
 
 bloodCellShapeFun
@@ -2430,7 +2425,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 58
 .
 
 bloodCellShapeFun
@@ -2446,7 +2441,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 161
 .
 
 bloodCellShapeFun
@@ -2462,7 +2457,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 266
 .
 
 bloodCellShapeFun
@@ -2478,7 +2473,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 356
 .
 
 bloodCellShapeFun
@@ -2494,7 +2489,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 345
 .
 
 bloodCellShapeFun
@@ -2510,7 +2505,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 307
 .
 
 bloodCellShapeFun
@@ -2526,7 +2521,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 217
 .
 
 bloodCellShapeFun
@@ -2542,7 +2537,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 161
 .
 
 bloodCellShapeFun
@@ -2558,7 +2553,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 334
 .
 
 bloodCellShapeFun
@@ -2574,7 +2569,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 322
 .
 
 bloodCellShapeFun
@@ -2590,7 +2585,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 62
 .
 
 bloodCellShapeFun
@@ -2606,7 +2601,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 310
 .
 
 bloodCellShapeFun
@@ -2622,7 +2617,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 227
 .
 
 bloodCellShapeFun
@@ -2638,7 +2633,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 99
 .
 
 bloodCellShapeFun
@@ -2654,7 +2649,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 121
 .
 
 bloodCellShapeFun
@@ -2670,7 +2665,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 227
 .
 
 bloodCellShapeFun
@@ -2686,7 +2681,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 133
 .
 
 bloodCellShapeFun
@@ -2702,7 +2697,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 235
 .
 
 bloodCellShapeFun
@@ -2718,7 +2713,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 269
 .
 
 bloodCellShapeFun
@@ -2734,7 +2729,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 67
 .
 
 bloodCellShapeFun
@@ -2750,7 +2745,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 106
 .
 
 bloodCellShapeFun
@@ -2766,7 +2761,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 208
 .
 
 bloodCellShapeFun
@@ -2782,7 +2777,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 36
 .
 
 bloodCellShapeFun
@@ -2798,7 +2793,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 352
 .
 
 bloodCellShapeFun
@@ -2814,7 +2809,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 247
 .
 
 bloodCellShapeFun
@@ -2830,7 +2825,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 246
 .
 
 bloodCellShapeFun
@@ -2846,7 +2841,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 40
 .
 
 bloodCellShapeFun
@@ -2862,7 +2857,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 55
 .
 
 bloodCellShapeFun
@@ -2878,7 +2873,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 356
 .
 
 bloodCellShapeFun
@@ -2894,7 +2889,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 201
 .
 
 bloodCellShapeFun
@@ -2910,7 +2905,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 355
 .
 
 bloodCellShapeFun
@@ -2926,7 +2921,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 358
 .
 
 bloodCellShapeFun
@@ -2942,7 +2937,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 135
 .
 
 bloodCellShapeFun
@@ -2958,7 +2953,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 338
 .
 
 bloodCellShapeFun
@@ -2974,7 +2969,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 334
 .
 
 bloodCellShapeFun
@@ -2990,7 +2985,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 43
 .
 
 bloodCellShapeFun
@@ -3006,7 +3001,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 134
 .
 
 bloodCellShapeFun
@@ -3022,7 +3017,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 283
 .
 
 bloodCellShapeFun
@@ -3038,7 +3033,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 65
 .
 
 bloodCellShapeFun
@@ -3054,7 +3049,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 74
 .
 
 bloodCellShapeFun
@@ -3070,7 +3065,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 62
 .
 
 bloodCellShapeFun
@@ -3086,7 +3081,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 353
 .
 
 bloodCellShapeFun
@@ -3102,7 +3097,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 264
 .
 
 bloodCellShapeFun
@@ -3118,7 +3113,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 67
 .
 
 bloodCellShapeFun
@@ -3134,7 +3129,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 154
 .
 
 bloodCellShapeFun
@@ -3150,7 +3145,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 3
 .
 
 bloodCellShapeFun
@@ -3166,7 +3161,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 31
 .
 
 bloodCellShapeFun
@@ -3182,7 +3177,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 40
 .
 
 bloodCellShapeFun
@@ -3198,7 +3193,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 70
 .
 
 bloodCellShapeFun
@@ -3214,7 +3209,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 301
 .
 
 bloodCellShapeFun
@@ -3230,7 +3225,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 67
 .
 
 bloodCellShapeFun
@@ -3246,7 +3241,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 258
 .
 
 bloodCellShapeFun
@@ -3262,7 +3257,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 9
 .
 
 bloodCellShapeFun
@@ -3278,7 +3273,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 96
 .
 
 bloodCellShapeFun
@@ -3294,7 +3289,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 173
 .
 
 bloodCellShapeFun
@@ -3310,7 +3305,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 34
 .
 
 bloodCellShapeFun
@@ -3326,7 +3321,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 196
 .
 
 bloodCellShapeFun
@@ -3342,7 +3337,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 342
 .
 
 bloodCellShapeFun
@@ -3358,7 +3353,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 150
 .
 
 bloodCellShapeFun
@@ -3374,7 +3369,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 4
 .
 
 bloodCellShapeFun
@@ -3390,7 +3385,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 186
 .
 
 bloodCellShapeFun
@@ -3406,7 +3401,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 132
 .
 
 bloodCellShapeFun
@@ -3422,7 +3417,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 102
 .
 
 bloodCellShapeFun
@@ -3438,7 +3433,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 177
 .
 
 bloodCellShapeFun
@@ -3454,7 +3449,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 284
 .
 
 bloodCellShapeFun
@@ -3470,7 +3465,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 250
 .
 
 bloodCellShapeFun
@@ -3486,7 +3481,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 320
 .
 
 bloodCellShapeFun
@@ -3502,7 +3497,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 11
 .
 
 bloodCellShapeFun
@@ -3518,7 +3513,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 99
 .
 
 bloodCellShapeFun
@@ -3534,7 +3529,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 84
 .
 
 bloodCellShapeFun
@@ -3550,7 +3545,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 17
 .
 
 bloodCellShapeFun
@@ -3566,7 +3561,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 260
 .
 
 bloodCellShapeFun
@@ -3582,7 +3577,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 115
 .
 
 bloodCellShapeFun
@@ -3598,7 +3593,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 287
 .
 
 bloodCellShapeFun
@@ -3614,7 +3609,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 259
 .
 
 bloodCellShapeFun
@@ -3630,7 +3625,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 237
 .
 
 bloodCellShapeFun
@@ -3646,7 +3641,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 327
 .
 
 bloodCellShapeFun
@@ -3662,7 +3657,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 320
 .
 
 bloodCellShapeFun
@@ -3678,7 +3673,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 167
 .
 
 bloodCellShapeFun
@@ -3694,7 +3689,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 202
 .
 
 bloodCellShapeFun
@@ -3710,7 +3705,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 126
 .
 
 bloodCellShapeFun
@@ -3726,7 +3721,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 107
 .
 
 bloodCellShapeFun
@@ -3742,7 +3737,7 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 305
 .
 
 bloodCellShapeFun
@@ -3758,5 +3753,5 @@ E 10.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 162
 .

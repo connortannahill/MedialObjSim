@@ -20,6 +20,10 @@ if testNum == -1:
     f_name = './output/{0}/'.format(test)
 else:
     f_name = './output/{0}/{1}/'.format(test, testNum)
+<<<<<<< HEAD
+=======
+print(f_name)
+>>>>>>> ffc9a48a2273af6b42a9bf6be1c21278041d0947
 
 # numObj = 1
 # if (len(sys.argv) == 4):
@@ -31,7 +35,7 @@ else:
 # cur_dir = os.getcwd()
 # os.chdir(f_name)
 print('looking for numObj in {}'.format(f_name+'MSSEdges*'))
-print('glob = {}'.format(glob.glob(f_name+'MSSEdges*')))
+# print('glob = {}'.format(glob.glob(f_name+'MSSEdges*')))
 numObj = len(glob.glob(f_name+'MSSEdges*'))
 # os.chdir(cur_dir)
 
@@ -39,6 +43,23 @@ numObj = len(glob.glob(f_name+'MSSEdges*'))
 """
 For plotting the Pool isocontour
 """
+
+if mode == -2:
+    str = ''
+    from random import randint
+    with open('./TestDrivers/2DDrivers/Q3ManyObject') as f:
+        for ln in f.readlines():
+            str_temp = ln.strip()
+            print(str_temp)
+            if str_temp.startswith('deg'):
+                str_temp = str_temp[:str_temp.rfind('g')+2] + ('90' if randint(0, 1) == 0 else '0')
+
+            str += str_temp + '\n'
+
+    with open('./TestDrivers/2DDrivers/Q3ManyObject', 'w') as f:
+        f.write(str)
+
+# assert(False)
 
 if mode == -1:
 
@@ -232,36 +253,38 @@ elif mode == 10:
     phi = out[:,2]
 
     fig, ax = plt.subplots(1)
+
+    # ax.contour(x, y, phi)
     
     for i in range(numObj):
         f_name = f_temp
         f_name += 'MSSEdges{0}'.format(i)
 
         out = np.genfromtxt(f_name, delimiter=',')
-        x = out[:,0]
-        y = out[:,1]
+        x_mss = out[:,0]
+        y_mss = out[:,1]
 
-        x_list = [x[i:i+2] for i in range(x.size, 2)]
-        y_list = [y[i:i+2] for i in range(y.size, 2)]
+        # x_list = [x[i:i+2] for i in range(x.size, 2)]
+        # y_list = [y[i:i+2] for i in range(y.size, 2)]
         lines = []
         # print(x.size)
         # print(list(range(0, x.size, 2)))
-        for j in range(0, x.size, 2):
-            # print('hi')
-            lines.append([(x[j],y[j]), (x[j+1],y[j+1])])
-        # print('done for')
-        # lines = [[(x[i],y[i]), (x[i+1],y[i+1])] for i in range(x.size, 2)]
+        # for j in range(0, x.size, 2):
+        #     # print('hi')
+        #     lines.append([(x[j],y[j]), (x[j+1],y[j+1])])
+        # # print('done for')
+        # # lines = [[(x[i],y[i]), (x[i+1],y[i+1])] for i in range(x.size, 2)]
 
-        # print(lines[0])
-        # assert(False)
-        from matplotlib.collections import LineCollection
-        lc = LineCollection(lines, colors='r')
+        # # print(lines[0])
+        # # assert(False)
+        # from matplotlib.collections import LineCollection
+        # lc = LineCollection(lines, colors='r')
 
-        ax.add_collection(lc)
+        # ax.add_collection(lc)
 
         # for i in range(0, x.size, 2):
         #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=1, lw=0.5)
-        # plt.plot(x_list, y_list, 'ro-', ms=1, lw=0.5)
+        plt.plot(x_mss, y_mss, 'ro-', ms=1, lw=0.5)
         # plt.xlim((0.25, 1.75))
         # plt.ylim((1, 2))
     
@@ -299,12 +322,10 @@ elif mode == 10:
     if testNum == -1:
         plt.savefig("{0}.png".format(test), bbox_inches='tight')
     else:
-        print('outputting to ' + "{0}{1}.png".format(test, testNum))
         plt.savefig("{0}{1}.png".format(test, testNum), bbox_inches='tight')
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
-    # plt.savefig()
     # plt.show()
 elif mode == 11:
     f_temp = f_name
@@ -416,17 +437,21 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     
     plt.show()
 elif mode == 13:  # plot snapshots of steps through simulation
+    print('mode 13')
 
     # code for displaying plot
+    step_num = 1
     def displayPlot():
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
-        for i in range(0, x.size, 2):
-            plt.scatter(x[i:i+2], y[i:i+2], c='r', marker='o', s=1)
+        # for i in range(0, x.size, 2):
+        #     plt.scatter(x[i:i+2], y[i:i+2], c='r', linesyle=None, marker='o', s=1)
+        plt.scatter(x, y, c='r', marker='o', s=1)
         if (len(x_med) > 0):
             plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
         # plt.title(test + ', nstep = ' + steps)
         plt.gca().set_aspect('equal')
+        plt.savefig('{0}step{1}.png'.format(f_name, step_num))
         fig.canvas.draw()
     
 
@@ -483,8 +508,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         min_x = min(min(x_pool), min_x)
         max_y = max(max(y_pool), max_y)
         min_y = min(min(y_pool), min_y)
-        u = out[:,2]
-        v = out[:,3]
+        u = out_fluid[:,2]
+        v = out_fluid[:,3]
 
         out = np.genfromtxt(f_name+'/medialAxis', delimiter=',')
 

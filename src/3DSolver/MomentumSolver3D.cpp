@@ -196,6 +196,7 @@ void MomentumSolver3D::updateU() {
     int mo = this->methodOrd;
 
     // Update u
+    cout << "updating U" << endl;
     for (k = 0; k < this->nz; k++) {
         for (j = 0; j < this->ny; j++) {
             for (i = 0; i < this->nx-1; i++) {
@@ -210,8 +211,10 @@ void MomentumSolver3D::updateU() {
             }
         }
     }
+    cout << "FINISHED updating U" << endl;
 
     // Update v
+    cout << "updating V" << endl;
     for (k = 0; k < this->nz; k++) {
         for (j = 0; j < this->ny-1; j++) {
             for (i = 0; i < this->nx; i++) {
@@ -226,8 +229,10 @@ void MomentumSolver3D::updateU() {
             }
         }
     }
+    cout << "FINISHED updating V" << endl;
 
     // Finally, update w
+    cout << "updating W" << endl;
     for (k = 0; k < this->nz-1; k++) {
         for (j = 0; j < this->ny; j++) {
             for (i = 0; i < this->nx; i++) {
@@ -242,6 +247,7 @@ void MomentumSolver3D::updateU() {
             }
         }
     }
+    cout << "FINISHED updating W" << endl;
 }
 
 /**
@@ -320,11 +326,15 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     this->updateF(pool);
 
     // Implicit step: update the pressure by solving Poisson equation.
+    cout << "updating pressure" << endl;
     this->updateP();
+    cout << "FINISHEd updating pressure" << endl;
 
     // Combine these together to update the fluid velocities.
     // cout << "Updating u" << endl;
+    cout << "updating U" << endl;
     this->updateU();
+    cout << "FINISHED updating U" << endl;
     // cout << "FINISHED updating u" << endl;
 
     // Interpolate the velocities to the cell centers
@@ -333,6 +343,7 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     // cout << "FINISHED interping velocities" << endl;
 
     // If there are any structures in the pool, update the pool location.
+    cout << "updating pol" << endl;
     if (this->nStructs > 0) {
         // cout << "Updating pool" << endl;
         // Update the location of the interfaces
@@ -342,6 +353,7 @@ double MomentumSolver3D::step(double tEnd, double safetyFactor) {
         // Apply object velocities to boundary points
         this->test_setInternal();
     }
+    cout << "finsihed updating pol" << endl;
 
     // Update the point in time
     this->t += this->dt;
