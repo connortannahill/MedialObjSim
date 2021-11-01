@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=10:00:00
+#SBATCH --time=100:00:00
 #SBATCH --account=def-wan
 #SBATCH --mem=250G
 #SBATCH --cpus-per-task=1
@@ -11,12 +11,14 @@ module load scipy-stack
 
 
 args="Q3ManyObject 3 1"
+# args="objscale.txt"
 echo "Args = $args"
 
 scaletestcmd="python experiments.py < $args"
-scaletestcmd3d="python experiments.py < $args"
 singletestcmd="bash compile_and_run.sh $args"
 
+
+# cmd=$scaletestcmd
 cmd=$singletestcmd
 echo "Running cmds $cmd"
 $cmd

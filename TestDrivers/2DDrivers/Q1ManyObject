@@ -1,5 +1,5 @@
 Many object test generic, can be from many sources
-Q3ManyObject
+Q1ManyObject
 
 0.0 7.0
 0.0 7.0
@@ -16,7 +16,7 @@ lidDrivenCavityBC
 bloodCellShapeFun
 2
 0.0
--0.1
+0.0
 cx 3.5
 cy 5.5
 r 2.5
@@ -25,12 +25,14 @@ density 1.0
 E 10
 eta 0.0
 deg 0
+a 0.3
+c 0.105
 .
 
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 2.0
 cy 2.5
 r 0.2
@@ -46,7 +48,7 @@ deg 248
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 2.0
 cy 3.5
 r 0.2
@@ -62,7 +64,7 @@ deg 116
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 2.7
 cy 2.5
 r 0.2
@@ -78,7 +80,7 @@ deg 336
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 2.7
 cy 3.5
 r 0.2
@@ -94,7 +96,7 @@ deg 128
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 3.4
 cy 2.5
 r 0.2
@@ -110,7 +112,7 @@ deg 267
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 3.4
 cy 3.5
 r 0.2
@@ -126,7 +128,7 @@ deg 229
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 4.1
 cy 2.5
 r 0.2
@@ -142,7 +144,7 @@ deg 10
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 4.1
 cy 3.5
 r 0.2
@@ -158,7 +160,7 @@ deg 201
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 4.8
 cy 2.5
 r 0.2
@@ -174,7 +176,7 @@ deg 270
 coneShapeFun
 1
 0.0
--0.1
+0.0
 cx 4.8
 cy 3.5
 r 0.2

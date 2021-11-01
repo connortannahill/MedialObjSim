@@ -90,10 +90,11 @@ def plot_3D(num):
     cx = 0.5
     cy = 0.5
     cz = 0.5
-    a = 0.38
-    c = 0.15
+    # a = 0.38
+    a = 0.3
+    c = 0.105
     r = 1
-    b = 1.05 * r
+    b = 2.25 * r
 
     for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
         x, y, z = pnt

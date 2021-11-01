@@ -1370,7 +1370,7 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
         tracers[structNum].x += dt*uCur;
         tracers[structNum].y += dt*vCur;
         tracers[structNum].w += dt*wCur;
-    } else {
+    } else if (mode == 2) {
         /* Use gradient descent with line search and the interior perserving step limit
            to update the position of the tracer partical */
         
@@ -1409,6 +1409,10 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
             tracers[structNum].y = yStep;
             tracers[structNum].z = yStep;
         }
+    } else {
+        tracers[structNum].x += dt * tracers[structNum].u;
+        tracers[structNum].y += dt * tracers[structNum].v;
+        tracers[structNum].z += dt * tracers[structNum].w;
     }
 }
 
@@ -2669,7 +2673,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     for (int k = 0; k < nStructs; k++) {
         // cout << "updating tracers" << endl;
-        updateTracer(k, dt, 1);
+        updateTracer(k, dt, 3);
         // cout << "FINSIHED updating tracers" << endl;
     }
     

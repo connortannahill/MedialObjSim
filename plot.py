@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import itertools
-import seaborn as sb
+# import seaborn as sb
 import sys
 import os, glob
 
@@ -9,14 +9,23 @@ if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
     sys.exit()
 
+testNum = -1
+if (len(sys.argv) == 4):
+    testNum = int(sys.argv[3])
+
 test = sys.argv[1]
 mode = int(sys.argv[2])
-f_name = './output/{0}/'.format(test)
-print(f_name)
+f_name = None
+if testNum == -1:
+    f_name = './output/{0}/'.format(test)
+else:
+    f_name = './output/{0}/{1}/'.format(test, testNum)
 
 # numObj = 1
 # if (len(sys.argv) == 4):
 #     numObj = int(sys.argv[3])
+
+
 
 # Get the number of objects
 # cur_dir = os.getcwd()
@@ -287,11 +296,16 @@ elif mode == 10:
 
     plt.gca().set_aspect('equal')
     # plt.axis('off')
-    plt.savefig("ManyConvex_1_73.png", bbox_inches='tight')
+    if testNum == -1:
+        plt.savefig("{0}.png".format(test), bbox_inches='tight')
+    else:
+        print('outputting to ' + "{0}{1}.png".format(test, testNum))
+        plt.savefig("{0}{1}.png".format(test, testNum), bbox_inches='tight')
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
-    plt.show()
+    # plt.savefig()
+    # plt.show()
 elif mode == 11:
     f_temp = f_name
     f_name += 'medialAxis'
@@ -330,6 +344,22 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     x_pool = out[:,0]
     y_pool = out[:,1]
     phi = out[:,2]
+
+    x_min = min(x_pool)
+    x_max = max(x_pool)
+
+    y_min = min(y_pool)
+    y_max = max(y_pool)
+
+    x_low_ind = np.where(x_pool == x_min)
+    x_high_ind = np.where(x_pool == x_max)
+    
+    y_low_ind = np.where(y_pool == y_min)
+    y_high_ind = np.where(y_pool == y_max)
+
+    nx = x_high_ind - x_low_ind + 1
+    ny = y_high_ind - y_low_ind + 1
+
 
     # n = int(np.sqrt(phi.size))
 
@@ -429,16 +459,16 @@ elif mode == 13:  # plot snapshots of steps through simulation
     max_y = -np.inf
     min_y = np.inf
     for step in steps:
-        curr_name = f_name + step + '/poolOut'
+        curr_name = f_name + '/poolOut'
         out = np.genfromtxt(curr_name, delimiter=',')
 
-        numObj = len(glob.glob(f_name + step + '/MSSEdges*'))
+        numObj = len(glob.glob(f_name + '/MSSEdges*'))
 
         x_objs = []
         y_objs = []
 
         for i in range(numObj):
-            mss_edges_f_name = f_name + step + '/MSSNodes{0}'.format(i)
+            mss_edges_f_name = f_name + '/MSSNodes{0}'.format(i)
 
             out = np.genfromtxt(mss_edges_f_name, delimiter=',')
             x_temp = out[:,0]
@@ -446,7 +476,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
             x_objs = np.concatenate((x_objs, x_temp))
             y_objs = np.concatenate((y_objs, y_temp))
 
-        out = np.genfromtxt(f_name+step+'/out', delimiter=',')
+        out = np.genfromtxt(f_name+'/out', delimiter=',')
         x_pool = out[:,0]
         y_pool = out[:,1]
         max_x = max(max(x_pool), max_x)
@@ -456,7 +486,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         u = out[:,2]
         v = out[:,3]
 
-        out = np.genfromtxt(f_name+step+'/medialAxis', delimiter=',')
+        out = np.genfromtxt(f_name+'/medialAxis', delimiter=',')
 
         print('hi {}'.format(out.size))
         if (out.size == 0) :

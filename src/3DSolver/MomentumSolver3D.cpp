@@ -230,7 +230,7 @@ void MomentumSolver3D::updateU() {
     // Finally, update w
     for (k = 0; k < this->nz-1; k++) {
         for (j = 0; j < this->ny; j++) {
-            for (i = 0; i < this->nz; i++) {
+            for (i = 0; i < this->nx; i++) {
                 xi = i + mo;
                 yi = j + mo;
                 zi = k + mo;

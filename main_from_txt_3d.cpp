@@ -44,7 +44,7 @@ double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
     ps.getParam("r", r);
     ps.getParam("deg", deg);
 
-    double b = 1.35 * r;
+    double b = 2.25 * r;
     double rad = deg * M_PI / 180;
     double rotcy = (y-cy) / (b) * cos(rad) - (z-cz) / (b) * sin(rad);
     double rotcz = (y-cy) / (b) * sin(rad) + (z-cz) / (b) * cos(rad);
@@ -96,11 +96,12 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double 
 }
 
 void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
-    for (int k = 1; k <= nz; k++) {
+    for (int j = 1; j <= ny; j++) {
         for (int i = 1; i <= nx; i++) {
-            v[k][0][i] = v[k][1][i];
+            w[0][j][i] = w[1][j][i];
 
-            v[k][ny][i] = -0.1;
+            w[nz][j][i] = -0.1;
+            
 
 
             // // Inflow condition
@@ -340,7 +341,7 @@ int main(int argc, char **argv) {
             t = solver.step(tEnd, safetyFactor);
 
             if (nsteps % 20 == 0) {
-                string f_name = testName;
+                string f_name = testName + std::to_string(nsteps);
                 outputData(f_name, solver, nsteps);
             }
 
