@@ -207,6 +207,7 @@ public:
     void outputAllStructureVels(const char *fname);
     void outputTracers(const char *fname);
     void outputMedialAxisApprox(const char *fname);
+    void outputDomain(const char *fname);
 
     /* Helper methods */
     void levelSetGradient(int i, int j, double g[2]);

@@ -423,15 +423,13 @@ elif mode == 13:  # plot snapshots of steps through simulation
     step_num = 1
     def displayPlot():
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
-        # for i in range(0, x.size, 2):
-        #     plt.scatter(x[i:i+2], y[i:i+2], c='r', linesyle=None, marker='o', s=1)
         plt.scatter(x, y, c='r', marker='o', s=1)
         if (len(x_med) > 0):
             plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
         # plt.title(test + ', nstep = ' + steps)
         plt.gca().set_aspect('equal')
-        plt.savefig('{0}step{1}.png'.format(f_name, step_num))
+        # plt.savefig('{0}step{1}.png'.format(f_name, step_num))
         fig.canvas.draw()
     
 
@@ -464,16 +462,18 @@ elif mode == 13:  # plot snapshots of steps through simulation
     max_y = -np.inf
     min_y = np.inf
     for step in steps:
-        curr_name = f_name + '/poolOut'
+
+        curr_name = f_name + str(step) + '/poolOut'
+        print('currName = {0}'.format(curr_name))
         out = np.genfromtxt(curr_name, delimiter=',')
 
-        numObj = len(glob.glob(f_name + '/MSSEdges*'))
+        numObj = len(glob.glob(f_name + str(step) + '/MSSEdges*'))
 
         x_objs = []
         y_objs = []
 
         for i in range(numObj):
-            mss_edges_f_name = f_name + '/MSSNodes{0}'.format(i)
+            mss_edges_f_name = f_name + str(step) + '/MSSNodes{0}'.format(i)
 
             out = np.genfromtxt(mss_edges_f_name, delimiter=',')
             x_temp = out[:,0]
@@ -481,14 +481,14 @@ elif mode == 13:  # plot snapshots of steps through simulation
             x_objs = np.concatenate((x_objs, x_temp))
             y_objs = np.concatenate((y_objs, y_temp))
 
-        out = np.genfromtxt(f_name+'/out', delimiter=',')
+        out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
         # Generate array of indices (for the velocities)
         n = out.shape[0]
         inds = np.arange(out.shape[0])
         np.random.shuffle(inds)
 
         # off = n#int(n/10)
-        off = int(n/10)
+        off = int(n)
         out_fluid = out[inds[:off],:]
 
         x_pool = out_fluid[:,0]
@@ -500,7 +500,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         u = out_fluid[:,2]
         v = out_fluid[:,3]
 
-        out = np.genfromtxt(f_name+'/medialAxis', delimiter=',')
+        out = np.genfromtxt(f_name+str(step)+'/medialAxis', delimiter=',')
 
         print('hi {}'.format(out.size))
         if (out.size == 0) :
@@ -559,7 +559,28 @@ elif mode == 14:
     plt.axis('off')
 
     plt.show()
+elif mode == 15:
+    f_temp = f_name
+    f_temp += 'domain'
+    out = np.genfromtxt(f_temp, delimiter=',')
+    nx = out.shape[0]
+    ny = out.shape[1]
 
+    # f_temp = f_name
+    # f_temp += 'MSSTracers'
+    # out = np.genfromtxt(f_temp, delimiter=',')
+
+    # tracers = []
+    # for tracer in out:
+    #     tracers.append((tracer[0], tracer[1]))
+
+    #     plt.scatter(nx*tracer[0], ny*tracer[1], c='b')
+    
+
+
+    plt.imshow(out)
+    plt.show()
+    
 else:
     print('Invalid mode!')
     sys.exit()

@@ -74,7 +74,7 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
 
 // Problem-dependent boundary conditions
 void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-    double ubar = 1;
+    double ubar = 0.1;
     for (int i = 1; i <= nx; i++) {
         u[ny+1][i] = 2*ubar - u[ny][i];
     }
@@ -140,6 +140,10 @@ void outputData(string f_name, NSSolver &solver) {
     testFormatter.genOutStr("medialAxis", outStr);
     solver.outputMedialAxis(outStr.c_str());
     cout << outStr << endl;
+
+    testFormatter.genOutStr("domain", outStr);
+    solver.outputMedialAxis(outStr.c_str());
+    cout << outStr << endl;
 }
 
 void outputData(string f_name, NSSolver &solver, int testNum) {
@@ -177,6 +181,10 @@ void outputData(string f_name, NSSolver &solver, int testNum) {
 
     testFormatter.genOutStr("medialAxis", outStr);
     solver.outputMedialAxis(outStr.c_str());
+    cout << outStr << endl;
+
+    testFormatter.genOutStr("domain", outStr);
+    solver.outputDomain(outStr.c_str());
     cout << outStr << endl;
 }
 

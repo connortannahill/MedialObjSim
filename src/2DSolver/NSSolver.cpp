@@ -1079,6 +1079,10 @@ void NSSolver::outputMedialAxis(const char *fname) {
     pool->outputMedialAxisApprox(fname);
 }
 
+void NSSolver::outputDomain(const char *fname) {
+    pool->outputDomain(fname);
+}
+
 void NSSolver::outputTracers(const char *fname) {
     pool->outputTracers(fname);
 }

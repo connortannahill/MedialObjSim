@@ -262,10 +262,10 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     phiReInit[mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d >= 10*collisionDist) {
-           fastMarchingState[j][i] = ACCEPTED;
-           return;
-        }
+        // if (d >= 10*collisionDist) {
+        //    fastMarchingState[j][i] = ACCEPTED;
+        //    return;
+        // }
     }
 
     // Add the point to the heap structure
@@ -1039,8 +1039,8 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         double alpha = 0.1;
 
         // First gradient update
-        double xStep = tracers[structNum].x - (alpha/abs(phi_ij))*gradPhi_ij[0];
-        double yStep = tracers[structNum].y - (alpha/abs(phi_ij))*gradPhi_ij[1];
+        double xStep = tracers[structNum].x - alpha*gradPhi_ij[0];
+        double yStep = tracers[structNum].y - alpha*gradPhi_ij[1];
 
         // const double gamma = 0.5;
         const int max_iter = 10;
@@ -1049,8 +1049,8 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         while (interpolatePhi(xStep, yStep) > phi_ij) {
             alpha /= 2;
             
-            xStep = tracerX - (alpha/abs(phi_ij))*gradPhi_ij[0];
-            yStep = tracerY - (alpha/abs(phi_ij))*gradPhi_ij[1];
+            xStep = tracerX - alpha*gradPhi_ij[0];
+            yStep = tracerY - alpha*gradPhi_ij[1];
 
             iters++;
 
@@ -2091,7 +2091,7 @@ void Pool2D::updatePoolVelocities(double dt, double **u, double **v, double **p,
             if (repulseMode != 0) {
                 this->fastMarchPool(false, 2);
                 this->detectCollisions();
-                this->setUpDomainArray();
+                // this->setUpDomainArray();
             }
 
             double fNet[2] = {0, 0};
@@ -2133,6 +2133,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     }
 
     // Set up the domain array
+    // enumeratePool();
     setUpDomainArray();
 
     // Update the velocity field
@@ -2149,7 +2150,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
 
     // Update the positions of the tracer particals
     for (k = 0; k < nStructs; k++) {
-        updateTracer(k, dt, 2);
+        updateTracer(k, dt, 3);
     }
     
     // Update the enumeration and domain array for the shifted level set.
@@ -2312,6 +2313,24 @@ void Pool2D::outputMedialAxisApprox(const char *fname) {
         outFile << x << ", ";
         outFile << y << ", ";
         outFile << phiVal << endl;
+    }
+
+    outFile.close();
+}
+
+void Pool2D::outputDomain(const char *fname) {
+    ofstream outFile;
+    outFile.open(fname);
+
+    for (int j = 0; j < ny; j++) {
+        for (int i = 0; i < nx; i++) {
+            outFile << domainMembership(i, j);
+
+            if (i != nx - 1) {
+                outFile << ",";
+            }
+        }
+        outFile << "\n";
     }
 
     outFile.close();
@@ -2928,24 +2947,6 @@ double *Pool2D::getXMesh() {
 
 double *Pool2D::getYMesh() {
     return this->y;
-}
-
-void Pool2D::outputDomain(const char *fname) {
-    ofstream outFile;
-    outFile.open(fname);
-
-    for (int j = 0; j < ny; j++) {
-        for (int i = 0; i < nx; i++) {
-            outFile << domainMembership(i, j);
-
-            if (i != nx - 1) {
-                outFile << ",";
-            }
-        }
-        outFile << "\n";
-    }
-
-    outFile.close();
 }
 
 // -------------------

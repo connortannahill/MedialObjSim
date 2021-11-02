@@ -112,6 +112,7 @@ public:
     void outputStructureNodes(int structNum, const char *fname);
     void outputStructureVels(int structNum, const char *fname);
     void outputTracers(const char *fname);
+    void outputDomain(const char *fname);
     void outputAllStructures(const char *fname);
     void outputAllStructureNodes(const char *fname);
     void outputAllStructureVels(const char *fname);

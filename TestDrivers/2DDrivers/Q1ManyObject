@@ -9,20 +9,20 @@ Q1ManyObject
 1000.0
 1
 lidDrivenCavityBC
-30.0
+100.0
 
 11
 
 bloodCellShapeFun
-2
+1
 0.0
 0.0
 cx 3.5
 cy 5.5
 r 2.5
-mass 2
-density 1.0
-E 10
+mass 10.0
+density 10.0
+E 5
 eta 0.0
 deg 0
 a 0.3
@@ -38,7 +38,7 @@ cy 2.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -54,7 +54,7 @@ cy 3.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -70,7 +70,7 @@ cy 2.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -86,7 +86,7 @@ cy 3.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -102,7 +102,7 @@ cy 2.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -118,7 +118,7 @@ cy 3.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -134,7 +134,7 @@ cy 2.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -150,7 +150,7 @@ cy 3.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -166,7 +166,7 @@ cy 2.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
@@ -182,7 +182,7 @@ cy 3.5
 r 0.2
 mass 1.0
 density 1.0
-E 10.0
+E 5.0
 eta 0.0
 a 0.38
 c 0.105
