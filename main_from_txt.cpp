@@ -44,7 +44,7 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
     ps.getParam("r", r);
     ps.getParam("deg", deg); // degree of rotation
 
-    double b = 1.35 * r;
+    double b = 2.25 * r;
     double rad = deg * M_PI / 180;
     double rotcx = (x-cx) / (b) * cos(rad) - (y-cy) / (b) * sin(rad);
     double rotcy = (x-cx) / (b) * sin(rad) + (y-cy) / (b) * cos(rad);

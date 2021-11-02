@@ -15,14 +15,14 @@ ScaleTestOne160
 1000
 1
 lidDrivenCavityBC
-20
+1
 
 
 1
 
 bloodCellShapeFun
 1
-0.1
+0.0
 0.0
 mass 1
 density 1

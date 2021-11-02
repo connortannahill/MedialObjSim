@@ -87,6 +87,23 @@ def plot_3D(num):
     y_pool = out_pool[:,1]
     z_pool = out_pool[:,2]
     phi    = out_pool[:,3]
+<<<<<<< HEAD
+    cx = 0.5
+    cy = 0.5
+    cz = 0.5
+    # a = 0.38
+    a = 0.3
+    c = 0.105
+    r = 1
+    b = 2.25 * r
+
+    for i, pnt in enumerate(zip(x_pool, y_pool, z_pool)):
+        x, y, z = pnt
+        xsq = ((x-cx)/b)**2
+        ysq = ((y-cy)/b)**2
+        zsq = ((z-cz)/b)**2
+        phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
+=======
     # cx = 1
     # cy = 1
     # cz = 1
@@ -101,6 +118,7 @@ def plot_3D(num):
     #     ysq = ((y-cy)/b)**2
     #     zsq = ((z-cz)/b)**2
     #     phi[i] = (xsq + ysq + zsq + a**2)**2 - 4*(a**2)*(xsq + ysq) - c**2
+>>>>>>> ffc9a48a2273af6b42a9bf6be1c21278041d0947
 
 
     # fig = go.Figure(data=[

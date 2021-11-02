@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import itertools
-import seaborn as sb
+# import seaborn as sb
 import sys
 import os, glob
 
@@ -20,11 +20,12 @@ if testNum == -1:
     f_name = './output/{0}/'.format(test)
 else:
     f_name = './output/{0}/{1}/'.format(test, testNum)
-print(f_name)
 
 # numObj = 1
 # if (len(sys.argv) == 4):
 #     numObj = int(sys.argv[3])
+
+
 
 # Get the number of objects
 # cur_dir = os.getcwd()
@@ -321,8 +322,7 @@ elif mode == 10:
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
-    # plt.savefig()
-    plt.show()
+    # plt.show()
 elif mode == 11:
     f_temp = f_name
     f_name += 'medialAxis'
@@ -361,6 +361,22 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     x_pool = out[:,0]
     y_pool = out[:,1]
     phi = out[:,2]
+
+    x_min = min(x_pool)
+    x_max = max(x_pool)
+
+    y_min = min(y_pool)
+    y_max = max(y_pool)
+
+    x_low_ind = np.where(x_pool == x_min)
+    x_high_ind = np.where(x_pool == x_max)
+    
+    y_low_ind = np.where(y_pool == y_min)
+    y_high_ind = np.where(y_pool == y_max)
+
+    nx = x_high_ind - x_low_ind + 1
+    ny = y_high_ind - y_low_ind + 1
+
 
     # n = int(np.sqrt(phi.size))
 
