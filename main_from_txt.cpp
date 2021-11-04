@@ -289,7 +289,7 @@ int main(int argc, char **argv) {
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(3.0*h);
+    simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);
@@ -330,7 +330,7 @@ int main(int argc, char **argv) {
             cout << "hi 274" << endl;
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 10 == 0) {
+            if (nsteps % 1 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }

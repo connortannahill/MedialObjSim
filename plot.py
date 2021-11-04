@@ -322,7 +322,7 @@ elif mode == 10:
     plt.xlabel("$x$")
     plt.ylabel("$y$")
 
-    # plt.show()
+    plt.show()
 elif mode == 11:
     f_temp = f_name
     f_name += 'medialAxis'
@@ -469,6 +469,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
+    steps = steps[::10]
     steps.sort(key=float)
     print(steps)
 
@@ -577,24 +578,74 @@ elif mode == 14:
     plt.show()
 elif mode == 15:
     f_temp = f_name
+    f_temp += 'poolOut'
+    print('PoolOut from {}'.format(f_temp))
+    outPool = np.genfromtxt(f_temp, delimiter=',')
+    xPool = outPool[:,0]
+    yPool = outPool[:,1]
+    phi = outPool[:,2]
+
+
+    xMin = min(outPool[:,0])
+    xMax = max(outPool[:,0])
+    yMin = min(outPool[:,1])
+    yMax = max(outPool[:,1])
+
+
+    f_temp = f_name
+    f_temp += 'MSSTracers'
+    out = np.genfromtxt(f_temp, delimiter=',')
+
+    tracers = []
+    for tracer in out:
+        tracers.append((tracer[0], tracer[1]))
+
+    f_temp = f_name
     f_temp += 'domain'
     out = np.genfromtxt(f_temp, delimiter=',')
-    nx = out.shape[0]
-    ny = out.shape[1]
+    nx = out.shape[1]
+    ny = out.shape[0]
 
-    # f_temp = f_name
-    # f_temp += 'MSSTracers'
-    # out = np.genfromtxt(f_temp, delimiter=',')
+    print('nx = {0} ny = {1}'.format(nx, ny))
 
-    # tracers = []
-    # for tracer in out:
-    #     tracers.append((tracer[0], tracer[1]))
+    # for tracer in tracers:
+    #     print('adding tracer {0}'.format(tracer))
+    #     tracer = ((nx/xMax)*tracer[0], (ny/yMax)*tracer[1])
+    #     # tracer = (tracer[0], tracer[1])
+    #     print('adding tracer {0}'.format(tracer))
+    #     plt.scatter(tracer[0], ny - tracer[1], c='b')
+    # plt.scatter(0.1*nx, 0.9*ny, c='b')
 
-    #     plt.scatter(nx*tracer[0], ny*tracer[1], c='b')
+
+
+
     
 
+    fig, ax = plt.subplots(1)
+    plt.imshow(out[::-1, :])
+    xPool *= nx/(xMax - xMin)
+    yPool *= ny/(yMax - yMin)
+    yPool = ny - yPool
+    ax.contour(np.reshape(xPool, (nx, ny)), np.reshape(yPool, (nx, ny)), np.reshape(phi, (nx, ny)), levels=[0], colors='b')
 
-    plt.imshow(out)
+    for i in range(numObj):
+        f_temp = f_name
+        f_temp += 'MSSEdges{0}'.format(i)
+
+        out = np.genfromtxt(f_temp, delimiter=',')
+        x_mss = (nx/(xMax-xMin)) * out[:,0]
+        y_mss = (ny/(yMax-yMin)) * out[:,1]
+        # print(x_mss)
+
+        plt.scatter(x_mss, ny - y_mss, c='y', s=0.5)
+
+    # for tracer in tracers:
+    #     print('adding tracer {0}'.format(tracer))
+    #     tracer = ((nx/(xMax-xMin))*tracer[0], (ny/(yMax-yMin))*tracer[1])
+    #     # tracer = (tracer[0], tracer[1])
+    #     print('adding tracer {0}'.format(tracer))
+    #     plt.scatter(tracer[0], ny - tracer[1], c='y', s=0.5)
+
     plt.show()
     
 else:

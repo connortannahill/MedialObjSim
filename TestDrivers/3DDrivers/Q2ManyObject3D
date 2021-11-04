@@ -12,7 +12,7 @@ Q2ManyObject3D
 downDirFlowBC
 100.0
 
-11
+2
 
 coneShapeFun
 2
@@ -35,8 +35,8 @@ coneShapeFun
 0.0
 0.0
 -0.1
-cx 1.2
-cy 1.2
+cx 2.5
+cy 2.5
 cz 7.2
 r 0.2
 mass 1.0

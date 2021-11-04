@@ -161,33 +161,33 @@ void outputData(string f_name, NSSolver3D &solver, int testNum) {
     string outStr;
     string outStr2;
 
-    testFormatter.genOutStr("out", outStr);
+    testFormatter.genOutStr("out3D", outStr);
     solver.writeToFile(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("poolOut", outStr);
-    testFormatter.genOutStr("poolVel", outStr2);
+    testFormatter.genOutStr("pool3DOut", outStr);
+    testFormatter.genOutStr("pool3DVel", outStr2);
     solver.writePoolToFile(outStr.c_str(), outStr2.c_str());
     cout << outStr << endl;
     cout << outStr2 << endl;
 
-    testFormatter.genOutStr("MSSEdges", outStr);
+    testFormatter.genOutStr("MSS3DEdges", outStr);
     solver.outputAllStructures(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSNodes", outStr);
+    testFormatter.genOutStr("MSS3DNodes", outStr);
     solver.outputAllStructureNodes(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSVels", outStr);
+    testFormatter.genOutStr("MSS3DVels", outStr);
     solver.outputAllStructureVels(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("MSSTracers", outStr);
+    testFormatter.genOutStr("MSS3DTracers", outStr);
     solver.outputTracers(outStr.c_str());
     cout << outStr << endl;
 
-    testFormatter.genOutStr("medialAxis", outStr);
+    testFormatter.genOutStr("medialAxis3D", outStr);
     solver.outputMedialAxis(outStr.c_str());
     cout << outStr << endl;
 }
@@ -345,7 +345,7 @@ int main(int argc, char **argv) {
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 10 == 0) {
+            if (nsteps % 1 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }

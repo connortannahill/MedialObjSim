@@ -262,10 +262,10 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     phiReInit[mo+j][mo+i] = d;
 
     if (mode == 2) {
-        if (d >= 10*collisionDist) {
-           fastMarchingState[j][i] = ACCEPTED;
-           return;
-        }
+        // if (d >= 10*collisionDist) {
+        //    fastMarchingState[j][i] = ACCEPTED;
+        //    return;
+        // }
     }
 
     // Add the point to the heap structure
@@ -322,6 +322,9 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
  *  mode = 2: collision plane detection
 */
 void Pool2D::fastMarchPool(bool nExtrap, int mode) {
+    // enumeratePool();
+    // setUpDomainArray();
+
     // Identify all of the points on the boundaries and initialize the heap with their signed distance
     // function values.
     int mo = methodOrd;
@@ -604,7 +607,7 @@ void Pool2D::detectCollisions() {
 
         // Now rebuild the kdtree for efficient searching.
         kdTree->buildIndex();
-        vector<pair<uint32_t,double> > ret_matches;
+        vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         double SCAL_FAC = 1.0; 
         int nMatches;
@@ -1039,8 +1042,10 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         double alpha = 0.1;
 
         // First gradient update
-        double xStep = tracers[structNum].x - (alpha/abs(phi_ij))*gradPhi_ij[0];
-        double yStep = tracers[structNum].y - (alpha/abs(phi_ij))*gradPhi_ij[1];
+        // double xStep = tracers[structNum].x - (alpha*abs(phi_ij))*gradPhi_ij[0];
+        // double yStep = tracers[structNum].y - (alpha*abs(phi_ij))*gradPhi_ij[1];
+        double xStep = tracers[structNum].x - (alpha)*gradPhi_ij[0];
+        double yStep = tracers[structNum].y - (alpha)*gradPhi_ij[1];
 
         // const double gamma = 0.5;
         const int max_iter = 10;
@@ -1049,8 +1054,11 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         while (interpolatePhi(xStep, yStep) > phi_ij) {
             alpha /= 2;
             
-            xStep = tracerX - (alpha/abs(phi_ij))*gradPhi_ij[0];
-            yStep = tracerY - (alpha/abs(phi_ij))*gradPhi_ij[1];
+            // xStep = tracerX - (alpha/abs(phi_ij))*gradPhi_ij[0];
+            // yStep = tracerY - (alpha/abs(phi_ij))*gradPhi_ij[1];
+
+            xStep = tracerX - (alpha)*gradPhi_ij[0];
+            yStep = tracerY - (alpha)*gradPhi_ij[1];
 
             iters++;
 
@@ -1058,7 +1066,6 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
                 break;
             }
         }
-
        
         if (iters < max_iter) {
             tracers[structNum].x = xStep;
@@ -1162,6 +1169,7 @@ void Pool2D::labelInterface(int i, int j) {
 */
 void Pool2D::enumeratePool() {
     int i, j;
+    int mo = this->methodOrd;
 
     // If there is not a signed distance function defined, set all internal points to fluids
     if (this->nStructs != 0) {
@@ -1169,13 +1177,32 @@ void Pool2D::enumeratePool() {
             // Higher level labels: interface and structure-based
             for (i = 1; i < nx-1; i++) {
                 // Label the negative signed distance functions that are not being set to 0
-                if (this->phi[j+this->methodOrd][i+this->methodOrd] < 0) {
+                if (this->phi[j+mo][i+mo] < 0) {
+                    // int ni[4] = {i, i, i+1, i-1};
+                    // int nj[4] = {j+1, j-1, j, j};
+
+                    // // Neighbour check to remove spots
+                    // if (phi[j+mo][j+mo])
+
                     this->pool[j][i] = objects::STRUCTURE;
                 } else {
                     this->pool[j][i] = objects::FLUID_C;
                 }
             }
         }
+
+        // for (j = 1; j < ny-1; j++) {
+        //     for (i = 1; i < nx-1; i++) {
+        //         if (this->phi[j+this->methodOrd][i+this->methodOrd] < 0) {
+        //             int ni[4] = {i, i, i+1, i-1};
+        //             int nj[4] = {j+1, j-1, j, j};
+        //             if (this->pool[j][i] == objects::UNLABELLED_INTERFACE) {
+        //                 this->labelInterface(i, j);
+        //             }
+
+        //         }
+        //     }
+        // }
 
         // Label the unlabelled interfaces
         for (j = 1; j < ny-1; j++) {
@@ -1189,6 +1216,7 @@ void Pool2D::enumeratePool() {
             }
         }
 
+
         // Go through and label the unlabelled interfaces
         for (j = 1; j < ny-1; j++) {
             for (i = 1; i < nx-1; i++) {
@@ -1197,6 +1225,7 @@ void Pool2D::enumeratePool() {
                 }
             }
         }
+
     }
 }
 
@@ -2138,7 +2167,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     // Update the velocity field
     this->updatePoolVelocities(dt, u, v, p, ng);
 
-    if (reinitialize) {
+    if (reinitialize && nSteps % 10 == 0) {
         simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }
 
@@ -2846,6 +2875,25 @@ void Pool2D::setUpDomainArray() {
     // Label all undiscovered domain points as belonging to the fluid domain
     for (int j = 0; j < this->ny; j++) {
         for (int i = 0; i < this->nx; i++) {
+            if (this->domainTracker[j][i] == DOMAIN_UNDESCOVERED) {
+                this->domainTracker[j][i] = DOMAIN_FLUID;
+            }
+        }
+    }
+}
+
+/**
+ * Update enumeration
+*/
+void Pool2D::updateEnumeration() {
+    int mo = this->methodOrd;
+
+    for (int j = 0; j < this->ny; j++) {
+        for (int i = 0; i < this->nx; i++) {
+            // if (phi[mo+j][mo+i] > 0) {
+
+            // }
+
             if (this->domainTracker[j][i] == DOMAIN_UNDESCOVERED) {
                 this->domainTracker[j][i] = DOMAIN_FLUID;
             }

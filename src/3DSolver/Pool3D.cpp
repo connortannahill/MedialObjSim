@@ -454,14 +454,14 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, double val, int mode) 
                 int offZ = (nk - k > 0) ? 1 : 0;
 
                 medX = x[i+offX];
-                medY = y[i+offY];
-                medZ = z[i+offZ];
+                medY = y[j+offY];
+                medZ = z[k+offZ];
 
                 if (mode == 2 && val < collisionDist) {
                     medialAxisPnts->push_back(make_tuple(medX, medY, medZ));
                 }
 
-                domainTracker[k+offZ][j+offY][i+offX] = DOMAIN_INTERSECTION_3D;
+                domainTracker[nk][nj][ni] = DOMAIN_INTERSECTION_3D;
             }
         }
     }
@@ -2549,15 +2549,15 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
             // and update the positions of the tracer particals.
             if (repulseMode != 0) {
                 // TODO: maybe think about a more efficient 
-                // cout << "Doing first fast march" << endl;
+                cout << "Doing first fast march" << endl;
                 this->fastMarch(false, 2);
-                // cout << "Finished the fast march" << endl;
-                // cout << "Doing detect collisions" << endl;
+                cout << "Finished the fast march" << endl;
+                cout << "Doing detect collisions" << endl;
                 this->detectCollisions();
-                // cout << "Finished Doing detect collisions" << endl;
-                // cout << "setting up domain array" << endl;
-                // this->setUpDomainArray();
-                // cout << "FINISHED setting up domain array" << endl;
+                cout << "Finished Doing detect collisions" << endl;
+                cout << "setting up domain array" << endl;
+                this->setUpDomainArray();
+                cout << "FINISHED setting up domain array" << endl;
             }
 
             // cout << "stress" << endl;
@@ -2583,36 +2583,36 @@ void Pool3D::updatePoolVelocities(double dt, double ***u, double ***v, double **
             // cout << "done updating tracers" << endl;
 
             // Compute the velocities on the interface points
-            double inPnt[3];
-            double vel[3];
-            // cout << "computing face velocities" << endl;
-            for (int k = 0; k < nz; k++) {
-                inPnt[2] = simutils::midpoint(z[k], z[k+1]);
-                for (int j = 0; j < ny; j++) {
-                    inPnt[1] = simutils::midpoint(y[j], y[j+1]);
-                    for (int i = 0; i < nx; i++) {
-                        inPnt[0] = simutils::midpoint(x[i], x[i+1]);
+            // double inPnt[3];
+            // double vel[3];
+            // // cout << "computing face velocities" << endl;
+            // for (int k = 0; k < nz; k++) {
+            //     inPnt[2] = simutils::midpoint(z[k], z[k+1]);
+            //     for (int j = 0; j < ny; j++) {
+            //         inPnt[1] = simutils::midpoint(y[j], y[j+1]);
+            //         for (int i = 0; i < nx; i++) {
+            //             inPnt[0] = simutils::midpoint(x[i], x[i+1]);
 
-                        if (this->isInterface(this->objAtIndex(i, j, k))) {
-                            try {
-                                solids->at(this->domainMembership(i, j, k)).interpFaceVels(inPnt, vel);
-                            } catch (const out_of_range& e) {
-                                cout << "Caught out of range" << endl;
-                                cout << "(i, j, k) = (" << i << ", " << j << ", " << k << " )" << endl;
-                                cout << "Domain = " << this->domainMembership(i, j, k) << endl;
-                                assert(false);
-                            }
-                            poolU[mo+k][mo+j][mo+i] = vel[0];
-                            poolV[mo+k][mo+j][mo+i] = vel[1];
-                            poolW[mo+k][mo+j][mo+i] = vel[2];
-                        } else {
-                            poolU[mo+k][mo+j][mo+i] = 0.0;
-                            poolV[mo+k][mo+j][mo+i] = 0.0;
-                            poolW[mo+k][mo+j][mo+i] = 0.0;
-                        }
-                    }
-                }
-            }
+            //             if (this->isInterface(this->objAtIndex(i, j, k))) {
+            //                 try {
+            //                     solids->at(this->domainMembership(i, j, k)).interpFaceVels(inPnt, vel);
+            //                 } catch (const out_of_range& e) {
+            //                     cout << "Caught out of range" << endl;
+            //                     cout << "(i, j, k) = (" << i << ", " << j << ", " << k << " )" << endl;
+            //                     cout << "Domain = " << this->domainMembership(i, j, k) << endl;
+            //                     assert(false);
+            //                 }
+            //                 poolU[mo+k][mo+j][mo+i] = vel[0];
+            //                 poolV[mo+k][mo+j][mo+i] = vel[1];
+            //                 poolW[mo+k][mo+j][mo+i] = vel[2];
+            //             } else {
+            //                 poolU[mo+k][mo+j][mo+i] = 0.0;
+            //                 poolV[mo+k][mo+j][mo+i] = 0.0;
+            //                 poolW[mo+k][mo+j][mo+i] = 0.0;
+            //             }
+            //         }
+            //     }
+            // }
             // cout << "done computing face velocities" << endl;
 
             // Now that we have the velocities, we can apply the fast marching algorithm.
@@ -2652,7 +2652,6 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     // Now rebuild the kdtree for efficient searching.
     kdTree->buildIndex();
 
-
     // Update the velocity field
     enumeratePool();
     setUpDomainArray();
@@ -2662,9 +2661,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     // cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
-    if (reinitialize) {
-        simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
-    }
+    // if (reinitialize) {
+    //     simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
+    // }
 
     // Update the position of the tracer particals
 
@@ -2676,7 +2675,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     for (int k = 0; k < nStructs; k++) {
         // cout << "updating tracers" << endl;
-        updateTracer(k, dt, 3);
+        updateTracer(k, dt, 1);
         // cout << "FINSIHED updating tracers" << endl;
     }
     

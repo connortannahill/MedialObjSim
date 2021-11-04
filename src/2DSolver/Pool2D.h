@@ -193,6 +193,7 @@ public:
 
     /* Control method */
     void updatePool(double dt, double **u, double **v, double **p, int ng, bool reinitialize);
+    void updateEnumeration();
 
     /* Output methods */
     void printPool();
