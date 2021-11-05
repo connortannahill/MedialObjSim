@@ -1078,15 +1078,25 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
 
         if (found1) {
             // Apply the stress to this point and its connected neighbours
+            for (int i = 0; i < 2; i++) {
+                s1[i] = 0.0;
+            }
 
+            // if (nodeCols->at(id1).size() > 0) {
+            //     // There is a collision on this node, compute the collision stress
+            //     computeCollisionStress(id1, s1, diffNorm);
+            // } else {
+            //     // Apply the hydrodynamic stress if there is no collision
+            //     s1[0] = stress[0][ng+nj][ng+ni];
+            //     s1[1] = stress[1][ng+nj][ng+ni];
+            // }
             if (nodeCols->at(id1).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 computeCollisionStress(id1, s1, diffNorm);
-            } else {
-                // Apply the hydrodynamic stress if there is no collision
-                s1[0] = stress[0][ng+nj][ng+ni];
-                s1[1] = stress[1][ng+nj][ng+ni];
             }
+            // Apply the hydrodynamic stress if there is no collision
+            s1[0] += stress[0][ng+nj][ng+ni];
+            s1[1] += stress[1][ng+nj][ng+ni];
         } else {
             assert(false);
             s1[0] = 0.0;
@@ -1099,15 +1109,27 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
 
         if (found2) {
             // Apply the stress to this point and its connected neighbours
+            for (int i = 0; i < 2; i++) {
+                s2[i] = 0.0;
+            }
+
+            // if (nodeCols->at(id2).size() > 0) {
+            //     // There is a collision on this node, compute the collision stress
+            //     computeCollisionStress(id2, s2, diffNorm);
+            // } else {
+            //     // Apply the hydrodynamic stress
+            //     // Hydrodynamic stress
+            //     s2[0] = stress[0][ng+nj][ng+ni];
+            //     s2[1] = stress[1][ng+nj][ng+ni];
+            // }
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 computeCollisionStress(id2, s2, diffNorm);
-            } else {
-                // Apply the hydrodynamic stress
-                // Hydrodynamic stress
-                s2[0] = stress[0][ng+nj][ng+ni];
-                s2[1] = stress[1][ng+nj][ng+ni];
             }
+            // Apply the hydrodynamic stress
+            // Hydrodynamic stress
+            s2[0] += stress[0][ng+nj][ng+ni];
+            s2[1] += stress[1][ng+nj][ng+ni];
         } else {
             assert(false);
             s2[0] = 0.0;

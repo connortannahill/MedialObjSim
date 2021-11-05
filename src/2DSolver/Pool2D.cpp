@@ -26,7 +26,6 @@ int DOMAIN_FLUID = -1;
 int DOMAIN_UNDESCOVERED = -2;
 int DOMAIN_INTERSECTION = -3;
 
-
 /* PRIVATE METHODS */
 
 const int CLOSE = 0;
@@ -262,10 +261,10 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     phiReInit[mo+j][mo+i] = d;
 
     if (mode == 2) {
-        // if (d >= 10*collisionDist) {
-        //    fastMarchingState[j][i] = ACCEPTED;
-        //    return;
-        // }
+        if (d >= 10*collisionDist) {
+           fastMarchingState[j][i] = ACCEPTED;
+           return;
+        }
     }
 
     // Add the point to the heap structure
@@ -1999,10 +1998,12 @@ void Pool2D::computeBoundaryStress(int i, int j, objects::FSIObject obj, int ng,
     simutils::normalize2D(n);
 
     // Compute the stresses (assigning them to the pool velocities temporarily for memory saving)
-    poolU[mo+j][mo+i] = ((-pres + 2.0*this->mu*uGrad[0])*n[0]
-        + this->mu*(uGrad[1] + vGrad[0])*n[1]); 
-    poolV[mo+j][mo+i] = this->mu*((uGrad[1] + vGrad[0])*n[0]
-        + (-pres + 2.0*this->mu*vGrad[1])*n[1]);
+    // poolU[mo+j][mo+i] = ((-pres + 2.0*this->mu*uGrad[0])*n[0]
+    //     + this->mu*(uGrad[1] + vGrad[0])*n[1]); 
+    // poolV[mo+j][mo+i] = this->mu*((uGrad[1] + vGrad[0])*n[0]
+    //     + (-pres + 2.0*this->mu*vGrad[1])*n[1]);
+    poolU[mo+j][mo+i] = -pres*n[0];
+    poolV[mo+j][mo+i] = -pres*n[1];
 }
 
 /**

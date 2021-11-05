@@ -469,8 +469,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
-    steps = steps[::10]
     steps.sort(key=float)
+    steps = steps[::5]
     print(steps)
 
     plots = []
@@ -498,7 +498,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
             x_objs = np.concatenate((x_objs, x_temp))
             y_objs = np.concatenate((y_objs, y_temp))
 
-        out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
+        # out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
+        out = np.genfromtxt(f_name+str(step)+'/poolVel', delimiter=',')
         # Generate array of indices (for the velocities)
         n = out.shape[0]
         inds = np.arange(out.shape[0])
@@ -508,14 +509,14 @@ elif mode == 13:  # plot snapshots of steps through simulation
         off = int(n)
         out_fluid = out[inds[:off],:]
 
-        x_pool = out_fluid[:,0]
-        y_pool = out_fluid[:,1]
+        x_pool = out_fluid[::10,0]
+        y_pool = out_fluid[::10,1]
         max_x = max(max(x_pool), max_x)
         min_x = min(min(x_pool), min_x)
         max_y = max(max(y_pool), max_y)
         min_y = min(min(y_pool), min_y)
-        u = out_fluid[:,2]
-        v = out_fluid[:,3]
+        u = out_fluid[::10,2]
+        v = out_fluid[::10,3]
 
         out = np.genfromtxt(f_name+str(step)+'/medialAxis', delimiter=',')
 
