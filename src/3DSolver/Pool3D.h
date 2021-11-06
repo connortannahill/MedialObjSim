@@ -182,6 +182,7 @@ protected:
     bool enoInRangeZ(int val);
 
     double closestBoundaryDist(int structNum, double inPnt[3]);
+    void interpFaceVel(int structNum, double inPnt[3], double out[3]);
     void closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]);
 
     /* Functions for discretizations of HJ equations */

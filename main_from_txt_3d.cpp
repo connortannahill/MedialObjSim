@@ -1,17 +1,20 @@
-#include <iostream>
+#include <cassert>
+#include <fenv.h>
 #include <fstream>
-#include "./src/3DSolver/Boundary3D.h"
-#include "./src/3DSolver/SolidObject3D.h"
-#include "./src/3DSolver/NSSolver3D.h"
+#include <iostream>
+#include <math.h>
+#include <chrono>
 
 #include "./src/Utils/SimUtilities.h"
 #include "./src/Utils/Discretizations.h"
 #include "./src/Utils/TestFormatter.h"
 #include "./src/3DSolver/SimParams3D.h"
+#include "./src/3DSolver/Boundary3D.h"
+#include "./src/3DSolver/SolidObject3D.h"
+#include "./src/3DSolver/NSSolver3D.h"
 
-#include <math.h>
-#include <cassert>
 
+using namespace std::chrono;
 using namespace std;
 const double EPS = 1e-12;
 
@@ -110,7 +113,7 @@ void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w
         for (int i = 1; i <= nx; i++) {
             w[0][j][i] = w[1][j][i];
 
-            w[nz][j][i] = -0.1;
+            w[nz][j][i] = -1.0;
         }
     }
 }
@@ -314,9 +317,9 @@ int main(int argc, char **argv) {
     simParams.setMssNz(nz);
     simParams.setUseEno(useEno);
     simParams.setRepulseMode(2);
-    simParams.setRepulseDist(3*h); // Actually need 0.1
+    // simParams.setRepulseDist(4*h); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(3*h);
+    simParams.setCollisionDist(2*h);
     simParams.setUpdateMode(1);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
@@ -338,6 +341,7 @@ int main(int argc, char **argv) {
     double safetyFactor = 0.5;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
+    auto start = high_resolution_clock::now();
 
     int nsteps = 0;
     if (save_snapshots) {
@@ -354,7 +358,16 @@ int main(int argc, char **argv) {
 
             std::cout << "t = " << t << std::endl;
             std::cout << "step = " << nsteps << std::endl;
+            auto stop = high_resolution_clock::now();
+
+            auto duration = duration_cast<seconds>(stop - start);
             std::cout << std::endl;
+
+            cout << "=========================================================" << endl;
+            cout << "testName = " << testTitle << endl;
+            cout << "The total run time of the algorithm: " << duration.count() << endl;
+            cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+            cout << "=========================================================" << endl;
         }
 
         string f_name = testName;
@@ -370,7 +383,16 @@ int main(int argc, char **argv) {
 
             std::cout << "t = " << t << std::endl;
             std::cout << "step = " << nsteps << std::endl;
+            auto stop = high_resolution_clock::now();
+
+            auto duration = duration_cast<seconds>(stop - start);
             std::cout << std::endl;
+
+            cout << "=========================================================" << endl;
+            cout << "testName = " << testTitle << endl;
+            cout << "The total run time of the algorithm: " << duration.count() << endl;
+            cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+            cout << "=========================================================" << endl;
         }
 
         /* Output all of the relevant data */

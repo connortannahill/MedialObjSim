@@ -99,7 +99,7 @@ void downDirFlowBC(int nx, int ny, double **u, double **v) {
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
-        v[ny][i] = -0.1;
+        v[ny][i] = -1.0;
     }
     // cout << "out bc" << endl;
 }
@@ -288,7 +288,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionStiffness(10.0);
     simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
     int updateMode = 1;
@@ -330,7 +330,7 @@ int main(int argc, char **argv) {
             cout << "hi 274" << endl;
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 1 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }
@@ -339,18 +339,27 @@ int main(int argc, char **argv) {
 
             std::cout << "t = " << t << std::endl;
             std::cout << "step = " << nsteps << std::endl;
+            auto stop = high_resolution_clock::now();
+
+            auto duration = duration_cast<seconds>(stop - start);
             std::cout << std::endl;
+
+            cout << "=========================================================" << endl;
+            cout << "testName = " << testTitle << endl;
+            cout << "The total run time of the algorithm: " << duration.count() << endl;
+            cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+            cout << "=========================================================" << endl;
         }
 
-        auto stop = high_resolution_clock::now();
+        // auto stop = high_resolution_clock::now();
 
-        auto duration = duration_cast<seconds>(stop - start);
+        // auto duration = duration_cast<seconds>(stop - start);
 
-        cout << "=========================================================" << endl;
-        cout << "testName = " << testTitle << endl;
-        cout << "The total run time of the algorithm: " << duration.count() << endl;
-        cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
-        cout << "=========================================================" << endl;
+        // cout << "=========================================================" << endl;
+        // cout << "testName = " << testTitle << endl;
+        // cout << "The total run time of the algorithm: " << duration.count() << endl;
+        // cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+        // cout << "=========================================================" << endl;
 
         string f_name = outFileName + "/" + std::to_string(nsteps);
         outputData(f_name, solver);

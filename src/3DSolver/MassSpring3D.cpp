@@ -392,7 +392,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
-    const int MAX_ITERS = 100;
+    const int MAX_ITERS = 1000;
     double dt = 0.01*simutils::dmin(hx, simutils::dmin(hy, hz));
     int iters = 0;
     // cout << "init the thing" << endl;
@@ -855,7 +855,7 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         pntDist = simutils::eucNorm3D(pntDiff);
 
         if (repulseDist > pntDist) {
-            calcElasticForce(this->E, repulseDist, mPnt, colPnt, forces);
+            calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
         } else {
             forces[0] = 0.0;
             forces[1] = 0.0;
@@ -2039,7 +2039,9 @@ void MassSpring3D::projTriangle(double x[3], int pntId1, int pntId2,
 */
 double MassSpring3D::projTriangleDist(double x[3], int pntId1, int pntId2,
                                 int pntId3, double baryCoords[3]) {
-    // Find the barycentric coordiantes of the projected point.
+    
+    projTriangle(x, pntId1, pntId2, pntId3, baryCoords);
+    // // Find the barycentric coordiantes of the projected point.
     // Extract the vertices of the triangle, r1, r2, r3
     double r1[3] = {pntList->at(pntId1).x, pntList->at(pntId1).y, pntList->at(pntId1).z};
 
@@ -2047,36 +2049,40 @@ double MassSpring3D::projTriangleDist(double x[3], int pntId1, int pntId2,
 
     double r3[3] = {pntList->at(pntId3).x, pntList->at(pntId3).y, pntList->at(pntId3).z};
 
-    // Convert into new variables to be inline with the formula I have written down.
-    // u = r2 - r1
-    double u[3] = {r2[0] - r1[0], r2[1] - r1[1], r2[2] - r1[2]};
+    // // Convert into new variables to be inline with the formula I have written down.
+    // // u = r2 - r1
+    // double u[3] = {r2[0] - r1[0], r2[1] - r1[1], r2[2] - r1[2]};
 
-    // v = r3 - r1
-    double v[3] = {r3[0] - r1[0], r3[1] - r1[1], r3[2] - r1[2]};
+    // // v = r3 - r1
+    // double v[3] = {r3[0] - r1[0], r3[1] - r1[1], r3[2] - r1[2]};
 
-    // w = x - r1
-    double w[3] = { x[0] - r1[0],  x[1] - r1[1],  x[2] - r1[2]};
+    // // w = x - r1
+    // double w[3] = { x[0] - r1[0],  x[1] - r1[1],  x[2] - r1[2]};
 
-    // n = u x v
-    double n[3];
-    simutils::cross_product_3D(u, v, n);
+    // // n = u x v
+    // double n[3];
+    // simutils::cross_product_3D(u, v, n);
 
-    // u x w
-    double uCrossW[3];
-    simutils::cross_product_3D(u, w, uCrossW);
+    // // u x w
+    // double uCrossW[3];
+    // simutils::cross_product_3D(u, w, uCrossW);
 
-    // w x v
-    double wCrossV[3];
-    simutils::cross_product_3D(w, v, wCrossV);
+    // // w x v
+    // double wCrossV[3];
+    // simutils::cross_product_3D(w, v, wCrossV);
 
-    // Compute the barycentric coordinates for the projected point.
-    double gamma = simutils::ddot3d(uCrossW, n) / simutils::ddot3d(n, n);
-    double beta  = simutils::ddot3d(wCrossV, n) / simutils::ddot3d(n, n);
-    double alpha = 1.0 - gamma - beta;
+    // // Compute the barycentric coordinates for the projected point.
+    // double gamma = simutils::ddot3d(uCrossW, n) / simutils::ddot3d(n, n);
+    // double beta  = simutils::ddot3d(wCrossV, n) / simutils::ddot3d(n, n);
+    // double alpha = 1.0 - gamma - beta;
 
-    baryCoords[0] = alpha;
-    baryCoords[1] = beta;
-    baryCoords[2] = gamma;
+    // baryCoords[0] = alpha;
+    // baryCoords[1] = beta;
+    // baryCoords[2] = gamma;
+
+    double alpha = baryCoords[0];
+    double beta = baryCoords[1];
+    double gamma = baryCoords[2];
 
     if (false) {
     // if (simutils::in_range(baryCoords[0], -EPS, 1.0+EPS)
@@ -2578,63 +2584,62 @@ void MassSpring3D::createFaceList() {
     double bCoor2[3];
     vector<int> removedIdx;
     int curIdx = 0;
-    // while (!finished) {
-    //     // cout << "comp roid" << endl;
-    //     // cout << "size of faceList = " << faceList->size() << endl;
-    //     face3D faceOne = faceList->at(curIdx);
-    //     computeCentroid(faceOne.pntIds[0], faceOne.pntIds[1], faceOne.pntIds[2], centroidOne);
-    //     // cout << "finsihed comp roid" << endl;
+    while (!finished) {
+        // cout << "comp roid" << endl;
+        // cout << "size of faceList = " << faceList->size() << endl;
+        face3D faceOne = faceList->at(curIdx);
+        computeCentroid(faceOne.pntIds[0], faceOne.pntIds[1], faceOne.pntIds[2], centroidOne);
+        // cout << "finsihed comp roid" << endl;
 
-    //     for (int i = curIdx+1; i < faceList->size()-1; i++) {
-    //         // Compute the centroid of the second face
-    //         face3D faceTwo = faceList->at(i);
-    //         computeCentroid(faceTwo.pntIds[0], faceTwo.pntIds[1], faceTwo.pntIds[2], centroidTwo);
+        for (int i = curIdx+1; i < faceList->size()-1; i++) {
+            // Compute the centroid of the second face
+            face3D faceTwo = faceList->at(i);
+            computeCentroid(faceTwo.pntIds[0], faceTwo.pntIds[1], faceTwo.pntIds[2], centroidTwo);
 
-    //         int num_matches = 0;
-    //         for (int n = 0; n < 3; n++) {
-    //             for (int m = 0; m < 3; m++) {
-    //                 if (faceOne.pntIds[n] == faceTwo.pntIds[m]) {
-    //                     num_matches++;
-    //                     break;
-    //                 }
-    //             }
-    //         }
+            int num_matches = 0;
+            for (int n = 0; n < 3; n++) {
+                for (int m = 0; m < 3; m++) {
+                    if (faceOne.pntIds[n] == faceTwo.pntIds[m]) {
+                        num_matches++;
+                        break;
+                    }
+                }
+            }
 
-    //         if (num_matches >= 2) {
-    //             // Check if their centroids do not belong inside of each other
-    //             projTriangle(centroidTwo, faceOne.pntIds[0],
-    //                             faceOne.pntIds[1], faceOne.pntIds[2],
-    //                             bCoor1);
-    //             projTriangle(centroidOne, faceTwo.pntIds[0],
-    //                             faceTwo.pntIds[1], faceTwo.pntIds[2],
-    //                             bCoor2);
+            if (num_matches >= 2) {
+                // Check if their centroids do not belong inside of each other
+                projTriangle(centroidTwo, faceOne.pntIds[0],
+                                faceOne.pntIds[1], faceOne.pntIds[2],
+                                bCoor1);
+                projTriangle(centroidOne, faceTwo.pntIds[0],
+                                faceTwo.pntIds[1], faceTwo.pntIds[2],
+                                bCoor2);
 
-    //             if ((bCoor1[0] >= -EPS && bCoor1[1] >= -EPS && bCoor1[2] >= -EPS) ||
-    //                     (bCoor2[0] >= -EPS && bCoor2[1] >= -EPS && bCoor2[2] >= -EPS)) {
-    //                 removedIdx.push_back(i);
-    //             }
-    //         }
-    //     }
+                if ((bCoor1[0] >= -EPS && bCoor1[1] >= -EPS && bCoor1[2] >= -EPS) ||
+                        (bCoor2[0] >= -EPS && bCoor2[1] >= -EPS && bCoor2[2] >= -EPS)) {
+                    removedIdx.push_back(i);
+                }
+            }
+        }
 
-    //     // Remove all of the elements from faceList which overlap
-    //     // cout << "removing elements" << endl;
-    //     int len = removedIdx.size();
-    //     int nRem = 0;
-    //     for (int i = 0; i < len; i++) {
-    //         faceList->erase(faceList->begin()+removedIdx.at(i)-nRem);
-    //         nRem++;
-    //     }
-    //     // cout << "finsihed removing elements" << endl;
+        // Remove all of the elements from faceList which overlap
+        // cout << "removing elements" << endl;
+        int len = removedIdx.size();
+        int nRem = 0;
+        for (int i = 0; i < len; i++) {
+            faceList->erase(faceList->begin()+removedIdx.at(i)-nRem);
+            nRem++;
+        }
 
-    //     // Clear the vector
-    //     removedIdx.clear();
+        // Clear the vector
+        removedIdx.clear();
 
-    //     // Increment the index we are looking at
-    //     curIdx++;
+        // Increment the index we are looking at
+        curIdx++;
 
-    //     // Update finished, based on whether we have looked at all of the points
-    //     finished = (curIdx == faceList->size()-1);
-    // }
+        // Update finished, based on whether we have looked at all of the points
+        finished = (curIdx == faceList->size()-1);
+    }
     
     // For each point in the face, indicate its membership
     // cout << "indicating membership" << endl;

@@ -119,6 +119,68 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
 /**
  * Find closest distance to the boundary faces of the MSS
 */
+void Pool3D::interpFaceVel(int structNum, double inPnt[3], double out[3]) {
+    double baryCoords[3];
+    double closestDist = INFINITY;
+    int closestFace = -1;
+    double d;
+
+    const int MAXCANDS = 10;
+    vector<pair<size_t,double> > ret_matches;
+    std::vector<size_t> ret_index(MAXCANDS);
+    std::vector<double> out_dist_sqr(MAXCANDS);
+
+    // Candidate list
+    int numFound = kdTree->knnSearch(&inPnt[0],
+                    MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
+    
+    assert(numFound > 0);
+    
+    for (int i = 0; i < numFound; i++) {
+        mass_spring::massPoint3D pnt = *kdPointCloud->points->at(ret_index.at(i));
+
+        // Must correspond to this one
+        if (pnt.structNum != structNum) {
+            continue;
+        }
+
+        // Iterate through faces
+        for (auto face = pnt.faceIds.begin(); face != pnt.faceIds.end(); ++face) {
+            face3D faceLoc = solids->at(structNum).faceList->at(*face);
+            d = solids->at(structNum).projTriangleDist(inPnt, faceLoc.pntIds[0], faceLoc.pntIds[1], faceLoc.pntIds[2], baryCoords);
+
+            if (d < closestDist) {
+                // Record the closest distance
+                closestDist = d;
+                closestFace = *face;
+            }
+        }
+    }
+
+    face3D faceLoc = solids->at(structNum).faceList->at(closestFace);
+
+    // Now use the face to compute the boundary distance
+    int vertIds[3];
+    vertIds[0] = faceLoc.pntIds[0];
+    vertIds[1] = faceLoc.pntIds[1];
+    vertIds[2] = faceLoc.pntIds[2];
+
+    // Get the barycentric coordinates of the input point projected onto this face
+    d = solids->at(structNum).projTriangleDist(inPnt, faceLoc.pntIds[0], faceLoc.pntIds[1], faceLoc.pntIds[2], baryCoords);
+
+    // Interpolate on this triangle.
+    double alph = baryCoords[0];
+    double beta = baryCoords[1];
+    double gam  = baryCoords[2];
+
+    out[0] = alph*((*solids->at(structNum).qt)(3*vertIds[0])   + beta*((*solids->at(structNum).qt)(3*vertIds[1]))   + gam*((*solids->at(structNum).qt)(3*vertIds[2])));
+    out[1] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+1) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+1)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+1)));
+    out[2] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+2) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+2)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+2)));
+}
+
+/**
+ * Find closest distance to the boundary faces of the MSS
+*/
 double Pool3D::closestBoundaryDist(int structNum, double inPnt[3]) {
     double baryCoords[3];
     double closestDist = INFINITY;
@@ -157,9 +219,9 @@ double Pool3D::closestBoundaryDist(int structNum, double inPnt[3]) {
     }
 
 
-    // for (auto face = faceList->begin(); face != faceList->end(); ++face) {
+    // for (auto face = solids->at(structNum).faceList->begin(); face != solids->at(structNum).faceList->end(); ++face) {
     //     // Get the distance of the input point to this triangle (baryCoords are irrelevant)
-    //     d = projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+    //     d = solids->at(structNum).projTriangleDist(inPnt, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
 
     //     if (d < closestDist) {
     //         // Record the closest distance
@@ -351,6 +413,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
 
     // First, try the closest neighbour
     d = phiVals[0] + h[0];
+    double dBase = d;
 
     // Try the two closest neighbours
     double h0sq = simutils::square(h[0]);
@@ -407,6 +470,7 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
 
     // Assign the distance
     phiReInit[mo+k][mo+j][mo+i] = d;
+    // phiReInit[mo+k][mo+j][mo+i] = phi[mo+k][mo+j][mo+i];
 
     if (mode == 2) {
         if (d > collisionDist) {
@@ -617,7 +681,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     if (this->oneGridFromInterfaceStructure(i, j, k)) {
                         if (mode == 0) {
                             int structNum = domainMembership(i, j, k);
-                            phiVal = closestBoundaryDist(structNum, pnt);
+                            phiVal = sign(phi[mo+k][mo+j][mo+i])*closestBoundaryDist(structNum, pnt);
 
                             // Normal extrapolation (very approximate)
                             if (nExtrap) {
@@ -1046,7 +1110,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     fastMarchingState = simutils::new_constant(nz, ny, nz, FAR);
     
     fastMarch(false, 0);
-    simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
+    // simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
 
     this->enumeratePool();
 
@@ -1368,6 +1432,7 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
                                                          xMesh, yMesh, zMesh, wVals);
 
         // Update the position of the tracer partical
+        cout << "U = [" << uCur << " " << vCur << " " << wCur << "]" << endl;
         tracers[structNum].x += dt*uCur;
         tracers[structNum].y += dt*vCur;
         tracers[structNum].w += dt*wCur;
@@ -1415,6 +1480,8 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
         tracers[structNum].y += dt * tracers[structNum].v;
         tracers[structNum].z += dt * tracers[structNum].w;
     }
+
+    cout << "tracer: x = " << tracers[structNum].x << " y = " << tracers[structNum].y << " z = " <<  tracers[structNum].z << endl;
 }
 
 /**
@@ -2414,12 +2481,18 @@ void Pool3D::computeBoundaryStress(int i, int j, int k, objects::FSIObject obj, 
     simutils::normalize3D(n);
 
     // Compute the stresses (assigning them to the pool velocities temporarily for memory saving)
+    // poolU[mo+k][mo+j][mo+i]
+    //     = (-pres*n[0] + this->mu*(2.0*uGrad[0]*n[0]+(uGrad[1]+vGrad[0])*n[1]+(uGrad[2]+wGrad[0])*n[2]));
+    // poolV[mo+k][mo+j][mo+i]
+    //     = (-pres*n[1] + this->mu*((vGrad[0]+uGrad[1])*n[0] + 2.0*vGrad[1]*n[1] + (vGrad[2]+wGrad[1])*n[2]));
+    // poolW[mo+k][mo+j][mo+i]
+    //     = (-pres*n[2] + this->mu*((wGrad[0]+uGrad[2])*n[0] + (wGrad[1]+vGrad[2])*n[1] + 2.0*wGrad[2]*n[2]));
     poolU[mo+k][mo+j][mo+i]
-        = (-pres*n[0] + this->mu*(2.0*uGrad[0]*n[0]+(uGrad[1]+vGrad[0])*n[1]+(uGrad[2]+wGrad[0])*n[2]));
+        = -pres*n[0];
     poolV[mo+k][mo+j][mo+i]
-        = (-pres*n[1] + this->mu*((vGrad[0]+uGrad[1])*n[0] + 2.0*vGrad[1]*n[1] + (vGrad[2]+wGrad[1])*n[2]));
+        = (-pres*n[1]);
     poolW[mo+k][mo+j][mo+i]
-        = (-pres*n[2] + this->mu*((wGrad[0]+uGrad[2])*n[0] + (wGrad[1]+vGrad[2])*n[1] + 2.0*wGrad[2]*n[2]));
+        = (-pres*n[2]);
 }
 
 /**
@@ -2643,22 +2716,13 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
         return;
     }
 
-    // Add all of the MSS's
-    kdPointCloud->resetCloud();
-    for (int i = 0 ; i < nStructs; i++) {
-        kdPointCloud->addMSS(solids->at(i));
-    }
-
-    // Now rebuild the kdtree for efficient searching.
-    kdTree->buildIndex();
-
     // Update the velocity field
     enumeratePool();
     setUpDomainArray();
 
-    // cout << "updating pool vels" << endl;
+    cout << "updating pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, w, p, ng);
-    // cout << "FINISHED updating pool vels" << endl;
+    cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
     // if (reinitialize) {
@@ -2668,25 +2732,38 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     // Update the position of the tracer particals
 
     // Advance the level set function
-    // cout << "updaitng phi" << endl;
+    cout << "updaitng phi" << endl;
     tvdRK3HJ(dt, phi, this, 0, &Pool3D::levelSetRHS_ENO3,
              &Pool3D::applyLevelSetPeriodicBCs);
-    // cout << "finished updaitng phi" << endl;
-
+    cout << "finished updaitng phi" << endl;
     for (int k = 0; k < nStructs; k++) {
-        // cout << "updating tracers" << endl;
+        cout << "updating tracers" << endl;
         updateTracer(k, dt, 1);
-        // cout << "FINSIHED updating tracers" << endl;
+        cout << "FINSIHED updating tracers" << endl;
     }
     
     // Update the enumeration and domain array
     // cout << "last section" << endl;
+    cout << "Enumerating Pool" << endl;
     enumeratePool();
-    setUpDomainArray();
+    cout << "FINISHEd Enumerating Pool" << endl;
+    // setUpDomainArray();
 
     for (int i = 0; i < nStructs; i++) {
         solids->at(i).updateSolidLocs(*this, false);
     }
+
+    // Add all of the MSS's
+    cout << "building tree" << endl;
+    kdPointCloud->resetCloud();
+    for (int i = 0 ; i < nStructs; i++) {
+        kdPointCloud->addMSS(solids->at(i));
+    }
+
+    // Now rebuild the kdtree for efficient searching.
+    kdTree->buildIndex();
+    cout << "fINsihed building tree" << endl;
+
 
     // If significant drift from the interface detected, correct.
     if (shouldRefitSDF(min(hx, min(hy, hz)))) {
@@ -2848,19 +2925,22 @@ void Pool3D::outputPool(const char *fname) {
                 // double inPnt[3] = {x, y, z};
                 // double phi =  this->interpolatePhi(x, y, z);
 
+                // cout << "structNum = " << solids->size() << endl;
+
                 outFile << this->interpolatePhi(x, y, z) << endl;
                 // if (phi > 0) {
-                //     int MAXCANDS = 100;
-                //     // outFile << closestBoundaryDist(0, inPnt) << endl;
-                //     vector<pair<size_t,double> > ret_matches;
-                //     std::vector<size_t> ret_index(MAXCANDS);
-                //     std::vector<double> out_dist_sqr(MAXCANDS);
+                //     // int id = (z > 6) ? 0 : 1;
+                //     // int MAXCANDS = 100;
+                //     outFile << closestBoundaryDist(0, inPnt) << endl;
+                //     // vector<pair<size_t,double> > ret_matches;
+                //     // std::vector<size_t> ret_index(MAXCANDS);
+                //     // std::vector<double> out_dist_sqr(MAXCANDS);
 
-                //     // Candidate list
-                //     int numFound = kdTree->knnSearch(&inPnt[0],
-                //         MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
+                //     // // Candidate list
+                //     // int numFound = kdTree->knnSearch(&inPnt[0],
+                //     //     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
                     
-                //     outFile << sqrt(out_dist_sqr.at(0)) << endl;
+                //     // outFile << sqrt(out_dist_sqr.at(0)) << endl;
 
                 // } else {
                 //     outFile << this->interpolatePhi(x, y, z) << endl;

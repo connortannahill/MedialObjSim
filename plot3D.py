@@ -10,10 +10,28 @@ if len(sys.argv) == 1:
     print('Must provide a plotting mode!')
     sys.exit()
 
+testNum = -1
+
 test = sys.argv[1]
 mode = int(sys.argv[2])
-print('mode = {}'.format(mode))
-f_name = './output/{0}/'.format(test)
+print("mode = {}".format(mode))
+
+if (mode != 4):
+    if (len(sys.argv) == 4):
+        testNum = int(sys.argv[3])
+elif mode == 4:
+    print(len(sys.argv))
+    if (len(sys.argv) == 6):
+        testNum = int(sys.argv[3])
+
+
+print('testNum = {}'.format(testNum))
+
+f_name = None
+if testNum == -1:
+    f_name = './output/{0}/'.format(test)
+else:
+    f_name = './output/{0}/{1}/'.format(test, testNum)
 
 nMSS= len(glob.glob(f_name+'MSS3DEdges*'))
 # nMss = int(sys.argv[3])
@@ -57,11 +75,11 @@ if mode == -2:
     fig.show()
 
 def plot_3D(num):
-    f_temp = f_name + ('{}/'.format(num) if num >= 0 else '')
+    f_temp = f_name
 
-    pool_iso_fname = f_temp + 'poolOut'
+    pool_iso_fname = f_temp + 'pool3DOut'
     # pool_vel_fname = 'pool3DVel'
-    pool_vel_fname = f_temp + 'out'
+    pool_vel_fname = f_temp + 'out3D'
 
     out_pool = np.genfromtxt(pool_iso_fname, delimiter=',')
     out_pool_vel = np.genfromtxt(pool_vel_fname, delimiter=',')
@@ -188,7 +206,7 @@ elif mode == 1:
         isomax=0.0001,
         colorscale=[(0,"blue"), (1,"red")],
         opacity=0.3)]+mssList)
-    fig = go.Figure(data=mssList)
+    # fig = go.Figure(data=mssList)
 
     fig.show()
 elif mode == 2:
@@ -250,14 +268,14 @@ elif mode == 4:
     constant val
     """
 
-    axis = sys.argv[2]
+    axis = sys.argv[4]
     if (axis != 'x' and axis != 'y' and axis != 'z') :
         raise ValueError("axis {} does not exist!".format(axis))
 
-    val = float(sys.argv[3])
+    val = float(sys.argv[5])
 
     # Read in the input values
-    pool_vel_fname = f_name + 'pool3DVel'
+    pool_vel_fname = f_name + 'out3D'
     # pool_vel_fname = 'out3D'
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
 
@@ -270,6 +288,7 @@ elif mode == 4:
     u = out[:,3]
     v = out[:,4]
     w = out[:,5]
+    p = out[:,6]
 
     # Get the x, y, z domain of the point cloud.
     x_bounds = [np.amin(x), np.amax(x)]
@@ -279,6 +298,35 @@ elif mode == 4:
     # Extract the phi value
     pool_vel_fname = f_name + 'pool3DOut'
     out = np.genfromtxt(pool_vel_fname, delimiter=',')
+
+    x_pool = out[:,0]
+    y_pool = out[:,1]
+    z_pool = out[:,2]
+
+    x_min = min(x_pool)
+    x_max = max(x_pool)
+
+    y_min = min(y_pool)
+    y_max = max(y_pool)
+
+    z_min = min(z_pool)
+    z_max = max(z_pool)
+
+    x_low_ind = np.where(x_pool == x_min)[0][0]
+    x_high_ind = np.where(x_pool == x_max)[0][0]
+    
+    y_low_ind = np.where(y_pool == y_min)[0][0]
+    y_high_ind = np.where(y_pool == y_max)[0][0]
+
+    z_low_ind = np.where(z_pool == z_min)[0][0]
+    z_high_ind = np.where(z_pool == z_max)[0][0]
+
+    nx = x_high_ind - x_low_ind + 1
+    ny = int((y_high_ind - y_low_ind + 1)/(nx)+1)
+    nz = int((z_high_ind - z_low_ind + 1)/((nx)*(ny))+1)
+
+    print('nx = {0} ny = {1} nz = {2}'.format(nx, ny, nz))
+    print('tot = {}'.format(x_pool.size))
 
     phi = out[:,3]
 
@@ -293,10 +341,11 @@ elif mode == 4:
         closest_pnt = x[closest]
 
         inds = (x == closest_pnt)
-        q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
+        ax1.imshow(np.reshape(p[inds], (nz, ny)))
+        # q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
 
 
-        img = ax1.contour(np.reshape(y[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), levels=[0], colors='b')
+        # img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
         # img = ax1.contour(np.reshape(y[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     elif axis == 'y':
         closest = np.argmin(np.abs(y - val))
@@ -307,7 +356,7 @@ elif mode == 4:
 
         n = int(np.sqrt(phi[inds].size))
 
-        img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), levels=[0], colors='b')
+        img = ax1.contour(np.reshape(x[inds], (nz, nx)), np.reshape(z[inds], (nz, nx)), np.reshape(phi[inds], (nz, nx)), levels=[0], colors='b')
         # img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     elif axis == 'z':
         closest = np.argmin(np.abs(z - val))
@@ -321,12 +370,13 @@ elif mode == 4:
 
 
         n = int(np.sqrt(phi[inds].size))
-        img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(y[inds], (n, n)), np.reshape(phi[inds], (n, n)), levels=[0], colors='b')
+        img = ax1.contour(np.reshape(x[inds], (ny, nx)), np.reshape(y[inds], (ny, nx)), np.reshape(phi[inds], (ny, nx)), levels=[0], colors='b')
         # img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(y[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     
     plt.show()
 elif mode == 5:
-    mss_vel_fname = f_name +  'MSS3DVels{0}'.format(0)
+    mssNum = 1
+    mss_vel_fname = f_name +  'MSS3DVels{0}'.format(mssNum)
 
     out = np.genfromtxt(mss_vel_fname, delimiter=',')
 
@@ -339,6 +389,17 @@ elif mode == 5:
     u = out[:,3]
     v = out[:,4]
     w = out[:,5]
+
+
+    pool_fname = f_name + 'pool3DOut'
+
+    # Read in the pool data
+    out = np.genfromtxt(pool_fname, delimiter=',')
+
+    xPool = out[:,0]
+    yPool = out[:,1]
+    zPool = out[:,2]
+    phi = out[:,3]
 
     print('Max u = {0} Max v = {1}'.format(np.amax(np.abs(u)), np.amax(np.abs(v))))
 

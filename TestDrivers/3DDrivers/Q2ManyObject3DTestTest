@@ -1,61 +1,47 @@
 Many object test generic, can be from many sources
-Q1ManyObject
+Q2ManyObject3DTestTest
 
+0.0 5.0
+0.0 5.0
 0.0 10.0
-0.0 10.0
-320 320
-0.1 0.0
-0.0 0.0
+80 80 160
+0.0 0.0 -1.0
+0.0 0.0 0.0
 1000.0
 1
-lidDrivenCavityBC
+downDirFlowBC
 100.0
 
-12
+2
 
-bloodCellShapeFun
-1
+coneShapeFun
+2
 0.0
 0.0
-cx 5.0
-cy 3.0
-r 2.5
-mass 5
-density 10.0
-E 5
+0.0
+cx 2.5
+cy 2.5
+cz 5
+r 0.6
+mass 2
+density 1.0
+E 10
 eta 0.0
 deg 0
-a 0.3
-c 0.105
-.
-
-
-bloodCellShapeFun
-1
-0.0
-0.0
-cx 5.0
-cy 7.0
-r 2.5
-mass 5
-density 10.0
-E 5
-eta 0.0
-deg 0
-a 0.3
-c 0.105
 .
 
 coneShapeFun
 1
 0.0
 0.0
-cx 3.5
-cy 4.5
+-1.0
+cx 2.5
+cy 2.5
+cz 7.2
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -66,12 +52,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 3.5
-cy 5.5
+-0.1
+cx 1.2
+cy 1.2
+cz 7.9
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -82,12 +70,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 4.2
-cy 4.5
+-0.1
+cx 1.9
+cy 1.9
+cz 7.2
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -98,12 +88,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 4.2
-cy 5.5
+-0.1
+cx 1.9
+cy 1.9
+cz 7.9
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -114,12 +106,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 4.9
-cy 4.5
+-0.1
+cx 2.6
+cy 2.6
+cz 7.2
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -130,12 +124,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 4.9
-cy 5.5
+-0.1
+cx 2.6
+cy 2.6
+cz 7.9
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -146,12 +142,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 5.6
-cy 4.5
+-0.1
+cx 3.3
+cy 3.3
+cz 7.2
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -162,12 +160,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 5.6
-cy 5.5
+-0.1
+cx 3.3
+cy 3.3
+cz 7.9
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -178,12 +178,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 6.3
-cy 4.5
+-0.1
+cx 4.0
+cy 4.0
+cz 7.2
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105
@@ -194,12 +196,14 @@ coneShapeFun
 1
 0.0
 0.0
-cx 6.3
-cy 5.5
+-0.1
+cx 4.0
+cy 4.0
+cz 7.9
 r 0.2
-mass 0.5
+mass 1.0
 density 1.0
-E 15.0
+E 10.0
 eta 0.0
 a 0.38
 c 0.105

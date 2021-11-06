@@ -10,7 +10,7 @@ module load python/3.8.10
 module load scipy-stack
 
 
-args="Q3ManyObject 3 1"
+args="Q2ManyObject3D 3 1"
 # args="objscale.txt"
 echo "Args = $args"
 

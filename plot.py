@@ -355,9 +355,6 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     cur_f_name = f_name + 'poolOut'
     out = np.genfromtxt(cur_f_name, delimiter=',')
 
-    nx = 100
-    ny = 100
-
     x_pool = out[:,0]
     y_pool = out[:,1]
     phi = out[:,2]
@@ -439,6 +436,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     step_num = 1
     def displayPlot():
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
+        print('steps = {}'.format(steps))
         plt.scatter(x, y, c='r', marker='o', s=1)
         if (len(x_med) > 0):
             plt.scatter(x_med, y_med, s=0.5)
@@ -470,7 +468,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[::5]
+    steps = steps[::10][:40]
     print(steps)
 
     plots = []
@@ -520,7 +518,6 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
         out = np.genfromtxt(f_name+str(step)+'/medialAxis', delimiter=',')
 
-        print('hi {}'.format(out.size))
         if (out.size == 0) :
             x_med = np.array([])
             y_med = np.array([])
@@ -627,18 +624,18 @@ elif mode == 15:
     xPool *= nx/(xMax - xMin)
     yPool *= ny/(yMax - yMin)
     yPool = ny - yPool
-    ax.contour(np.reshape(xPool, (nx, ny)), np.reshape(yPool, (nx, ny)), np.reshape(phi, (nx, ny)), levels=[0], colors='b')
+    ax.contour(np.reshape(xPool, (ny, nx)), np.reshape(yPool, (ny, nx)), np.reshape(phi, (ny, nx)), levels=[0], colors='b')
 
-    for i in range(numObj):
-        f_temp = f_name
-        f_temp += 'MSSEdges{0}'.format(i)
+    # for i in range(numObj):
+    #     f_temp = f_name
+    #     f_temp += 'MSSEdges{0}'.format(i)
 
-        out = np.genfromtxt(f_temp, delimiter=',')
-        x_mss = (nx/(xMax-xMin)) * out[:,0]
-        y_mss = (ny/(yMax-yMin)) * out[:,1]
-        # print(x_mss)
+    #     out = np.genfromtxt(f_temp, delimiter=',')
+    #     x_mss = (nx/(xMax-xMin)) * out[:,0]
+    #     y_mss = (ny/(yMax-yMin)) * out[:,1]
+    #     # print(x_mss)
 
-        plt.scatter(x_mss, ny - y_mss, c='y', s=0.5)
+    #     plt.scatter(x_mss, ny - y_mss, c='y', s=0.5)
 
     # for tracer in tracers:
     #     print('adding tracer {0}'.format(tracer))
