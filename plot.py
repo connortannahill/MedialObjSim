@@ -41,19 +41,22 @@ For plotting the Pool isocontour
 """
 
 if mode == -2:
-    str = ''
+    str_base = ''
     from random import randint
-    with open('./TestDrivers/2DDrivers/Q3ManyObject') as f:
+    with open('./TestDrivers/2DDrivers/{}'.format(test)) as f:
         for ln in f.readlines():
             str_temp = ln.strip()
             print(str_temp)
             if str_temp.startswith('deg'):
-                str_temp = str_temp[:str_temp.rfind('g')+2] + ('90' if randint(0, 1) == 0 else '0')
+                # str_temp = str_temp[:str_temp.rfind('g')+2] + ('90' if randint(0, 1) == 0 else '0')
+                val = randint(0, 360) 
+                print(val)
+                str_temp = str(val)
 
-            str += str_temp + '\n'
+            str_base += str_temp + '\n'
 
     with open('./TestDrivers/2DDrivers/Q3ManyObject', 'w') as f:
-        f.write(str)
+        f.write(str_base)
 
 # assert(False)
 
@@ -468,7 +471,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[::10][:40]
+    steps = steps[::10]
     print(steps)
 
     plots = []

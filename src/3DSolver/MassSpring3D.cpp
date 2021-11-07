@@ -391,9 +391,9 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     // cout << "Finsihed face creation" << endl;
 
     // Now, attempt to update the solid to a steady state
-    double eps = 1e-10;
-    const int MAX_ITERS = 1000;
-    double dt = 0.01*simutils::dmin(hx, simutils::dmin(hy, hz));
+    double eps = 1e-6;
+    const int MAX_ITERS = 200;
+    double dt = 0.05*simutils::dmin(hx, simutils::dmin(hy, hz));
     int iters = 0;
     // cout << "init the thing" << endl;
     double fNet[3] = {0.0, 0.0, 0.0};
@@ -952,17 +952,28 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         nk = iPnt[2];
 
         if (found1) {
+            for (int i = 0; i < 3; i++) {
+                s1[i] = 0.0;
+            }
+
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id1).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 computeCollisionStress(id1, s1, dA);
-
-            } else {
-                // Apply hydrodynamic stress if there is no collision
-                s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
-                s1[1] = stress[1][ng+nk][ng+nj][ng+ni];
-                s1[2] = stress[2][ng+nk][ng+nj][ng+ni];
             }
+
+            // } else {
+            //     // Apply hydrodynamic stress if there is no collision
+            //     s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
+            //     s1[1] = stress[1][ng+nk][ng+nj][ng+ni];
+            //     s1[2] = stress[2][ng+nk][ng+nj][ng+ni];
+            // }
+            // } else {
+                // Apply hydrodynamic stress if there is no collision
+            s1[0] += stress[0][ng+nk][ng+nj][ng+ni];
+            s1[1] += stress[1][ng+nk][ng+nj][ng+ni];
+            s1[2] += stress[2][ng+nk][ng+nj][ng+ni];
+            // }
         } else {
             assert(false);
             s1[0] = 0.0;
@@ -976,16 +987,29 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         nk = iPnt[2];
 
         if (found2) {
+            for (int i = 0; i < 3; i++) {
+                s2[i] = 0.0;
+            }
+
+            // // Apply the stress to this point and its connected neighbours
+            // if (nodeCols->at(id2).size() > 0) {
+            //     // There is a collision on this node, compute the collision stress
+            //     computeCollisionStress(id2, s2, dA);
+            // } else {
+            //     // Apply hydrodynamic stress if there is no collision
+            //     s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
+            //     s2[1] = stress[1][ng+nk][ng+nj][ng+ni];
+            //     s2[2] = stress[2][ng+nk][ng+nj][ng+ni];
+            // }
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 computeCollisionStress(id2, s2, dA);
-            } else {
-                // Apply hydrodynamic stress if there is no collision
-                s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
-                s2[1] = stress[1][ng+nk][ng+nj][ng+ni];
-                s2[2] = stress[2][ng+nk][ng+nj][ng+ni];
             }
+            // Apply hydrodynamic stress if there is no collision
+            s2[0] += stress[0][ng+nk][ng+nj][ng+ni];
+            s2[1] += stress[1][ng+nk][ng+nj][ng+ni];
+            s2[2] += stress[2][ng+nk][ng+nj][ng+ni];
         } else {
             assert(false);
             s2[0] = 0.0;
@@ -999,16 +1023,30 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         nk = iPnt[2];
 
         if (found3) {
+            for (int i = 0; i < 3; i++) {
+                s3[i] = 0.0;
+            }
+
+            // // Apply the stress to this point and its connected neighbours
+            // if (nodeCols->at(id3).size() > 0) {
+            //     // There is a collision on this node, compute the collision stress
+            //     computeCollisionStress(id3, s3, dA);
+            // } else {
+            //     // Apply hydrodynamic stress if there is no collision
+            //     s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
+            //     s3[1] = stress[1][ng+nk][ng+nj][ng+ni];
+            //     s3[2] = stress[2][ng+nk][ng+nj][ng+ni];
+            // }
+
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id3).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 computeCollisionStress(id3, s3, dA);
-            } else {
-                // Apply hydrodynamic stress if there is no collision
-                s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
-                s3[1] = stress[1][ng+nk][ng+nj][ng+ni];
-                s3[2] = stress[2][ng+nk][ng+nj][ng+ni];
             }
+            // Apply hydrodynamic stress if there is no collision
+            s3[0] += stress[0][ng+nk][ng+nj][ng+ni];
+            s3[1] += stress[1][ng+nk][ng+nj][ng+ni];
+            s3[2] += stress[2][ng+nk][ng+nj][ng+ni];
         } else {
             assert(false);
             s3[0] = 0.0;

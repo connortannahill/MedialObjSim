@@ -319,7 +319,7 @@ int main(int argc, char **argv) {
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
     simParams.setCollisionStiffness(5.0);
-    simParams.setCollisionDist(2*h);
+    simParams.setCollisionDist(4*h);
     simParams.setUpdateMode(1);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
@@ -349,7 +349,7 @@ int main(int argc, char **argv) {
         while (t+EPS < tEnd && nsteps < max_steps) {
             t = solver.step(tEnd, safetyFactor);
 
-            if (nsteps % 1 == 0) {
+            if (nsteps % 5 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }

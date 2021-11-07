@@ -83,7 +83,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
-        u[j][0] = 0.1;
+        u[j][0] = 0.25;
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
@@ -288,8 +288,8 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(10.0);
-    simParams.setCollisionDist(4.0*h);
+    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionDist(3.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);

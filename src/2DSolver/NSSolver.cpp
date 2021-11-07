@@ -679,7 +679,7 @@ void NSSolver::updateF(Pool2D *pool) {
                     convective = discs::firstOrder_conv_usqx(xi, yi, this->dx, this->u)
                         + discs::firstOrder_conv_uvy(xi, yi, this->dy, this->u, this->v);
                 }
-                this->FU[yi][xi] = this->u[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + this->gx );
+                this->FU[yi][xi] = this->u[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
             }
         }
     }
@@ -700,7 +700,7 @@ void NSSolver::updateF(Pool2D *pool) {
                     convective = discs::firstOrder_conv_uvx(xi, yi, this->dx, this->u, this->v)
                         + discs::firstOrder_conv_vsqy(xi, yi, this->dy, this->v);
                 }
-                this->FV[yi][xi] = this->v[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + this->gy );
+                this->FV[yi][xi] = this->v[yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
             }
         }
     }

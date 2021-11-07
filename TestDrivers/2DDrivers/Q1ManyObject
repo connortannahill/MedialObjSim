@@ -52,7 +52,7 @@ coneShapeFun
 0.0
 cx 3.5
 cy 4.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -68,7 +68,7 @@ coneShapeFun
 0.0
 cx 3.5
 cy 5.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -84,7 +84,7 @@ coneShapeFun
 0.0
 cx 4.2
 cy 4.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -100,7 +100,7 @@ coneShapeFun
 0.0
 cx 4.2
 cy 5.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -116,7 +116,7 @@ coneShapeFun
 0.0
 cx 4.9
 cy 4.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -132,7 +132,7 @@ coneShapeFun
 0.0
 cx 4.9
 cy 5.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -148,7 +148,7 @@ coneShapeFun
 0.0
 cx 5.6
 cy 4.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -164,7 +164,7 @@ coneShapeFun
 0.0
 cx 5.6
 cy 5.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -180,7 +180,7 @@ coneShapeFun
 0.0
 cx 6.3
 cy 4.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0
@@ -196,7 +196,7 @@ coneShapeFun
 0.0
 cx 6.3
 cy 5.5
-r 0.2
+r 0.15
 mass 0.5
 density 1.0
 E 15.0

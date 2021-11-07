@@ -1,5 +1,5 @@
 Many object test generic, can be from many sources
-Q3ManyObject
+Q3ManyObjectFull
 
 0.0 10.0
 0.0 5.0
@@ -11,7 +11,7 @@ Q3ManyObject
 directionalFlowBC
 20.0
 
-158
+154
 
 bloodCellShapeFun
 1
@@ -20,13 +20,13 @@ bloodCellShapeFun
 cx 0.6
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 344
 .
 
 bloodCellShapeFun
@@ -36,685 +36,685 @@ bloodCellShapeFun
 cx 0.6
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 329
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 73
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 263
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 346
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 179
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 22
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 67
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 137
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 109
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 7
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 185
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.6
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 287
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 228
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 35
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 214
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 144
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 349
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 3
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 83
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 297
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 171
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 17
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
-E 20.0
+mass 0.5
+density 0.5
+2E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 82
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 41
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 0.9
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 212
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 97
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 205
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 188
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 121
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 171
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 303
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 331
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 86
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 10
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 236
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 210
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 125
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.2000000000000002
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 221
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.5000000000000002
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 205
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.5000000000000002
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 115
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.5000000000000002
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 175
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.5000000000000002
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 46
 .
 
 bloodCellShapeFun
 1
-0.5
+0.25
 0.0
 cx 1.5000000000000002
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 227
 .
 
 bloodCellShapeFun
@@ -724,13 +724,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 270
 .
 
 bloodCellShapeFun
@@ -740,13 +740,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 58
 .
 
 bloodCellShapeFun
@@ -756,13 +756,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 130
 .
 
 bloodCellShapeFun
@@ -772,13 +772,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 49
 .
 
 bloodCellShapeFun
@@ -788,13 +788,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 158
 .
 
 bloodCellShapeFun
@@ -804,13 +804,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 136
 .
 
 bloodCellShapeFun
@@ -820,13 +820,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 54
 .
 
 bloodCellShapeFun
@@ -836,13 +836,13 @@ bloodCellShapeFun
 cx 1.5000000000000002
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 360
 .
 
 bloodCellShapeFun
@@ -852,13 +852,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 133
 .
 
 bloodCellShapeFun
@@ -868,13 +868,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 31
 .
 
 bloodCellShapeFun
@@ -884,13 +884,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 200
 .
 
 bloodCellShapeFun
@@ -900,13 +900,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 170
 .
 
 bloodCellShapeFun
@@ -916,13 +916,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 197
 .
 
 bloodCellShapeFun
@@ -932,13 +932,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 187
 .
 
 bloodCellShapeFun
@@ -948,13 +948,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 144
 .
 
 bloodCellShapeFun
@@ -964,13 +964,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 20
 .
 
 bloodCellShapeFun
@@ -980,13 +980,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 288
 .
 
 bloodCellShapeFun
@@ -996,13 +996,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 198
 .
 
 bloodCellShapeFun
@@ -1012,13 +1012,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 310
 .
 
 bloodCellShapeFun
@@ -1028,13 +1028,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 173
 .
 
 bloodCellShapeFun
@@ -1044,13 +1044,13 @@ bloodCellShapeFun
 cx 1.8000000000000003
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 10
 .
 
 bloodCellShapeFun
@@ -1060,13 +1060,13 @@ bloodCellShapeFun
 cx 2.1
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 138
 .
 
 bloodCellShapeFun
@@ -1076,13 +1076,13 @@ bloodCellShapeFun
 cx 2.1
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 243
 .
 
 bloodCellShapeFun
@@ -1092,13 +1092,13 @@ bloodCellShapeFun
 cx 2.1
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 228
 .
 
 bloodCellShapeFun
@@ -1108,13 +1108,13 @@ bloodCellShapeFun
 cx 2.1
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 236
 .
 
 bloodCellShapeFun
@@ -1124,13 +1124,13 @@ bloodCellShapeFun
 cx 2.1
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 335
 .
 
 bloodCellShapeFun
@@ -1140,13 +1140,13 @@ bloodCellShapeFun
 cx 2.1
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 200
 .
 
 bloodCellShapeFun
@@ -1156,13 +1156,13 @@ bloodCellShapeFun
 cx 2.1
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 354
 .
 
 bloodCellShapeFun
@@ -1172,13 +1172,13 @@ bloodCellShapeFun
 cx 2.1
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 276
 .
 
 bloodCellShapeFun
@@ -1188,13 +1188,13 @@ bloodCellShapeFun
 cx 2.1
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 307
 .
 
 bloodCellShapeFun
@@ -1204,13 +1204,13 @@ bloodCellShapeFun
 cx 2.1
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 23
 .
 
 bloodCellShapeFun
@@ -1220,13 +1220,13 @@ bloodCellShapeFun
 cx 2.1
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 285
 .
 
 bloodCellShapeFun
@@ -1236,13 +1236,13 @@ bloodCellShapeFun
 cx 2.1
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 330
 .
 
 bloodCellShapeFun
@@ -1252,13 +1252,13 @@ bloodCellShapeFun
 cx 2.1
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 207
 .
 
 bloodCellShapeFun
@@ -1268,13 +1268,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 230
 .
 
 bloodCellShapeFun
@@ -1284,13 +1284,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 118
 .
 
 bloodCellShapeFun
@@ -1300,13 +1300,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 199
 .
 
 bloodCellShapeFun
@@ -1316,13 +1316,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 92
 .
 
 bloodCellShapeFun
@@ -1332,13 +1332,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 187
 .
 
 bloodCellShapeFun
@@ -1348,13 +1348,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 149
 .
 
 bloodCellShapeFun
@@ -1364,13 +1364,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 11
 .
 
 bloodCellShapeFun
@@ -1380,13 +1380,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 351
 .
 
 bloodCellShapeFun
@@ -1396,13 +1396,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 276
 .
 
 bloodCellShapeFun
@@ -1412,13 +1412,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 313
 .
 
 bloodCellShapeFun
@@ -1428,13 +1428,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 168
 .
 
 bloodCellShapeFun
@@ -1444,13 +1444,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 148
 .
 
 bloodCellShapeFun
@@ -1460,13 +1460,13 @@ bloodCellShapeFun
 cx 2.4000000000000004
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 260
 .
 
 bloodCellShapeFun
@@ -1476,13 +1476,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 199
 .
 
 bloodCellShapeFun
@@ -1492,13 +1492,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 218
 .
 
 bloodCellShapeFun
@@ -1508,13 +1508,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 44
 .
 
 bloodCellShapeFun
@@ -1524,13 +1524,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 353
 .
 
 bloodCellShapeFun
@@ -1540,13 +1540,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 258
 .
 
 bloodCellShapeFun
@@ -1556,13 +1556,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 287
 .
 
 bloodCellShapeFun
@@ -1572,13 +1572,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 119
 .
 
 bloodCellShapeFun
@@ -1588,13 +1588,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 220
 .
 
 bloodCellShapeFun
@@ -1604,13 +1604,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 51
 .
 
 bloodCellShapeFun
@@ -1620,13 +1620,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 185
 .
 
 bloodCellShapeFun
@@ -1636,13 +1636,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 218
 .
 
 bloodCellShapeFun
@@ -1652,13 +1652,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 194
 .
 
 bloodCellShapeFun
@@ -1668,13 +1668,13 @@ bloodCellShapeFun
 cx 2.7000000000000006
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 266
 .
 
 bloodCellShapeFun
@@ -1684,13 +1684,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 257
 .
 
 bloodCellShapeFun
@@ -1700,13 +1700,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 229
 .
 
 bloodCellShapeFun
@@ -1716,13 +1716,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 43
 .
 
 bloodCellShapeFun
@@ -1732,13 +1732,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 177
 .
 
 bloodCellShapeFun
@@ -1748,13 +1748,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 360
 .
 
 bloodCellShapeFun
@@ -1764,13 +1764,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 185
 .
 
 bloodCellShapeFun
@@ -1780,13 +1780,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 14
 .
 
 bloodCellShapeFun
@@ -1796,13 +1796,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 192
 .
 
 bloodCellShapeFun
@@ -1812,13 +1812,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 1
 .
 
 bloodCellShapeFun
@@ -1828,13 +1828,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 73
 .
 
 bloodCellShapeFun
@@ -1844,13 +1844,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 95
 .
 
 bloodCellShapeFun
@@ -1860,13 +1860,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 51
 .
 
 bloodCellShapeFun
@@ -1876,13 +1876,13 @@ bloodCellShapeFun
 cx 3.0000000000000004
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 174
 .
 
 bloodCellShapeFun
@@ -1892,13 +1892,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 54
 .
 
 bloodCellShapeFun
@@ -1908,13 +1908,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 48
 .
 
 bloodCellShapeFun
@@ -1924,13 +1924,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 31
 .
 
 bloodCellShapeFun
@@ -1940,13 +1940,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 36
 .
 
 bloodCellShapeFun
@@ -1956,13 +1956,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 71
 .
 
 bloodCellShapeFun
@@ -1972,13 +1972,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 93
 .
 
 bloodCellShapeFun
@@ -1988,13 +1988,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 219
 .
 
 bloodCellShapeFun
@@ -2004,13 +2004,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 247
 .
 
 bloodCellShapeFun
@@ -2020,13 +2020,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 304
 .
 
 bloodCellShapeFun
@@ -2036,13 +2036,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 192
 .
 
 bloodCellShapeFun
@@ -2052,13 +2052,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 327
 .
 
 bloodCellShapeFun
@@ -2068,13 +2068,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 342
 .
 
 bloodCellShapeFun
@@ -2084,13 +2084,13 @@ bloodCellShapeFun
 cx 3.3000000000000003
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 343
 .
 
 bloodCellShapeFun
@@ -2100,13 +2100,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 19
 .
 
 bloodCellShapeFun
@@ -2116,13 +2116,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 74
 .
 
 bloodCellShapeFun
@@ -2132,13 +2132,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 230
 .
 
 bloodCellShapeFun
@@ -2148,13 +2148,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 104
 .
 
 bloodCellShapeFun
@@ -2164,13 +2164,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 101
 .
 
 bloodCellShapeFun
@@ -2180,13 +2180,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 15
 .
 
 bloodCellShapeFun
@@ -2196,13 +2196,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 121
 .
 
 bloodCellShapeFun
@@ -2212,13 +2212,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 290
 .
 
 bloodCellShapeFun
@@ -2228,13 +2228,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 10
 .
 
 bloodCellShapeFun
@@ -2244,13 +2244,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 260
 .
 
 bloodCellShapeFun
@@ -2260,13 +2260,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 288
 .
 
 bloodCellShapeFun
@@ -2276,13 +2276,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 77
 .
 
 bloodCellShapeFun
@@ -2292,13 +2292,13 @@ bloodCellShapeFun
 cx 3.6000000000000005
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 167
 .
 
 bloodCellShapeFun
@@ -2308,13 +2308,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 132
 .
 
 bloodCellShapeFun
@@ -2324,13 +2324,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 116
 .
 
 bloodCellShapeFun
@@ -2340,13 +2340,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 233
 .
 
 bloodCellShapeFun
@@ -2356,13 +2356,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 164
 .
 
 bloodCellShapeFun
@@ -2372,13 +2372,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 298
 .
 
 bloodCellShapeFun
@@ -2388,13 +2388,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 195
 .
 
 bloodCellShapeFun
@@ -2404,13 +2404,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 257
 .
 
 bloodCellShapeFun
@@ -2420,13 +2420,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 147
 .
 
 bloodCellShapeFun
@@ -2436,13 +2436,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 253
 .
 
 bloodCellShapeFun
@@ -2452,13 +2452,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 101
 .
 
 bloodCellShapeFun
@@ -2468,13 +2468,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 315
 .
 
 bloodCellShapeFun
@@ -2484,13 +2484,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 360
 .
 
 bloodCellShapeFun
@@ -2500,13 +2500,13 @@ bloodCellShapeFun
 cx 3.900000000000001
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 302
 .
 
 bloodCellShapeFun
@@ -2516,13 +2516,13 @@ bloodCellShapeFun
 cx 4.2
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 289
 .
 
 bloodCellShapeFun
@@ -2532,13 +2532,13 @@ bloodCellShapeFun
 cx 4.2
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 272
 .
 
 bloodCellShapeFun
@@ -2548,13 +2548,13 @@ bloodCellShapeFun
 cx 4.2
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 175
 .
 
 bloodCellShapeFun
@@ -2564,13 +2564,13 @@ bloodCellShapeFun
 cx 4.2
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 138
 .
 
 bloodCellShapeFun
@@ -2580,13 +2580,13 @@ bloodCellShapeFun
 cx 4.2
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 123
 .
 
 bloodCellShapeFun
@@ -2596,13 +2596,13 @@ bloodCellShapeFun
 cx 4.2
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 222
 .
 
 bloodCellShapeFun
@@ -2612,13 +2612,13 @@ bloodCellShapeFun
 cx 4.2
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 294
 .
 
 bloodCellShapeFun
@@ -2628,13 +2628,13 @@ bloodCellShapeFun
 cx 4.2
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 160
 .
 
 bloodCellShapeFun
@@ -2644,13 +2644,13 @@ bloodCellShapeFun
 cx 4.2
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 358
 .
 
 bloodCellShapeFun
@@ -2660,13 +2660,13 @@ bloodCellShapeFun
 cx 4.2
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 302
 .
 
 bloodCellShapeFun
@@ -2676,13 +2676,13 @@ bloodCellShapeFun
 cx 4.2
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 69
 .
 
 bloodCellShapeFun
@@ -2692,13 +2692,13 @@ bloodCellShapeFun
 cx 4.2
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 270
 .
 
 bloodCellShapeFun
@@ -2708,13 +2708,13 @@ bloodCellShapeFun
 cx 4.2
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 45
 .
 
 bloodCellShapeFun
@@ -2724,13 +2724,13 @@ bloodCellShapeFun
 cx 4.5
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 161
 .
 
 bloodCellShapeFun
@@ -2740,13 +2740,13 @@ bloodCellShapeFun
 cx 4.5
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 204
 .
 
 bloodCellShapeFun
@@ -2756,13 +2756,13 @@ bloodCellShapeFun
 cx 4.5
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 5
 .
 
 bloodCellShapeFun
@@ -2772,13 +2772,13 @@ bloodCellShapeFun
 cx 4.5
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 151
 .
 
 bloodCellShapeFun
@@ -2788,13 +2788,13 @@ bloodCellShapeFun
 cx 4.5
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 147
 .
 
 bloodCellShapeFun
@@ -2804,13 +2804,13 @@ bloodCellShapeFun
 cx 4.5
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 226
 .
 
 bloodCellShapeFun
@@ -2820,13 +2820,13 @@ bloodCellShapeFun
 cx 4.5
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 357
 .
 
 bloodCellShapeFun
@@ -2836,13 +2836,13 @@ bloodCellShapeFun
 cx 4.5
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 153
 .
 
 bloodCellShapeFun
@@ -2852,13 +2852,13 @@ bloodCellShapeFun
 cx 4.5
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 178
 .
 
 bloodCellShapeFun
@@ -2868,13 +2868,13 @@ bloodCellShapeFun
 cx 4.5
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 285
 .
 
 bloodCellShapeFun
@@ -2884,13 +2884,13 @@ bloodCellShapeFun
 cx 4.5
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 318
 .
 
 bloodCellShapeFun
@@ -2900,13 +2900,13 @@ bloodCellShapeFun
 cx 4.5
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 189
 .
 
 bloodCellShapeFun
@@ -2916,13 +2916,13 @@ bloodCellShapeFun
 cx 4.5
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 27
 .
 
 bloodCellShapeFun
@@ -2932,13 +2932,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 180
 .
 
 bloodCellShapeFun
@@ -2948,13 +2948,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 146
 .
 
 bloodCellShapeFun
@@ -2964,13 +2964,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 233
 .
 
 bloodCellShapeFun
@@ -2980,13 +2980,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 280
 .
 
 bloodCellShapeFun
@@ -2996,13 +2996,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 227
 .
 
 bloodCellShapeFun
@@ -3012,13 +3012,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 209
 .
 
 bloodCellShapeFun
@@ -3028,13 +3028,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 161
 .
 
 bloodCellShapeFun
@@ -3044,13 +3044,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 200
 .
 
 bloodCellShapeFun
@@ -3060,13 +3060,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 91
 .
 
 bloodCellShapeFun
@@ -3076,13 +3076,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 110
 .
 
 bloodCellShapeFun
@@ -3092,13 +3092,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 123
 .
 
 bloodCellShapeFun
@@ -3108,13 +3108,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 360
 .
 
 bloodCellShapeFun
@@ -3124,13 +3124,13 @@ bloodCellShapeFun
 cx 4.800000000000001
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 23
 .
 
 bloodCellShapeFun
@@ -3140,13 +3140,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 201
 .
 
 bloodCellShapeFun
@@ -3156,13 +3156,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 204
 .
 
 bloodCellShapeFun
@@ -3172,13 +3172,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 323
 .
 
 bloodCellShapeFun
@@ -3188,13 +3188,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 240
 .
 
 bloodCellShapeFun
@@ -3204,13 +3204,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 311
 .
 
 bloodCellShapeFun
@@ -3220,13 +3220,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 360
 .
 
 bloodCellShapeFun
@@ -3236,13 +3236,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 129
 .
 
 bloodCellShapeFun
@@ -3252,13 +3252,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 220
 .
 
 bloodCellShapeFun
@@ -3268,13 +3268,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 225
 .
 
 bloodCellShapeFun
@@ -3284,13 +3284,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 164
 .
 
 bloodCellShapeFun
@@ -3300,13 +3300,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 268
 .
 
 bloodCellShapeFun
@@ -3316,13 +3316,13 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 262
 .
 
 bloodCellShapeFun
@@ -3332,8 +3332,88 @@ bloodCellShapeFun
 cx 5.1000000000000005
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
+E 20.0
+eta 0.0
+a 0.3
+c 0.105
+deg 99
+.
+
+bloodCellShapeFun
+1
+0.5
+0.0
+cx 5.4
+cy 0.6
+r 0.1
+mass 0.5
+density 0.5
+E 20.0
+eta 0.0
+a 0.3
+c 0.105
+deg 181
+.
+
+bloodCellShapeFun
+1
+0.5
+0.0
+cx 5.4
+cy 0.9
+r 0.1
+mass 0.5
+density 0.5
+E 20.0
+eta 0.0
+a 0.3
+c 0.105
+deg 131
+.
+
+bloodCellShapeFun
+1
+0.5
+0.0
+cx 5.4
+cy 1.2000000000000002
+r 0.1
+mass 0.5
+density 0.5
+E 20.0
+eta 0.0
+a 0.3
+c 0.105
+deg 351
+.
+
+bloodCellShapeFun
+1
+0.5
+0.0
+cx 5.4
+cy 1.5000000000000002
+r 0.1
+mass 0.5
+density 0.5
+E 20.0
+eta 0.0
+a 0.3
+c 0.105
+deg 341
+.
+
+bloodCellShapeFun
+1
+0.5
+0.0
+cx 5.4
+cy 1.8000000000000003
+r 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
@@ -3346,95 +3426,15 @@ bloodCellShapeFun
 0.5
 0.0
 cx 5.4
-cy 0.6
-r 0.1
-mass 0.1
-density 0.1
-E 20.0
-eta 0.0
-a 0.3
-c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-cx 5.4
-cy 0.9
-r 0.1
-mass 0.1
-density 0.1
-E 20.0
-eta 0.0
-a 0.3
-c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-cx 5.4
-cy 1.2000000000000002
-r 0.1
-mass 0.1
-density 0.1
-E 20.0
-eta 0.0
-a 0.3
-c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-cx 5.4
-cy 1.5000000000000002
-r 0.1
-mass 0.1
-density 0.1
-E 20.0
-eta 0.0
-a 0.3
-c 0.105
-deg 0
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-cx 5.4
-cy 1.8000000000000003
-r 0.1
-mass 0.1
-density 0.1
-E 20.0
-eta 0.0
-a 0.3
-c 0.105
-deg 90
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-cx 5.4
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 45
 .
 
 bloodCellShapeFun
@@ -3444,13 +3444,13 @@ bloodCellShapeFun
 cx 5.4
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 76
 .
 
 bloodCellShapeFun
@@ -3460,13 +3460,13 @@ bloodCellShapeFun
 cx 5.4
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 176
 .
 
 bloodCellShapeFun
@@ -3476,13 +3476,13 @@ bloodCellShapeFun
 cx 5.4
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 21
 .
 
 bloodCellShapeFun
@@ -3492,13 +3492,13 @@ bloodCellShapeFun
 cx 5.4
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 218
 .
 
 bloodCellShapeFun
@@ -3508,13 +3508,13 @@ bloodCellShapeFun
 cx 5.4
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 211
 .
 
 bloodCellShapeFun
@@ -3524,13 +3524,13 @@ bloodCellShapeFun
 cx 5.4
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 225
 .
 
 bloodCellShapeFun
@@ -3540,13 +3540,13 @@ bloodCellShapeFun
 cx 5.4
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 97
 .
 
 bloodCellShapeFun
@@ -3556,13 +3556,13 @@ bloodCellShapeFun
 cx 5.7
 cy 0.6
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 263
 .
 
 bloodCellShapeFun
@@ -3572,13 +3572,13 @@ bloodCellShapeFun
 cx 5.7
 cy 0.9
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 143
 .
 
 bloodCellShapeFun
@@ -3588,13 +3588,13 @@ bloodCellShapeFun
 cx 5.7
 cy 1.2000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 132
 .
 
 bloodCellShapeFun
@@ -3604,13 +3604,13 @@ bloodCellShapeFun
 cx 5.7
 cy 1.5000000000000002
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 357
 .
 
 bloodCellShapeFun
@@ -3620,13 +3620,13 @@ bloodCellShapeFun
 cx 5.7
 cy 1.8000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 253
 .
 
 bloodCellShapeFun
@@ -3636,13 +3636,13 @@ bloodCellShapeFun
 cx 5.7
 cy 2.1
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 93
 .
 
 bloodCellShapeFun
@@ -3652,13 +3652,13 @@ bloodCellShapeFun
 cx 5.7
 cy 2.4000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 216
 .
 
 bloodCellShapeFun
@@ -3668,13 +3668,13 @@ bloodCellShapeFun
 cx 5.7
 cy 2.7000000000000006
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 271
 .
 
 bloodCellShapeFun
@@ -3684,13 +3684,13 @@ bloodCellShapeFun
 cx 5.7
 cy 3.0000000000000004
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 4
 .
 
 bloodCellShapeFun
@@ -3700,13 +3700,13 @@ bloodCellShapeFun
 cx 5.7
 cy 3.3000000000000003
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 116
 .
 
 bloodCellShapeFun
@@ -3716,13 +3716,13 @@ bloodCellShapeFun
 cx 5.7
 cy 3.6000000000000005
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 335
 .
 
 bloodCellShapeFun
@@ -3732,13 +3732,13 @@ bloodCellShapeFun
 cx 5.7
 cy 3.900000000000001
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 0
+deg 350
 .
 
 bloodCellShapeFun
@@ -3748,11 +3748,11 @@ bloodCellShapeFun
 cx 5.7
 cy 4.2
 r 0.1
-mass 0.1
-density 0.1
+mass 0.5
+density 0.5
 E 20.0
 eta 0.0
 a 0.3
 c 0.105
-deg 90
+deg 350
 .

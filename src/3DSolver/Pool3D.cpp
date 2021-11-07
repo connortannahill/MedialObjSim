@@ -195,6 +195,8 @@ double Pool3D::closestBoundaryDist(int structNum, double inPnt[3]) {
     int numFound = kdTree->knnSearch(&inPnt[0],
                     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
     
+    return sqrt(out_dist_sqr.at(0));
+    
     assert(numFound > 0);
     
     for (int i = 0; i < numFound; i++) {
@@ -583,7 +585,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     // If an interface cell, set phi to distance from nearest interface
                     double phiVal;
                     if (mode == 0) {
-                        double sign = simutils::sign(phi[mo+k][mo+j][mo+i]);
+                        double sign = 1.0;// simutils::sign(phi[mo+k][mo+j][mo+i]);
                         int structNum = domainMembership(i, j, k);
                         phiVal = sign*closestBoundaryDist(structNum, pnt);
                     } else {
@@ -681,7 +683,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     if (this->oneGridFromInterfaceStructure(i, j, k)) {
                         if (mode == 0) {
                             int structNum = domainMembership(i, j, k);
-                            phiVal = sign(phi[mo+k][mo+j][mo+i])*closestBoundaryDist(structNum, pnt);
+                            phiVal = closestBoundaryDist(structNum, pnt);
 
                             // Normal extrapolation (very approximate)
                             if (nExtrap) {

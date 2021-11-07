@@ -329,7 +329,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
     const int MAX_ITERS = 1000;
-    double dt = 0.1*simutils::dmin(hx, hy);
+    double dt = 0.01*simutils::dmin(hx, hy);
     int iters = 0;
 
     double fNet[2] = {0.0, 0.0};
