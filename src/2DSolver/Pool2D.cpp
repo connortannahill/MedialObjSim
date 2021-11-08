@@ -748,9 +748,9 @@ void Pool2D::create2DPool(Boundary &boundary,
 
     // Set the initial pool object velocities based on the information from the particles. Important
     // For assigning initial boundary values around the structure.
-    if (nStructs == 1) {
-        simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, tracers[0].u, this->poolU);
-        simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, tracers[0].v, this->poolV);
+    if (nStructs > 1) {
+        simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, params.getU0(), this->poolU);
+        simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, params.getV0(), this->poolV);
     } else if (nStructs == 0) {
         simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolU);
         simutils::set_constant(ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolV);

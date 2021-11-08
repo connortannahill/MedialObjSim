@@ -1,5 +1,5 @@
 Many object test generic, can be from many sources
-Q2ManyRedux
+Q2ManyReduxMod
 
 0
 5
@@ -21,7 +21,7 @@ Q2ManyRedux
 downDirFlowBC
 100
 
-33
+2
 
 coneShapeFun
 2
@@ -32,7 +32,7 @@ cx 2.5
 cy 2.5
 cz 5
 r 0.6
-mass 2
+mass 1.0
 density 1.0
 E 10
 eta 0.0
@@ -43,17 +43,17 @@ coneShapeFun
 1
 0.0
 0.0
--1.0
-mass 0.5
-density 0.5
+-0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
 deg 202
-cx 0.7
-cy 0.7
+cx 2.5
+cy 2.5
 cz 6.2
 .
 
@@ -62,10 +62,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -80,10 +80,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -98,10 +98,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -116,10 +116,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -134,10 +134,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -152,10 +152,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -170,10 +170,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -188,10 +188,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -206,10 +206,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -224,10 +224,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -242,10 +242,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -260,10 +260,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -278,10 +278,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -296,10 +296,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -314,10 +314,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -332,10 +332,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -350,10 +350,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -368,10 +368,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -386,10 +386,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -404,10 +404,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -422,10 +422,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -440,10 +440,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -458,10 +458,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -476,10 +476,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -494,10 +494,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -512,10 +512,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -530,10 +530,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -548,10 +548,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -566,10 +566,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -584,10 +584,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0
@@ -602,10 +602,10 @@ coneShapeFun
 0.0
 0.0
 -1.0
-mass 0.5
-density 0.5
+mass 1
+density 1
 r 0.2
-E 10
+E 20
 eta 0
 a 0
 c 0

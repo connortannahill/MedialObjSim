@@ -288,7 +288,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionStiffness(5);
     simParams.setCollisionDist(3.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
     int updateMode = 1;
@@ -297,6 +297,8 @@ int main(int argc, char **argv) {
     simParams.setAdmmTol(1e-10);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
+    simParams.setU0(cons_u);
+    simParams.setV0(cons_v);
     // double umax = 0.5;
     // double vmax = 0.5;
     // double dx = abs((xb- xa)/nx);

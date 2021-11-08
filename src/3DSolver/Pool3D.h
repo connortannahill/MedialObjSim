@@ -138,6 +138,7 @@ protected:
 
     // Fluid viscosity
     double mu;
+    int nSteps = 0;
 
     // Externally generated velocity field for the pool
     double ***poolU;

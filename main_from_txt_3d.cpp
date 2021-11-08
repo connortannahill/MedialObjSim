@@ -206,7 +206,7 @@ int main(int argc, char **argv) {
     map<string, void (*)(int, int, int, double***, double***, double***)> boundaryConditionFunctions;
     boundaryConditionFunctions["lidDrivenCavityBC"] = lidDrivenCavityBC;
     boundaryConditionFunctions["directionalFlowBC"] = directionalFlowBC;
-    boundaryConditionFunctions["downDirFlowBC"] = directionalFlowBC;
+    boundaryConditionFunctions["downDirFlowBC"] = downDirFlowBC;
 
     if (argc < 2) {
       std::cout << "need more args to run this one" << endl;
@@ -287,6 +287,7 @@ int main(int argc, char **argv) {
 
         cout << "objectFunc = " << objectFunc << endl;
         cout << "objectType = " << objectType << endl;
+        cout << "objvel = " << u0 << ", " << v0 << "< " << w0 << endl;
         
         SolidParams params;
         input_file >> paramName;
@@ -318,12 +319,18 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
-    simParams.setCollisionStiffness(5.0);
+    simParams.setCollisionStiffness(10.0);
     simParams.setCollisionDist(4*h);
     simParams.setUpdateMode(1);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
     simParams.setGz(g_z);
+    simParams.setU0(cons_u);
+    simParams.setV0(cons_v);
+    simParams.setW0(cons_w);
+    // simParams.setAdmmTol(1e-10);
+    // double dtFix = 0.1*(1/2.0)*(simutils::square(h));
+    // simParams.setDtFix(dtFix);
 
     // initial/boundary conditions and boundary object
     auto initialConditions = getInitialConditionsFun(cons_u, cons_v, cons_w);
@@ -347,12 +354,13 @@ int main(int argc, char **argv) {
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
-            t = solver.step(tEnd, safetyFactor);
-
             if (nsteps % 5 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }
+
+            t = solver.step(tEnd, safetyFactor);
+
 
             nsteps++;
 

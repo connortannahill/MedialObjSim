@@ -76,6 +76,20 @@ double SimParams::getGy() {
     return this->gy;
 }
 
+void SimParams::setU0(double u0) {
+    this->u0 = u0;
+}
+void SimParams::setV0(double v0) {
+    this->v0 = v0;
+}
+
+double SimParams::getU0() {
+    return this->u0;
+}
+double SimParams::getV0() {
+    return this->v0;
+}
+
 void SimParams::setCollisionStiffness(double stiffness) {
     this->collisionStiffness = stiffness;
     this->collisionStiffnessSet = true;

@@ -39,6 +39,8 @@ public:
     double h;
     double gx = 0.0;
     double gy = 0.0;
+    double u0 = 0.0;
+    double v0 = 0.0;
 
     // This variable determines whether repulsive forces are to be used to keep objects apart and which
     // kind should be used
@@ -59,8 +61,12 @@ public:
     void setElementMode(int mode);
     void setGx(double gx);
     void setGy(double gy);
+    void setU0(double gx);
+    void setV0(double gy);
     double getGx();
     double getGy();
+    double getU0();
+    double getV0();
     double getH();
 
 

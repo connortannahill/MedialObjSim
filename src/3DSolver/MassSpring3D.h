@@ -74,6 +74,7 @@ public:
     double collisionStiffness; 
     double collisionDist;
     double repulseDist;
+    double u0, v0, w0;
 
     // Algorithmic variables
     Eigen::VectorXd *q;
@@ -85,6 +86,7 @@ public:
     Eigen::VectorXd *qBackup;
     Eigen::VectorXd *fBackup;
     Eigen::VectorXd *qtBackup;
+    int nSteps = 0;
     Eigen::VectorXd *qprevBackup;
     void applyBodyForces();
 

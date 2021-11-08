@@ -594,7 +594,8 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     this->phiReInit[mo+k][mo+j][mo+i] = phiVal;
                     
                     if (nExtrap) {
-                        solids->at(domainMembership(i, j, k)).interpFaceVels(pnt, vTemp);
+                        // solids->at(domainMembership(i, j, k)).interpFaceVels(pnt, vTemp);
+                        interpFaceVel(domainMembership(i, j, k), pnt, vTemp);
 
                         this->poolU[mo+k][mo+j][mo+i] = vTemp[0];
                         this->poolV[mo+k][mo+j][mo+i] = vTemp[1];
@@ -687,7 +688,8 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
 
                             // Normal extrapolation (very approximate)
                             if (nExtrap) {
-                                solids->at(domainMembership(i, j, k)).interpFaceVels(pnt, velTemp);
+                                // solids->at(domainMembership(i, j, k)).interpFaceVels(pnt, velTemp);
+                                interpFaceVel(domainMembership(i, j, k), pnt, velTemp);
                                 this->poolU[mo+k][mo+j][mo+i] = velTemp[0];
                                 this->poolV[mo+k][mo+j][mo+i] = velTemp[1];
                                 this->poolW[mo+k][mo+j][mo+i] = velTemp[2];
@@ -954,11 +956,11 @@ void Pool3D::create3DPool(Boundary3D &boundary,
 
     // Create the arrays for the externally generated velocity field
     this->poolU = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
-                                        nx+2*methodOrd, 0.0);
+                                        nx+2*methodOrd, params.getU0());
     this->poolV = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
-                                        nx+2*methodOrd, 0.0);
+                                        nx+2*methodOrd, params.getV0());
     this->poolW = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
-                                        nx+2*methodOrd, 0.0);
+                                        nx+2*methodOrd, params.getW0());
 
     this->nStructs = structures.size();
 
@@ -1016,15 +1018,21 @@ void Pool3D::create3DPool(Boundary3D &boundary,
 
     // Set the initial pool object velocities based on the information from the particles. Important
     // For assigning initial boundary values around the structure.
-    if (nStructs == 1) {
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].u, this->poolU);
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].v, this->poolV);
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].w, this->poolW);
-    } else if (nStructs == 0) {
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolU);
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolV);
-        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolW);
+    // if (nStructs == 1) {
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].u, this->poolU);
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].v, this->poolV);
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, tracers[0].w, this->poolW);
+    // } else if (nStructs == 0) {
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolU);
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolV);
+    //     simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, 0.0, this->poolW);
+    // }
+    if (nStructs > 0) {
+        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, params.getU0(), this->poolU);
+        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, params.getV0(), this->poolV);
+        simutils::set_constant(nz+2*methodOrd, ny+2*methodOrd, nx+2*methodOrd, params.getW0(), this->poolW);
     }
+
 
     // Create the mass-spring system for each of the objects
 
@@ -2727,9 +2735,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
-    // if (reinitialize) {
-    //     simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
-    // }
+    if (reinitialize && nSteps % 10 == 0) {
+        simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
+    }
 
     // Update the position of the tracer particals
 
@@ -2772,6 +2780,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
         refitToSolids(ng);
     }
     // cout << "finished last section" << endl;
+    nSteps++;
 }
 
 /**

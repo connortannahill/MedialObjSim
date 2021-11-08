@@ -43,6 +43,26 @@ double SimParams3D::getGz() {
     return this->gz;
 }
 
+void SimParams3D::setU0(double u0) {
+    this->u0 = u0;
+}
+void SimParams3D::setV0(double v0) {
+    this->v0 = v0;
+}
+void SimParams3D::setW0(double w0) {
+    this->w0 = w0;
+}
+
+double SimParams3D::getU0() {
+    return this->u0;
+}
+double SimParams3D::getV0() {
+    return this->v0;
+}
+double SimParams3D::getW0() {
+    return this->w0;
+}
+
 void SimParams3D::setUseEno(bool useEno) {
     this->useEno = useEno;
 }

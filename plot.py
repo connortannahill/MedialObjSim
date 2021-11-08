@@ -48,10 +48,11 @@ if mode == -2:
             str_temp = ln.strip()
             print(str_temp)
             if str_temp.startswith('deg'):
-                # str_temp = str_temp[:str_temp.rfind('g')+2] + ('90' if randint(0, 1) == 0 else '0')
-                val = randint(0, 360) 
-                print(val)
-                str_temp = str(val)
+                str_temp = str_temp[:str_temp.rfind('g')+2] + ('90' if randint(0, 1) == 0 else '0')
+                # str_temp = str_temp[:str_temp.rfind('g')+2] + str(randint(1, 4) * 45)
+                # val = randint(0, 360) 
+                # print(val)
+                # str_temp = "deg " + str(val)
 
             str_base += str_temp + '\n'
 
@@ -471,7 +472,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[::10]
+    steps = steps[::1]
     print(steps)
 
     plots = []

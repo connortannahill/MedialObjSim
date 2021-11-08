@@ -44,6 +44,9 @@ public:
     double gx = 0.0;
     double gy = 0.0;
     double gz = 0.0;
+    double u0 = 0.0;
+    double v0 = 0.0;
+    double w0 = 0.0;
 
     bool checkParams();
 
@@ -72,6 +75,13 @@ public:
     double getGx();
     double getGy();
     double getGz();
+
+    void setU0(double u0);
+    void setV0(double v0);
+    void setW0(double w0);
+    double getU0();
+    double getV0();
+    double getW0();
 };
 
 #endif

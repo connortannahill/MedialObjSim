@@ -290,6 +290,10 @@ elif mode == 4:
     w = out[:,5]
     p = out[:,6]
 
+    print('max u = {}'.format(np.max(np.abs(u))))
+    print('max v = {}'.format(np.max(np.abs(v))))
+    print('max w = {}'.format(np.max(np.abs(w))))
+
     # Get the x, y, z domain of the point cloud.
     x_bounds = [np.amin(x), np.amax(x)]
     y_bounds = [np.amin(y), np.amax(y)]
@@ -341,11 +345,11 @@ elif mode == 4:
         closest_pnt = x[closest]
 
         inds = (x == closest_pnt)
-        ax1.imshow(np.reshape(p[inds], (nz, ny)))
-        # q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
+        # ax1.imshow(np.reshape(p[inds], (nz, ny)))
+        q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
 
 
-        # img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
+        img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
         # img = ax1.contour(np.reshape(y[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     elif axis == 'y':
         closest = np.argmin(np.abs(y - val))
