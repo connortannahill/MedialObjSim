@@ -83,7 +83,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
-        u[j][0] = 0.25;
+        u[j][0] = 0.5;
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
@@ -288,8 +288,8 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(5);
-    simParams.setCollisionDist(3.0*h);
+    simParams.setCollisionStiffness(10);
+    simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 3.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);
@@ -318,7 +318,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.5;
+    double safetyFactor = 0.25;
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -330,12 +330,13 @@ int main(int argc, char **argv) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
             cout << "hi 274" << endl;
-            t = solver.step(tEnd, safetyFactor);
-
             if (nsteps % 10 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }
+            
+            t = solver.step(tEnd, safetyFactor);
+
 
             nsteps++;
 

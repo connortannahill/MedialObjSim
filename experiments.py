@@ -507,7 +507,7 @@ def create_test():
         print('n = {}'.format(n))
         print('xa = {0} xb = {1}'.format(in_dict['xa'], in_dict['xb']))
         print('ya = {0} yb = {1}'.format(in_dict['ya'], in_dict['yb']))
-        print('za = {0} zb = {1}'.format(in_dict['za'], in_dict['zb']))
+        # print('za = {0} zb = {1}'.format(in_dict['za'], in_dict['zb']))
 
         nx = n[0]
         ny = n[1]

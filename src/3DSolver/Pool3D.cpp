@@ -2498,11 +2498,11 @@ void Pool3D::computeBoundaryStress(int i, int j, int k, objects::FSIObject obj, 
     // poolW[mo+k][mo+j][mo+i]
     //     = (-pres*n[2] + this->mu*((wGrad[0]+uGrad[2])*n[0] + (wGrad[1]+vGrad[2])*n[1] + 2.0*wGrad[2]*n[2]));
     poolU[mo+k][mo+j][mo+i]
-        = -pres*n[0];
-    poolV[mo+k][mo+j][mo+i]
-        = (-pres*n[1]);
-    poolW[mo+k][mo+j][mo+i]
-        = (-pres*n[2]);
+//         = -pres*n[0];
+//     poolV[mo+k][mo+j][mo+i]
+//         = (-pres*n[1]);
+//     poolW[mo+k][mo+j][mo+i]
+//         = (-pres*n[2]);
 }
 
 /**

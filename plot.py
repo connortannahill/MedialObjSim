@@ -435,10 +435,15 @@ elif mode == 12:  # output both fluid velocity and object velocity plots
     plt.show()
 elif mode == 13:  # plot snapshots of steps through simulation
     print('mode 13')
+    tracers = []
 
     # code for displaying plot
     step_num = 1
     def displayPlot():
+        # for tracer in tracers:
+        #     tracer = (tracer[0], tracer[1])
+        #     plt.scatter(tracer[0], tracer[1], c='b')
+
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
         print('steps = {}'.format(steps))
         plt.scatter(x, y, c='r', marker='o', s=1)
@@ -481,6 +486,14 @@ elif mode == 13:  # plot snapshots of steps through simulation
     max_y = -np.inf
     min_y = np.inf
     for step in steps:
+
+
+        f_temp = f_name + str(step)
+        f_temp += '/MSSTracers'
+        out = np.genfromtxt(f_temp, delimiter=',')
+
+        for tracer in out:
+            tracers.append((tracer[0], tracer[1]))
 
         curr_name = f_name + str(step) + '/poolOut'
         print('currName = {0}'.format(curr_name))
@@ -610,12 +623,6 @@ elif mode == 15:
 
     print('nx = {0} ny = {1}'.format(nx, ny))
 
-    # for tracer in tracers:
-    #     print('adding tracer {0}'.format(tracer))
-    #     tracer = ((nx/xMax)*tracer[0], (ny/yMax)*tracer[1])
-    #     # tracer = (tracer[0], tracer[1])
-    #     print('adding tracer {0}'.format(tracer))
-    #     plt.scatter(tracer[0], ny - tracer[1], c='b')
     # plt.scatter(0.1*nx, 0.9*ny, c='b')
 
 
@@ -624,6 +631,12 @@ elif mode == 15:
     
 
     fig, ax = plt.subplots(1)
+    # for tracer in tracers:
+    #     print('adding tracer {0}'.format(tracer))
+    #     tracer = ((nx/xMax)*tracer[0], (ny/yMax)*tracer[1])
+    #     # tracer = (tracer[0], tracer[1])
+    #     print('adding tracer {0}'.format(tracer))
+    #     plt.scatter(tracer[0], ny - tracer[1], c='y')
     plt.imshow(out[::-1, :])
     xPool *= nx/(xMax - xMin)
     yPool *= ny/(yMax - yMin)

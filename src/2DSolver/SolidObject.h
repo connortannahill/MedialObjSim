@@ -34,7 +34,6 @@ public:
     double getU0();
     double getV0();
     ObjectType getObjType();
-private:
     /* Implicit function defining the level set */
     double (*shapeFun)(double,double,SolidParams&);
 

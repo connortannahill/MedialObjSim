@@ -91,7 +91,7 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double 
     for (int k = 1; k <= nz; k++) {
         for (int j = 1; j <= ny; j++) {
             // Inflow condition
-            u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+            u[k][j][0] = 0.5; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
             // Outflow condition
             u[k][j][nx] = u[k][j][nx-1];

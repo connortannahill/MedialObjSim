@@ -61,6 +61,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
     int upwindY = 0;
 
     // x
+    // cout << "updwind x" << endl;
     if (i+1 > nx-1 || i-1 < 0) {
         // First checks: the point must be in bounds. If one of the points is OOB but the
         // other is in far, we can't use this direction.
@@ -87,8 +88,10 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindX = (fastMarchingState[j][i+1] != FAR) ? 1 : -1;
     }
+    // cout << "finsihed updwind x" << endl;
 
     // now y
+    // cout << "upwing y" << endl;
     if (j+1 > ny-1 || j-1 < 0) {
         upwindY = (j+1 > ny-1) ? -1 : 1;
         if (fastMarchingState[j+upwindY][i] == FAR) {
@@ -112,6 +115,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
         // Finally, if there is only one direction, and there are no issues with bounds, we choose this one.
         upwindY = (fastMarchingState[j+1][i] != FAR) ? 1 : -1;
     }
+    // cout << "finsihed updwind y" << endl;
 
     // Now we apply the method outlined in Bridson 2015 to approximate the solution to the
     // reinitialization Eikonal equation
@@ -126,7 +130,15 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
 
     int path;
 
+    // cout << "computing the phi vals" << endl;
+    // cout << "(i, j) = (" << i << ", " << j << ")"  << endl;
+    // cout << "(i, j+upwindY) = (" << i << ", " << j+upwindY << ")" << endl;
+    // cout << "(i+upwindX, j) = (" << i+upwindX << ", " << j << ")" << endl;
+    // cout << "size of phi arrays y = " << ny+2*methodOrd << " x = " <<  nx+2*methodOrd << endl;
+
+
     if (upwindX == 0)  {
+        // cout << "upwindX = 0" << endl;
         // Compute signed distance, if difference of sign, approximate the distance to
         // the interface
         hx = hxPerm;
@@ -151,27 +163,59 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             path = 0;
         }
     } else if (upwindY == 0) {
+        // cout << "upwindY = 0" << endl;
+        // cout << "indices = mo + j = " << mo +j << endl;
+        // cout << "indices = mo + i = " << mo +i << endl;
+        // cout << "indices = mo + i + upwind = " << mo +i + upwindX << endl;
+
+        // cout << "printing x" << endl;
+        // for (int i = 0; i < nx+1; i++) {
+        //     cout << x[i] << ", " << endl;
+        // }
+        // cout << "finished printing x" << endl;
+
+        // cout << "printing y" << endl;
+        // for (int i = 0; i < ny+1; i++) {
+        //     cout << y[i] << ", " << endl;
+        // }
+        // cout << "finished printing y" << endl;
         hx = hxPerm;
         hy = hyPerm;
-        if (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(j, i) == objects::STRUCTURE) {
+        // cout << "upwindY = 0" << endl;
+        // cout << "indices = mo + j = " << mo +j << endl;
+        // cout << "indices = mo + i = " << mo +i << endl;
+        // cout << "indices = mo + i + upwind = " << mo +i + upwindX << endl;
+        // cout << "size of phi arrays y = " << ny+2*methodOrd << " x = " <<  nx+2*methodOrd << endl;
+        // cout << "eval pool at index " << j+upwindX << endl;
+        // cout << pool[j+upwindX][j] << endl;
+        // cout << "isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(j, i) == objects::STRUCTURE" << (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(j, i) == objects::STRUCTURE) << endl;
+        if (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(i, j) == objects::STRUCTURE) {
             double x0 = simutils::midpoint(x[i], x[i+1]);
             double x1 = simutils::midpoint(x[i+upwindX], x[i+upwindX+1]);
             phiH = 0.0;
+            // cout << "dping a d" << endl;
             d = abs(x0 - ((phi[mo+j][mo+i+upwindX]*x0 - phi[mo+j][mo+i]*x1)
                 / (phi[mo+j][mo+i+upwindX] - phi[mo+j][mo+i]+EPS))); 
+            // cout << "finsihed dping a d" << endl;
             hx = d;
         } else {
+            // cout << "phiH" << endl;
             phiH = phiReInit[mo+j][mo+i+upwindX];
             d = phiH + hx;
+            // cout << "finsihed phiH" << endl;
+
         }
 
         // Extrapolate velocity
+        // cout << "extrap" << endl;
         if (nExtrap) {
             poolU[mo+j][mo+i] = poolU[mo+j][mo+i+upwindX];
             poolV[mo+j][mo+i] = poolV[mo+j][mo+i+upwindX];
         }
+        // cout << "finsihed extrap" << endl;
         path = 1;
     } else {
+        // cout << "in the else" << endl;
         // Full algorithm
         double phi0, phi1, h;
         char less;
@@ -190,7 +234,7 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             d = phiV + hy;
         }
 
-        if (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(j, i) == objects::STRUCTURE) {
+        if (isInterface(objAtIndex(i+upwindX, j)) && objAtIndex(i, j) == objects::STRUCTURE) {
             double x0 = simutils::midpoint(x[i], x[i+1]);
             double x1 = simutils::midpoint(x[i+upwindX], x[i+upwindX+1]);
             phiH = 0.0;
@@ -256,9 +300,12 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             path = 3;
         }
     }
+    // cout << "finished computing the phi vals" << endl;
 
     // Assign the distance
+    // cout << "assigning phi" << endl;
     phiReInit[mo+j][mo+i] = d;
+    // cout << "finsihed assigning phi" << endl;
 
     if (mode == 2) {
         if (d >= 10*collisionDist) {
@@ -341,6 +388,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
     double pnt[2];
     double vTemp[2];
 
+    // cout << "First FMM loop" << endl;
     for (int j = 0; j < this->ny; j++) {
         pnt[1] = simutils::midpoint(y[j], y[j+1]);
         for (int i = 0; i < this->nx; i++) {
@@ -360,6 +408,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
             } else {
                 // If interface cell, set phi to the distance from the nearest interface pnt
                 if (mode == 0) {
+                    // cout << "DomainMemebership = " << domainMembership(i, j) << endl;
                     phiVal = sign(phi[mo+j][mo+i])*solids->at(domainMembership(i, j)).closestBoundaryDist(pnt);
                 } else {
                     phiVal = phi[mo+j][mo+i];
@@ -387,8 +436,10 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
             }
         }
     }
+    // cout << "FINISHED FMM loop" << endl;
 
     // Now run the FM algorithm in the fluid region
+    // cout << "FMM loop" << endl;
     int i, j;
     double val;
     int count = 0;
@@ -409,14 +460,17 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
 
         // Update all of the neighbours according to the fast marching algorithm
         // and add them to the heap structure
+        // cout << "Setting NVals" << endl;
         fastMarchSetNVal(i+1, j, nExtrap, mode);
         fastMarchSetNVal(i-1, j, nExtrap, mode);
         fastMarchSetNVal(i,   j+1, nExtrap, mode);
         fastMarchSetNVal(i,   j-1, nExtrap, mode);
+        // cout << "FINISHED Setting NVals" << endl;
 
         fastMarchingState[j][i] = ACCEPTED;
         count++;
     }
+    // cout << "FINSIHEd FMM loop" << endl;
 
     // In the case where we are only approximating the medial axis, we don't need to perform
     // the structural domain calculation.
@@ -438,6 +492,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
 
     // Now: run the same algorithm in the structure domain. Note the interface
     //      and fluid point have been moved into the accepted class by this point
+    // cout << "SECOND FMM loop" << endl;
     for (int j = 0; j < this->ny; j++) {
         pnt[1] = simutils::midpoint(y[j], y[j+1]);
         for (int i = 0; i < this->nx; i++) {
@@ -479,6 +534,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
             }
 
             // Seperate the logic for assigning the marching state for brain reasons
+            // cout << "assigning FMM state" << endl;
             if (mode == 0) {
                 if (obj == objects::STRUCTURE && this->oneGridFromInterfaceStructure(i, j)) {
                     fastMarchingState[j][i] = CLOSE;
@@ -490,8 +546,10 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
                     fastMarchingState[j][i] = ACCEPTED;
                 }
             }
+            // cout << "FINSIHED assigning FMM state" << endl;
         }
     }
+    // cout << "FINSIHED SECOND FMM loop" << endl;
 
     if (mode != 0) {
         for (int j = 0; j < this->ny; j++) {
@@ -510,6 +568,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
     }
 
     // Now, run fast marching on the interior data.
+    // cout << "third FMM loop" << endl;
     int cnt = 0;
     while (!heap.empty()) {
         GridVal2D pnt = heap.top();
@@ -530,6 +589,7 @@ void Pool2D::fastMarchPool(bool nExtrap, int mode) {
         fastMarchingState[j][i] = ACCEPTED;
         cnt++;
     }
+    // cout << "FINISHED third FMM loop" << endl;
 
     // Finally, flip the sign of the phi value in all of structure points.
     for (int j = 0; j < this->ny; j++) {
@@ -660,6 +720,7 @@ void Pool2D::detectCollisions() {
 void Pool2D::create2DPool(Boundary &boundary,
                           vector<SolidObject> &structures,
                           SimParams &params) {
+    cout << "creating pool" << endl;
     
     // Get the fixed time step
     if (params.dtFixSet) {
@@ -733,6 +794,7 @@ void Pool2D::create2DPool(Boundary &boundary,
 
     // Apply the boundaries using the implicit SolidObject functions.
     // Also places the tracer particals
+    cout << "embedding shape" << endl;
     if (nStructs > 0) {
         // Initialize the tracer particals
         this->tracers = new simstructs::tracer2D[nStructs];
@@ -745,6 +807,7 @@ void Pool2D::create2DPool(Boundary &boundary,
             assert(false);
         }
     }
+    cout << "finished embedding shape" << endl;
 
     // Set the initial pool object velocities based on the information from the particles. Important
     // For assigning initial boundary values around the structure.
@@ -802,6 +865,7 @@ void Pool2D::create2DPool(Boundary &boundary,
             assert(false);
         }
 
+        cout << "Creating MSS" << endl;
         for (int i = 0; i < nStructs; i++) {
             solids->push_back(MassSpring2D(*this, i, structures.at(i),
                                 params.updateMode, params.elementMode));
@@ -810,6 +874,7 @@ void Pool2D::create2DPool(Boundary &boundary,
                 solids->at(i).setAdmmTol(params.admmTol);
             }
         }
+        cout << "FINISHED Creating MSS" << endl;
     }
 
 
@@ -817,7 +882,9 @@ void Pool2D::create2DPool(Boundary &boundary,
     fastMarchingState = simutils::new_constant(ny, nx, FAR);
 
     // Run the fast marching algorithm
+    cout << "Running FMM" << endl;
     this->fastMarchPool(false, 0);
+    cout << "FINISHED Running FMM" << endl;
 
     simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
 
@@ -825,10 +892,14 @@ void Pool2D::create2DPool(Boundary &boundary,
 
     // Detect any collisions
     if (repulseMode == 2) {
+        cout << "initial repulse" << endl;
         this->setUpDomainArray();
         this->fastMarchPool(false, 2);
         this->detectCollisions();
+        cout << "FINISHED initial repulse" << endl;
     }
+    cout << "finished creating pool" << endl;
+
 }
 
 /**
@@ -1105,8 +1176,12 @@ void Pool2D::embedShape(SolidObject &struc, int structNum) {
     // Set the tracer partical for this level set function to initially be the minimum value found,
     // noting that it will be at the cell center for the ith cell
     if (this->nStructs >= 0) {
-        this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
-        this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
+        double cx, cy;
+        struc.params.getParam("cx", cx);
+        struc.params.getParam("cy", cy);
+
+        this->tracers[structNum].x = cx;//simutils::midpoint(this->x[min_x-1], this->x[min_x]);
+        this->tracers[structNum].y = cy;//simutils::midpoint(this->y[min_y-1], this->y[min_y]);
         this->tracers[structNum].mass = struc.getMass();
         this->tracers[structNum].u = struc.getU0(); // Velocity of the stucture, useful for update rules
         this->tracers[structNum].v = struc.getV0();
@@ -2981,17 +3056,25 @@ double *Pool2D::getYMesh() {
 
 void Pool2D::outputDomain(const char *fname) {
     ofstream outFile;
+    // cout << "IN OUTPUT DOMAIN" << endl;
+    // cout << "fname = " << fname << endl;
     outFile.open(fname);
+    // cout << "In output domain" << endl;
+    // cout << "nx = " << nx << endl;
+    // cout << "ny = " << ny << endl;
 
     for (int j = 0; j < ny; j++) {
         for (int i = 0; i < nx; i++) {
             outFile << domainMembership(i, j);
+            // cout <<  domainMembership(i, j);
 
             if (i != nx - 1) {
                 outFile << ",";
+                // cout << ", ";
             }
         }
         outFile << "\n";
+        // cout << "\n";
     }
 
     outFile.close();

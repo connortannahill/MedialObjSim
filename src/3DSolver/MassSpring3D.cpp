@@ -902,9 +902,9 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     cancelStress[2] /= dA;
 
     // Apply the velocity stop stress
-    colStress[0] += cancelStress[0] - nodeForces[0];
-    colStress[1] += cancelStress[1] - nodeForces[1];
-    colStress[2] += cancelStress[2] - nodeForces[2];
+    colStress[0] += cancelStress[0]; //- nodeForces[0];
+    colStress[1] += cancelStress[1]; //- nodeForces[1];
+    colStress[2] += cancelStress[2]; //- nodeForces[2];
 }
 
 /** 

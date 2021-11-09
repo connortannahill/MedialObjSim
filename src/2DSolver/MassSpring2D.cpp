@@ -136,6 +136,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     map<pair<int, int>, int> objectPointLabels;
 
     // First loop. Build up point set and HashMap for point numbers
+    // cout << "building pntMap" << endl;
     for (int j = 0; j < pool.getNy(); j++) {
         for (int i = 0; i < pool.getNx(); i++) {
             domain = pool.domainMembership(i, j);
@@ -212,6 +213,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
             }
         }
     }
+    // cout << "finsihed building pntMap" << endl;
 
     // Compute and then assign the point masses. Additionally, create the q vector.
     this->pntMass = obj.getMass()/pntList->size();
@@ -259,6 +261,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
 
     double hx = pool.getXMeshVal(1) -  pool.getXMeshVal(0);
     double hy = pool.getYMeshVal(1) -  pool.getYMeshVal(0);
+    // cout << "bulding edge connects" << endl;
 
     for (int j = bb_jl; j <= bb_jr; j++) {
         for (int i = bb_il; i <= bb_ir; i++) {
@@ -325,6 +328,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
             }
         }
     }
+    // cout << "FINISHED bulding edge connects" << endl;
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
@@ -332,6 +336,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     double dt = 0.01*simutils::dmin(hx, hy);
     int iters = 0;
 
+    // cout << "integrating MSS" << endl;
     double fNet[2] = {0.0, 0.0};
     do  {
         this->updateSolidVels(dt, pool, NULL, fNet, 1, true);
@@ -339,6 +344,8 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
         iters ++;
     }
     while (qt->lpNorm<1>() > eps && iters < MAX_ITERS);
+    // cout << "FINSIHED integratng MSS" << endl;
+    // cout << "structNum = " << structNum << endl;
 
     this->iterCount = 0;
 
@@ -414,7 +421,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
 
     // If this is a static object, set the vels to 0.
     if (objType == SolidObject::ObjectType::STATIC) {
-        cout << "STATIC OBJECT BEING USED" << endl;
+        // cout << "STATIC OBJECT BEING USED" << endl;
         qt->setZero();
         qtBackup->setZero();
         fBackup->setZero();
@@ -960,7 +967,7 @@ void MassSpring2D::structToLoc(mass_spring::massPoint2D pnt, double loc[2]) {
 /**
  * Computes the collision stress for a given boundary node, specified by its ID
 */
-void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], double diffNorm) {
+bool MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], double diffNorm) {
     // 0 out the stress vector
     colStress[0] = 0.0;
     colStress[1] = 0.0;
@@ -999,6 +1006,7 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     massPoint2D colPnt;
     double pntDiff[2];
     double pntDist;
+    bool colComp = false;
     int numNear = 0;
     for (auto near = nodeCols->at(nodeId).begin(); near != nodeCols->at(nodeId).end(); ++near) {
         colPnt = **near;
@@ -1010,15 +1018,16 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
 
         if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
+            numNear++;
+            colComp |= true;
         } else {
             forces[0] = 0.0;
             forces[1] = 0.0;
+            colComp |= false;
         }
 
         colStress[0] += forces[0];
         colStress[1] += forces[1];
-
-        numNear++;
     }
 
     colStress[0] /= numNear;
@@ -1029,8 +1038,10 @@ void MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     cancelStress[1] /= diffNorm;
 
     // Apply the velocity stop stress
-    colStress[0] += cancelStress[0] - intStress[0];
-    colStress[1] += cancelStress[1] - intStress[1];
+    colStress[0] += cancelStress[0];// - intStress[0];
+    colStress[1] += cancelStress[1];// - intStress[1];
+
+    return colComp;
 }
 
 /**
@@ -1084,7 +1095,12 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
 
             if (nodeCols->at(id1).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id1, s1, diffNorm);
+                bool colApplied = computeCollisionStress(id1, s1, diffNorm);
+
+                if (!colApplied) {
+                    s1[0] = stress[0][ng+nj][ng+ni];
+                    s1[1] = stress[1][ng+nj][ng+ni];
+                }
             } else {
                 // Apply the hydrodynamic stress if there is no collision
                 s1[0] = stress[0][ng+nj][ng+ni];
@@ -1115,7 +1131,14 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
 
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id2, s2, diffNorm);
+                bool colApplied = computeCollisionStress(id2, s2, diffNorm);
+
+                if (!colApplied) {
+                    s2[0] = stress[0][ng+nj][ng+ni];
+                    s2[1] = stress[1][ng+nj][ng+ni];
+                }
+
+
             } else {
                 // Apply the hydrodynamic stress
                 // Hydrodynamic stress

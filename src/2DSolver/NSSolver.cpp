@@ -1080,7 +1080,9 @@ void NSSolver::outputMedialAxis(const char *fname) {
 }
 
 void NSSolver::outputDomain(const char *fname) {
+    // cout << "NSSOLVer outputting domain" << endl;
     pool->outputDomain(fname);
+    // cout << "finsihed NSSOLVer outputting domain" << endl;
 }
 
 void NSSolver::outputTracers(const char *fname) {
