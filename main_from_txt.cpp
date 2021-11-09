@@ -74,7 +74,7 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
 
 // Problem-dependent boundary conditions
 void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-    double ubar = 0.1;
+    double ubar = 0.25;
     for (int i = 1; i <= nx; i++) {
         u[ny+1][i] = 2*ubar - u[ny][i];
     }
@@ -290,7 +290,7 @@ int main(int argc, char **argv) {
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
     simParams.setCollisionStiffness(10);
     simParams.setCollisionDist(4.0*h);
-    cout << "collisionDist = " << 3.0*h << endl;
+    cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);
     cout << "UpdateMode = " << updateMode << endl;

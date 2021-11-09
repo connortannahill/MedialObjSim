@@ -3,6 +3,7 @@ Script for generating some bulk testing scripts
 """
 
 import numpy as np
+import copy
 from string import Template
 import random
 import subprocess
@@ -244,22 +245,18 @@ def full_scale_test():
     else:
         lims = [XA, XB, YA, YB]
 
-    hx = abs(float(in_dict['xb']) - float(in_dict['xa']))/float(in_dict['nx'])
-    hy = abs(float(in_dict['yb']) - float(in_dict['ya']))/float(in_dict['ny'])
-    hz = 1
-    if dim == 3:
-        hz = abs(float(in_dict['zb']) - float(in_dict['za']))/float(in_dict['zy'])
+    minRFact = float(input('minRFact = '))
 
-    if dim == 2:
-        epsMin = np.linalg.norm([5*hx, 5*hy])
-    else:
-        epsMin = np.linalg.norm([5*hx, 5*hy, 5*hz])
 
     xa, xb = float(in_dict['xa']), float(in_dict['xb'])
     ya, yb = float(in_dict['ya']), float(in_dict['yb'])
-    za, zb = float(in_dict['za']), float(in_dict['zb'])
 
-    diffs = [xb - xa, yb - ya, zb - za]
+    diffs = []
+    if dim == 3:
+        za, zb = float(in_dict['za']), float(in_dict['zb'])
+        diffs = [xb - xa, yb - ya, zb - za]
+    else:
+        diffs = [xb - xa, yb - ya]
 
     for n in nVals:
         min_edge = min(diffs)
@@ -267,21 +264,37 @@ def full_scale_test():
         min_idx = diffs.index(min_edge)
 
         if min_idx == 0:
-            nTups.append((n, int((diffs[1]/min_edge)*n), int((diffs[2]/min_edge)*n)))
+            nTups.append((n, int((diffs[1]/min_edge)*n))) #, int((diffs[2]/min_edge)*n)))
         elif min_idx == 1:
-            nTups.append((int((diffs[0]/min_edge)*n), n, int((diffs[2]/min_edge)*n)))
-        else:
-            nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
+            nTups.append((int((diffs[0]/min_edge)*n), n))#, int((diffs[2]/min_edge)*n)))
+        # else:
+        #     nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
 
-    objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$']
+    objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$' and s[1] !='r']
 
     obj_dict = {s: input('{} = '.format(s)) for s in objParamList}
 
     for n in nTups:
         testName = outFileName + str(min(n))
 
+        hx = abs(float(in_dict['xb']) - float(in_dict['xa']))/float(n[0])
+        hy = abs(float(in_dict['yb']) - float(in_dict['ya']))/float(n[1])
+        hz = 1
+        if dim == 3:
+            hz = abs(float(in_dict['zb']) - float(in_dict['za']))/float(n[2])
+
+
+        epsMin = 0
+        r = 0
+        if dim == 2:
+            epsMin = np.linalg.norm([5*hx, 5*hy])
+            r = minRFact * np.linalg.norm([hx, hy])
+        else:
+            epsMin = np.linalg.norm([5*hx, 5*hy, 5*hz])
+            r = minRFact * np.linalg.norm([hx, hy, hz])
+
         with open(out_dir_template.format(dim, str(testName)), 'w') as f:
-            f.write('A grid-based scaling test for performance\n')
+            f.write('A grid-based scaling test for full scaling performance\n')
             f.write(testName + '\n\n')
 
             in_dict['nx'] = str(n[0])
@@ -289,6 +302,8 @@ def full_scale_test():
 
             if dim == 3:
                 in_dict['nz'] = str(n[2])
+            
+            obj_dict['r'] = r
 
             outputPacking(dim, in_dict, obj_dict, f, lims, epsMin)
 

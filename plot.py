@@ -477,7 +477,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[0:1]#[::1]
+    steps = steps#[0:1]#[::1]
     print(steps)
 
     plots = []

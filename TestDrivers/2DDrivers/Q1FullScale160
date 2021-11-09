@@ -1,0 +1,134 @@
+A grid-based scaling test for full scaling performance
+Q1FullScale160
+
+
+0
+10
+0
+10
+160
+160
+0
+0
+0
+0
+1000
+1
+lidDrivenCavityBC
+100
+
+
+7
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 2.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.
+
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 7.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 309
+cx 2.353553390593274
+cy 4.353553390593274
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 117
+cx 3.5026019100214136
+cy 4.353553390593274
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 198
+cx 4.651650429449553
+cy 4.353553390593274
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 13
+cx 5.8006989488776926
+cy 4.353553390593274
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 68
+cx 6.949747468305833
+cy 4.353553390593274
+.

@@ -7,17 +7,17 @@ Q1ManyManyObject
 10
 320
 320
-0.1
 0.0
 0.0
 0.0
-1000.0
+0.0
+1000
 1
 lidDrivenCavityBC
 100
 
 
-32
+12
 
 bloodCellShapeFun
 1
@@ -54,480 +54,160 @@ c 0.105
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 63
-cx 2.15625
-cy 3.80625
+a 0.3
+c 0.105
+deg 82
+cx 2.15
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 73
-cx 2.15625
-cy 4.35875
+a 0.3
+c 0.105
+deg 216
+cx 2.6999999999999997
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 191
-cx 2.15625
-cy 4.91125
+a 0.3
+c 0.105
+deg 116
+cx 3.25
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 305
-cx 2.70875
-cy 3.80625
+a 0.3
+c 0.105
+deg 252
+cx 3.8000000000000003
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 12
-cx 2.70875
-cy 4.35875
+a 0.3
+c 0.105
+deg 134
+cx 4.3500000000000005
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 6
-cx 2.70875
-cy 4.91125
+a 0.3
+c 0.105
+deg 229
+cx 4.9
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 298
-cx 3.26125
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 228
-cx 3.26125
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 230
-cx 3.26125
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 231
-cx 3.8137499999999998
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 247
-cx 3.8137499999999998
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 65
-cx 3.8137499999999998
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 238
-cx 4.36625
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 218
-cx 4.36625
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 34
-cx 4.36625
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 173
-cx 4.91875
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
+a 0.3
+c 0.105
 deg 355
-cx 4.91875
-cy 4.35875
+cx 5.450000000000001
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 106
-cx 4.91875
-cy 4.91125
+a 0.3
+c 0.105
+deg 204
+cx 6.000000000000001
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 231
-cx 5.4712499999999995
-cy 3.80625
+a 0.3
+c 0.105
+deg 315
+cx 6.550000000000001
+cy 4.15
 .
 
 coneShapeFun
 1
-0.1
-0.0
+0
+0
 mass 1
 density 1
-r 0.15625
+r 0.15
 E 20
 eta 0
-a 0
-c 0
-deg 145
-cx 5.4712499999999995
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 200
-cx 5.4712499999999995
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 88
-cx 6.02375
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 212
-cx 6.02375
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 156
-cx 6.02375
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 350
-cx 6.57625
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 322
-cx 6.57625
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 26
-cx 6.57625
-cy 4.91125
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 289
-cx 7.12875
-cy 3.80625
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 119
-cx 7.12875
-cy 4.35875
-.
-
-coneShapeFun
-1
-0.1
-0.0
-mass 1
-density 1
-r 0.15625
-E 20
-eta 0
-a 0
-c 0
-deg 282
-cx 7.12875
-cy 4.91125
+a 0.3
+c 0.105
+deg 267
+cx 7.1000000000000005
+cy 4.15
 .

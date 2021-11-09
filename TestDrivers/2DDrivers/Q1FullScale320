@@ -1,0 +1,534 @@
+A grid-based scaling test for full scaling performance
+Q1FullScale320
+
+
+0
+10
+0
+10
+320
+320
+0
+0
+0
+0
+1000
+1
+lidDrivenCavityBC
+100
+
+
+32
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 2.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.
+
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 7.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 140
+cx 2.176776695296637
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 228
+cx 2.176776695296637
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 277
+cx 2.176776695296637
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 175
+cx 2.751300955010707
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 87
+cx 2.751300955010707
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 259
+cx 2.751300955010707
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 168
+cx 3.3258252147247767
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 5
+cx 3.3258252147247767
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 257
+cx 3.3258252147247767
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 217
+cx 3.9003494744388463
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 25
+cx 3.9003494744388463
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 303
+cx 3.9003494744388463
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 294
+cx 4.474873734152916
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 151
+cx 4.474873734152916
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 306
+cx 4.474873734152916
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 138
+cx 5.049397993866986
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 7
+cx 5.049397993866986
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 282
+cx 5.049397993866986
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 201
+cx 5.623922253581055
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 45
+cx 5.623922253581055
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 31
+cx 5.623922253581055
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 338
+cx 6.198446513295125
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 292
+cx 6.198446513295125
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 359
+cx 6.198446513295125
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 32
+cx 6.772970773009195
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 216
+cx 6.772970773009195
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 280
+cx 6.772970773009195
+cy 5.325825214724777
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 277
+cx 7.347495032723265
+cy 4.1767766952966365
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 65
+cx 7.347495032723265
+cy 4.751300955010707
+.
+
+coneShapeFun 
+1
+0
+0
+mass 1
+density 1
+r 0.1767766952966369
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 132
+cx 7.347495032723265
+cy 5.325825214724777
+.
