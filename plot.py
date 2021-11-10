@@ -447,8 +447,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
         print('steps = {}'.format(steps))
         plt.scatter(x, y, c='r', marker='o', s=1)
-        if (len(x_med) > 0):
-            plt.scatter(x_med, y_med, s=0.5)
+        # if (len(x_med) > 0):
+        #     plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
         # plt.title(test + ', nstep = ' + steps)
         plt.gca().set_aspect('equal')
@@ -477,7 +477,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps#[0:1]#[::1]
+    steps = steps#[::1]
     print(steps)
 
     plots = []
@@ -492,8 +492,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         f_temp += '/MSSTracers'
         out = np.genfromtxt(f_temp, delimiter=',')
 
-        for tracer in out:
-            tracers.append((tracer[0], tracer[1]))
+        # for tracer in out:
+        #     tracers.append((tracer[0], tracer[1]))
 
         curr_name = f_name + str(step) + '/poolOut'
         print('currName = {0}'.format(curr_name))
@@ -513,8 +513,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
             x_objs = np.concatenate((x_objs, x_temp))
             y_objs = np.concatenate((y_objs, y_temp))
 
-        # out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
-        out = np.genfromtxt(f_name+str(step)+'/poolVel', delimiter=',')
+        out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
+        # out = np.genfromtxt(f_name+str(step)+'/poolVel', delimiter=',')
         # Generate array of indices (for the velocities)
         n = out.shape[0]
         inds = np.arange(out.shape[0])

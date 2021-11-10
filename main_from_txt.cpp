@@ -99,7 +99,7 @@ void downDirFlowBC(int nx, int ny, double **u, double **v) {
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
-        v[ny][i] = -0.5;
+        v[ny][i] = -0.1;
     }
     // cout << "out bc" << endl;
 }
