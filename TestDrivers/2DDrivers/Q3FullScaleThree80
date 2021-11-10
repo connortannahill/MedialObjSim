@@ -1,0 +1,309 @@
+A grid-based scaling test for full scaling performance
+Q3FullScaleThree80
+
+
+0
+10
+0
+5
+160
+80
+0.5
+0
+0
+0
+1000
+1
+directionalFlowBC
+10
+
+
+18
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 14
+cx 0.5535533905932738
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 149
+cx 0.5535533905932738
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 33
+cx 0.5535533905932738
+cy 3.2435921676911454
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 63
+cx 1.9235727791422095
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 259
+cx 1.9235727791422095
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 37
+cx 1.9235727791422095
+cy 3.2435921676911454
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 49
+cx 3.2935921676911457
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 322
+cx 3.2935921676911457
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 286
+cx 3.2935921676911457
+cy 3.2435921676911454
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 289
+cx 4.663611556240081
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 257
+cx 4.663611556240081
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 322
+cx 4.663611556240081
+cy 3.2435921676911454
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 283
+cx 6.033630944789017
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 93
+cx 6.033630944789017
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 266
+cx 6.033630944789017
+cy 3.2435921676911454
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 155
+cx 7.4036503333379535
+cy 0.5035533905932738
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 345
+cx 7.4036503333379535
+cy 1.8735727791422094
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.3535533905932738
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 353
+cx 7.4036503333379535
+cy 3.2435921676911454
+.

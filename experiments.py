@@ -287,10 +287,10 @@ def full_scale_test():
         epsMin = 0
         r = 0
         if dim == 2:
-            epsMin = np.linalg.norm([5*hx, 5*hy])
+            epsMin = 1.5*np.linalg.norm([5*hx, 5*hy])
             r = minRFact * np.linalg.norm([hx, hy])
         else:
-            epsMin = np.linalg.norm([5*hx, 5*hy, 5*hz])
+            epsMin = 1.5*np.linalg.norm([5*hx, 5*hy, 5*hz])
             r = minRFact * np.linalg.norm([hx, hy, hz])
 
         with open(out_dir_template.format(dim, str(testName)), 'w') as f:

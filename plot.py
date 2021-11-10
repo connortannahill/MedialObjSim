@@ -521,17 +521,17 @@ elif mode == 13:  # plot snapshots of steps through simulation
         np.random.shuffle(inds)
 
         # off = n#int(n/10)
-        off = int(n)
-        out_fluid = out[inds[:off],:]
+        off = int(100)
+        out_fluid = out[inds[::off],:]
 
-        x_pool = out_fluid[::10,0]
-        y_pool = out_fluid[::10,1]
+        x_pool = out_fluid[:,0]
+        y_pool = out_fluid[:,1]
         max_x = max(max(x_pool), max_x)
         min_x = min(min(x_pool), min_x)
         max_y = max(max(y_pool), max_y)
         min_y = min(min(y_pool), min_y)
-        u = out_fluid[::10,2]
-        v = out_fluid[::10,3]
+        u = out_fluid[:,2]
+        v = out_fluid[:,3]
 
         out = np.genfromtxt(f_name+str(step)+'/medialAxis', delimiter=',')
 
