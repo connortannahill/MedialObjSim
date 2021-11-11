@@ -128,6 +128,8 @@ MomentumSolver3D::MomentumSolver3D(
     // Pre-compute the Barycentric weights
     this->baryWeights = new double[this->methodOrd+1];
     simutils::barycentricInterp(this->methodOrd, this->baryWeights);
+    
+    interpolateVelocities();
 
     this->stepTaken = false;
 }
@@ -280,7 +282,7 @@ void MomentumSolver3D::interpolateVelocities() {
                 vvals[1] = this->v[mo+k][j+1][mo+i];
 
                 wvals[0] = this->w[k][mo+j][mo+i];
-                wvals[0] = this->w[k+1][mo+j][mo+i];
+                wvals[1] = this->w[k+1][mo+j][mo+i];
 
                 // Interpolate the value at the cell centers
                 this->iu[k][j][i] = simutils::barycentricInterv(x, this->x[i], this->x[i+1],
@@ -288,7 +290,7 @@ void MomentumSolver3D::interpolateVelocities() {
                 this->iv[k][j][i] = simutils::barycentricInterv(y, this->y[j], this->y[j+1],
                                     this->methodOrd, this->baryWeights, vvals);
                 this->iw[k][j][i] = simutils::barycentricInterv(z, this->z[k], this->z[k+1],
-                                    this->methodOrd, baryWeights, wvals);
+                                    this->methodOrd, this->baryWeights, wvals);
             }
         }
     }

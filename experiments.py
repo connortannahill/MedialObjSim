@@ -191,9 +191,9 @@ def outputPacking(dim, in_dict, obj_dict, f, lims, eps):
     """ Now generate the centers for each object """
     centerList = []
     if dim == 2:
-        centerList = [(XA+tup[0]*(2*r + eps)+r, YA+tup[1]*(2*r + eps)+r) for tup in product(range(0, iMax), range(0, jMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax))]
     else:
-        centerList = [(XA+tup[0]*(2*r + eps)+r, YA+tup[1]*(2*r + eps)+r, ZA+tup[2]*(2*r + eps)+r) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
+        centerList = [(XA+tup[0]*(2*r + eps)+r+eps, YA+tup[1]*(2*r + eps)+r+eps, ZA+tup[2]*(2*r + eps)+r+eps) for tup in product(range(0, iMax), range(0, jMax), range(0, kMax))]
     
     print('imax = {0}, jmax = {1} , kmax = {2}'.format(iMax, jMax, kMax))
     print('size of centerList = {}'.format(len(centerList)))

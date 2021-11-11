@@ -15,10 +15,10 @@ Q2FullScaleTwo40
 1000
 1
 downDirFlowBC
-10
+100
 
 
-2
+3
 
 coneShapeFun
 1

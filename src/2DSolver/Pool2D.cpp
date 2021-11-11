@@ -300,12 +300,9 @@ void Pool2D::fastMarchSetNVal(int i, int j, bool nExtrap, int mode) {
             path = 3;
         }
     }
-    // cout << "finished computing the phi vals" << endl;
 
     // Assign the distance
-    // cout << "assigning phi" << endl;
     phiReInit[mo+j][mo+i] = d;
-    // cout << "finsihed assigning phi" << endl;
 
     if (mode == 2) {
         if (d >= 10*collisionDist) {
@@ -1097,6 +1094,7 @@ void Pool2D::updateTracer(int structNum, double dt, int mode) {
         double vCur = simutils::biLinearInterpolation(tracerX, tracerY, xMesh, yMesh, vVals);
 
         // Update the position of the tracer partical
+        cout << "U = [" << uCur << " " << vCur << endl;
         tracers[structNum].x += dt*uCur;
         tracers[structNum].y += dt*vCur;
     } else if (mode == 2) {
@@ -2254,7 +2252,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
 
     // Update the positions of the tracer particals
     for (k = 0; k < nStructs; k++) {
-        updateTracer(k, dt, 2);
+        updateTracer(k, dt, 1);
     }
     
     // Update the enumeration and domain array for the shifted level set.

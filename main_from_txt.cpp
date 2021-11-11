@@ -377,6 +377,15 @@ int main(int argc, char **argv) {
             std::cout << "t = " << t << std::endl;
             std::cout << "step = " << nsteps << std::endl;
             std::cout << std::endl;
+
+            auto stop = high_resolution_clock::now();
+
+            auto duration = duration_cast<seconds>(stop - start);
+
+            cout << "=========================================================" << endl;
+            cout << "The total run time of the algorithm: " << duration.count() << endl;
+            cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
+            cout << "=========================================================" << endl;
         }
 
         auto stop = high_resolution_clock::now();

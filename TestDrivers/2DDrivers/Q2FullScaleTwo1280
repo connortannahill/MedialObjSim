@@ -18,7 +18,21 @@ downDirFlowBC
 10
 
 
-3850
+3851
+
+coneShapeFun
+2
+0.0
+0.0
+cx 2.5
+cy 5
+r 0.6
+mass 2
+density 1.0
+E 10
+eta 0.0
+deg 0
+.
 
 coneShapeFun
 1

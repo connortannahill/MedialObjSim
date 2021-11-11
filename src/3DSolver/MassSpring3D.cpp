@@ -467,6 +467,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     /* Set vels to zero if this is a static object */
     if (objType == SolidObject3D::ObjectType::STATIC) {
         qt->setZero();
+        // return;
     }
 
     // If using implicit method, setup the matrix.
@@ -825,7 +826,7 @@ void MassSpring3D::calcElasticForce(double E, double l0, massPoint3D pnt1,
 /**
  * Computes the collision stress for a given boundary node, specified by its ID
 */
-void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], double dA) {
+bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], double dA) {
     // 0 out the stress vector
     colStress[0] = 0.0;
     colStress[1] = 0.0;
@@ -867,6 +868,7 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     massPoint3D colPnt;
     double pntDiff[3];
     double pntDist;
+    bool colComp = false;
     int numNear = 0;
     for (auto near = nodeCols->at(nodeId).begin(); near != nodeCols->at(nodeId).end(); ++near) {
         colPnt = **near;
@@ -879,10 +881,12 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
 
         if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
+            colComp |= true;
         } else {
             forces[0] = 0.0;
             forces[1] = 0.0;
             forces[2] = 0.0;
+            colComp |= false;
         }
 
         colStress[0] += forces[0];
@@ -905,6 +909,8 @@ void MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     colStress[0] += cancelStress[0]; //- nodeForces[0];
     colStress[1] += cancelStress[1]; //- nodeForces[1];
     colStress[2] += cancelStress[2]; //- nodeForces[2];
+
+    return colComp;
 }
 
 /** 
@@ -982,7 +988,14 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id1).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id1, s1, dA);
+                bool colApplied = computeCollisionStress(id1, s1, dA);
+
+                if (!colApplied) {
+                    s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
+                    s1[1] = stress[1][ng+nk][ng+nj][ng+ni];
+                    s1[2] = stress[2][ng+nk][ng+nj][ng+ni];
+                }
+
             } else {
                 // Apply hydrodynamic stress if there is no collision
                 s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -1009,7 +1022,13 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id2, s2, dA);
+                bool colApplied = computeCollisionStress(id2, s2, dA);
+
+                if (!colApplied) {
+                    s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
+                    s2[1] = stress[1][ng+nk][ng+nj][ng+ni];
+                    s2[2] = stress[2][ng+nk][ng+nj][ng+ni];
+                }
             } else {
                 // Apply hydrodynamic stress if there is no collision
                 s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -1036,7 +1055,13 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             // Apply the stress to this point and its connected neighbours
             if (nodeCols->at(id3).size() > 0) {
                 // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id3, s3, dA);
+                bool colApplied = computeCollisionStress(id3, s3, dA);
+
+                if (!colApplied) {
+                    s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
+                    s3[1] = stress[1][ng+nk][ng+nj][ng+ni];
+                    s3[2] = stress[2][ng+nk][ng+nj][ng+ni];
+                }
             } else {
                 // Apply hydrodynamic stress if there is no collision
                 s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -1490,6 +1515,8 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         eta = 0.0;
     }
 
+    *qprev = *qt;
+
     // 0 out the Hessian
     for (int r = 0; r < 3*pntList->size(); r++) {
         for (int i = matrix->rowBegin(r); i < matrix->rowEndPlusOne(r); i++) {
@@ -1826,19 +1853,20 @@ void MassSpring3D::updateSolidLocs(Pool3D &pool, bool interp) {
  * Output the nodes of the MSS with no explicit knowledge of the connectivity between them.
 */
 void MassSpring3D::outputNodes(const char* fname) {
+    this->outputSurfaceCentroids(fname);
 
-    ofstream outFile;
-    outFile.open(fname);
+    // ofstream outFile;
+    // outFile.open(fname);
 
-    for (auto pnt = pntList->begin(); pnt != pntList->end(); ++pnt) {
-        if (!(pnt->boundaryPnt)) {
-            continue;
-        }
-        outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << pnt->sigU
-            << ", " << pnt->sigV << ", " << pnt->sigW << endl;
-    }
+    // for (auto pnt = pntList->begin(); pnt != pntList->end(); ++pnt) {
+    //     if (!(pnt->boundaryPnt)) {
+    //         continue;
+    //     }
+    //     outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << pnt->sigU
+    //         << ", " << pnt->sigV << ", " << pnt->sigW << endl;
+    // }
 
-    outFile.close();
+    // outFile.close();
 }
 
 /**

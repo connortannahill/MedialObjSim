@@ -609,6 +609,7 @@ MatrixIter* MassSpring2D::createStiffnessMatrix() {
 
             matrixBuilder->set_entry(off, off);
             matrixBuilder->set_entry(off, off+1);
+
             matrixBuilder->set_entry(off+1, off);
             matrixBuilder->set_entry(off+1, off+1);
 
@@ -624,6 +625,7 @@ MatrixIter* MassSpring2D::createStiffnessMatrix() {
 
                 matrixBuilder->set_entry(off, noff);
                 matrixBuilder->set_entry(off, noff+1);
+
                 matrixBuilder->set_entry(off+1, noff);
                 matrixBuilder->set_entry(off+1, noff+1);
             }

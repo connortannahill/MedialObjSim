@@ -41,7 +41,6 @@ public:
     double getE();
     double getEta();
     ObjectType getObjType();
-private:
     /* Implicit function defining the level set */
     double (*shapeFun)(double,double,double,SolidParams&);
 

@@ -57,7 +57,7 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
     // Candidate list
     int numFound = kdTree->knnSearch(&inPnt[0],
                     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
-    
+    face3D closestFace;
     assert(numFound > 0);
     
     for (int i = 0; i < numFound; i++) {
@@ -77,6 +77,7 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
                 // Record the closest distance
                 closestDist = d;
                 closestId = *face;
+                closestFace = faceLoc;
 
                 simutils::copyVals(3, baryCoords, baryCoordsClosest);
             }
@@ -106,9 +107,12 @@ void Pool3D::closestBoundaryPnt(int structNum, double inPnt[3], double outPnt[3]
 
     double pnt[3];
     for (int i = 0; i < 3; i++) {
-        pnt[0] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).x;
-        pnt[1] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).y;
-        pnt[2] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).z;
+        // pnt[0] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).x;
+        // pnt[1] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).y;
+        // pnt[2] = solids->at(structNum).pntList->at(solids->at(structNum).faceList->at(closestId).pntIds[i]).z;
+        pnt[0] = solids->at(structNum).pntList->at(closestFace.pntIds[i]).x;
+        pnt[1] = solids->at(structNum).pntList->at(closestFace.pntIds[i]).y;
+        pnt[2] = solids->at(structNum).pntList->at(closestFace.pntIds[i]).z;
 
         for (int j = 0; j < 3; j++) {
             outPnt[j] += baryCoordsClosest[i]*pnt[j];
@@ -135,6 +139,9 @@ void Pool3D::interpFaceVel(int structNum, double inPnt[3], double out[3]) {
                     MAXCANDS, &ret_index[0], &out_dist_sqr[0]);
     
     assert(numFound > 0);
+
+    face3D closestFaceObj;
+    double closestBary[3];
     
     for (int i = 0; i < numFound; i++) {
         mass_spring::massPoint3D pnt = *kdPointCloud->points->at(ret_index.at(i));
@@ -153,6 +160,11 @@ void Pool3D::interpFaceVel(int structNum, double inPnt[3], double out[3]) {
                 // Record the closest distance
                 closestDist = d;
                 closestFace = *face;
+                closestFaceObj = faceLoc;
+
+                for (int i = 0; i < 3; i++) {
+                    closestBary[i] = baryCoords[i];
+                }
             }
         }
     }
@@ -161,21 +173,24 @@ void Pool3D::interpFaceVel(int structNum, double inPnt[3], double out[3]) {
 
     // Now use the face to compute the boundary distance
     int vertIds[3];
-    vertIds[0] = faceLoc.pntIds[0];
-    vertIds[1] = faceLoc.pntIds[1];
-    vertIds[2] = faceLoc.pntIds[2];
+    vertIds[0] = closestFaceObj.pntIds[0];
+    vertIds[1] = closestFaceObj.pntIds[1];
+    vertIds[2] = closestFaceObj.pntIds[2];
 
     // Get the barycentric coordinates of the input point projected onto this face
     d = solids->at(structNum).projTriangleDist(inPnt, faceLoc.pntIds[0], faceLoc.pntIds[1], faceLoc.pntIds[2], baryCoords);
 
     // Interpolate on this triangle.
+    // double alph = closestBary[0];
+    // double beta = closestBary[1];
+    // double gam  = closestBary[2];
     double alph = baryCoords[0];
     double beta = baryCoords[1];
     double gam  = baryCoords[2];
 
-    out[0] = alph*((*solids->at(structNum).qt)(3*vertIds[0])   + beta*((*solids->at(structNum).qt)(3*vertIds[1]))   + gam*((*solids->at(structNum).qt)(3*vertIds[2])));
-    out[1] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+1) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+1)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+1)));
-    out[2] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+2) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+2)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+2)));
+    out[0] = alph*((*solids->at(structNum).qt)(3*vertIds[0]))   + beta*((*solids->at(structNum).qt)(3*vertIds[1]))   + gam*((*solids->at(structNum).qt)(3*vertIds[2]));
+    out[1] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+1)) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+1)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+1));
+    out[2] = alph*((*solids->at(structNum).qt)(3*vertIds[0]+2)) + beta*((*solids->at(structNum).qt)(3*vertIds[1]+2)) + gam*((*solids->at(structNum).qt)(3*vertIds[2]+2));
 }
 
 /**
@@ -588,6 +603,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                         double sign = 1.0;// simutils::sign(phi[mo+k][mo+j][mo+i]);
                         int structNum = domainMembership(i, j, k);
                         phiVal = sign*closestBoundaryDist(structNum, pnt);
+                        phiVal = phi[mo+k][mo+j][mo+i];
                     } else {
                         phiVal = phi[mo+k][mo+j][mo+i];
                     }
@@ -685,6 +701,7 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                         if (mode == 0) {
                             int structNum = domainMembership(i, j, k);
                             phiVal = closestBoundaryDist(structNum, pnt);
+                            phiVal = sign(phi[mo+k][mo+j][mo+i])*phi[mo+k][mo+j][mo+i];
 
                             // Normal extrapolation (very approximate)
                             if (nExtrap) {
@@ -955,6 +972,8 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     int mssNz = params.mssNz;
 
     // Create the arrays for the externally generated velocity field
+    // cout << "PoolW = " << params.getW0() << endl;
+
     this->poolU = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
                                         nx+2*methodOrd, params.getU0());
     this->poolV = simutils::new_constant(nz+2*methodOrd, ny+2*methodOrd,
@@ -1008,8 +1027,17 @@ void Pool3D::create3DPool(Boundary3D &boundary,
         this->tracers = new simstructs::tracer3D[nStructs];
         if (structures.size() != 0) {
             for (int l = 0; l < nStructs; l++) {
+                // cout << "embedding struct " << l << endl;
+                // double cx, cy, cz;
+                // structures.at(l).params.getParam("cx", cx);
+                // structures.at(l).params.getParam("cy", cy);
+                // structures.at(l).params.getParam("cz", cz);
+                // cout << "cx = " << cx  << endl;
+                // cout << "cy = " << cy << endl;
+                // cout << "cz = " << cz << endl;
                 this->embedShape(structures.at(l), l);
             }
+            // assert(false);
         } else {
             assert(false);
         }
@@ -1120,7 +1148,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     fastMarchingState = simutils::new_constant(nz, ny, nz, FAR);
     
     fastMarch(false, 0);
-    // simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
+    simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
 
     this->enumeratePool();
 
@@ -1442,10 +1470,12 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
                                                          xMesh, yMesh, zMesh, wVals);
 
         // Update the position of the tracer partical
-        cout << "U = [" << uCur << " " << vCur << " " << wCur << "]" << endl;
-        tracers[structNum].x += dt*uCur;
-        tracers[structNum].y += dt*vCur;
-        tracers[structNum].w += dt*wCur;
+        cout << "X = [" << tracerX << " " << tracerY << " " << tracerZ << "]" << endl;
+        if (solids->at(structNum).objType != SolidObject3D::ObjectType::STATIC) {
+            tracers[structNum].x += dt*uCur;
+            tracers[structNum].y += dt*vCur;
+            tracers[structNum].w += dt*wCur;
+        }
     } else if (mode == 2) {
         /* Use gradient descent with line search and the interior perserving step limit
            to update the position of the tracer partical */
@@ -1526,9 +1556,13 @@ void Pool3D::embedShape(SolidObject3D &struc, int structNum) {
     }
 
     if (this->nStructs >= 0) {
-        this->tracers[structNum].x = simutils::midpoint(this->x[min_x-1], this->x[min_x]);
-        this->tracers[structNum].y = simutils::midpoint(this->y[min_y-1], this->y[min_y]);
-        this->tracers[structNum].z = simutils::midpoint(this->z[min_z-1], this->z[min_z]);
+        double cx, cy, cz;
+        struc.params.getParam("cx", cx);
+        struc.params.getParam("cy", cy);
+        struc.params.getParam("cz", cz);
+        this->tracers[structNum].x = cx;
+        this->tracers[structNum].y = cy;
+        this->tracers[structNum].z = cz;
         this->tracers[structNum].mass = struc.getMass();
         this->tracers[structNum].u = struc.getU0(); // Velocity of the stucture, useful for update rules
         this->tracers[structNum].v = struc.getV0();
@@ -2498,11 +2532,11 @@ void Pool3D::computeBoundaryStress(int i, int j, int k, objects::FSIObject obj, 
     // poolW[mo+k][mo+j][mo+i]
     //     = (-pres*n[2] + this->mu*((wGrad[0]+uGrad[2])*n[0] + (wGrad[1]+vGrad[2])*n[1] + 2.0*wGrad[2]*n[2]));
     poolU[mo+k][mo+j][mo+i]
-//         = -pres*n[0];
-//     poolV[mo+k][mo+j][mo+i]
-//         = (-pres*n[1]);
-//     poolW[mo+k][mo+j][mo+i]
-//         = (-pres*n[2]);
+        = -pres*n[0];
+    poolV[mo+k][mo+j][mo+i]
+        = (-pres*n[1]);
+    poolW[mo+k][mo+j][mo+i]
+        = (-pres*n[2]);
 }
 
 /**
@@ -2735,8 +2769,8 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
-    if (reinitialize && nSteps % 10 == 0) {
-        simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
+    if (reinitialize && (nSteps+1) % 10 == 0) {
+        // simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }
 
     // Update the position of the tracer particals

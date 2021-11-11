@@ -33,7 +33,9 @@ if testNum == -1:
 else:
     f_name = './output/{0}/{1}/'.format(test, testNum)
 
+
 nMSS= len(glob.glob(f_name+'MSS3DEdges*'))
+print(glob.glob(f_name+'MSS3DEdges*'))
 # nMss = int(sys.argv[3])
 # narg = 1
 # if len(sys.argv) == 3:
@@ -152,6 +154,8 @@ elif mode == 1:
     phi = out[:,3]
 
     mssList = []
+
+    print(nMSS)
     
     for i in range(nMSS):
         f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
@@ -247,14 +251,14 @@ elif mode == 3:
         # ax.ylim((0, 1))
     
     # Scatter plot of the centroids
-    # f_name_t = f_name + 'MSS3DCentroids{}'.formVat(0)
-    # out = np.genfromtxt(f_name_t, delimiter=',')
+    f_name_t = f_name + 'MSS3DNodes{}'.format(0)
+    out = np.genfromtxt(f_name_t, delimiter=',')
 
-    # x = out[:,0]
-    # y = out[:,1]
-    # z = out[:,2]
+    x = out[:,0]
+    y = out[:,1]
+    z = out[:,2]
 
-    # ax.scatter(x, y, z, c='b')
+    ax.scatter(x, y, z, c='b')
     
     plt.show()
 elif mode == 4:

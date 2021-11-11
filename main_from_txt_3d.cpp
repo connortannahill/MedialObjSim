@@ -71,6 +71,10 @@ initialConditions3DFunType getInitialConditionsFun(double cons_u, double cons_v,
         int hg = ny + 2*nGhost; // "height"
         int vg = nz + 2*nGhost; // "vert"
 
+        cout << "consu = " << cons_u << endl;
+        cout << "consv = " << cons_v << endl;
+        cout << "consw = " << cons_w << endl;
+
         simutils::set_constant(vg, hg, wg-1, cons_u, u);
         simutils::set_constant(vg, hg-1, wg, cons_v, v);
         simutils::set_constant(vg-1, hg, wg, cons_w, w); 
@@ -328,9 +332,9 @@ int main(int argc, char **argv) {
     simParams.setU0(cons_u);
     simParams.setV0(cons_v);
     simParams.setW0(cons_w);
-    // simParams.setAdmmTol(1e-10);
-    // double dtFix = 0.1*(1/2.0)*(simutils::square(h));
-    // simParams.setDtFix(dtFix);
+    simParams.setAdmmTol(1e-10);
+    double dtFix = 0.1*(1/2.0)*(simutils::square(h));
+    simParams.setDtFix(dtFix);
 
     // initial/boundary conditions and boundary object
     auto initialConditions = getInitialConditionsFun(cons_u, cons_v, cons_w);
@@ -345,7 +349,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.5;
+    double safetyFactor = 0.1;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();

@@ -1,0 +1,51 @@
+A grid-based scaling test for full scaling performance
+Q2FullScaleThree40
+
+
+0
+5
+0
+10
+40
+80
+0
+-0.1
+0
+0
+1000
+1
+downDirFlowBC
+10
+
+
+2
+
+coneShapeFun
+2
+0.0
+0.0
+cx 2.5
+cy 5
+r 0.6
+mass 2
+density 1.0
+E 10
+eta 0.0
+deg 0
+.
+
+coneShapeFun
+1
+0
+-0.1
+mass 1
+density 1
+r 0.7071067811865476
+E 30
+eta 0
+a 0
+c 0
+deg 163
+cx 2.282931995911324
+cy 8.032931995911325
+.
