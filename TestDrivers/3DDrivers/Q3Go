@@ -1,0 +1,3265 @@
+Many object test generic, can be from many sources
+Q3Go
+
+0
+10
+0
+10
+0
+10
+160
+160
+160
+0.1
+0
+0
+0
+0
+0
+1000
+1
+directionalFlowBC
+100
+
+
+180
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 354
+cx 1.9
+cy 1.9
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 28
+cx 1.9
+cy 1.9
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 303
+cx 1.9
+cy 1.9
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 98
+cx 1.9
+cy 1.9
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 309
+cx 1.9
+cy 1.9
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 111
+cx 1.9
+cy 1.9
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 29
+cx 1.9
+cy 3.1
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 158
+cx 1.9
+cy 3.1
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 145
+cx 1.9
+cy 3.1
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 120
+cx 1.9
+cy 3.1
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 154
+cx 1.9
+cy 3.1
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 331
+cx 1.9
+cy 3.1
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 322
+cx 1.9
+cy 4.3
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 268
+cx 1.9
+cy 4.3
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 27
+cx 1.9
+cy 4.3
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 166
+cx 1.9
+cy 4.3
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 241
+cx 1.9
+cy 4.3
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 41
+cx 1.9
+cy 4.3
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 221
+cx 1.9
+cy 5.499999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 342
+cx 1.9
+cy 5.499999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 44
+cx 1.9
+cy 5.499999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 247
+cx 1.9
+cy 5.499999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 282
+cx 1.9
+cy 5.499999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 197
+cx 1.9
+cy 5.499999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 169
+cx 1.9
+cy 6.699999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 106
+cx 1.9
+cy 6.699999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 290
+cx 1.9
+cy 6.699999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 20
+cx 1.9
+cy 6.699999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 158
+cx 1.9
+cy 6.699999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 35
+cx 1.9
+cy 6.699999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 251
+cx 1.9
+cy 7.8999999999999995
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 37
+cx 1.9
+cy 7.8999999999999995
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 299
+cx 1.9
+cy 7.8999999999999995
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 9
+cx 1.9
+cy 7.8999999999999995
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 278
+cx 1.9
+cy 7.8999999999999995
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 221
+cx 1.9
+cy 7.8999999999999995
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 337
+cx 3.1
+cy 1.9
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 79
+cx 3.1
+cy 1.9
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 238
+cx 3.1
+cy 1.9
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 301
+cx 3.1
+cy 1.9
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 185
+cx 3.1
+cy 1.9
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 76
+cx 3.1
+cy 1.9
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 291
+cx 3.1
+cy 3.1
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 267
+cx 3.1
+cy 3.1
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 277
+cx 3.1
+cy 3.1
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 239
+cx 3.1
+cy 3.1
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 48
+cx 3.1
+cy 3.1
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 112
+cx 3.1
+cy 3.1
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 56
+cx 3.1
+cy 4.3
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 82
+cx 3.1
+cy 4.3
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 117
+cx 3.1
+cy 4.3
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 199
+cx 3.1
+cy 4.3
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 101
+cx 3.1
+cy 4.3
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 134
+cx 3.1
+cy 4.3
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 58
+cx 3.1
+cy 5.499999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 104
+cx 3.1
+cy 5.499999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 32
+cx 3.1
+cy 5.499999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 278
+cx 3.1
+cy 5.499999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 154
+cx 3.1
+cy 5.499999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 296
+cx 3.1
+cy 5.499999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 294
+cx 3.1
+cy 6.699999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 30
+cx 3.1
+cy 6.699999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 291
+cx 3.1
+cy 6.699999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 343
+cx 3.1
+cy 6.699999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 137
+cx 3.1
+cy 6.699999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 323
+cx 3.1
+cy 6.699999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 266
+cx 3.1
+cy 7.8999999999999995
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 175
+cx 3.1
+cy 7.8999999999999995
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 132
+cx 3.1
+cy 7.8999999999999995
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 104
+cx 3.1
+cy 7.8999999999999995
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 262
+cx 3.1
+cy 7.8999999999999995
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 85
+cx 3.1
+cy 7.8999999999999995
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 360
+cx 4.3
+cy 1.9
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 359
+cx 4.3
+cy 1.9
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 259
+cx 4.3
+cy 1.9
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 244
+cx 4.3
+cy 1.9
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 313
+cx 4.3
+cy 1.9
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 137
+cx 4.3
+cy 1.9
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 300
+cx 4.3
+cy 3.1
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 275
+cx 4.3
+cy 3.1
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 199
+cx 4.3
+cy 3.1
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 210
+cx 4.3
+cy 3.1
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 235
+cx 4.3
+cy 3.1
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 105
+cx 4.3
+cy 3.1
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 238
+cx 4.3
+cy 4.3
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 105
+cx 4.3
+cy 4.3
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 345
+cx 4.3
+cy 4.3
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 102
+cx 4.3
+cy 4.3
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 155
+cx 4.3
+cy 4.3
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 33
+cx 4.3
+cy 4.3
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 240
+cx 4.3
+cy 5.499999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 343
+cx 4.3
+cy 5.499999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 238
+cx 4.3
+cy 5.499999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 352
+cx 4.3
+cy 5.499999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 44
+cx 4.3
+cy 5.499999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.3
+cy 5.499999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 79
+cx 4.3
+cy 6.699999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 313
+cx 4.3
+cy 6.699999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 18
+cx 4.3
+cy 6.699999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 15
+cx 4.3
+cy 6.699999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 265
+cx 4.3
+cy 6.699999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 310
+cx 4.3
+cy 6.699999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 303
+cx 4.3
+cy 7.8999999999999995
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 29
+cx 4.3
+cy 7.8999999999999995
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 147
+cx 4.3
+cy 7.8999999999999995
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 8
+cx 4.3
+cy 7.8999999999999995
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 229
+cx 4.3
+cy 7.8999999999999995
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 220
+cx 4.3
+cy 7.8999999999999995
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 38
+cx 5.499999999999999
+cy 1.9
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 291
+cx 5.499999999999999
+cy 1.9
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 257
+cx 5.499999999999999
+cy 1.9
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 134
+cx 5.499999999999999
+cy 1.9
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 83
+cx 5.499999999999999
+cy 1.9
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 74
+cx 5.499999999999999
+cy 1.9
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 110
+cx 5.499999999999999
+cy 3.1
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 119
+cx 5.499999999999999
+cy 3.1
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 213
+cx 5.499999999999999
+cy 3.1
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 237
+cx 5.499999999999999
+cy 3.1
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 85
+cx 5.499999999999999
+cy 3.1
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 54
+cx 5.499999999999999
+cy 3.1
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 349
+cx 5.499999999999999
+cy 4.3
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 298
+cx 5.499999999999999
+cy 4.3
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 137
+cx 5.499999999999999
+cy 4.3
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 27
+cx 5.499999999999999
+cy 4.3
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 194
+cx 5.499999999999999
+cy 4.3
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 140
+cx 5.499999999999999
+cy 4.3
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 346
+cx 5.499999999999999
+cy 5.499999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.499999999999999
+cy 5.499999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 287
+cx 5.499999999999999
+cy 5.499999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 144
+cx 5.499999999999999
+cy 5.499999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 202
+cx 5.499999999999999
+cy 5.499999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 261
+cx 5.499999999999999
+cy 5.499999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 120
+cx 5.499999999999999
+cy 6.699999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 158
+cx 5.499999999999999
+cy 6.699999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 205
+cx 5.499999999999999
+cy 6.699999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 358
+cx 5.499999999999999
+cy 6.699999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 346
+cx 5.499999999999999
+cy 6.699999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 237
+cx 5.499999999999999
+cy 6.699999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 133
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 15
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 88
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 309
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 2
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 343
+cx 5.499999999999999
+cy 7.8999999999999995
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 49
+cx 6.699999999999999
+cy 1.9
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 313
+cx 6.699999999999999
+cy 1.9
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 207
+cx 6.699999999999999
+cy 1.9
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 78
+cx 6.699999999999999
+cy 1.9
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 58
+cx 6.699999999999999
+cy 1.9
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 122
+cx 6.699999999999999
+cy 1.9
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 254
+cx 6.699999999999999
+cy 3.1
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 172
+cx 6.699999999999999
+cy 3.1
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 242
+cx 6.699999999999999
+cy 3.1
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 79
+cx 6.699999999999999
+cy 3.1
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 148
+cx 6.699999999999999
+cy 3.1
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 131
+cx 6.699999999999999
+cy 3.1
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 50
+cx 6.699999999999999
+cy 4.3
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 277
+cx 6.699999999999999
+cy 4.3
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 264
+cx 6.699999999999999
+cy 4.3
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 179
+cx 6.699999999999999
+cy 4.3
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 41
+cx 6.699999999999999
+cy 4.3
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 152
+cx 6.699999999999999
+cy 4.3
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 251
+cx 6.699999999999999
+cy 5.499999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 1
+cx 6.699999999999999
+cy 5.499999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 222
+cx 6.699999999999999
+cy 5.499999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 38
+cx 6.699999999999999
+cy 5.499999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 110
+cx 6.699999999999999
+cy 5.499999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 332
+cx 6.699999999999999
+cy 5.499999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 3
+cx 6.699999999999999
+cy 6.699999999999999
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 320
+cx 6.699999999999999
+cy 6.699999999999999
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 18
+cx 6.699999999999999
+cy 6.699999999999999
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 144
+cx 6.699999999999999
+cy 6.699999999999999
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 188
+cx 6.699999999999999
+cy 6.699999999999999
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 356
+cx 6.699999999999999
+cy 6.699999999999999
+cz 7.8999999999999995
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 96
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 1.9
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 268
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 3.1
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 358
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 4.3
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 357
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 5.499999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 349
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 6.699999999999999
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 0.3
+E 50
+eta 0
+a 0.3
+c 0.105
+deg 241
+cx 6.699999999999999
+cy 7.8999999999999995
+cz 7.8999999999999995
+.
