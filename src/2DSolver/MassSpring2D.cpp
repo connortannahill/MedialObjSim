@@ -1147,14 +1147,6 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
                 s2[0] = stress[0][ng+nj][ng+ni];
                 s2[1] = stress[1][ng+nj][ng+ni];
             }
-            // if (nodeCols->at(id2).size() > 0) {
-            //     // There is a collision on this node, compute the collision stress
-            //     computeCollisionStress(id2, s2, diffNorm);
-            // }
-            // // Apply the hydrodynamic stress
-            // // Hydrodynamic stress
-            // s2[0] += stress[0][ng+nj][ng+ni];
-            // s2[1] += stress[1][ng+nj][ng+ni];
         } else {
             assert(false);
             s2[0] = 0.0;
@@ -1504,8 +1496,6 @@ void MassSpring2D::linearImplicitSolve(double dt, int elementMode, bool initMode
     /* Setup the remainder of the matrix by negating K everywhere, and adding I along the main diagonal */
     double coeff = simutils::square(dt)/pntList->at(0).mass;
     int colIndex;
-    double accum = 0;
-    double count = 0;
 
     for (int r = 0; r < 2*pntList->size(); r++) {
         for (int i = matrix->rowBegin(r); i < matrix->rowEndPlusOne(r); i++) {
@@ -1516,9 +1506,6 @@ void MassSpring2D::linearImplicitSolve(double dt, int elementMode, bool initMode
             } else {
                 matrix->aValue(i) = coeff*matrix->aValue(i);
             }
-
-            accum += matrix->aValue(i);
-            count ++;
         }
     }
 

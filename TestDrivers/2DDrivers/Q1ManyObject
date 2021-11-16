@@ -9,9 +9,9 @@ Q1ManyObject
 1000.0
 1
 lidDrivenCavityBC
-100.0
+200.0
 
-2
+12
 
 bloodCellShapeFun
 1
@@ -20,9 +20,9 @@ bloodCellShapeFun
 cx 5.0
 cy 3.0
 r 2.5
-mass 5
-density 10.0
-E 5
+mass 1
+density 1.0
+E 10
 eta 0.0
 deg 0
 a 0.3
@@ -37,9 +37,9 @@ bloodCellShapeFun
 cx 5.0
 cy 7.0
 r 2.5
-mass 5
-density 10.0
-E 5
+mass 1
+density 1.0
+E 10
 eta 0.0
 deg 0
 a 0.3
@@ -53,8 +53,8 @@ coneShapeFun
 cx 3.5
 cy 4.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -69,8 +69,8 @@ coneShapeFun
 cx 3.5
 cy 5.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -85,8 +85,8 @@ coneShapeFun
 cx 4.2
 cy 4.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -101,8 +101,8 @@ coneShapeFun
 cx 4.2
 cy 5.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -117,8 +117,8 @@ coneShapeFun
 cx 4.9
 cy 4.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -133,8 +133,8 @@ coneShapeFun
 cx 4.9
 cy 5.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -149,8 +149,8 @@ coneShapeFun
 cx 5.6
 cy 4.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -165,8 +165,8 @@ coneShapeFun
 cx 5.6
 cy 5.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -181,8 +181,8 @@ coneShapeFun
 cx 6.3
 cy 4.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38
@@ -197,8 +197,8 @@ coneShapeFun
 cx 6.3
 cy 5.5
 r 0.15
-mass 0.5
-density 1.0
+mass 0.1
+density 0.1
 E 15.0
 eta 0.0
 a 0.38

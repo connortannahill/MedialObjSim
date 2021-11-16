@@ -153,6 +153,20 @@ elif mode == 1:
     z = out[:,2]
     phi = out[:,3]
 
+    vel_fname = f_name + 'pool3DVel'
+
+    # Read in the pool data
+    out = np.genfromtxt(vel_fname, delimiter=',')
+
+    x_vel = out[:,0]
+    y_vel = out[:,1]
+    z_vel = out[:,2]
+    u = out[:,3]
+    v = out[:,4]
+    w = out[:,5]
+
+    velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
+
     mssList = []
 
     print(nMSS)
@@ -166,6 +180,15 @@ elif mode == 1:
         z_mss = out[:,2]
 
         mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
+
+        # Now append the object velocities
+
+        # f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
+
+        # out = np.genfromtxt(f_name_t, delimiter=',')
+        # x_mss = out[:,0]
+        # y_mss = out[:,1]
+        # z_mss = out[:,2]
     # from matplotlib import pyplot
     # from mpl_toolkits.mplot3d import Axes3D
     # import random
@@ -181,7 +204,7 @@ elif mode == 1:
         # for i in range(0, x.size, 3):
         # mssList.append(go.Scatter3d(x=x[i:i+3], y=y[i:i+3], z=z[i:i+3]))
             # ax.plot(x[i:i+2], y[i:i+2], z[i:i+2], 'ro-', ms=0.5)
-    # for i in range(1):
+    # for i in range(1):``
     #     f_name_t = f_name + 'MSS3DEdges{0}'.format(i)
 
     #     out = np.genfromtxt(f_name_t, delimiter=',')
@@ -209,7 +232,7 @@ elif mode == 1:
         isomin=-0.0001,
         isomax=0.0001,
         colorscale=[(0,"blue"), (1,"red")],
-        opacity=0.3)]+mssList)
+        opacity=0.3)]+mssList+velData)
     # fig = go.Figure(data=mssList)
 
     fig.show()
@@ -349,11 +372,12 @@ elif mode == 4:
         closest_pnt = x[closest]
 
         inds = (x == closest_pnt)
-        # ax1.imshow(np.reshape(p[inds], (nz, ny)))
-        q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
+        plt.imshow(np.reshape(p[inds], (nz, ny)))
+        plt.colorbar()
+        # q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
 
 
-        img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
+        # img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
         # img = ax1.contour(np.reshape(y[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     elif axis == 'y':
         closest = np.argmin(np.abs(y - val))

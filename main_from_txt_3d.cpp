@@ -95,7 +95,7 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double 
     for (int k = 1; k <= nz; k++) {
         for (int j = 1; j <= ny; j++) {
             // Inflow condition
-            u[k][j][0] = 0.5; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+            u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
             // Outflow condition
             u[k][j][nx] = u[k][j][nx-1];
@@ -324,7 +324,9 @@ int main(int argc, char **argv) {
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
     simParams.setCollisionStiffness(10.0);
-    simParams.setCollisionDist(4*h);
+    double collisionDist = 3*h;
+    simParams.setCollisionDist(collisionDist);
+    cout << "collision dist in simulation is " << collisionDist << endl;
     simParams.setUpdateMode(1);
     simParams.setGx(g_x);
     simParams.setGy(g_y);
@@ -349,7 +351,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.1;
+    double safetyFactor = 0.75;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();
@@ -358,7 +360,7 @@ int main(int argc, char **argv) {
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
-            if (nsteps % 5 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }
@@ -380,6 +382,7 @@ int main(int argc, char **argv) {
             cout << "The total run time of the algorithm: " << duration.count() << endl;
             cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
             cout << "=========================================================" << endl;
+            // assert(false);
         }
 
         string f_name = testName;

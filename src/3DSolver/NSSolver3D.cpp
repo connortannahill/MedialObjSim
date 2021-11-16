@@ -69,8 +69,8 @@ void NSSolver3D::updateF(Pool3D *pool) {
                                 + discs::firstOrder3D_conv_uvy(xi, yi, zi, this->dy, this->u, this->v)
                                 + discs::firstOrder3D_conv_uwz(xi, yi, zi, this->dz, u, w);
                     }
-                    // this->FU[zi][yi][xi] = this->u[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + gx );
-                    this->FU[zi][yi][xi] = this->u[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective);
+                    this->FU[zi][yi][xi] = this->u[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + gx );
+                    // this->FU[zi][yi][xi] = this->u[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective);
                 }
             }
         }
@@ -98,7 +98,7 @@ void NSSolver3D::updateF(Pool3D *pool) {
                                 + discs::firstOrder3D_conv_vsqy(xi, yi, zi, this->dy, this->v)
                                 + discs::firstOrder3D_conv_vwz(xi, yi, zi, this->dz, this->v, this->w);
                     }
-                    this->FV[zi][yi][xi] = this->v[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective);
+                    this->FV[zi][yi][xi] = this->v[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + gy);
                 }
             }
         }
@@ -127,11 +127,14 @@ void NSSolver3D::updateF(Pool3D *pool) {
                                 + discs::firstOrder3D_conv_wsqz(xi, yi, zi, this->dz, this->w);
 
                     }
-                    this->FW[zi][yi][xi] = this->w[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective );
+                    this->FW[zi][yi][xi] = this->w[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + gz);
+                    // cout << "making FW = " << this->FW[zi][yi][xi] << endl;
+                    // cout << "w = " << this->w[zi][yi][xi] << endl;
                 }
             }
         }
     }
+    // assert(false);
 
     // Set the boundary values for F required in the pressure solver.
     // so that it can be most consistent. TODO: find a way more efficient way of

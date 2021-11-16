@@ -1,20 +1,21 @@
-Many object test generic, can be from many sources
+A grid-based scaling test for full scaling performance
 Q3ManyObject
+
 
 0
 10
 0
 5
-640
-320
+840
+430
 0.5
-0.0
-0.0
-0.0
+0
+0
+0
 1000
 1
 directionalFlowBC
-100
+10
 
 
 312
@@ -22,4991 +23,4991 @@ directionalFlowBC
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 231
-cx 0.35
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 328
-cx 0.35
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 199
-cx 0.35
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 322
-cx 0.35
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 290
-cx 0.35
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 159
-cx 0.35
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 305
-cx 0.35
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 151
-cx 0.35
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 242
-cx 0.35
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 4
-cx 0.35
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 193
-cx 0.35
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 312
-cx 0.35
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 166
-cx 0.35
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 74
-cx 0.6900000000000001
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 76
-cx 0.6900000000000001
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 170
-cx 0.6900000000000001
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 6
-cx 0.6900000000000001
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 75
-cx 0.6900000000000001
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 41
-cx 0.6900000000000001
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 86
-cx 0.6900000000000001
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 320
-cx 0.6900000000000001
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 69
-cx 0.6900000000000001
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 193
-cx 0.6900000000000001
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 282
-cx 0.6900000000000001
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 153
-cx 0.6900000000000001
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 24
-cx 0.6900000000000001
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 37
-cx 1.03
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 303
-cx 1.03
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 285
-cx 1.03
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 213
-cx 1.03
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 160
-cx 1.03
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 267
-cx 1.03
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 327
-cx 1.03
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 159
-cx 1.03
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 18
-cx 1.03
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 204
-cx 1.03
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 248
-cx 1.03
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 176
-cx 1.03
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 191
-cx 1.03
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 70
-cx 1.37
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 60
-cx 1.37
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 100
-cx 1.37
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 301
-cx 1.37
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 339
-cx 1.37
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 77
-cx 1.37
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 322
-cx 1.37
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 56
-cx 1.37
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 138
-cx 1.37
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 127
-cx 1.37
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 71
-cx 1.37
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 343
-cx 1.37
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 345
-cx 1.37
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 231
-cx 1.7100000000000002
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 185
-cx 1.7100000000000002
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 334
-cx 1.7100000000000002
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 213
-cx 1.7100000000000002
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 280
-cx 1.7100000000000002
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 110
-cx 1.7100000000000002
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 204
-cx 1.7100000000000002
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 37
-cx 1.7100000000000002
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 267
-cx 1.7100000000000002
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 122
-cx 1.7100000000000002
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 45
-cx 1.7100000000000002
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 335
-cx 1.7100000000000002
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 134
-cx 1.7100000000000002
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 177
-cx 2.0500000000000003
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 26
-cx 2.0500000000000003
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 271
-cx 2.0500000000000003
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 256
-cx 2.0500000000000003
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 131
-cx 2.0500000000000003
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 255
-cx 2.0500000000000003
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 355
-cx 2.0500000000000003
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 52
-cx 2.0500000000000003
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 216
-cx 2.0500000000000003
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 168
-cx 2.0500000000000003
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 313
-cx 2.0500000000000003
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 146
-cx 2.0500000000000003
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 334
-cx 2.0500000000000003
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 14
-cx 2.39
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 136
-cx 2.39
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 94
-cx 2.39
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 37
-cx 2.39
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 141
-cx 2.39
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 347
-cx 2.39
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 151
-cx 2.39
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 41
-cx 2.39
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 272
-cx 2.39
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 83
-cx 2.39
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 60
-cx 2.39
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 165
-cx 2.39
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 350
-cx 2.39
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 336
-cx 2.7300000000000004
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 128
-cx 2.7300000000000004
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 254
-cx 2.7300000000000004
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 210
-cx 2.7300000000000004
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 59
-cx 2.7300000000000004
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 344
-cx 2.7300000000000004
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 126
-cx 2.7300000000000004
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 52
-cx 2.7300000000000004
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 56
-cx 2.7300000000000004
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 15
-cx 2.7300000000000004
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 258
-cx 2.7300000000000004
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 147
-cx 2.7300000000000004
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 174
-cx 2.7300000000000004
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 178
-cx 3.0700000000000003
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 268
-cx 3.0700000000000003
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 163
-cx 3.0700000000000003
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 66
-cx 3.0700000000000003
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 3
-cx 3.0700000000000003
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 41
-cx 3.0700000000000003
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 46
-cx 3.0700000000000003
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 132
-cx 3.0700000000000003
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 242
-cx 3.0700000000000003
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 158
-cx 3.0700000000000003
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 118
-cx 3.0700000000000003
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 269
-cx 3.0700000000000003
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 255
-cx 3.0700000000000003
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 186
-cx 3.41
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 244
-cx 3.41
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 154
-cx 3.41
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 150
-cx 3.41
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 302
-cx 3.41
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 194
-cx 3.41
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 352
-cx 3.41
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 36
-cx 3.41
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 24
-cx 3.41
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 207
-cx 3.41
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 98
-cx 3.41
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 295
-cx 3.41
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 51
-cx 3.41
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 279
-cx 3.7500000000000004
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 140
-cx 3.7500000000000004
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 67
-cx 3.7500000000000004
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 230
-cx 3.7500000000000004
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 352
-cx 3.7500000000000004
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 251
-cx 3.7500000000000004
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 128
-cx 3.7500000000000004
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 106
-cx 3.7500000000000004
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 246
-cx 3.7500000000000004
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 43
-cx 3.7500000000000004
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 261
-cx 3.7500000000000004
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 128
-cx 3.7500000000000004
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 110
-cx 3.7500000000000004
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 138
-cx 4.09
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 30
-cx 4.09
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 243
-cx 4.09
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 104
-cx 4.09
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
 deg 0
-cx 4.09
-cy 1.7100000000000002
+cx 0.28838834764831844
+cy 0.23838834764831845
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 354
-cx 4.09
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 344
-cx 4.09
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 107
-cx 4.09
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 299
-cx 4.09
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 166
-cx 4.09
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 59
-cx 4.09
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 151
-cx 4.09
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 289
-cx 4.09
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 206
-cx 4.43
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 64
-cx 4.43
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 286
-cx 4.43
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 123
-cx 4.43
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 87
-cx 4.43
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 76
-cx 4.43
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 199
-cx 4.43
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 115
-cx 4.43
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 354
-cx 4.43
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 178
-cx 4.43
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 106
-cx 4.43
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 337
-cx 4.43
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 348
-cx 4.43
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 79
-cx 4.77
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 42
-cx 4.77
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 179
-cx 4.77
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 183
-cx 4.77
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 32
-cx 4.77
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 152
-cx 4.77
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 66
-cx 4.77
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 199
-cx 4.77
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 43
-cx 4.77
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 92
-cx 4.77
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 86
-cx 4.77
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 319
-cx 4.77
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 291
-cx 4.77
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 61
-cx 5.11
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 87
-cx 5.11
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 13
-cx 5.11
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 8
-cx 5.11
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 260
-cx 5.11
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 309
-cx 5.11
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 123
-cx 5.11
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 13
-cx 5.11
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 119
-cx 5.11
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 247
-cx 5.11
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 38
-cx 5.11
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 40
-cx 5.11
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 175
-cx 5.11
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 154
-cx 5.45
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 241
-cx 5.45
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 121
-cx 5.45
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 201
-cx 5.45
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 197
-cx 5.45
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 24
-cx 5.45
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 234
-cx 5.45
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 165
-cx 5.45
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 313
-cx 5.45
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 93
-cx 5.45
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 214
-cx 5.45
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 66
-cx 5.45
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 161
-cx 5.45
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 82
-cx 5.79
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 102
-cx 5.79
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 220
-cx 5.79
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 317
-cx 5.79
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 333
-cx 5.79
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 262
-cx 5.79
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 74
-cx 5.79
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 284
-cx 5.79
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 278
-cx 5.79
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 324
-cx 5.79
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 74
-cx 5.79
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 192
-cx 5.79
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 311
-cx 5.79
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 110
-cx 6.13
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 144
-cx 6.13
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 90
-cx 6.13
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
 deg 0
-cx 6.13
-cy 1.37
+cx 0.28838834764831844
+cy 0.5808931947855525
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 32
-cx 6.13
-cy 1.7100000000000002
+deg 0
+cx 0.28838834764831844
+cy 0.9233980419227864
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 349
-cx 6.13
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 338
-cx 6.13
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 247
-cx 6.13
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 63
-cx 6.13
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 149
-cx 6.13
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 15
-cx 6.13
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 339
-cx 6.13
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 345
-cx 6.13
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 233
-cx 6.47
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 337
-cx 6.47
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 232
-cx 6.47
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 237
-cx 6.47
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 78
-cx 6.47
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 128
-cx 6.47
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 127
-cx 6.47
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 293
-cx 6.47
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 196
-cx 6.47
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 76
-cx 6.47
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 226
-cx 6.47
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 335
-cx 6.47
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 217
-cx 6.47
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 310
-cx 6.8100000000000005
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 334
-cx 6.8100000000000005
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 156
-cx 6.8100000000000005
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 10
-cx 6.8100000000000005
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 105
-cx 6.8100000000000005
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 131
-cx 6.8100000000000005
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 23
-cx 6.8100000000000005
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 20
-cx 6.8100000000000005
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 322
-cx 6.8100000000000005
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 178
-cx 6.8100000000000005
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 192
-cx 6.8100000000000005
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 125
-cx 6.8100000000000005
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 179
-cx 6.8100000000000005
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 43
-cx 7.15
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 246
-cx 7.15
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 58
-cx 7.15
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 63
-cx 7.15
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 240
-cx 7.15
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 229
-cx 7.15
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 55
-cx 7.15
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 255
-cx 7.15
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 171
-cx 7.15
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 347
-cx 7.15
-cy 3.41
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 281
-cx 7.15
-cy 3.7500000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 161
-cx 7.15
-cy 4.09
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 6
-cx 7.15
-cy 4.43
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 119
-cx 7.49
-cy 0.35
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 86
-cx 7.49
-cy 0.6900000000000001
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 299
-cx 7.49
-cy 1.03
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 338
-cx 7.49
-cy 1.37
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 144
-cx 7.49
-cy 1.7100000000000002
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 340
-cx 7.49
-cy 2.0500000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 267
-cx 7.49
-cy 2.39
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 245
-cx 7.49
-cy 2.7300000000000004
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
-eta 0
-a 0.3
-c 0.105
-deg 343
-cx 7.49
-cy 3.0700000000000003
-.
-
-bloodCellShapeFun
-1
-0.5
-0.0
-mass 1
-density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
 deg 90
-cx 7.49
-cy 3.41
+cx 0.28838834764831844
+cy 1.2659028890600201
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 220
-cx 7.49
-cy 3.7500000000000004
+deg 0
+cx 0.28838834764831844
+cy 1.6084077361972542
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 193
-cx 7.49
-cy 4.09
+deg 90
+cx 0.28838834764831844
+cy 1.9509125833344882
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 24
-cx 7.49
-cy 4.43
+deg 90
+cx 0.28838834764831844
+cy 2.2934174304717216
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 214
-cx 7.83
-cy 0.35
+deg 90
+cx 0.28838834764831844
+cy 2.6359222776089557
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 111
-cx 7.83
-cy 0.6900000000000001
+deg 0
+cx 0.28838834764831844
+cy 2.9784271247461898
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 305
-cx 7.83
-cy 1.03
+deg 0
+cx 0.28838834764831844
+cy 3.320931971883424
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 226
-cx 7.83
-cy 1.37
+deg 0
+cx 0.28838834764831844
+cy 3.663436819020658
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 146
-cx 7.83
-cy 1.7100000000000002
+deg 0
+cx 0.28838834764831844
+cy 4.0059416661578915
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 229
-cx 7.83
-cy 2.0500000000000003
+deg 0
+cx 0.28838834764831844
+cy 4.3484465132951255
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 341
-cx 7.83
-cy 2.39
+deg 90
+cx 0.6308931947855525
+cy 0.23838834764831845
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 226
-cx 7.83
-cy 2.7300000000000004
+deg 90
+cx 0.6308931947855525
+cy 0.5808931947855525
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 348
-cx 7.83
-cy 3.0700000000000003
+deg 0
+cx 0.6308931947855525
+cy 0.9233980419227864
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 5
-cx 7.83
-cy 3.41
+deg 0
+cx 0.6308931947855525
+cy 1.2659028890600201
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 345
-cx 7.83
-cy 3.7500000000000004
+deg 90
+cx 0.6308931947855525
+cy 1.6084077361972542
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 163
-cx 7.83
-cy 4.09
+deg 90
+cx 0.6308931947855525
+cy 1.9509125833344882
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 199
-cx 7.83
-cy 4.43
+deg 0
+cx 0.6308931947855525
+cy 2.2934174304717216
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 59
-cx 8.17
-cy 0.35
+deg 0
+cx 0.6308931947855525
+cy 2.6359222776089557
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 147
-cx 8.17
-cy 0.6900000000000001
+deg 90
+cx 0.6308931947855525
+cy 2.9784271247461898
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 187
-cx 8.17
-cy 1.03
+deg 90
+cx 0.6308931947855525
+cy 3.320931971883424
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 125
-cx 8.17
-cy 1.37
+deg 0
+cx 0.6308931947855525
+cy 3.663436819020658
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 138
-cx 8.17
-cy 1.7100000000000002
+deg 90
+cx 0.6308931947855525
+cy 4.0059416661578915
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 163
-cx 8.17
-cy 2.0500000000000003
+deg 90
+cx 0.6308931947855525
+cy 4.3484465132951255
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 173
-cx 8.17
-cy 2.39
+deg 0
+cx 0.9733980419227863
+cy 0.23838834764831845
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 190
-cx 8.17
-cy 2.7300000000000004
+deg 90
+cx 0.9733980419227863
+cy 0.5808931947855525
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 20
-cx 8.17
-cy 3.0700000000000003
+deg 0
+cx 0.9733980419227863
+cy 0.9233980419227864
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 51
-cx 8.17
-cy 3.41
+deg 90
+cx 0.9733980419227863
+cy 1.2659028890600201
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 284
-cx 8.17
-cy 3.7500000000000004
+deg 90
+cx 0.9733980419227863
+cy 1.6084077361972542
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 91
-cx 8.17
-cy 4.09
+deg 90
+cx 0.9733980419227863
+cy 1.9509125833344882
 .
 
 bloodCellShapeFun
 1
 0.5
-0.0
+0
 mass 1
 density 1
-r 0.1
-E 20
+r 0.08838834764831845
+E 30
 eta 0
 a 0.3
 c 0.105
-deg 107
-cx 8.17
-cy 4.43
+deg 0
+cx 0.9733980419227863
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 0.9733980419227863
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 0.9733980419227863
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 0.9733980419227863
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 0.9733980419227863
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 0.9733980419227863
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 0.9733980419227863
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.3159028890600202
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.3159028890600202
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.3159028890600202
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.3159028890600202
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.3159028890600202
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.3159028890600202
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.6584077361972542
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.6584077361972542
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.6584077361972542
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.6584077361972542
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 1.6584077361972542
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 1.6584077361972542
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.0009125833344883
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.0009125833344883
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.343417430471722
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.343417430471722
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.343417430471722
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.343417430471722
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.343417430471722
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.343417430471722
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 2.685922277608956
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 2.685922277608956
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.02842712474619
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.02842712474619
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.02842712474619
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.02842712474619
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.02842712474619
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.370931971883424
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.370931971883424
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.370931971883424
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.370931971883424
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.370931971883424
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.370931971883424
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 3.713436819020658
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 3.713436819020658
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.055941666157892
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.055941666157892
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.055941666157892
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.055941666157892
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.055941666157892
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.055941666157892
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.398446513295125
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.398446513295125
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 4.740951360432359
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 4.740951360432359
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.0834562075695935
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.0834562075695935
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.4259610547068275
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.4259610547068275
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.4259610547068275
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.4259610547068275
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.4259610547068275
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.4259610547068275
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 5.768465901844062
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 5.768465901844062
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.110970748981296
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.110970748981296
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.45347559611853
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.45347559611853
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.45347559611853
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.45347559611853
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.45347559611853
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 6.795980443255764
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 6.795980443255764
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.138485290392998
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.138485290392998
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.480990137530231
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.480990137530231
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.480990137530231
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.480990137530231
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.823494984667465
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.823494984667465
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.823494984667465
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 7.823494984667465
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 7.823494984667465
+cy 4.3484465132951255
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 8.1659998318047
+cy 0.23838834764831845
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 8.1659998318047
+cy 0.5808931947855525
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 0.9233980419227864
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 1.2659028890600201
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 1.6084077361972542
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 1.9509125833344882
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 2.2934174304717216
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 8.1659998318047
+cy 2.6359222776089557
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 8.1659998318047
+cy 2.9784271247461898
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 3.320931971883424
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 0
+cx 8.1659998318047
+cy 3.663436819020658
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 4.0059416661578915
+.
+
+bloodCellShapeFun
+1
+0.5
+0
+mass 1
+density 1
+r 0.08838834764831845
+E 30
+eta 0
+a 0.3
+c 0.105
+deg 90
+cx 8.1659998318047
+cy 4.3484465132951255
 .

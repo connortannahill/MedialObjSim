@@ -74,7 +74,7 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
 
 // Problem-dependent boundary conditions
 void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
-    double ubar = 0.25;
+    double ubar = 0.5;
     for (int i = 1; i <= nx; i++) {
         u[ny+1][i] = 2*ubar - u[ny][i];
     }
@@ -262,7 +262,8 @@ int main(int argc, char **argv) {
         cout << "objFunc " << objectFunc << endl;
         cout << "objType " << objectType << endl;
         cout << "u0 " << u0 << endl;
-        cout << "v0 " << v0 << endl;
+        double velAdd = (2*((double) rand() / (RAND_MAX))-1)/10.0;
+        cout << "v0 " << (v0 + velAdd) << endl;
         
         SolidParams params;
         input_file >> paramName;
@@ -273,7 +274,7 @@ int main(int argc, char **argv) {
             input_file >> paramName;
         }
 
-        SolidObject object(u0, v0, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
+        SolidObject object(u0, v0 + velAdd, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 
@@ -288,8 +289,8 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(10);
-    simParams.setCollisionDist(4.0*h);
+    simParams.setCollisionStiffness(20);
+    simParams.setCollisionDist(3.0*h);
     cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);
@@ -318,7 +319,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.25;
+    double safetyFactor = 0.75;
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -330,7 +331,7 @@ int main(int argc, char **argv) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
             cout << "hi 274" << endl;
-            if (nsteps % 10 == 0) {
+            if (nsteps % 25 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }
@@ -353,16 +354,6 @@ int main(int argc, char **argv) {
             cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
             cout << "=========================================================" << endl;
         }
-
-        // auto stop = high_resolution_clock::now();
-
-        // auto duration = duration_cast<seconds>(stop - start);
-
-        // cout << "=========================================================" << endl;
-        // cout << "testName = " << testTitle << endl;
-        // cout << "The total run time of the algorithm: " << duration.count() << endl;
-        // cout << "The average run time per step of the algorithm: " << duration.count()/((double)nsteps) << endl;
-        // cout << "=========================================================" << endl;
 
         string f_name = outFileName + "/" + std::to_string(nsteps);
         outputData(f_name, solver);

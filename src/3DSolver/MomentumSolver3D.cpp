@@ -11,6 +11,7 @@
 #include <string>
 #include <cassert>
 #include "SimParams3D.h"
+#include "../Utils/Discretizations.h"
 
 using namespace std;
 

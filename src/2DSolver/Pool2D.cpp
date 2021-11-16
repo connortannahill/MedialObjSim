@@ -2241,7 +2241,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     // Update the velocity field
     this->updatePoolVelocities(dt, u, v, p, ng);
 
-    if (reinitialize && nSteps % 10 == 0) {
+    if (reinitialize && nSteps % 20 == 0) {
         simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }
 

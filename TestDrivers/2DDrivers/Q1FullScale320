@@ -6,8 +6,8 @@ Q1FullScale320
 10
 0
 10
-320
-320
+420
+420
 0
 0
 0
@@ -25,11 +25,11 @@ bloodCellShapeFun
 0.0
 0.0
 cx 5.0
-cy 2.5
+cy 2.65
 r 2.5
-mass 5
-density 10.0
-E 5
+mass 1
+density 1.0
+E 10
 eta 0.0
 deg 0
 a 0.3
@@ -42,11 +42,11 @@ bloodCellShapeFun
 0.0
 0.0
 cx 5.0
-cy 7.5
+cy 7
 r 2.5
-mass 5
-density 10.0
-E 5
+mass 1
+density 1.0
+E 10
 eta 0.0
 deg 0
 a 0.3
@@ -57,10 +57,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -73,10 +73,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -89,10 +89,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -105,10 +105,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -121,10 +121,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -137,10 +137,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -153,10 +153,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -169,10 +169,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -185,10 +185,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -201,10 +201,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -217,10 +217,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -233,10 +233,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -249,10 +249,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -265,10 +265,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -281,10 +281,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -297,10 +297,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -313,10 +313,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -329,10 +329,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -345,10 +345,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -361,10 +361,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -377,10 +377,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -393,10 +393,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -409,10 +409,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -425,10 +425,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -441,10 +441,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -457,10 +457,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -473,10 +473,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -489,10 +489,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -505,10 +505,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105
@@ -521,10 +521,10 @@ coneShapeFun
 1
 0
 0
-mass 1
-density 1
+mass 0.1
+density 0.1
 r 0.1767766952966369
-E 20
+E 30
 eta 0
 a 0.3
 c 0.105

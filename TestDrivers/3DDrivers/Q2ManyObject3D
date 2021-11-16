@@ -1,18 +1,18 @@
 Many object test generic, can be from many sources
-Q2ManyObject3DModStress
+Q2ManyObject3D
 
 0.0 10.0
 0.0 10.0
 0.0 10.0
-40 40 40
+80 80 80
 0.0 0.0 -1.0
-0.0 0.0 0.0
+0.0 0.0 -1.0
 1000.0
 1
 downDirFlowBC
 100.0
 
-2
+11
 
 coneShapeFun
 2
@@ -35,13 +35,13 @@ coneShapeFun
 0.0
 0.0
 -1.0
-cx 5
-cy 5
-cz 6.5
+cx 2.4
+cy 2.4
+cz 8.5
 r 0.3
 mass 1.0
 density 1.0
-E 20.0
+E 50.0
 eta 0.0
 a 0.38
 c 0.105
@@ -53,8 +53,8 @@ coneShapeFun
 0.0
 0.0
 -1.0
-cx 1.2
-cy 1.2
+cx 2.4
+cy 2.4
 cz 7.9
 r 0.2
 mass 1.0

@@ -1,0 +1,53 @@
+A grid-based scaling test for full scaling performance
+Q1FullScale20
+
+
+0
+10
+0
+10
+40
+40
+0
+0
+0
+0
+1000
+1
+lidDrivenCavityBC
+100
+
+2
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 2.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.
+
+
+bloodCellShapeFun
+1
+0.0
+0.0
+cx 5.0
+cy 7.5
+r 2.5
+mass 5
+density 10.0
+E 5
+eta 0.0
+deg 0
+a 0.3
+c 0.105
+.

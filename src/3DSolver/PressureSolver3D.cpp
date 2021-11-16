@@ -307,6 +307,7 @@ void PressureSolver3D::setUpPressureRHS(double dt, double ***FU, double ***FV,
                 }
             }
         }
+        // assert(false);
 
         for (j = 0; j < this->ny+2; j++) {
             for (i = 0; i < this->nx+2; i++) {
@@ -343,6 +344,7 @@ void PressureSolver3D::solvePCG(double dt, Pool3D *pool, double ***FU, double **
 
     // Set up the rhs of the linear system
     this->setUpPressureRHS(dt, FU, FV, FW, p, pool);
+    // assert(false);
 
     // Copy the pressure to the flat matrix
     int row = 0;

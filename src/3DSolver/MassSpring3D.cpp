@@ -881,6 +881,7 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
 
         if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
+            numNear++;
             colComp |= true;
         } else {
             forces[0] = 0.0;
@@ -892,8 +893,6 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         colStress[0] += forces[0];
         colStress[1] += forces[1];
         colStress[2] += forces[2];
-
-        numNear++;
     }
 
     colStress[0] /= numNear;
@@ -909,6 +908,9 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     colStress[0] += cancelStress[0]; //- nodeForces[0];
     colStress[1] += cancelStress[1]; //- nodeForces[1];
     colStress[2] += cancelStress[2]; //- nodeForces[2];
+
+    // cout << "ColStress: U = " <<  colStress[0] << " V = " << colStress[1] << " W = " << colStress[2] << endl;
+    // cout << "colComp? " << colComp << endl;
 
     return colComp;
 }
@@ -997,6 +999,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
                 }
 
             } else {
+                // assert(false);
                 // Apply hydrodynamic stress if there is no collision
                 s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
                 s1[1] = stress[1][ng+nk][ng+nj][ng+ni];
@@ -1068,16 +1071,6 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
                 s3[1] = stress[1][ng+nk][ng+nj][ng+ni];
                 s3[2] = stress[2][ng+nk][ng+nj][ng+ni];
             }
-
-            // Apply the stress to this point and its connected neighbours
-            if (nodeCols->at(id3).size() > 0) {
-                // There is a collision on this node, compute the collision stress
-                computeCollisionStress(id3, s3, dA);
-            }
-            // Apply hydrodynamic stress if there is no collision
-            s3[0] += stress[0][ng+nk][ng+nj][ng+ni];
-            s3[1] += stress[1][ng+nk][ng+nj][ng+ni];
-            s3[2] += stress[2][ng+nk][ng+nj][ng+ni];
         } else {
             assert(false);
             s3[0] = 0.0;
@@ -1086,20 +1079,25 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         }
 
         // Compute the centroid of this triangle
-        computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
+        // computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
 
-        // Find the barycentric coordinates of the centroid.
-        projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+        // // Find the barycentric coordinates of the centroid.
+        // projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
 
-        // Extract the coordinates
-        alph = baryCoords[0];
-        beta = baryCoords[1];
-        gamm = baryCoords[2];
+        // // Extract the coordinates
+        // alph = baryCoords[0];
+        // beta = baryCoords[1];
+        // gamm = baryCoords[2];
 
         // Update the stresses in the MSS
-        double s_x = (alph*s1[0] + beta*s2[0] + gamm*s3[0])*dA;
-        double s_y = (alph*s1[1] + beta*s2[1] + gamm*s3[1])*dA;
-        double s_z = (alph*s1[2] + beta*s2[2] + gamm*s3[2])*dA;
+        // cout << "dA = " << dA << endl;
+        // double s_x = (alph*s1[0] + beta*s2[0] + gamm*s3[0])*dA;
+        // double s_y = (alph*s1[1] + beta*s2[1] + gamm*s3[1])*dA;
+        // double s_z = (alph*s1[2] + beta*s2[2] + gamm*s3[2])*dA;
+
+        double s_x = (s1[0] + s2[0] + s3[0])*(dA/3.0);
+        double s_y = (s1[1] + s2[1] + s3[1])*(dA/3.0);
+        double s_z = (s1[2] + s2[2] + s3[2])*(dA/3.0);
 
         (*f)[3*id1]   +=  s_x;
         (*f)[3*id1+1] +=  s_y;
@@ -1151,21 +1149,26 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         dA = simutils::eucNorm3D(aXB)/2.0;
 
         // Compute the centroid of this triangle
-        computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
+        // computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
 
         // Find the barycentric coordinates for this triangle.
-        projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
+        // projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
 
-        // Extract the coordinates
-        alph = baryCoords[0];
-        beta = baryCoords[1];
-        gamm = baryCoords[2];
+        // // Extract the coordinates
+        // alph = baryCoords[0];
+        // beta = baryCoords[1];
+        // gamm = baryCoords[2];
 
         // Interpolate at the centroid
-        fNet[0] += (alph*mPnt1.sigU + beta*mPnt2.sigU + gamm*mPnt3.sigU)*dA;
-        fNet[1] += (alph*mPnt1.sigV + beta*mPnt2.sigV + gamm*mPnt3.sigV)*dA;
-        fNet[2] += (alph*mPnt1.sigW + beta*mPnt2.sigW + gamm*mPnt3.sigW)*dA;
+        fNet[0] += (mPnt1.sigU + mPnt2.sigU + mPnt3.sigU)*(dA/3.0);
+        fNet[1] += (mPnt1.sigV + mPnt2.sigV + mPnt3.sigV)*(dA/3.0);
+        fNet[2] += (mPnt1.sigW + mPnt2.sigW + mPnt3.sigW)*(dA/3.0);
     }
+
+    // cout << "Net force detected in compute Forces:" << endl;
+    // cout << "U = " << fNet[0] << " V = " << fNet[1] << " W " << fNet[2] << endl;
+    // cout << "collisionStiffness = " << collisionStiffness << endl;
+    // assert(false);
 }
 
 /**
@@ -1369,9 +1372,6 @@ void MassSpring3D::eulerSolve(double dt, int elementMode, bool initMode) {
 void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
                                         massPoint3D pnt1, int pntId2,
                                         massPoint3D pnt2) {
-    if (pntId1 >= pntId2) {
-        cout << "assert line 1304" << endl;
-    }
     assert(pntId1 < pntId2);
 
     double diff[3] = {pnt2.x - pnt1.x, pnt2.y - pnt1.y, pnt2.z - pnt1.z};
@@ -1511,7 +1511,7 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
     double etaTemp = eta;
     
     if (initMode) {
-        E = 1.0;
+        E = 5.0;
         eta = 0.0;
     }
 
@@ -1585,6 +1585,8 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         // Solve the linear system. Solution is stored in provided vector
         matrix->solve(*this->params, pcgRHS, niter);
 
+        cout << "solved MSS in " << niter << " iterations" << endl;
+
         if (niter < 0) {
             cout << "assert line 1518" << endl;
         }
@@ -1600,7 +1602,10 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
     }
 
     // Copy the output of the linear solve to the derivative vector
-    simutils::copyVals(3*pntList->size(), pcgRHS, qt->data());
+    // simutils::copyVals(3*pntList->size(), pcgRHS, qt->data());
+    for (int i = 0; i < 3*pntList->size(); i++) {
+        (*qt)(i) = pcgRHS[i];
+    }
 
     // Do the Euler step to get the new node positions
     *q += dt*(*qt);
@@ -1622,7 +1627,7 @@ void MassSpring3D::verletSolve(double dt, int elementMode, bool initMode) {
     double etaTemp = eta;
 
     if (initMode) {
-        E = 1.0;
+        E = 2.0;
         eta = 0.0;
     }
 
@@ -1817,7 +1822,6 @@ void MassSpring3D::interpBoundary(Pool3D &pool, bool resetRestingLengths) {
 
     // Set the resting lengths on the edges to what they are with the updated boundary positions
     if (resetRestingLengths) {
-        // assert(false);
         double pnt1[3];
         double pnt2[3];
         for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
@@ -1854,19 +1858,6 @@ void MassSpring3D::updateSolidLocs(Pool3D &pool, bool interp) {
 */
 void MassSpring3D::outputNodes(const char* fname) {
     this->outputSurfaceCentroids(fname);
-
-    // ofstream outFile;
-    // outFile.open(fname);
-
-    // for (auto pnt = pntList->begin(); pnt != pntList->end(); ++pnt) {
-    //     if (!(pnt->boundaryPnt)) {
-    //         continue;
-    //     }
-    //     outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << pnt->sigU
-    //         << ", " << pnt->sigV << ", " << pnt->sigW << endl;
-    // }
-
-    // outFile.close();
 }
 
 /**
@@ -1881,8 +1872,7 @@ void MassSpring3D::outputNodeVels(const char* fname) {
         int id = pnt->nodeId;
         if (!pnt->boundaryPnt)
             continue;
-        // outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << pnt->u
-        //     << ", " << pnt->v << ", " << pnt->w << endl;
+
         outFile << pnt->x << ", " << pnt->y << ", " << pnt->z << ", " << (*qt)(3*id)
             << ", " << (*qt)(3*id+1) << ", " << (*qt)(3*id+2) << endl;
     }
@@ -2119,7 +2109,8 @@ double MassSpring3D::projTriangleDist(double x[3], int pntId1, int pntId2,
                                 int pntId3, double baryCoords[3]) {
     
     projTriangle(x, pntId1, pntId2, pntId3, baryCoords);
-    // // Find the barycentric coordiantes of the projected point.
+    
+    // Find the barycentric coordiantes of the projected point.
     // Extract the vertices of the triangle, r1, r2, r3
     double r1[3] = {pntList->at(pntId1).x, pntList->at(pntId1).y, pntList->at(pntId1).z};
 
@@ -2127,52 +2118,21 @@ double MassSpring3D::projTriangleDist(double x[3], int pntId1, int pntId2,
 
     double r3[3] = {pntList->at(pntId3).x, pntList->at(pntId3).y, pntList->at(pntId3).z};
 
-    // // Convert into new variables to be inline with the formula I have written down.
-    // // u = r2 - r1
-    // double u[3] = {r2[0] - r1[0], r2[1] - r1[1], r2[2] - r1[2]};
-
-    // // v = r3 - r1
-    // double v[3] = {r3[0] - r1[0], r3[1] - r1[1], r3[2] - r1[2]};
-
-    // // w = x - r1
-    // double w[3] = { x[0] - r1[0],  x[1] - r1[1],  x[2] - r1[2]};
-
-    // // n = u x v
-    // double n[3];
-    // simutils::cross_product_3D(u, v, n);
-
-    // // u x w
-    // double uCrossW[3];
-    // simutils::cross_product_3D(u, w, uCrossW);
-
-    // // w x v
-    // double wCrossV[3];
-    // simutils::cross_product_3D(w, v, wCrossV);
-
-    // // Compute the barycentric coordinates for the projected point.
-    // double gamma = simutils::ddot3d(uCrossW, n) / simutils::ddot3d(n, n);
-    // double beta  = simutils::ddot3d(wCrossV, n) / simutils::ddot3d(n, n);
-    // double alpha = 1.0 - gamma - beta;
-
-    // baryCoords[0] = alpha;
-    // baryCoords[1] = beta;
-    // baryCoords[2] = gamma;
-
     double alpha = baryCoords[0];
     double beta = baryCoords[1];
     double gamma = baryCoords[2];
 
-    if (false) {
-    // if (simutils::in_range(baryCoords[0], -EPS, 1.0+EPS)
-    //         && simutils::in_range(baryCoords[1], -EPS, 1.0+EPS)
-    //         && simutils::in_range(baryCoords[2], -EPS, 1.0+EPS)) {
+    // if (false) {
+    if (simutils::in_range(baryCoords[0], -EPS, 1.0+EPS)
+            && simutils::in_range(baryCoords[1], -EPS, 1.0+EPS)
+            && simutils::in_range(baryCoords[2], -EPS, 1.0+EPS)) {
+
         // Compute the coordinates of the projected point
         double projPnt[3] = {alpha*r1[0] + beta*r2[0] + gamma*r3[0],
                              alpha*r1[1] + beta*r2[1] + gamma*r3[1],
                              alpha*r1[2] + beta*r2[2] + gamma*r3[2]};
         return simutils::eucDiff3D(x, projPnt);
     } else {
-        // cout << "not in range!" << endl;
         double t1, t2, t3;
         double d1 = distToEdge(x, pntId1, pntId2, t1);
         double d2 = distToEdge(x, pntId2, pntId3, t2);
@@ -2385,6 +2345,86 @@ bool MassSpring3D::findNearestGridNormalInterface(Pool3D &pool, int pntId, int n
             obj = pool.objAtIndex(io, jo, ko+1);
             intFound = pool.isInterface(obj);
         }
+
+        // Top corners
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko+1, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo+1, ko+1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko+1, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo+1, ko+1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko+1, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo-1, ko+1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko+1, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo-1, ko+1);
+            intFound = pool.isInterface(obj);
+        }
+
+        // Mid corners
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo+1, ko);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo+1, ko);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo-1, ko);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo-1, ko);
+            intFound = pool.isInterface(obj);
+        }
+
+        // Mid corners
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko-1, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo+1, ko-1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo+1, 0, ny-1)
+                            && simutils::int_in_range(ko-1, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo+1, ko-1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io-1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko-1, 0, nz-1)) {
+            obj = pool.objAtIndex(io-1, jo-1, ko-1);
+            intFound = pool.isInterface(obj);
+        }
+        if (!intFound && simutils::int_in_range(io+1, 0, nx-1)
+                            && simutils::int_in_range(jo-1, 0, ny-1)
+                            && simutils::int_in_range(ko-1, 0, nz-1)) {
+            obj = pool.objAtIndex(io+1, jo-1, ko-1);
+            intFound = pool.isInterface(obj);
+        }
+
+
 
         if (!intFound) {
             count++;
