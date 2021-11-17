@@ -307,7 +307,6 @@ void PressureSolver3D::setUpPressureRHS(double dt, double ***FU, double ***FV,
                 }
             }
         }
-        // assert(false);
 
         for (j = 0; j < this->ny+2; j++) {
             for (i = 0; i < this->nx+2; i++) {

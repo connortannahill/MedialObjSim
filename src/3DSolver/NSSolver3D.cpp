@@ -128,13 +128,10 @@ void NSSolver3D::updateF(Pool3D *pool) {
 
                     }
                     this->FW[zi][yi][xi] = this->w[zi][yi][xi] + this->dt*( (1.0/Re)*laplacian - convective + gz);
-                    // cout << "making FW = " << this->FW[zi][yi][xi] << endl;
-                    // cout << "w = " << this->w[zi][yi][xi] << endl;
                 }
             }
         }
     }
-    // assert(false);
 
     // Set the boundary values for F required in the pressure solver.
     // so that it can be most consistent. TODO: find a way more efficient way of

@@ -422,12 +422,12 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     double barVec[3];
     for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
         // Vector connecting this edge.
-        barVec[0] = pntList->at(edge->pntIds[1]).x - pntList->at(edge->pntIds[0]).x;
-        barVec[1] = pntList->at(edge->pntIds[1]).y - pntList->at(edge->pntIds[0]).y;
-        barVec[2] = pntList->at(edge->pntIds[1]).z - pntList->at(edge->pntIds[0]).z;
+        // barVec[0] = pntList->at(edge->pntIds[1]).x - pntList->at(edge->pntIds[0]).x;
+        // barVec[1] = pntList->at(edge->pntIds[1]).y - pntList->at(edge->pntIds[0]).y;
+        // barVec[2] = pntList->at(edge->pntIds[1]).z - pntList->at(edge->pntIds[0]).z;
 
         // Set this bars resting length to this value
-        edge->l0 = simutils::eucNorm3D(barVec);
+        edge->l0 = pointDiff(pntList->at(edge->pntIds[0]), pntList->at(edge->pntIds[1]));
     }
 
     // Set the derivatives of the locations to what they should be for the uniform initial speed
@@ -691,7 +691,7 @@ ParamIter* MassSpring3D::setUpParams() {
                         // = 1 use (LU)^{-1^0 for rhat
 
     // (params)->iaccel = -1; // = 0 cgstab
-    (params)->iaccel = 0; // = 0 cgstab
+    (params)->iaccel = -1; // = 0 cgstab
                         // = 1 orthomin
                         // = -1 conj gradiend (SPD only!)
 
@@ -854,7 +854,6 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         nodeForces[2] += forces[2];
     }
 
-    // double f_i[3] = {(*fBackup)(3*nodeId), (*fBackup)(3*nodeId+1), (*fBackup)(3*nodeId+2)};
     double v_i[3] = {(*qt)(3*nodeId), (*qt)(3*nodeId+1), (*qt)(3*nodeId+2)};
 
     // Calculate the force to cancel the velocities
@@ -1078,23 +1077,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             s3[2] = 0.0;
         }
 
-        // Compute the centroid of this triangle
-        // computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
-
-        // // Find the barycentric coordinates of the centroid.
-        // projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
-
-        // // Extract the coordinates
-        // alph = baryCoords[0];
-        // beta = baryCoords[1];
-        // gamm = baryCoords[2];
-
-        // Update the stresses in the MSS
-        // cout << "dA = " << dA << endl;
-        // double s_x = (alph*s1[0] + beta*s2[0] + gamm*s3[0])*dA;
-        // double s_y = (alph*s1[1] + beta*s2[1] + gamm*s3[1])*dA;
-        // double s_z = (alph*s1[2] + beta*s2[2] + gamm*s3[2])*dA;
-
+        // stress at the centroid
         double s_x = (s1[0] + s2[0] + s3[0])*(dA/3.0);
         double s_y = (s1[1] + s2[1] + s3[1])*(dA/3.0);
         double s_z = (s1[2] + s2[2] + s3[2])*(dA/3.0);
@@ -1148,27 +1131,11 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         // The area of the triangle is 0.5*||a x b||_2
         dA = simutils::eucNorm3D(aXB)/2.0;
 
-        // Compute the centroid of this triangle
-        // computeCentroid(face->pntIds[0], face->pntIds[1], face->pntIds[2], centroid);
-
-        // Find the barycentric coordinates for this triangle.
-        // projTriangleDist(centroid, face->pntIds[0], face->pntIds[1], face->pntIds[2], baryCoords);
-
-        // // Extract the coordinates
-        // alph = baryCoords[0];
-        // beta = baryCoords[1];
-        // gamm = baryCoords[2];
-
         // Interpolate at the centroid
         fNet[0] += (mPnt1.sigU + mPnt2.sigU + mPnt3.sigU)*(dA/3.0);
         fNet[1] += (mPnt1.sigV + mPnt2.sigV + mPnt3.sigV)*(dA/3.0);
         fNet[2] += (mPnt1.sigW + mPnt2.sigW + mPnt3.sigW)*(dA/3.0);
     }
-
-    // cout << "Net force detected in compute Forces:" << endl;
-    // cout << "U = " << fNet[0] << " V = " << fNet[1] << " W " << fNet[2] << endl;
-    // cout << "collisionStiffness = " << collisionStiffness << endl;
-    // assert(false);
 }
 
 /**
@@ -1188,9 +1155,12 @@ void MassSpring3D::calcLocalElasticForce(edge3D edge, int pntId1, massPoint3D pn
     (*f)(3*pntId1+1) += force[1];
     (*f)(3*pntId1+2) += force[2];
 
+    // cout << "f1 = (" << (*f)(3*pntId1) << ", " << (*f)(3*pntId1+1) << ", " << (*f)(3*pntId1+2) << ")" << endl;
+
     (*f)(3*pntId2)   += force[3];
     (*f)(3*pntId2+1) += force[4];
     (*f)(3*pntId2+2) += force[5];
+    // cout << "f2 = (" << (*f)(3*pntId2) << ", " << (*f)(3*pntId2+1) << ", " << (*f)(3*pntId2+2) << ")" << endl;
 }
 
 /**
@@ -1384,115 +1354,254 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
     double coeff2 = E*((diffNorm - edge.l0)/(diffNorm));
     int colIndex;
 
+    double prod[3][3];
+
+    // Note, here using row-column indexing
+    prod[0][0] = diff[0]*diff[0];
+    prod[0][1] = diff[0]*diff[1];
+    prod[0][2] = diff[0]*diff[2];
+
+    prod[1][0] = diff[1]*diff[0];
+    prod[1][1] = diff[1]*diff[1];
+    prod[1][2] = diff[1]*diff[2];
+
+    prod[2][0] = diff[2]*diff[0];
+    prod[2][1] = diff[2]*diff[1];
+    prod[2][2] = diff[2]*diff[2];
+
     // r = i(0), c = i(0) & r = i(0) c = i(1)
     for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[0] + coeff2;
+            matrix->aValue(i) += coeff1*prod[0][0] + coeff2;
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[1];
+            matrix->aValue(i) += coeff1*prod[0][1];
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[2];
+            matrix->aValue(i) += coeff1*prod[0][2];
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*-diff[0]*diff[0] - coeff2;
+            matrix->aValue(i) += coeff1*-prod[0][0] - coeff2;
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*-diff[0]*diff[1];
-        } else if (colIndex == rOff2+2) {
-            matrix->aValue(i) += coeff1*-diff[0]*diff[2];
+            matrix->aValue(i) += coeff1*-prod[0][1];
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*-prod[0][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff1+1); i < matrix->rowEndPlusOne(rOff1+1); i++) {
+    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[0];
+            matrix->aValue(i) += coeff1*prod[1][0];
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[1] + coeff2;
+            matrix->aValue(i) += coeff1*prod[1][1] + coeff2;
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[2];
+            matrix->aValue(i) += coeff1*prod[1][2];
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*-diff[1]*diff[0];
+            matrix->aValue(i) += coeff1*-prod[1][0];
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*-diff[1]*diff[1] - coeff2;
-        } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*-diff[1]*diff[2];
+            matrix->aValue(i) += coeff1*-prod[1][1] - coeff2;
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*-prod[1][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff1+2); i < matrix->rowEndPlusOne(rOff1+2); i++) {
+    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[0];
+            matrix->aValue(i) += coeff1*prod[2][0];
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[1];
+            matrix->aValue(i) += coeff1*prod[2][1];
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[2] + coeff2;
+            matrix->aValue(i) += coeff1*prod[2][2] + coeff2;
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*-diff[2]*diff[0];
+            matrix->aValue(i) += coeff1*-prod[2][0];
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*-diff[2]*diff[1];
-        } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*-diff[2]*diff[2] - coeff2;;
+            matrix->aValue(i) += coeff1*-prod[2][1];
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*-prod[2][2] - coeff2;
         }
     }
 
-    // r = i(1), c = i(0) & r = i(1), c = i(1)
-    for (int i = matrix->rowBegin(rOff2); i < matrix->rowEndPlusOne(rOff2); i++) {
+    //break
+    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[0]*-diff[0] - coeff2;
+            matrix->aValue(i) += coeff1*-prod[0][0] - coeff2;
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[0]*-diff[1];
+            matrix->aValue(i) += coeff1*-prod[0][1];
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[0]*-diff[2];
+            matrix->aValue(i) += coeff1*-prod[0][2];
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[0] + coeff2;
+            matrix->aValue(i) += coeff1*prod[0][0] + coeff2;
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[1];
-        } else if (colIndex == rOff2+2) {
-            matrix->aValue(i) += coeff1*diff[0]*diff[2];
+            matrix->aValue(i) += coeff1*prod[0][1];
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*prod[0][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff2+1); i < matrix->rowEndPlusOne(rOff2+1); i++) {
+    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[1]*-diff[0];
+            matrix->aValue(i) += coeff1*-prod[1][0];
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[1]*-diff[1] - coeff2;
+            matrix->aValue(i) += coeff1*-prod[1][1] - coeff2;
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[1]*-diff[2];
+            matrix->aValue(i) += coeff1*-prod[1][2];
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[0];
+            matrix->aValue(i) += coeff1*prod[1][0];
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[1] + coeff2;
-        } else if (colIndex == rOff2+2) {
-            matrix->aValue(i) += coeff1*diff[1]*diff[2];
+            matrix->aValue(i) += coeff1*prod[1][1] + coeff2;
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*prod[1][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff2+2); i < matrix->rowEndPlusOne(rOff2+2); i++) {
+    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
-            matrix->aValue(i) += coeff1*diff[2]*-diff[0];
+            matrix->aValue(i) += coeff1*-prod[2][0];
         } else if (colIndex == rOff1+1) {
-            matrix->aValue(i) += coeff1*diff[2]*-diff[1];
+            matrix->aValue(i) += coeff1*-prod[2][1];
         } else if (colIndex == rOff1+2) {
-            matrix->aValue(i) += coeff1*diff[2]*-diff[2] - coeff2;
+            matrix->aValue(i) += coeff1*-prod[2][2] - coeff2;
         } else if (colIndex == rOff2) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[0];
+            matrix->aValue(i) += coeff1*prod[2][0];
         } else if (colIndex == rOff2+1) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[1];
-        } else if (colIndex == rOff2+2) {
-            matrix->aValue(i) += coeff1*diff[2]*diff[2] + coeff2;
+            matrix->aValue(i) += coeff1*prod[2][1];
+        } else if (colIndex == rOff2+3) {
+            matrix->aValue(i) += coeff1*prod[2][2] + coeff2;
         }
     }
+
+   
+
+    // assert(pntId1 < pntId2);
+
+    // double diff[3] = {pnt2.x - pnt1.x, pnt2.y - pnt1.y, pnt2.z - pnt1.z};
+    // double diffNorm = simutils::eucNorm3D(diff);
+
+    // int rOff1 = 3*pntId1;
+    // int rOff2 = 3*pntId2;
+
+    // double coeff1 = E*edge.l0/(simutils::cube(diffNorm));
+    // double coeff2 = E*((diffNorm - edge.l0)/(diffNorm));
+    // int colIndex;
+
+    // // r = i(0), c = i(0) & r = i(0) c = i(1)
+    // for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[0] + coeff2;
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[1];
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[2];
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*-diff[0]*diff[0] - coeff2;
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*-diff[0]*diff[1];
+    //     } else if (colIndex == rOff2+2) {
+    //         matrix->aValue(i) += coeff1*-diff[0]*diff[2];
+    //     }
+    // }
+
+    // for (int i = matrix->rowBegin(rOff1+1); i < matrix->rowEndPlusOne(rOff1+1); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[0];
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[1] + coeff2;
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[2];
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*-diff[1]*diff[0];
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*-diff[1]*diff[1] - coeff2;
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*-diff[1]*diff[2];
+    //     }
+    // }
+
+    // for (int i = matrix->rowBegin(rOff1+2); i < matrix->rowEndPlusOne(rOff1+2); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[0];
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[1];
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[2] + coeff2;
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*-diff[2]*diff[0];
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*-diff[2]*diff[1];
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*-diff[2]*diff[2] - coeff2;;
+    //     }
+    // }
+
+    // // r = i(1), c = i(0) & r = i(1), c = i(1)
+    // for (int i = matrix->rowBegin(rOff2); i < matrix->rowEndPlusOne(rOff2); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[0]*-diff[0] - coeff2;
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[0]*-diff[1];
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[0]*-diff[2];
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[0] + coeff2;
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[1];
+    //     } else if (colIndex == rOff2+2) {
+    //         matrix->aValue(i) += coeff1*diff[0]*diff[2];
+    //     }
+    // }
+
+    // for (int i = matrix->rowBegin(rOff2+1); i < matrix->rowEndPlusOne(rOff2+1); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[1]*-diff[0];
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[1]*-diff[1] - coeff2;
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[1]*-diff[2];
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[0];
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[1] + coeff2;
+    //     } else if (colIndex == rOff2+2) {
+    //         matrix->aValue(i) += coeff1*diff[1]*diff[2];
+    //     }
+    // }
+
+    // for (int i = matrix->rowBegin(rOff2+2); i < matrix->rowEndPlusOne(rOff2+2); i++) {
+    //     colIndex = matrix->getColIndex(i);
+
+    //     if (colIndex == rOff1) {
+    //         matrix->aValue(i) += coeff1*diff[2]*-diff[0];
+    //     } else if (colIndex == rOff1+1) {
+    //         matrix->aValue(i) += coeff1*diff[2]*-diff[1];
+    //     } else if (colIndex == rOff1+2) {
+    //         matrix->aValue(i) += coeff1*diff[2]*-diff[2] - coeff2;
+    //     } else if (colIndex == rOff2) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[0];
+    //     } else if (colIndex == rOff2+1) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[1];
+    //     } else if (colIndex == rOff2+2) {
+    //         matrix->aValue(i) += coeff1*diff[2]*diff[2] + coeff2;
+    //     }
+    // }
 }
 
 /**
@@ -1547,27 +1656,45 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         }
     }
 
+    // cout << "forces = " << *f << endl;
+    // assert(false);
+
+    // f->setZero();
+
     /* Setup the remainder of the matrix by negating K everywhere, and adding I along the main diagonal */
-    double coeff = simutils::square(dt)/pntList->at(0).mass;
+    double coeff = simutils::square(dt)/pntMass;
     int colIndex;
 
+    cout << "Printing non-zero matrix rows" << endl;
     for (int r = 0; r < 3*pntList->size(); r++) {
         for (int i = matrix->rowBegin(r); i < matrix->rowEndPlusOne(r); i++) {
             colIndex = matrix->getColIndex(i);
 
             if (colIndex == r) {
                 matrix->aValue(i) = 1 + coeff*matrix->aValue(i);
+                // cout << "Main diag: ";
             } else {
                 matrix->aValue(i) = coeff*matrix->aValue(i);
             }
+
+            // cout << matrix->aValue(i) << endl;
         }
     }
+    // assert(false);
 
     /* Setup the RHS vector (use Euler step as initial guess) */
     for (int i = 0; i < 3*pntList->size(); i++) {
-        matrix->bValue(i) = (*qt)[i] + (dt/(pntList->at(0).mass))*(*f)[i] + 1e-16;
+        matrix->bValue(i) = (*qt)[i] + (dt/(pntMass))*((*f)[i]) + 1e-16;
         pcgRHS[i] = matrix->bValue(i);
     }
+
+    // cout << "RHS = " << endl;
+    // for (int i = 0; i < 3*pntList->size(); i++) {
+    //     cout << pcgRHS[i] << endl;
+    // }
+    // assert(false);
+
+    // cout << "looking at the l0" << endl;
 
     /* Solve the linear system */
     try {
@@ -1586,6 +1713,7 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         matrix->solve(*this->params, pcgRHS, niter);
 
         cout << "solved MSS in " << niter << " iterations" << endl;
+        // assert(false);
 
         if (niter < 0) {
             cout << "assert line 1518" << endl;
@@ -1600,6 +1728,30 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         cout << "Threw exception 2 in solve!" << endl;
         exit(1);
     }
+
+    // if (!initMode) {
+    //     cout << "qt in setting up the linear implicit solve" << endl;
+    //     for (int i = 0; i < 3*pntList->size(); i++) {
+    //         cout << "qt prev = " << (*qt)[i] << endl;
+    //         cout << "qt after = " << pcgRHS[i] << endl;
+    //     }
+    //     // assert(false);
+    // }
+
+    // cout << "Looking at edge length " << endl;
+    // for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
+    //     // Extract the points connecting the current spring
+    //     pntId1 = edge->pntIds[0];
+    //     pntId2 = edge->pntIds[1];
+
+    //     pnt1 = pntList->at(pntId1);
+    //     pnt2 = pntList->at(pntId2);
+
+    //     cout << "Current diff = " << pointDiff(pnt1, pnt2) << endl;
+    //     cout << "edge resting length = " << edge->l0 << endl;
+
+    // }
+
 
     // Copy the output of the linear solve to the derivative vector
     // simutils::copyVals(3*pntList->size(), pcgRHS, qt->data());
@@ -1761,11 +1913,13 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
         (*f)[3*i+2] += colNet[2];
     }
 
+    f->setZero();
+
     // Loop through all of the edges, using the potential energy to compute the displacement of the
     // nodes.
     if (updateMode == 0) {
-        // eulerSolve(dt, elementMode, initMode);
-        verletSolve(dt, elementMode, initMode);
+        eulerSolve(dt, elementMode, initMode);
+        // verletSolve(dt, elementMode, initMode);
     } else if (updateMode == 1) {
         linearImplicitSolve(dt, elementMode, initMode);
     } else if (updateMode == 2) {
@@ -2247,7 +2401,7 @@ bool MassSpring3D::findNearestGridNormalInterface(Pool3D &pool, int pntId, int n
     // Use a trick to compute the block normal vector
 
     // Compute projection onto x, y plane
-    double s[3] = {n[0], n[1], n[2] - n[2]};
+    double s[3] = {n[0], n[1], n[2]};
     double r = simutils::eucNorm3D(s);
 
     // x
@@ -2277,6 +2431,7 @@ bool MassSpring3D::findNearestGridNormalInterface(Pool3D &pool, int pntId, int n
     } else {
         nb[2] = -1;
     }
+    // nb[2] = round(n[2]);
 
 
     // Search along this direction until the interface point is found

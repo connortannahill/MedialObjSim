@@ -264,11 +264,11 @@ def full_scale_test():
         min_idx = diffs.index(min_edge)
 
         if min_idx == 0:
-            nTups.append((n, int((diffs[1]/min_edge)*n))) #, int((diffs[2]/min_edge)*n)))
+            nTups.append((n, int((diffs[1]/min_edge)*n)), int((diffs[2]/min_edge)*n))
         elif min_idx == 1:
-            nTups.append((int((diffs[0]/min_edge)*n), n))#, int((diffs[2]/min_edge)*n)))
-        # else:
-        #     nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
+            nTups.append((int((diffs[0]/min_edge)*n), n), int((diffs[2]/min_edge)*n))
+        else:
+            nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
 
     objParamList = [s[1:] for s in (getObjTemplate2D().split() if dim == 2 else getObjTemplate3D().split()) if s[0] == '$' and s[1] !='r']
 
@@ -282,7 +282,6 @@ def full_scale_test():
         hz = 1
         if dim == 3:
             hz = abs(float(in_dict['zb']) - float(in_dict['za']))/float(n[2])
-
 
         epsMin = 0
         r = 0

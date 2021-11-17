@@ -158,28 +158,29 @@ elif mode == 1:
     # Read in the pool data
     out = np.genfromtxt(vel_fname, delimiter=',')
 
-    x_vel = out[:,0]
-    y_vel = out[:,1]
-    z_vel = out[:,2]
-    u = out[:,3]
-    v = out[:,4]
-    w = out[:,5]
+    x_vel = out[:,0][::10]
+    y_vel = out[:,1][::10]
+    z_vel = out[:,2][::10]
+    u = out[:,3][::10]
+    v = out[:,4][::10]
+    w = out[:,5][::10]
 
-    velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
+    # velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
+    velData = []
 
     mssList = []
 
     print(nMSS)
     
-    for i in range(nMSS):
-        f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
+    # for i in range(nMSS):
+    #     f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
 
-        out = np.genfromtxt(f_name_t, delimiter=',')
-        x_mss = out[:,0]
-        y_mss = out[:,1]
-        z_mss = out[:,2]
+    #     out = np.genfromtxt(f_name_t, delimiter=',')
+    #     x_mss = out[:,0]
+    #     y_mss = out[:,1]
+    #     z_mss = out[:,2]
 
-        mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
+    #     mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
 
         # Now append the object velocities
 
