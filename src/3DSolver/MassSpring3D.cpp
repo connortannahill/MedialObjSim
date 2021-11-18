@@ -947,6 +947,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
     double s1[3];
     double s2[3];
     double s3[3];
+    int numCols = 0;
     for (auto face = faceList->begin(); face != faceList->end(); ++face) {
         // Extract the points from this triangle
         id1 = face->pntIds[0];
@@ -991,6 +992,9 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
                 // There is a collision on this node, compute the collision stress
                 bool colApplied = computeCollisionStress(id1, s1, dA);
 
+                if (colApplied)
+                    numCols++;
+
                 if (!colApplied) {
                     s1[0] = stress[0][ng+nk][ng+nj][ng+ni];
                     s1[1] = stress[1][ng+nk][ng+nj][ng+ni];
@@ -1025,6 +1029,8 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             if (nodeCols->at(id2).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 bool colApplied = computeCollisionStress(id2, s2, dA);
+                if (colApplied)
+                    numCols++;
 
                 if (!colApplied) {
                     s2[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -1058,6 +1064,9 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
             if (nodeCols->at(id3).size() > 0) {
                 // There is a collision on this node, compute the collision stress
                 bool colApplied = computeCollisionStress(id3, s3, dA);
+
+                if (colApplied)
+                    numCols++;
 
                 if (!colApplied) {
                     s3[0] = stress[0][ng+nk][ng+nj][ng+ni];
@@ -1094,6 +1103,8 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3+1] +=  s_y;
         (*f)[3*id3+2] +=  s_z;
     }
+
+    cout << "number of registered collisions for MSS " << structNum << " is " << numCols << endl;
 
     for (int id = 0; id < pntList->size(); id++) {
         pntList->at(id).sigU = (*f)[3*id];
@@ -1383,12 +1394,15 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*-prod[0][0] - coeff2;
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*-prod[0][1];
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*-prod[0][2];
         }
+        // } else {
+        //     assert(false);
+        // }
     }
 
-    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    for (int i = matrix->rowBegin(rOff1+1); i < matrix->rowEndPlusOne(rOff1+1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
@@ -1401,12 +1415,12 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*-prod[1][0];
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*-prod[1][1] - coeff2;
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*-prod[1][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    for (int i = matrix->rowBegin(rOff1+2); i < matrix->rowEndPlusOne(rOff1+2); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
@@ -1419,13 +1433,13 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*-prod[2][0];
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*-prod[2][1];
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*-prod[2][2] - coeff2;
         }
     }
 
     //break
-    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    for (int i = matrix->rowBegin(rOff2); i < matrix->rowEndPlusOne(rOff2); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
@@ -1438,12 +1452,12 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*prod[0][0] + coeff2;
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*prod[0][1];
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*prod[0][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    for (int i = matrix->rowBegin(rOff2+1); i < matrix->rowEndPlusOne(rOff2+1); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
@@ -1456,12 +1470,12 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*prod[1][0];
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*prod[1][1] + coeff2;
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*prod[1][2];
         }
     }
 
-    for (int i = matrix->rowBegin(rOff1); i < matrix->rowEndPlusOne(rOff1); i++) {
+    for (int i = matrix->rowBegin(rOff2+2); i < matrix->rowEndPlusOne(rOff2+2); i++) {
         colIndex = matrix->getColIndex(i);
 
         if (colIndex == rOff1) {
@@ -1474,7 +1488,7 @@ void MassSpring3D::calcLocalElasticHessian(double dt, edge3D edge, int pntId1,
             matrix->aValue(i) += coeff1*prod[2][0];
         } else if (colIndex == rOff2+1) {
             matrix->aValue(i) += coeff1*prod[2][1];
-        } else if (colIndex == rOff2+3) {
+        } else if (colIndex == rOff2+2) {
             matrix->aValue(i) += coeff1*prod[2][2] + coeff2;
         }
     }
@@ -1665,7 +1679,7 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
     double coeff = simutils::square(dt)/pntMass;
     int colIndex;
 
-    cout << "Printing non-zero matrix rows" << endl;
+    // cout << "Printing non-zero matrix rows" << endl;
     for (int r = 0; r < 3*pntList->size(); r++) {
         for (int i = matrix->rowBegin(r); i < matrix->rowEndPlusOne(r); i++) {
             colIndex = matrix->getColIndex(i);
@@ -1712,7 +1726,7 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         // Solve the linear system. Solution is stored in provided vector
         matrix->solve(*this->params, pcgRHS, niter);
 
-        cout << "solved MSS in " << niter << " iterations" << endl;
+        // cout << "solved MSS in " << niter << " iterations" << endl;
         // assert(false);
 
         if (niter < 0) {

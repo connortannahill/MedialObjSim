@@ -117,7 +117,7 @@ void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w
         for (int i = 1; i <= nx; i++) {
             w[0][j][i] = w[1][j][i];
 
-            w[nz][j][i] = -1.0;
+            w[nz][j][i] = -0.1;
         }
     }
 }
@@ -351,7 +351,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.75;
+    double safetyFactor = 0.25;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();

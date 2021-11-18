@@ -172,15 +172,15 @@ elif mode == 1:
 
     print(nMSS)
     
-    # for i in range(nMSS):
-    #     f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
+    for i in range(nMSS):
+        f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
 
-    #     out = np.genfromtxt(f_name_t, delimiter=',')
-    #     x_mss = out[:,0]
-    #     y_mss = out[:,1]
-    #     z_mss = out[:,2]
+        out = np.genfromtxt(f_name_t, delimiter=',')
+        x_mss = out[:,0]
+        y_mss = out[:,1]
+        z_mss = out[:,2]
 
-    #     mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
+        mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
 
         # Now append the object velocities
 

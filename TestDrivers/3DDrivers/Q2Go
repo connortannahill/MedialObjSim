@@ -12,17 +12,17 @@ Q2Go
 160
 0
 0
--1
+-0.1
 0
 0
--0.0
+0
 1000
 1
 downDirFlowBC
 100
 
 
-26
+2
 
 coneShapeFun
 2
@@ -44,7 +44,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -53,8 +53,8 @@ eta 0
 a 0
 c 0
 deg 330
-cx 2.15
-cy 2.15
+cx 5
+cy 5
 cz 7.15
 .
 
@@ -62,7 +62,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -80,7 +80,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -98,7 +98,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -116,7 +116,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -134,7 +134,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -152,7 +152,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -170,7 +170,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -188,7 +188,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -206,7 +206,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -224,7 +224,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -242,7 +242,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -260,7 +260,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -278,7 +278,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -296,7 +296,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -314,7 +314,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -332,7 +332,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -350,7 +350,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -368,7 +368,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -386,7 +386,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -404,7 +404,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -422,7 +422,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -440,7 +440,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -458,7 +458,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4
@@ -476,7 +476,7 @@ coneShapeFun
 1
 0
 0
--1
+-0.1
 mass 1
 density 1
 r 0.4

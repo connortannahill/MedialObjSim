@@ -1569,7 +1569,7 @@ void Pool3D::embedShape(SolidObject3D &struc, int structNum) {
         this->tracers[structNum].isDeformable = struc.getObjType() == SolidObject3D::ObjectType::DEFORMABLE;
         this->isDeformable = this->isDeformable || struc.getObjType() == SolidObject3D::ObjectType::DEFORMABLE;
         
-        cout << "tracer for the first (x, y, z) = (" << this->tracers[structNum].x << ", " << this->tracers[structNum].y << ", " << this->tracers[structNum].z << ")" << endl;
+        // cout << "tracer for the first (x, y, z) = (" << this->tracers[structNum].x << ", " << this->tracers[structNum].y << ", " << this->tracers[structNum].z << ")" << endl;
     }
 
     if (structNum == 0) {
@@ -2730,8 +2730,8 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
-    // if (reinitialize && (nSteps+1) % 10 == 0) {
-    if (reinitialize) {
+    if (reinitialize && (nSteps+1) % 10 == 0) {
+    // if (reinitialize) {
         simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }
 

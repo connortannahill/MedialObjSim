@@ -262,7 +262,7 @@ int main(int argc, char **argv) {
         cout << "objFunc " << objectFunc << endl;
         cout << "objType " << objectType << endl;
         cout << "u0 " << u0 << endl;
-        double velAdd = (2*((double) rand() / (RAND_MAX))-1)/10.0;
+        double velAdd = 0.0; //(2*((double) rand() / (RAND_MAX))-1)/10.0;
         cout << "v0 " << (v0 + velAdd) << endl;
         
         SolidParams params;
