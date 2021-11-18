@@ -610,6 +610,8 @@ void Pool3D::fastMarch(bool nExtrap, int mode) {
                     if (nExtrap) {
                         interpFaceVel(domainMembership(i, j, k), pnt, vTemp);
 
+                        // cout << "In building FM V = " << vTemp[0] << ", " << vTemp[1] << ", " << vTemp[2] << endl;
+
                         this->poolU[mo+k][mo+j][mo+i] = vTemp[0];
                         this->poolV[mo+k][mo+j][mo+i] = vTemp[1];
                         this->poolW[mo+k][mo+j][mo+i] = vTemp[2];
@@ -1470,6 +1472,7 @@ void Pool3D::updateTracer(int structNum, double dt, int mode) {
 
         // Update the position of the tracer partical
         cout << "X = [" << tracerX << " " << tracerY << " " << tracerZ << "]" << endl;
+        cout << "U = [" << uCur << " " << vCur << " " << wCur << "]" << endl;
         if (solids->at(structNum).objType != SolidObject3D::ObjectType::STATIC) {
             tracers[structNum].x += dt*uCur;
             tracers[structNum].y += dt*vCur;
@@ -2723,7 +2726,9 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
     // Update the velocity field
     // enumeratePool();
+    cout << "Getting domain array" << endl;
     setUpDomainArray();
+    cout << "FINISHED Getting domain array" << endl;
 
     cout << "updating pool vels" << endl;
     this->updatePoolVelocities(dt, u, v, w, p, ng);
@@ -2772,10 +2777,10 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
 
 
     // If significant drift from the interface detected, correct.
-    if (shouldRefitSDF(min(hx, min(hy, hz)))) {
-        refitToSolids(ng);
-    }
-    // cout << "finished last section" << endl;
+    // if (shouldRefitSDF(min(hx, min(hy, hz)))) {
+    //     refitToSolids(ng);
+    // }
+    cout << "finished last section" << endl;
     nSteps++;
 }
 
@@ -2836,7 +2841,7 @@ double Pool3D::buildSqeezeField() {
  * as a signed distance function.
 */
 bool Pool3D::shouldRefitSDF(double tol) {
-    // assert(false);
+    assert(false);
     // For each MSS node, Find the value of the level set function at this point.
     // If it is too far from the level set interface, we require squeeze.
     bool squeeze = false;

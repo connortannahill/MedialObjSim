@@ -132,7 +132,7 @@ void SimParams3D::setRepulseDist(double dist) {
 }
 
 void SimParams3D::setCollisionStiffness(double stiffness) {
-    this->collisionDist = stiffness;
+    this->collisionStiffness = stiffness;
     this->collisionStiffnessSet = true;
 }
 
