@@ -1,0 +1,98 @@
+A grid-based scaling test for full scaling performance
+Q3FullScale80
+
+
+0
+10
+0
+10
+0
+10
+80
+80
+80
+0.1
+0
+0
+0
+0
+0
+1000
+1
+directionalFlowBC
+100
+
+
+4
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 1.0825317547305482
+E 40
+eta 0
+a 0.3
+c 0.105
+deg 288
+cx 3.7063293868263707
+cy 3.7063293868263707
+cz 3.7063293868263707
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 1.0825317547305482
+E 40
+eta 0
+a 0.3
+c 0.105
+deg 301
+cx 3.7063293868263707
+cy 3.7063293868263707
+cz 7.49519052838329
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 1.0825317547305482
+E 40
+eta 0
+a 0.3
+c 0.105
+deg 336
+cx 3.7063293868263707
+cy 7.49519052838329
+cz 3.7063293868263707
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 1.0825317547305482
+E 40
+eta 0
+a 0.3
+c 0.105
+deg 330
+cx 3.7063293868263707
+cy 7.49519052838329
+cz 7.49519052838329
+.
