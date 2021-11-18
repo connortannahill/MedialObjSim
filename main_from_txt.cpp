@@ -290,7 +290,7 @@ int main(int argc, char **argv) {
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
     simParams.setCollisionStiffness(20);
-    simParams.setCollisionDist(3.0*h);
+    simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);

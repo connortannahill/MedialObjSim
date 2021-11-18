@@ -264,9 +264,9 @@ def full_scale_test():
         min_idx = diffs.index(min_edge)
 
         if min_idx == 0:
-            nTups.append((n, int((diffs[1]/min_edge)*n)), int((diffs[2]/min_edge)*n))
+            nTups.append((n, int((diffs[1]/min_edge)*n), int((diffs[2]/min_edge)*n)))
         elif min_idx == 1:
-            nTups.append((int((diffs[0]/min_edge)*n), n), int((diffs[2]/min_edge)*n))
+            nTups.append((int((diffs[0]/min_edge)*n), n, int((diffs[2]/min_edge)*n)))
         else:
             nTups.append((int((diffs[0]/min_edge)*n), int((diffs[1]/min_edge)*n), n))
 
