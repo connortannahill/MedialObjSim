@@ -323,7 +323,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
-    simParams.setCollisionStiffness(10.0);
+    simParams.setCollisionStiffness(0.1);
     double collisionDist = 3*h;
     simParams.setCollisionDist(collisionDist);
     cout << "collision dist in simulation is " << collisionDist << endl;
@@ -360,7 +360,7 @@ int main(int argc, char **argv) {
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
-            if (nsteps % 10 == 0) {
+            if (nsteps % 1 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }
