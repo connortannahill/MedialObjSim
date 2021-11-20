@@ -59,7 +59,7 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
 
 double initFun(double x, double y, double z) {
     if (x <= 0.15) {
-        return 0.5-5.33333*x+17.7778*pow(x, 2);
+        return 0.25 - 2.83333*x + 12.2222*pow(x, 2);
     } else {
         return 0.1;
     }
@@ -76,13 +76,13 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
         int wg = nx + 2*nGhost; // "width"
         int hg = ny + 2*nGhost; // "height"
 
-        // simutils::set_constant(hg, wg-1, cons_u, u);
-        int i, j;
-        for (i = 0; i < hg; i++) {
-            for (j = 0; j < wg-1; j++) {
-                u[i][j] = initFun(x[j], 0, 0);
-            }
-        }
+        simutils::set_constant(hg, wg-1, cons_u, u);
+        // int i, j;
+        // for (i = 0; i < hg; i++) {
+        //     for (j = 0; j < wg-1; j++) {
+        //         u[i][j] = initFun(x[j], 0, 0);
+        //     }
+        // }
         simutils::set_constant(hg-1, wg, cons_v, v);
     };
 }
@@ -99,7 +99,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
-        u[j][0] = 0.5;
+        u[j][0] = 0.25;
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
@@ -289,7 +289,7 @@ int main(int argc, char **argv) {
 
         double cx;
         params.getParam("cx", cx);
-        u0 = initFun(cx, 0, 0);
+        // u0 = initFun(cx, 0, 0);
         // u0 = 0;
         cout << "u0 " << u0 << endl;
         double velAdd = 0.0; //(2*((double) rand() / (RAND_MAX))-1)/10.0;
@@ -311,7 +311,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(10);
+    simParams.setCollisionStiffness(5);
     simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;

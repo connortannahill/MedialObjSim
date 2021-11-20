@@ -490,10 +490,10 @@ void Pool3D::fastMarchSetNVal(int i, int j, int k, bool nExtrap, int mode) {
     // phiReInit[mo+k][mo+j][mo+i] = phi[mo+k][mo+j][mo+i];
 
     if (mode == 2) {
-        if (d > 10*collisionDist) {
-            fastMarchingState[k][j][i] = ACCEPTED;
-            return;
-        }
+        // if (d > 10*collisionDist) {
+        //     fastMarchingState[k][j][i] = ACCEPTED;
+        //     return;
+        // }
     }
 
     // Add the point to the heap structure
@@ -538,7 +538,7 @@ void Pool3D::assignDomainMemberships(int i, int j, int k, double val, int mode) 
                 medY = y[j+offY];
                 medZ = z[k+offZ];
 
-                if (mode == 2 && val < collisionDist) {
+                if (mode == 2 && val < 10*collisionDist) {
                     medialAxisPnts->push_back(make_tuple(medX, medY, medZ));
                 }
 
@@ -865,7 +865,7 @@ void Pool3D::detectCollisions() {
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
         set<massPoint3D*> allCols; // TESTING: build a set of the detected collision nodes and output them to a file for viz.
-        double SCAL_FAC = 1.0;
+        double SCAL_FAC = 1.5;
         int nMatches;
         for (auto tup = medialAxisCollisionPnts.begin(); tup != medialAxisCollisionPnts.end(); ++tup) {
             medX = get<0>(*tup);

@@ -440,9 +440,9 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # code for displaying plot
     step_num = 1
     def displayPlot():
-        # for tracer in tracers:
-        #     tracer = (tracer[0], tracer[1])
-        #     plt.scatter(tracer[0], tracer[1], c='b')
+        for tracer in tracers:
+            tracer = (tracer[0], tracer[1])
+            plt.scatter(tracer[0], tracer[1], c='b')
 
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
         print('steps = {}'.format(steps))
@@ -477,7 +477,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[::5]
+    steps = steps[::1]
     print(steps)
 
     plots = []
@@ -492,8 +492,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         f_temp += '/MSSTracers'
         out = np.genfromtxt(f_temp, delimiter=',')
 
-        # for tracer in out:
-        #     tracers.append((tracer[0], tracer[1]))
+        for tracer in out:
+            tracers.append((tracer[0], tracer[1]))
 
         curr_name = f_name + str(step) + '/poolOut'
         print('currName = {0}'.format(curr_name))
@@ -521,7 +521,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         inds = np.arange(out.shape[0])
         np.random.shuffle(inds)
 
-        off = 10#int(n/10)
+        off = 1#int(n/10)
         # off = int(1)
         # # nx = 840
         # # ny = 420
@@ -529,8 +529,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         # ny = 640
         # nx = 320
         # ny = 640
-        nx = 720
-        ny = 360
+        nx = 320
+        ny = 160
         # print(out.shape)
 
         mask = np.arange(nx) % off == 0

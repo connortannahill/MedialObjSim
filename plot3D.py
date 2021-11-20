@@ -153,12 +153,20 @@ elif mode == 1:
     z = out[:,2]
     phi = out[:,3]
 
-    vel_fname = f_name + 'pool3DVel'
+    vel_fname = f_name + 'out3D'
 
     # Read in the pool data
-    out = np.genfromtxt(vel_fname, delimiter=',')
 
-    out = out
+    out_pool_vel = np.genfromtxt(vel_fname, delimiter=',')
+
+    n = out_pool_vel.shape[0]
+    inds = np.arange(out_pool_vel.shape[0])
+    np.random.shuffle(inds)
+
+    # off = n#int(n/10)
+    off = int(n/1000)
+    out = out_pool_vel[inds[:off],:]
+
 
     x_vel = out[:,0]
     y_vel = out[:,1]

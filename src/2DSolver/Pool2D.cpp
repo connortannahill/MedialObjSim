@@ -341,7 +341,7 @@ void Pool2D::assignDomainMemberships(int i, int j, double val, int mode) {
                 int offX = (ni - i > 0) ? 1 : 0;
                 int offY = (nj - j > 0) ? 1 : 0;
 
-                if (mode == 2 && val < collisionDist) {
+                if (mode == 2 && val < 10*collisionDist) {
                     medialAxisPnts->push_back(make_tuple(x[i+offX], y[j+offY]));
                 }
 
@@ -665,7 +665,7 @@ void Pool2D::detectCollisions() {
         kdTree->buildIndex();
         vector<pair<size_t,double> > ret_matches;
         nanoflann::SearchParams params;
-        double SCAL_FAC = 1.0; 
+        double SCAL_FAC = 1.5; 
         int nMatches;
         for (auto pair = medialAxisCollisionPnts.begin(); pair != medialAxisCollisionPnts.end(); ++pair) {
             medX = pair->first;
@@ -2241,7 +2241,7 @@ void Pool2D::updatePool(double dt, double **u, double **v, double **p, int ng, b
     // Update the velocity field
     this->updatePoolVelocities(dt, u, v, p, ng);
 
-    if (reinitialize && nSteps % 20 == 0) {
+    if (reinitialize && nSteps % 10 == 0) {
         simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }
 

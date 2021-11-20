@@ -333,7 +333,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
     const int MAX_ITERS = 10000;
-    double dt = 0.01*simutils::dmin(hx, hy);
+    double dt = 0.05*simutils::dmin(hx, hy);
     int iters = 0;
 
     // cout << "integrating MSS" << endl;
@@ -1180,6 +1180,9 @@ void MassSpring2D::applyBoundaryForces(Pool2D &pool, double ***stress, int ng, d
         fNet[0] += 0.5*(mPnt1.sigU + mPnt2.sigU)*diffNorm;
         fNet[1] += 0.5*(mPnt1.sigV + mPnt2.sigV)*diffNorm;
     }
+
+    colNet[0] = fNet[0];
+    colNet[1] = fNet[1];
 }
 
 /**
@@ -1686,8 +1689,8 @@ void MassSpring2D::updateSolidVels(double dt, Pool2D &pool, double ***stress, do
 
     // Apply the collision net force to the whole object
     for (int i = 0; i < pntList->size(); i++) {
-        (*f)[2*i] += colNet[0];
-        (*f)[2*i+1] += colNet[1];
+        (*f)[2*i] += 0.35*colNet[0];
+        (*f)[2*i+1] += 0.35*colNet[1];
     }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
