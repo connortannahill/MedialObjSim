@@ -659,7 +659,8 @@ double NSSolver3D::getDt() {
             for (i = 0; i < nx; i++){
                 obj = pool->objAtIndex(i, j, k);
 
-                if (obj == objects::FLUID_C) {
+                if (obj != objects::STRUCTURE) {
+                    // temp = max(abs(this->u[mo+k][mo+j][mo+i]), abs(pool->getObjU(i, j, k)));
                     temp = abs(this->u[mo+k][mo+j][mo+i]);
                     umax = (temp > umax) ? temp : umax;
 

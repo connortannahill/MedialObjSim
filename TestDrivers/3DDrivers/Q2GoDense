@@ -1,0 +1,905 @@
+Many object test generic, can be from many sources
+Q2GoDense
+
+0
+10
+0
+10
+0
+10
+160
+160
+160
+0
+0
+-0.1
+0
+0
+0
+1000
+1
+downDirFlowBC
+100
+
+
+49
+
+coneShapeFun
+2
+0.0
+0.0
+0.0
+cx 5
+cy 5
+cz 5
+r 0.6
+mass 1
+density 1.0
+E 10
+eta 0.0
+deg 0
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 323
+cx 3.75
+cy 3.75
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 349
+cx 3.75
+cy 3.75
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 114
+cx 3.75
+cy 3.75
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 50
+cx 3.75
+cy 4.7
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 341
+cx 3.75
+cy 4.7
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 194
+cx 3.75
+cy 4.7
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 290
+cx 3.75
+cy 5.65
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 85
+cx 3.75
+cy 5.65
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 164
+cx 3.75
+cy 5.65
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 140
+cx 3.75
+cy 6.6
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 18
+cx 3.75
+cy 6.6
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 20
+cx 3.75
+cy 6.6
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 45
+cx 4.7
+cy 3.75
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 218
+cx 4.7
+cy 3.75
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 217
+cx 4.7
+cy 3.75
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 352
+cx 4.7
+cy 4.7
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 34
+cx 4.7
+cy 4.7
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 0
+cx 4.7
+cy 4.7
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 235
+cx 4.7
+cy 5.65
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 311
+cx 4.7
+cy 5.65
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 292
+cx 4.7
+cy 5.65
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 247
+cx 4.7
+cy 6.6
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 326
+cx 4.7
+cy 6.6
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 4
+cx 4.7
+cy 6.6
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 73
+cx 5.65
+cy 3.75
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 71
+cx 5.65
+cy 3.75
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 82
+cx 5.65
+cy 3.75
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 92
+cx 5.65
+cy 4.7
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 314
+cx 5.65
+cy 4.7
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 30
+cx 5.65
+cy 4.7
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 158
+cx 5.65
+cy 5.65
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 216
+cx 5.65
+cy 5.65
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 353
+cx 5.65
+cy 5.65
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 200
+cx 5.65
+cy 6.6
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 124
+cx 5.65
+cy 6.6
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 172
+cx 5.65
+cy 6.6
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 201
+cx 6.6
+cy 3.75
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 349
+cx 6.6
+cy 3.75
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 357
+cx 6.6
+cy 3.75
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 315
+cx 6.6
+cy 4.7
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 101
+cx 6.6
+cy 4.7
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 49
+cx 6.6
+cy 4.7
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 274
+cx 6.6
+cy 5.65
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 18
+cx 6.6
+cy 5.65
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 124
+cx 6.6
+cy 5.65
+cz 8.65
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 160
+cx 6.6
+cy 6.6
+cz 6.75
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 54
+cx 6.6
+cy 6.6
+cz 7.7
+.
+
+coneShapeFun
+1
+0
+0
+-0.1
+mass 1
+density 1
+r 0.2
+E 40
+eta 0
+a 0
+c 0
+deg 317
+cx 6.6
+cy 6.6
+cz 8.65
+.

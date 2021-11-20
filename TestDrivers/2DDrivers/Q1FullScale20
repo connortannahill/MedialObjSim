@@ -28,7 +28,7 @@ cy 2.5
 r 2.5
 mass 5
 density 10.0
-E 5
+E 50
 eta 0.0
 deg 0
 a 0.3
@@ -45,7 +45,7 @@ cy 7.5
 r 2.5
 mass 5
 density 10.0
-E 5
+E 50
 eta 0.0
 deg 0
 a 0.3

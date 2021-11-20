@@ -158,15 +158,17 @@ elif mode == 1:
     # Read in the pool data
     out = np.genfromtxt(vel_fname, delimiter=',')
 
-    x_vel = out[:,0][::10]
-    y_vel = out[:,1][::10]
-    z_vel = out[:,2][::10]
-    u = out[:,3][::10]
-    v = out[:,4][::10]
-    w = out[:,5][::10]
+    out = out
 
-    # velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
-    velData = []
+    x_vel = out[:,0]
+    y_vel = out[:,1]
+    z_vel = out[:,2]
+    u = out[:,3]
+    v = out[:,4]
+    w = out[:,5]
+
+    velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
+    # velData = []
 
     mssList = []
 

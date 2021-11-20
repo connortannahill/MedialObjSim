@@ -477,7 +477,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # get data from each step
     steps = [x for x in os.listdir(f_name) if x.isdigit()]
     steps.sort(key=float)
-    steps = steps[::1]
+    steps = steps[::5]
     print(steps)
 
     plots = []
@@ -521,19 +521,23 @@ elif mode == 13:  # plot snapshots of steps through simulation
         inds = np.arange(out.shape[0])
         np.random.shuffle(inds)
 
-        # off = n#int(n/10)
-        off = int(10)
-        # nx = 420
-        # ny = 420
-        nx = 840
-        ny = 430
-        nx = 1580
-        ny = 890
+        off = 10#int(n/10)
+        # off = int(1)
+        # # nx = 840
+        # # ny = 420
+        # nx = 320
+        # ny = 640
+        # nx = 320
+        # ny = 640
+        nx = 720
+        ny = 360
+        # print(out.shape)
 
         mask = np.arange(nx) % off == 0
         mask = np.tile(mask, ny)
 
         out_fluid = out[mask,:]
+        # out_fluid = out
 
         
         # out_fluid = np.reshape(out, (5, ny, nx))[:,::off,::off].reshape(-1, 5)

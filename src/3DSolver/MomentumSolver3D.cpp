@@ -312,6 +312,7 @@ void MomentumSolver3D::updateP() {
 double MomentumSolver3D::step(double tEnd, double safetyFactor) {
     // Compute the time step
     this->dt = safetyFactor*this->getDt();
+    cout << "dt = " << this->dt << endl;
     if (!stepTaken) {
         this->dtPrev = this->dt;
     }

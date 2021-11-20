@@ -1,5 +1,5 @@
 Many object test generic, can be from many sources
-Q2Go
+Q2GoPurt
 
 0
 10
@@ -22,7 +22,7 @@ downDirFlowBC
 100
 
 
-2
+26
 
 coneShapeFun
 2
@@ -53,9 +53,9 @@ eta 0
 a 0
 c 0
 deg 330
-cx 5
-cy 5
-cz 7.15
+cx 2.15
+cy 2.15
+cz 6.15
 .
 
 coneShapeFun
@@ -73,7 +73,7 @@ c 0
 deg 262
 cx 2.15
 cy 3.6999999999999997
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -91,7 +91,7 @@ c 0
 deg 155
 cx 2.15
 cy 5.25
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -109,7 +109,7 @@ c 0
 deg 276
 cx 2.15
 cy 6.800000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -127,7 +127,7 @@ c 0
 deg 200
 cx 2.15
 cy 8.350000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -145,7 +145,7 @@ c 0
 deg 305
 cx 3.6999999999999997
 cy 2.15
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -163,7 +163,7 @@ c 0
 deg 66
 cx 3.6999999999999997
 cy 3.6999999999999997
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -181,7 +181,7 @@ c 0
 deg 124
 cx 3.6999999999999997
 cy 5.25
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -199,7 +199,7 @@ c 0
 deg 226
 cx 3.6999999999999997
 cy 6.800000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -217,7 +217,7 @@ c 0
 deg 101
 cx 3.6999999999999997
 cy 8.350000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -235,7 +235,7 @@ c 0
 deg 30
 cx 5.25
 cy 2.15
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -253,7 +253,7 @@ c 0
 deg 237
 cx 5.25
 cy 3.6999999999999997
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -271,7 +271,7 @@ c 0
 deg 48
 cx 5.25
 cy 5.25
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -289,7 +289,7 @@ c 0
 deg 293
 cx 5.25
 cy 6.800000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -307,7 +307,7 @@ c 0
 deg 67
 cx 5.25
 cy 8.350000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -325,7 +325,7 @@ c 0
 deg 346
 cx 6.800000000000001
 cy 2.15
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -343,7 +343,7 @@ c 0
 deg 322
 cx 6.800000000000001
 cy 3.6999999999999997
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -361,7 +361,7 @@ c 0
 deg 59
 cx 6.800000000000001
 cy 5.25
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -379,7 +379,7 @@ c 0
 deg 322
 cx 6.800000000000001
 cy 6.800000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -397,7 +397,7 @@ c 0
 deg 201
 cx 6.800000000000001
 cy 8.350000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -415,7 +415,7 @@ c 0
 deg 344
 cx 8.350000000000001
 cy 2.15
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -433,7 +433,7 @@ c 0
 deg 65
 cx 8.350000000000001
 cy 3.6999999999999997
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -451,7 +451,7 @@ c 0
 deg 317
 cx 8.350000000000001
 cy 5.25
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -469,7 +469,7 @@ c 0
 deg 238
 cx 8.350000000000001
 cy 6.800000000000001
-cz 7.15
+cz 6.15
 .
 
 coneShapeFun
@@ -487,5 +487,5 @@ c 0
 deg 26
 cx 8.350000000000001
 cy 8.350000000000001
-cz 7.15
+cz 6.15
 .

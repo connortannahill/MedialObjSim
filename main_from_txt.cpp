@@ -57,6 +57,15 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
     return simutils::square(x_sqr + y_sqr + a_sqr) - 4*a_sqr*x_sqr - c_sqr;
 }
 
+double initFun(double x, double y, double z) {
+    if (x <= 0.15) {
+        return 0.5-5.33333*x+17.7778*pow(x, 2);
+    } else {
+        return 0.1;
+    }
+    // return 0.5*exp(-5.0*(x+0.25));
+}
+
 // kinda complicated, should make better
 typedef std::function<void (int,int,int,double*,double*,double**,double**)> initialConditionsFunType;
 initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
@@ -67,7 +76,13 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
         int wg = nx + 2*nGhost; // "width"
         int hg = ny + 2*nGhost; // "height"
 
-        simutils::set_constant(hg, wg-1, cons_u, u);
+        // simutils::set_constant(hg, wg-1, cons_u, u);
+        int i, j;
+        for (i = 0; i < hg; i++) {
+            for (j = 0; j < wg-1; j++) {
+                u[i][j] = initFun(x[j], 0, 0);
+            }
+        }
         simutils::set_constant(hg-1, wg, cons_v, v);
     };
 }
@@ -79,6 +94,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
         u[ny+1][i] = 2*ubar - u[ny][i];
     }
 }
+
 
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
@@ -99,7 +115,7 @@ void downDirFlowBC(int nx, int ny, double **u, double **v) {
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
-        v[ny][i] = -0.1;
+        v[ny][i] = -0.25;
     }
     // cout << "out bc" << endl;
 }
@@ -261,9 +277,6 @@ int main(int argc, char **argv) {
         input_file >> objectFunc >> objectType >> u0 >> v0;
         cout << "objFunc " << objectFunc << endl;
         cout << "objType " << objectType << endl;
-        cout << "u0 " << u0 << endl;
-        double velAdd = 0.0; //(2*((double) rand() / (RAND_MAX))-1)/10.0;
-        cout << "v0 " << (v0 + velAdd) << endl;
         
         SolidParams params;
         input_file >> paramName;
@@ -274,9 +287,18 @@ int main(int argc, char **argv) {
             input_file >> paramName;
         }
 
+        double cx;
+        params.getParam("cx", cx);
+        u0 = initFun(cx, 0, 0);
+        // u0 = 0;
+        cout << "u0 " << u0 << endl;
+        double velAdd = 0.0; //(2*((double) rand() / (RAND_MAX))-1)/10.0;
+        cout << "v0 " << (v0 + velAdd) << endl;
+
         SolidObject object(u0, v0 + velAdd, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
+    // assert(false);
 
     cout << "Number of objects = " << shapes.size() << endl;
 
@@ -289,7 +311,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(20);
+    simParams.setCollisionStiffness(10);
     simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;
@@ -319,7 +341,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.75;
+    double safetyFactor = 0.5;
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -331,7 +353,7 @@ int main(int argc, char **argv) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
             cout << "hi 274" << endl;
-            if (nsteps % 25 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }

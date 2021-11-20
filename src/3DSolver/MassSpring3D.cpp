@@ -864,6 +864,9 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         - (pntMass/dt)*v_i[2]
     };
 
+    // cout << "cancelstress = cs_x = " << cancelStress[0] << " cs_y = " << cancelStress[1] << " cs_z = " << cancelStress[2]  << endl;
+    // cout << "scaled cancelstress = cs_x = " << (dt/pntMass)*cancelStress[0] << " cs_y = " << (dt/pntMass)*cancelStress[1] << " cs_z = " << (dt/pntMass)*cancelStress[2]  << endl;
+
     // For each of the collisions this node is involved in, calculate a resisting force
     massPoint3D colPnt;
     double pntDiff[3];
@@ -880,7 +883,7 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         pntDiff[1] = mPnt.y - colPnt.y;
         pntDiff[2] = mPnt.z - colPnt.z;
         pntDist = simutils::eucNorm3D(pntDiff);
-        // cout << "pntDist in col" << endl;
+        cout << "pntDist in col = " << pntDist << endl;
 
         if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
@@ -1113,7 +1116,7 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3+2] +=  s_z;
     }
 
-    // cout << "number of registered collisions for MSS " << structNum << " is " << numCols << endl;
+    cout << "number of registered collisions for MSS " << structNum << " is " << numCols << endl;
 
     // cout << "f = " << (*f) << endl;
     // assert(false);
@@ -1159,6 +1162,10 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         fNet[1] += (mPnt1.sigV + mPnt2.sigV + mPnt3.sigV)*(dA/3.0);
         fNet[2] += (mPnt1.sigW + mPnt2.sigW + mPnt3.sigW)*(dA/3.0);
     }
+
+    // for (int i = 0; i < 3; i++) {
+    //     colNet[i] = fNet[i];
+    // }
 
     cout << "Printing the collision net force" << endl;
     cout << "Cx = " << fNet[0] << " Cy = " << fNet[1] << " Cz = " << fNet[2] << endl;

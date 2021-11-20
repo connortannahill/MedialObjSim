@@ -1144,7 +1144,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     // State of each grid point within the FMM
     fastMarchingState = simutils::new_constant(nz, ny, nz, FAR);
     
-    fastMarch(true, 0);
+    fastMarch(false, 0);
     simutils::copyVals(nx+2*methodOrd, ny+2*methodOrd, nz+2*methodOrd, phiReInit, phi);
 
     this->enumeratePool();
@@ -1152,7 +1152,7 @@ void Pool3D::create3DPool(Boundary3D &boundary,
     if (repulseMode == 2) {
         cout << "initial repulse" << endl;
         this->setUpDomainArray();
-        this->fastMarch(false, 2);
+        this->fastMarch(true, 2);
         this->detectCollisions();
         cout << "FINISHED initial repulse" << endl;
     }

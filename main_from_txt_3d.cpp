@@ -351,7 +351,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.5;
+    double safetyFactor = 0.15;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();
@@ -360,7 +360,7 @@ int main(int argc, char **argv) {
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
-            if (nsteps % 1 == 0) {
+            if (nsteps % 10 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }

@@ -33,7 +33,7 @@ bloodCellShapeFun
 cx 5.0
 cy 5.0
 cz 2
-r 2.25
+r 2
 mass 1
 density 1.0
 E 20
@@ -52,7 +52,7 @@ bloodCellShapeFun
 cx 5.0
 cy 5.0
 cz 8
-r 2.25
+r 2
 mass 1
 density 1.0
 E 20

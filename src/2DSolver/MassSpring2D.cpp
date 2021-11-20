@@ -332,7 +332,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
 
     // Now, attempt to update the solid to a steady state
     double eps = 1e-10;
-    const int MAX_ITERS = 1000;
+    const int MAX_ITERS = 10000;
     double dt = 0.01*simutils::dmin(hx, hy);
     int iters = 0;
 
@@ -980,20 +980,20 @@ bool MassSpring2D::computeCollisionStress(int nodeId, double colStress[2], doubl
     int neighId = -1;
     int *pntIds;
     double forces[4];
-    double intStress[2];
-    for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
-        // Find the id of the connected node
-        pntIds = edgeList->at(*edgeId).pntIds;
-        neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
+    // double intStress[2];
+    // for (auto edgeId = mPnt.edgeIds.begin(); edgeId != mPnt.edgeIds.end(); ++edgeId) {
+    //     // Find the id of the connected node
+    //     pntIds = edgeList->at(*edgeId).pntIds;
+    //     neighId = ( pntIds[0] == nodeId ) ? pntIds[1] : pntIds[0];
 
-        // Calculate the elastic force
-        calcElasticForce(this->E, edgeList->at(*edgeId).l0,
-                    mPnt, pntList->at(neighId), forces);
+    //     // Calculate the elastic force
+    //     calcElasticForce(this->E, edgeList->at(*edgeId).l0,
+    //                 mPnt, pntList->at(neighId), forces);
 
-        // Calculate the internal force being applied to the colliding boundary node
-        intStress[0] += forces[0];
-        intStress[1] += forces[1];
-    }
+    //     // Calculate the internal force being applied to the colliding boundary node
+    //     intStress[0] += forces[0];
+    //     intStress[1] += forces[1];
+    // }
 
     // Get the current forces and velocities
     double v_i[2] = {(*qt)(2*nodeId), (*qt)(2*nodeId+1)};

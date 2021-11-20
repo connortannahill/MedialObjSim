@@ -22,7 +22,7 @@ Q1FullScale40
 lidDrivenCavityBC
 100
 
-1
+2
 
 bloodCellShapeFun
 1
@@ -31,7 +31,7 @@ bloodCellShapeFun
 0.0
 cx 5.0
 cy 5.0
-cz 5.0
+cz 2.0
 r 2
 mass 1
 density 1.0
