@@ -449,7 +449,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         plt.scatter(x, y, c='r', marker='o', s=1)
         # if (len(x_med) > 0):
         #     plt.scatter(x_med, y_med, s=0.5)
-        q = ax.quiver(x_pool, y_pool, u, v)
+        # q = ax.quiver(x_pool, y_pool, u, v)
         # plt.title(test + ', nstep = ' + steps)
         plt.gca().set_aspect('equal')
         # plt.savefig('{0}step{1}.png'.format(f_name, step_num))
@@ -521,7 +521,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         inds = np.arange(out.shape[0])
         np.random.shuffle(inds)
 
-        off = 1#int(n/10)
+        off = 2#int(n/10)
         # off = int(1)
         # # nx = 840
         # # ny = 420
@@ -529,8 +529,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
         # ny = 640
         # nx = 320
         # ny = 640
-        nx = 320
-        ny = 160
+        nx = 640
+        ny = 1280
         # print(out.shape)
 
         mask = np.arange(nx) % off == 0

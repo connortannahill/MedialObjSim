@@ -323,8 +323,8 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
-    simParams.setCollisionStiffness(0.1);
-    double collisionDist = 3*h;
+    simParams.setCollisionStiffness(0.5);
+    double collisionDist = 4*h;
     simParams.setCollisionDist(collisionDist);
     cout << "collision dist in simulation is " << collisionDist << endl;
     simParams.setUpdateMode(1);
@@ -351,7 +351,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.15;
+    double safetyFactor = 0.25;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();
@@ -360,7 +360,7 @@ int main(int argc, char **argv) {
     if (save_snapshots) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
-            if (nsteps % 10 == 0) {
+            if (nsteps % 5 == 0) {
                 string f_name = testName;
                 outputData(f_name, solver, nsteps);
             }

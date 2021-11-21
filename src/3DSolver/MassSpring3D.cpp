@@ -873,8 +873,8 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
     double pntDist;
     bool colComp = false;
     int numNear = 0;
-    cout << "colStiffness = " << collisionStiffness << endl;
-    cout << "repulseDist = " << repulseDist << endl;
+    // cout << "colStiffness = " << collisionStiffness << endl;
+    // cout << "repulseDist = " << repulseDist << endl;
     for (auto near = nodeCols->at(nodeId).begin(); near != nodeCols->at(nodeId).end(); ++near) {
         colPnt = **near;
 
@@ -883,7 +883,7 @@ bool MassSpring3D::computeCollisionStress(int nodeId, double colStress[3], doubl
         pntDiff[1] = mPnt.y - colPnt.y;
         pntDiff[2] = mPnt.z - colPnt.z;
         pntDist = simutils::eucNorm3D(pntDiff);
-        cout << "pntDist in col = " << pntDist << endl;
+        // cout << "pntDist in col = " << pntDist << endl;
 
         if (repulseDist > pntDist) {
             calcElasticForce(this->collisionStiffness, repulseDist, mPnt, colPnt, forces);
@@ -1114,6 +1114,10 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3]   +=  s_x;
         (*f)[3*id3+1] +=  s_y;
         (*f)[3*id3+2] +=  s_z;
+
+        colNet[0] += s_x;
+        colNet[1] += s_y;
+        colNet[2] += s_z;
     }
 
     cout << "number of registered collisions for MSS " << structNum << " is " << numCols << endl;
@@ -1948,10 +1952,11 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     }
 
     // Apply the collision net force to the whole object
+    double alph = 0.35;
     for (int i = 0; i < pntList->size(); i++) {
-        (*f)[3*i] += colNet[0];
-        (*f)[3*i+1] += colNet[1];
-        (*f)[3*i+2] += colNet[2];
+        (*f)[3*i] += alph*colNet[0];
+        (*f)[3*i+1] += alph*colNet[1];
+        (*f)[3*i+2] += alph*colNet[2];
     }
 
     // f->setZero();

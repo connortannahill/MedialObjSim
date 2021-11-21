@@ -1,5 +1,5 @@
 Many object test generic, can be from many sources
-Q2GoDense
+Q2GoDenseMod
 
 0
 10
@@ -32,7 +32,7 @@ coneShapeFun
 cx 5
 cy 5
 cz 5
-r 0.6
+r 1.1
 mass 1
 density 1.0
 E 10

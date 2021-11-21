@@ -2735,7 +2735,7 @@ void Pool3D::updatePool(double dt, double ***u, double ***v,
     cout << "FINISHED updating pool vels" << endl;
 
     // Reinitilize after the first update. Ensures that we are using a cut-cell approximation;
-    if (reinitialize && (nSteps+1) % 10 == 0) {
+    if (reinitialize && (nSteps+1) % 20 == 0) {
     // if (reinitialize) {
         simutils::copyVals(nz+2*methodOrd, nx+2*methodOrd, ny+2*methodOrd, phiReInit, phi);
     }

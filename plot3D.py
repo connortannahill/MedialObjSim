@@ -164,7 +164,7 @@ elif mode == 1:
     np.random.shuffle(inds)
 
     # off = n#int(n/10)
-    off = int(n/1000)
+    off = int(n/2000)
     out = out_pool_vel[inds[:off],:]
 
 
@@ -175,8 +175,8 @@ elif mode == 1:
     v = out[:,4]
     w = out[:,5]
 
-    velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w)]
-    # velData = []
+    # velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w, sizemode="scaled")]
+    velData = []
 
     mssList = []
 

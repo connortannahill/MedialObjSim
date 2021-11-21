@@ -1,0 +1,260 @@
+Many object test generic, can be from many sources
+Q3PurtSmall
+
+0
+10
+0
+5
+320
+160
+0.1
+0
+0
+0
+1000
+1
+directionalFlowBC
+100
+
+
+15
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 223
+cx 1.25
+cy 1.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 242
+cx 1.25
+cy 2.8499999999999996
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 140
+cx 1.25
+cy 4.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 198
+cx 2.75
+cy 1.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 260
+cx 2.75
+cy 2.8499999999999996
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 241
+cx 2.75
+cy 4.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 63
+cx 4.25
+cy 1.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 210
+cx 4.25
+cy 2.8499999999999996
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 136
+cx 4.25
+cy 4.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 48
+cx 5.750000000000001
+cy 1.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 44
+cx 5.750000000000001
+cy 2.8499999999999996
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 115
+cx 5.750000000000001
+cy 4.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 304
+cx 7.250000000000001
+cy 1.35
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 199
+cx 7.250000000000001
+cy 2.8499999999999996
+.
+
+bloodCellShapeFun
+1
+0.1
+0
+mass 1
+density 1
+r 0.4
+E 20
+eta 0
+a 0.3
+c 0.105
+deg 111
+cx 7.250000000000001
+cy 4.35
+.
