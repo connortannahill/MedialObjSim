@@ -1,5 +1,5 @@
 A grid-based scaling test for full scaling performance
-Q1ManyMany20
+Q1ManyMany10
 
 
 0
@@ -23,7 +23,7 @@ lidDrivenCavityBC
 100
 
 
-20
+10
 
 bloodCellShapeFun
 1
