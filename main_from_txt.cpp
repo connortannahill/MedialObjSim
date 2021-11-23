@@ -66,6 +66,15 @@ double initFun(double x, double y, double z) {
     // return 0.5*exp(-5.0*(x+0.25));
 }
 
+double initDeriv(double x, double y, double z) {
+    if (x <= 0.15) {
+        return - 2.83333 + 2*12.2222*x;
+    } else {
+        return 0;
+    }
+    // return 0.5*exp(-5.0*(x+0.25));
+}
+
 // kinda complicated, should make better
 typedef std::function<void (int,int,int,double*,double*,double**,double**)> initialConditionsFunType;
 initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
@@ -81,6 +90,11 @@ initialConditionsFunType getInitialConditionsFun(double cons_u, double cons_v) {
         // for (i = 0; i < hg; i++) {
         //     for (j = 0; j < wg-1; j++) {
         //         u[i][j] = initFun(x[j], 0, 0);
+        //     }
+        // }
+        // for (i = 0; i < hg-1; i++) {
+        //     for (j = 0; j < wg; j++) {
+        //         v[i][j] = -y[i]*initDeriv(x[j], 0, 0);//initFun(x[j], 0, 0);
         //     }
         // }
         simutils::set_constant(hg-1, wg, cons_v, v);
@@ -115,7 +129,7 @@ void downDirFlowBC(int nx, int ny, double **u, double **v) {
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
-        v[ny][i] = -0.25;
+        v[ny][i] = -0.10;
     }
     // cout << "out bc" << endl;
 }
@@ -292,7 +306,7 @@ int main(int argc, char **argv) {
         // u0 = initFun(cx, 0, 0);
         // u0 = 0;
         cout << "u0 " << u0 << endl;
-        double velAdd = 0.0; //(2*((double) rand() / (RAND_MAX))-1)/10.0;
+        double velAdd = 0;// (2*((double) rand() / (RAND_MAX))-1)/100.0;
         cout << "v0 " << (v0 + velAdd) << endl;
 
         SolidObject object(u0, v0 + velAdd, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
@@ -311,7 +325,7 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(5);
+    simParams.setCollisionStiffness(7);
     simParams.setCollisionDist(4.0*h);
     cout << "collisionDist = " << 4.0*h << endl;
     int updateMode = 1;
@@ -341,7 +355,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.5;
+    double safetyFactor = 0.75;
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -353,7 +367,7 @@ int main(int argc, char **argv) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
             cout << "hi 274" << endl;
-            if (nsteps % 10 == 0) {
+            if (nsteps % 50 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }

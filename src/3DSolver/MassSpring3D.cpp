@@ -400,9 +400,9 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
     // cout << "Finsihed face creation" << endl;
 
     // Now, attempt to update the solid to a steady state
-    double eps = 1e-6;
+    double eps = 1e-5;
     const int MAX_ITERS = 200;
-    double dt = 0.01*simutils::dmin(hx, simutils::dmin(hy, hz));
+    double dt = 0.025*simutils::dmin(hx, simutils::dmin(hy, hz));
     int iters = 0;
     // cout << "init the thing" << endl;
     double fNet[3] = {0.0, 0.0, 0.0};
@@ -1115,9 +1115,9 @@ void MassSpring3D::applyBoundaryForces(Pool3D &pool, double ****stress, int ng, 
         (*f)[3*id3+1] +=  s_y;
         (*f)[3*id3+2] +=  s_z;
 
-        colNet[0] += s_x;
-        colNet[1] += s_y;
-        colNet[2] += s_z;
+        // colNet[0] += s_x;
+        // colNet[1] += s_y;
+        // colNet[2] += s_z;
     }
 
     cout << "number of registered collisions for MSS " << structNum << " is " << numCols << endl;
@@ -1675,7 +1675,6 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
 
     // Initialize the linear system RHS
     simutils::set_constant(3*pntList->size(), 0.0, pcgRHS);
-    // cout << "forces before LI = " << *f << endl;
 
     // Compute the force vector and Hessian matrix for the current configuration
     for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
@@ -1697,11 +1696,6 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         }
     }
 
-    // cout << "forces after LI = " << *f << endl;
-    // assert(false);
-
-    // f->setZero();
-
     /* Setup the remainder of the matrix by negating K everywhere, and adding I along the main diagonal */
     double coeff = simutils::square(dt)/pntMass;
     int colIndex;
@@ -1713,29 +1707,18 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
 
             if (colIndex == r) {
                 matrix->aValue(i) = 1 + coeff*matrix->aValue(i);
-                // cout << "Main diag: ";
             } else {
                 matrix->aValue(i) = coeff*matrix->aValue(i);
             }
 
-            // cout << matrix->aValue(i) << endl;
         }
-    }
-    // assert(false);
+    }    /* Setup the RHS vector (use Euler step as initial guess) */
 
-    /* Setup the RHS vector (use Euler step as initial guess) */
     for (int i = 0; i < 3*pntList->size(); i++) {
         matrix->bValue(i) = (*qt)[i] + (dt/(pntMass))*((*f)[i]) + 1e-12;
         pcgRHS[i] = matrix->bValue(i);
     }
 
-    // cout << "RHS = " << endl;
-    // for (int i = 0; i < 3*pntList->size(); i++) {
-    //     cout << pcgRHS[i] << endl;
-    // }
-    // assert(false);
-
-    // cout << "looking at the l0" << endl;
 
     /* Solve the linear system */
     try {
@@ -1769,31 +1752,6 @@ void MassSpring3D::linearImplicitSolve(double dt, int elementMode, bool initMode
         cout << "Threw exception 2 in solve!" << endl;
         exit(1);
     }
-
-    // if (!initMode) {
-    //     cout << "qt in setting up the linear implicit solve" << endl;
-    //     for (int i = 0; i < 3*pntList->size(); i++) {
-    //         // cout << "f prev = " << (*f)[i] << endl;
-    //         // cout << "qt prev = " << (*qt)[i] << endl;
-    //         // cout << "qt after = " << pcgRHS[i] << endl;
-    //     }
-    //     // assert(false);
-    // }
-
-    // cout << "Looking at edge length " << endl;
-    // for (auto edge = edgeList->begin(); edge != edgeList->end(); ++edge) {
-    //     // Extract the points connecting the current spring
-    //     pntId1 = edge->pntIds[0];
-    //     pntId2 = edge->pntIds[1];
-
-    //     pnt1 = pntList->at(pntId1);
-    //     pnt2 = pntList->at(pntId2);
-
-    //     cout << "Current diff = " << pointDiff(pnt1, pnt2) << endl;
-    //     cout << "edge resting length = " << edge->l0 << endl;
-
-    // }
-
 
     // Copy the output of the linear solve to the derivative vector
     // simutils::copyVals(3*pntList->size(), pcgRHS, qt->data());
@@ -1952,12 +1910,12 @@ void MassSpring3D::updateSolidVels(double dt, Pool3D &pool,
     }
 
     // Apply the collision net force to the whole object
-    double alph = 0.35;
-    for (int i = 0; i < pntList->size(); i++) {
-        (*f)[3*i] += alph*colNet[0];
-        (*f)[3*i+1] += alph*colNet[1];
-        (*f)[3*i+2] += alph*colNet[2];
-    }
+    // double alph = 0.15;
+    // for (int i = 0; i < pntList->size(); i++) {
+    //     (*f)[3*i] += alph*colNet[0];
+    //     (*f)[3*i+1] += alph*colNet[1];
+    //     (*f)[3*i+2] += alph*colNet[2];
+    // }
 
     // f->setZero();
 

@@ -331,7 +331,7 @@ MassSpring2D::MassSpring2D(Pool2D &pool, int structNum,
     // cout << "FINISHED bulding edge connects" << endl;
 
     // Now, attempt to update the solid to a steady state
-    double eps = 1e-10;
+    double eps = 1e-5;
     const int MAX_ITERS = 10000;
     double dt = 0.05*simutils::dmin(hx, hy);
     int iters = 0;
@@ -1688,10 +1688,10 @@ void MassSpring2D::updateSolidVels(double dt, Pool2D &pool, double ***stress, do
     }
 
     // Apply the collision net force to the whole object
-    for (int i = 0; i < pntList->size(); i++) {
-        (*f)[2*i] += 0.35*colNet[0];
-        (*f)[2*i+1] += 0.35*colNet[1];
-    }
+    // for (int i = 0; i < pntList->size(); i++) {
+    //     (*f)[2*i] += 0.35*colNet[0];
+    //     (*f)[2*i+1] += 0.35*colNet[1];
+    // }
 
     // Loop through all of the edges, using the potential energy to compute the displacement of the
     // nodes.

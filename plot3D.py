@@ -182,15 +182,15 @@ elif mode == 1:
 
     print(nMSS)
     
-    for i in range(nMSS):
-        f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
+    # for i in range(nMSS):
+    #     f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
 
-        out = np.genfromtxt(f_name_t, delimiter=',')
-        x_mss = out[:,0]
-        y_mss = out[:,1]
-        z_mss = out[:,2]
+    #     out = np.genfromtxt(f_name_t, delimiter=',')
+    #     x_mss = out[:,0]
+    #     y_mss = out[:,1]
+    #     z_mss = out[:,2]
 
-        mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
+    #     mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
 
         # Now append the object velocities
 
@@ -243,8 +243,17 @@ elif mode == 1:
         isomin=-0.0001,
         isomax=0.0001,
         colorscale=[(0,"blue"), (1,"red")],
-        opacity=0.3)]+mssList+velData)
+        opacity=0.2)]+mssList+velData)
     # fig = go.Figure(data=mssList)
+
+    eyeVec = np.array([0.2, 0.2, 1])
+
+    camera = camera = dict(
+        # up=dict(x=0, y=0.1, z=-0.05),
+        eye=dict(x=eyeVec[0], y=eyeVec[1], z=eyeVec[2])
+    )
+
+    fig.update_layout(scene_camera=camera)
 
     fig.show()
 elif mode == 2:
