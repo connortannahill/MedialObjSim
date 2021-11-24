@@ -1407,7 +1407,7 @@ void MassSpring2D::eulerSolve(double dt, int elementMode, bool initMode) {
     double etaTemp = eta;
     
     if (initMode) {
-        E = 1.0;
+        E = 0.1;
         eta = 0.0;
     }
 
@@ -1432,10 +1432,11 @@ void MassSpring2D::eulerSolve(double dt, int elementMode, bool initMode) {
     for (int i = 0; i < pntList->size(); i++) {
         if (!(initMode && pntList->at(i).boundaryPnt)) {
             (*qt)[2*i] += (dt/pntList->at(i).mass)*(*f)[2*i];
-            (*q)[2*i] += dt*(*qt)[2*i];
-
             (*qt)[2*i+1] += (dt/pntList->at(i).mass)*(*f)[2*i+1];
+
+            (*q)[2*i] += dt*(*qt)[2*i];
             (*q)[2*i+1] += dt*(*qt)[2*i+1];
+
         } else {
             (*qt)[2*i] = 0.0;
             (*qt)[2*i+1] = 0.0;
