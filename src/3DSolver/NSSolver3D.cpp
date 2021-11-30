@@ -644,9 +644,9 @@ double*** NSSolver3D::testGetW() {
  * Function which decides the time step for the current step
 */
 double NSSolver3D::getDt() {
-    double umax = abs(this->u[1][1][1]);
-    double vmax = abs(this->v[1][1][1]);
-    double wmax = abs(this->w[1][1][1]);
+    double umax = 1e-14;
+    double vmax = 1e-14;
+    double wmax = 1e-14;
     int i, j, k;
     double temp;
     double Re = params->Re;
@@ -674,6 +674,8 @@ double NSSolver3D::getDt() {
         }
 
     }
+    temp = abs(0.1);
+    umax = (temp > umax) ? temp : umax;
 
     return min( (Re/2.0)*(
                     1.0/(simutils::square(1.0/this->dx)

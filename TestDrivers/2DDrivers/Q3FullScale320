@@ -10,7 +10,7 @@ Q3FullScale320
 360
 0.5
 0.0
-0.0
+0.0001
 0.0
 1000
 1
@@ -27,7 +27,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -43,7 +43,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -59,7 +59,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -75,7 +75,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -91,7 +91,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -107,7 +107,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -123,7 +123,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -139,7 +139,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -155,7 +155,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -171,7 +171,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -187,7 +187,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -203,7 +203,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 6a 0.3
 c 0.105
@@ -219,7 +219,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -235,7 +235,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -251,7 +251,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -267,7 +267,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -283,7 +283,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -299,7 +299,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -315,7 +315,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -331,7 +331,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -347,7 +347,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -363,7 +363,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -379,7 +379,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -395,7 +395,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -411,7 +411,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -427,7 +427,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -443,7 +443,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -459,7 +459,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -475,7 +475,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -491,7 +491,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -507,7 +507,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -523,7 +523,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -539,7 +539,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -555,7 +555,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -571,7 +571,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -587,7 +587,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -603,7 +603,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -619,7 +619,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -635,7 +635,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -651,7 +651,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -667,7 +667,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -683,7 +683,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -699,7 +699,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -715,7 +715,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -731,7 +731,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -747,7 +747,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -763,7 +763,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -779,7 +779,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -795,7 +795,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -811,7 +811,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -827,7 +827,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -843,7 +843,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -859,7 +859,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -875,7 +875,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -891,7 +891,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -907,7 +907,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -923,7 +923,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -939,7 +939,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -955,7 +955,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -971,7 +971,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -987,7 +987,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.16
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1003,7 +1003,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1019,7 +1019,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1035,7 +1035,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1051,7 +1051,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1067,7 +1067,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1083,7 +1083,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1099,7 +1099,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1115,7 +1115,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1131,7 +1131,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1147,7 +1147,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1163,7 +1163,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1179,7 +1179,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1195,7 +1195,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1211,7 +1211,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1227,7 +1227,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1243,7 +1243,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1259,7 +1259,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1275,7 +1275,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1291,7 +1291,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1307,7 +1307,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1323,7 +1323,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1339,7 +1339,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1355,7 +1355,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1371,7 +1371,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1387,7 +1387,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1403,7 +1403,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1419,7 +1419,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1435,7 +1435,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1451,7 +1451,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1467,7 +1467,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1483,7 +1483,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1499,7 +1499,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1515,7 +1515,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1531,7 +1531,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1547,7 +1547,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1563,7 +1563,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1579,7 +1579,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1595,7 +1595,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1611,7 +1611,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1627,7 +1627,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1643,7 +1643,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1659,7 +1659,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1675,7 +1675,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1691,7 +1691,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1707,7 +1707,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1723,7 +1723,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1739,7 +1739,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1755,7 +1755,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1771,7 +1771,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1787,7 +1787,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1803,7 +1803,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1819,7 +1819,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1835,7 +1835,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1851,7 +1851,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1867,7 +1867,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1883,7 +1883,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1899,7 +1899,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1915,7 +1915,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1931,7 +1931,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1947,7 +1947,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1963,7 +1963,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1979,7 +1979,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -1995,7 +1995,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2011,7 +2011,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2027,7 +2027,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2043,7 +2043,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2059,7 +2059,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2075,7 +2075,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2091,7 +2091,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2107,7 +2107,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2123,7 +2123,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2139,7 +2139,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2155,7 +2155,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2171,7 +2171,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2187,7 +2187,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2203,7 +2203,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2219,7 +2219,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2235,7 +2235,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2251,7 +2251,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2267,7 +2267,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2283,7 +2283,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2299,7 +2299,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2315,7 +2315,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2331,7 +2331,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2347,7 +2347,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2363,7 +2363,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2379,7 +2379,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2395,7 +2395,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2411,7 +2411,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2427,7 +2427,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2443,7 +2443,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2459,7 +2459,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2475,7 +2475,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2491,7 +2491,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2507,7 +2507,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2523,7 +2523,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2539,7 +2539,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2555,7 +2555,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2571,7 +2571,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2587,7 +2587,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2603,7 +2603,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2619,7 +2619,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2635,7 +2635,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2651,7 +2651,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2667,7 +2667,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2683,7 +2683,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2699,7 +2699,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2715,7 +2715,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105
@@ -2731,7 +2731,7 @@ bloodCellShapeFun
 mass 1
 density 1
 r 0.158
-E 20
+E 50
 eta 0
 a 0.3
 c 0.105

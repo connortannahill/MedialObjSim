@@ -22,12 +22,12 @@ directionalFlowBC
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
 r 0.1767766952966369
-E 30
+E 300
 eta 0
 a 0.3
 c 0.105
@@ -38,7 +38,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -54,7 +54,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -70,7 +70,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -86,7 +86,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -102,7 +102,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -118,7 +118,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -134,7 +134,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -150,7 +150,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -166,7 +166,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -182,7 +182,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -198,7 +198,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -214,7 +214,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -230,7 +230,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -246,7 +246,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -262,7 +262,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -278,7 +278,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -294,7 +294,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -310,7 +310,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -326,7 +326,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -342,7 +342,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -358,7 +358,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -374,7 +374,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -390,7 +390,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -406,7 +406,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -422,7 +422,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -438,7 +438,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -454,7 +454,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -470,7 +470,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -486,7 +486,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -502,7 +502,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -518,7 +518,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -534,7 +534,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -550,7 +550,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -566,7 +566,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -582,7 +582,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -598,7 +598,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -614,7 +614,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -630,7 +630,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -646,7 +646,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -662,7 +662,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -678,7 +678,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -694,7 +694,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -710,7 +710,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -726,7 +726,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -742,7 +742,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -758,7 +758,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -774,7 +774,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -790,7 +790,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -806,7 +806,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -822,7 +822,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -838,7 +838,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -854,7 +854,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -870,7 +870,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -886,7 +886,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -902,7 +902,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -918,7 +918,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -934,7 +934,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -950,7 +950,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -966,7 +966,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -982,7 +982,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -998,7 +998,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1014,7 +1014,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1030,7 +1030,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1046,7 +1046,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1062,7 +1062,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1078,7 +1078,7 @@ cy 3.7518251666689766
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1094,7 +1094,7 @@ cy 0.3267766952966369
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1110,7 +1110,7 @@ cy 1.0117863895711048
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1126,7 +1126,7 @@ cy 1.6967960838455727
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1142,7 +1142,7 @@ cy 2.3818057781200404
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1
@@ -1158,7 +1158,7 @@ cy 3.0668154723945085
 
 bloodCellShapeFun
 1
-0.5
+0.1
 0
 mass 1
 density 1

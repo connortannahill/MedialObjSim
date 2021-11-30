@@ -61,6 +61,16 @@ double bloodCellShapeFun(double x, double y, double z, SolidParams &ps) {
     return simutils::square(x_sqr + y_sqr + z_sqr + a_sqr) - 4*a_sqr*(x_sqr + y_sqr) - c_sqr;
 }
 
+double initFun(double x, double y, double z) {
+    if (x <= 0.15) {
+        return 0.25 - 0.857143*x + 1.22449*pow(x, 2);
+    } else {
+        return 0.1;
+    }
+    // return 0.5*exp(-5.0*(x+0.25));
+}
+
+
 typedef std::function<void (int,int,int,int,double*,double*,double*,double***,double***,double***)> initialConditions3DFunType;
 initialConditions3DFunType getInitialConditionsFun(double cons_u, double cons_v, double cons_w) {
     // return lambda function with same parameters for NSSolver but user-given velocities
@@ -76,13 +86,21 @@ initialConditions3DFunType getInitialConditionsFun(double cons_u, double cons_v,
         cout << "consw = " << cons_w << endl;
 
         simutils::set_constant(vg, hg, wg-1, cons_u, u);
+        // int i, j, k;
+        // for (k = 0; k < vg; k++) {
+        //     for (i = 0; i < hg; i++) {
+        //         for (j = 0; j < wg-1; j++) {
+        //             u[k][i][j] = initFun(x[j], 0, 0);
+        //         }
+        //     }
+        // }
         simutils::set_constant(vg, hg-1, wg, cons_v, v);
         simutils::set_constant(vg-1, hg, wg, cons_w, w); 
     };
 }
 
 void lidDrivenCavityBC(int nx, int ny, int nz, double ***u, double ***v, double ***w) {
-    double ubar = 1.0;
+    double ubar = 0.25;
     for (int j = 1; j <= ny; j++) {
         for (int i = 1; i <= nx; i++) {
             u[nz+1][j][i] = 2.0*ubar - u[nz][j][i];
@@ -95,7 +113,7 @@ void directionalFlowBC(int nx, int ny, int nz, double ***u, double ***v, double 
     for (int k = 1; k <= nz; k++) {
         for (int j = 1; j <= ny; j++) {
             // Inflow condition
-            u[k][j][0] = 0.1; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
+            u[k][j][0] = 0.10; //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
             // Outflow condition
             u[k][j][nx] = u[k][j][nx-1];
@@ -117,7 +135,7 @@ void downDirFlowBC(int nx, int ny, int nz, double ***u, double ***v, double ***w
         for (int i = 1; i <= nx; i++) {
             w[0][j][i] = w[1][j][i];
 
-            w[nz][j][i] = -0.1;
+            w[nz][j][i] = -0.25;
         }
     }
 }
@@ -291,7 +309,6 @@ int main(int argc, char **argv) {
 
         cout << "objectFunc = " << objectFunc << endl;
         cout << "objectType = " << objectType << endl;
-        cout << "objvel = " << u0 << ", " << v0 << "< " << w0 << endl;
         
         SolidParams params;
         input_file >> paramName;
@@ -303,7 +320,15 @@ int main(int argc, char **argv) {
             input_file >> paramName;
         }
 
-        SolidObject3D object(u0, v0, w0, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
+        double cx;
+        params.getParam("cx", cx);
+        // u0 = initFun(cx, 0, 0);
+        double vAdd = 0;// (2*((double) rand() / (RAND_MAX))-1)/10.0;
+        double wAdd = 0;// (2*((double) rand() / (RAND_MAX))-1)/10.0;
+
+        cout << "objvel = " << u0 << ", " << v0 + vAdd << "< " << w0 + wAdd << endl;
+
+        SolidObject3D object(u0, v0 + vAdd, w0 + wAdd, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 
@@ -323,8 +348,8 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setRepulseMode(2);
     // simParams.setRepulseDist(4*h); // Actually need 0.1
-    simParams.setCollisionStiffness(0.05);
-    double collisionDist = 2*h;
+    simParams.setCollisionStiffness(0.01);
+    double collisionDist = 5*h;
     simParams.setCollisionDist(collisionDist);
     cout << "collision dist in simulation is " << collisionDist << endl;
     simParams.setUpdateMode(1);
@@ -351,7 +376,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.15;
+    double safetyFactor = 0.10;
 
     // assert(false); // Think there is an issue with the boundary conditions for the obstacle domain
     auto start = high_resolution_clock::now();

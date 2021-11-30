@@ -59,7 +59,7 @@ double bloodCellShapeFun(double x, double y, SolidParams &ps) {
 
 double initFun(double x, double y, double z) {
     if (x <= 0.15) {
-        return 0.25 - 2.83333*x + 12.2222*pow(x, 2);
+        return 0.25 - 2*x + 6.66667*pow(x, 2) ;
     } else {
         return 0.1;
     }
@@ -68,9 +68,9 @@ double initFun(double x, double y, double z) {
 
 double initDeriv(double x, double y, double z) {
     if (x <= 0.15) {
-        return - 2.83333 + 2*12.2222*x;
+        return 0.25 - 2*x + 6.66667*pow(x, 2) ;
     } else {
-        return 0;
+        return 0.1;
     }
     // return 0.5*exp(-5.0*(x+0.25));
 }
@@ -113,7 +113,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
-        u[j][0] = 0.25;
+        u[j][0] = 0.5;
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
@@ -129,7 +129,7 @@ void downDirFlowBC(int nx, int ny, double **u, double **v) {
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
-        v[ny][i] = -0.10;
+        v[ny][i] = -0.25;
     }
     // cout << "out bc" << endl;
 }
@@ -279,6 +279,7 @@ int main(int argc, char **argv) {
     cout << "useEno = " << useEno << endl;
     cout << "bctype = " << boundaryConditionType << endl;
     cout << "tEnd = " << tEnd << endl;
+    double h = getH(xa, xb, nx, ya, yb, ny);
 
     // get objects in simulation
     input_file >> num_objects;
@@ -296,17 +297,29 @@ int main(int argc, char **argv) {
         input_file >> paramName;
         while (paramName != ".") {
             input_file >> paramValue;
+
+
+            if (objectType != 2) {
+                if (paramName.compare("cx") == 0) {
+                    paramValue += (h*(2*((double) rand() / (RAND_MAX))-1));
+                } else if (paramName.compare("cy") == 0) {
+                    paramValue += (h*(2*((double) rand() / (RAND_MAX))-1));
+                }
+            }
             params.addParam(paramName, paramValue);
 
             input_file >> paramName;
         }
 
-        double cx;
+        double cx, cy;
         params.getParam("cx", cx);
+        // params.getParam("cy", cy);
+        // cout << "cx = " << cx << endl;
+        // cout << "cy = " << cy << endl;
         // u0 = initFun(cx, 0, 0);
         // u0 = 0;
         cout << "u0 " << u0 << endl;
-        double velAdd = 0;// (2*((double) rand() / (RAND_MAX))-1)/100.0;
+        double velAdd = (2*((double) rand() / (RAND_MAX))-1)/10.0;
         cout << "v0 " << (v0 + velAdd) << endl;
 
         SolidObject object(u0, v0 + velAdd, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
@@ -317,7 +330,6 @@ int main(int argc, char **argv) {
     cout << "Number of objects = " << shapes.size() << endl;
 
     // actually set up simParams
-    double h = getH(xa, xb, nx, ya, yb, ny);
 
     simParams.setRe(re);
     simParams.setNx(nx);
@@ -325,9 +337,9 @@ int main(int argc, char **argv) {
     simParams.setUseEno(useEno);
     simParams.setMu(1.0/simParams.Re);
     simParams.setRepulseMode(2); // This turns on the KD tree error checking
-    simParams.setCollisionStiffness(7);
-    simParams.setCollisionDist(4.0*h);
-    cout << "collisionDist = " << 4.0*h << endl;
+    simParams.setCollisionStiffness(10);
+    simParams.setCollisionDist(4*h);
+    cout << "collisionDist = " << 4*h << endl;
     int updateMode = 1;
     simParams.setUpdateMode(updateMode);
     cout << "UpdateMode = " << updateMode << endl;
@@ -355,7 +367,7 @@ int main(int argc, char **argv) {
     ///////////////////////////////////////////////////////////////////////////////////
     // Current time
     double t = 0;
-    double safetyFactor = 0.75;
+    double safetyFactor = 0.15;
 
     // Start recording the time. We do not include the seeding as this is technically
     // not a part of the algorithm per se.
@@ -367,7 +379,7 @@ int main(int argc, char **argv) {
 
         while (t+EPS < tEnd && nsteps < max_steps) {
             cout << "hi 274" << endl;
-            if (nsteps % 50 == 0) {
+            if (nsteps % 25 == 0) {
                 string f_name = outFileName;
                 outputData(f_name, solver, nsteps);
             }

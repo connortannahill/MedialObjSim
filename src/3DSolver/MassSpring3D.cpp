@@ -196,7 +196,7 @@ MassSpring3D::MassSpring3D(Pool3D &pool, int structNum, SolidObject3D &obj,
                         if (simutils::eps_equal(simutils::eucNorm3D(diff), 0.0, 1e-16)) {
                             // Add a small purtabation to the outward normal if two points are too close.
                             // Should not contribute to the overall error.
-                            const double ADJ = 1e-14;
+                            const double ADJ = 1e-16;
 
                             x = pnt[0] + ADJ*outN[0];
                             y = pnt[1] + ADJ*outN[1];

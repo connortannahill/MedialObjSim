@@ -164,7 +164,7 @@ elif mode == 1:
     np.random.shuffle(inds)
 
     # off = n#int(n/10)
-    off = int(n/2000)
+    off = int(n/1000)
     out = out_pool_vel[inds[:off],:]
 
 
@@ -175,22 +175,24 @@ elif mode == 1:
     v = out[:,4]
     w = out[:,5]
 
-    # velData = [go.Cone(x=x_vel, y=y_vel, z=z_vel, u=u, v=v, w=w, sizemode="scaled")]
-    velData = []
+    bb_mask = np.logical_and(np.logical_and(x_vel >= 3, x_vel <= 7), np.logical_and(y_vel >= 3, y_vel <= 7))
+
+    velData = [go.Cone(x=x_vel[bb_mask], y=y_vel[bb_mask], z=z_vel[bb_mask], u=u[bb_mask], v=v[bb_mask], w=w[bb_mask], sizemode="scaled", opacity=0.3)]
+    # velData = []
 
     mssList = []
 
     print(nMSS)
     
-    # for i in range(nMSS):
-    #     f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
+    for i in range(nMSS):
+        f_name_t = f_name + 'MSS3DNodes{0}'.format(i)
 
-    #     out = np.genfromtxt(f_name_t, delimiter=',')
-    #     x_mss = out[:,0]
-    #     y_mss = out[:,1]
-    #     z_mss = out[:,2]
+        out = np.genfromtxt(f_name_t, delimiter=',')
+        x_mss = out[:,0]
+        y_mss = out[:,1]
+        z_mss = out[:,2]
 
-    #     mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers'))
+        mssList.append(go.Scatter3d(x=x_mss, y=y_mss, z=z_mss, mode='markers', marker=dict(size=4)))
 
         # Now append the object velocities
 
@@ -243,10 +245,12 @@ elif mode == 1:
         isomin=-0.0001,
         isomax=0.0001,
         colorscale=[(0,"blue"), (1,"red")],
-        opacity=0.2)]+mssList+velData)
+        opacity=0.4)]+mssList+velData)
     # fig = go.Figure(data=mssList)
 
-    eyeVec = np.array([0.2, 0.2, 1])
+    eyeVec = np.array([0.35, 0.3, 0.2])
+    eyeSize = 0.7
+    eyeVec *= eyeSize / np.linalg.norm(eyeVec)
 
     camera = camera = dict(
         # up=dict(x=0, y=0.1, z=-0.05),
@@ -387,29 +391,40 @@ elif mode == 4:
 
     fig, ax1 = plt.subplots()
 
+    import copy
+
     if axis == 'x':
         closest = np.argmin(np.abs(x - val))
         closest_pnt = x[closest]
+        ax1.set_xlim([0, 10])
 
         inds = (x == closest_pnt)
-        plt.imshow(np.reshape(p[inds], (nz, ny)))
-        plt.colorbar()
-        # q = ax1.quiver(y[inds], z[inds], v[inds], w[inds])
+        inds_mod = copy.deepcopy(inds)
+        np.random.shuffle(inds_mod)
+        # plt.imshow(np.reshape(p[inds], (nz, ny)))
+        # plt.colorbar()
+        q = ax1.quiver(y[inds][::2], z[inds][::2], v[inds][::2], w[inds][::2])
 
 
-        # img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
-        # img = ax1.contour(np.reshape(y[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
+
+        img = ax1.contour(np.reshape(y[inds], (nz, ny)), np.reshape(z[inds], (nz, ny)), np.reshape(phi[inds], (nz, ny)), levels=[0], colors='b')
+
+        plt.title('$x = {0:.2f}$'.format(val))
     elif axis == 'y':
         closest = np.argmin(np.abs(y - val))
         closest_pnt = y[closest]
+        ax1.set_xlim([0, 10])
+
 
         inds = (y == closest_pnt)
-        q = ax1.quiver(x[inds], z[inds], u[inds], w[inds])
+        inds_mod = copy.deepcopy(inds)
+        np.random.shuffle(inds_mod)
+        q = ax1.quiver(x[inds][::1], z[inds][::1], u[inds][::1], w[inds][::1])
 
         n = int(np.sqrt(phi[inds].size))
 
         img = ax1.contour(np.reshape(x[inds], (nz, nx)), np.reshape(z[inds], (nz, nx)), np.reshape(phi[inds], (nz, nx)), levels=[0], colors='b')
-        # img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(z[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
+        plt.title('$y = {0:.2f}$'.format(val))
     elif axis == 'z':
         closest = np.argmin(np.abs(z - val))
         print(closest)
@@ -423,7 +438,6 @@ elif mode == 4:
 
         n = int(np.sqrt(phi[inds].size))
         img = ax1.contour(np.reshape(x[inds], (ny, nx)), np.reshape(y[inds], (ny, nx)), np.reshape(phi[inds], (ny, nx)), levels=[0], colors='b')
-        # img = ax1.contour(np.reshape(x[inds], (n, n)), np.reshape(y[inds], (n, n)), np.reshape(phi[inds], (n, n)), colors='b')
     
     plt.show()
 elif mode == 5:
