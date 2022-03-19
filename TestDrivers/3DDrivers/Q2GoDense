@@ -12,7 +12,7 @@ Q2GoDenseHModDeflect
 200
 0
 0
--0.1
+-0.25
 0
 0
 0
@@ -32,7 +32,7 @@ coneShapeFun
 cx 5
 cy 5
 cz 5
-r 1.1
+r 0.8
 mass 1
 density 1.0
 E 10
@@ -44,7 +44,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -62,7 +62,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -80,7 +80,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -98,7 +98,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -116,7 +116,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -134,7 +134,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -152,7 +152,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -170,7 +170,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -188,7 +188,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -206,7 +206,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -224,7 +224,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -242,7 +242,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -260,7 +260,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -278,7 +278,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -296,7 +296,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -314,7 +314,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -332,7 +332,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -350,7 +350,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -368,7 +368,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -386,7 +386,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -404,7 +404,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -422,7 +422,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -440,7 +440,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -458,7 +458,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -476,7 +476,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -494,7 +494,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -512,7 +512,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -530,7 +530,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -548,7 +548,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -566,7 +566,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -584,7 +584,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -602,7 +602,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -620,7 +620,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -638,7 +638,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -656,7 +656,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -674,7 +674,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -692,7 +692,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -710,7 +710,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -728,7 +728,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -746,7 +746,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -764,7 +764,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -782,7 +782,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -800,7 +800,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -818,7 +818,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -836,7 +836,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -854,7 +854,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -872,7 +872,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2
@@ -890,7 +890,7 @@ coneShapeFun
 1
 0
 0
--0.1
+-0.25
 mass 1
 density 1
 r 0.2

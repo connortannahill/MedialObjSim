@@ -31,7 +31,11 @@ bloodCellShapeFun
 0.0
 cx 5.0
 cy 5.0
+<<<<<<< HEAD
 cz 2.2
+=======
+cz 2.5
+>>>>>>> aa139a10c89a75adfe756aa9cbb114eb8713a95c
 r 1.5
 mass 1
 density 1.0
@@ -50,7 +54,11 @@ bloodCellShapeFun
 0.0
 cx 5.0
 cy 5.0
+<<<<<<< HEAD
 cz 7.8
+=======
+cz 7.5
+>>>>>>> aa139a10c89a75adfe756aa9cbb114eb8713a95c
 r 1.5
 mass 1
 density 1.0

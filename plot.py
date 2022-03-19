@@ -33,6 +33,7 @@ else:
 print('looking for numObj in {}'.format(f_name+'MSSEdges*'))
 # print('glob = {}'.format(glob.glob(f_name+'MSSEdges*')))
 numObj = len(glob.glob(f_name+'MSSEdges*'))
+print('numobj = {}'.format(numObj))
 # os.chdir(cur_dir)
 
 
@@ -43,7 +44,7 @@ For plotting the Pool isocontour
 if mode == -2:
     str_base = ''
     from random import randint
-    with open('./TestDrivers/2DDrivers/{}'.format(test)) as f:
+    with open('./TestDrivers/2DDrivers/{}'.format(test.strip())) as f:
         for ln in f.readlines():
             str_temp = ln.strip()
             print(str_temp)
@@ -446,7 +447,11 @@ elif mode == 13:  # plot snapshots of steps through simulation
 
         x,y,x_pool,y_pool,x_med,y_med,u,v,steps = plots[curr_pos]
         print('steps = {}'.format(steps))
+        # for i in range(0, x.size, 2):
+        #     plt.plot(x[i:i+2], y[i:i+2], 'ro-', ms=1, lw=0.5)
         plt.scatter(x, y, c='r', marker='o', s=1)
+        ax.set_xlim([1.5, 3.5])
+        ax.set_ylim([1.5, 3.5])
         # if (len(x_med) > 0):
         #     plt.scatter(x_med, y_med, s=0.5)
         q = ax.quiver(x_pool, y_pool, u, v)
@@ -478,8 +483,8 @@ elif mode == 13:  # plot snapshots of steps through simulation
     # steps = [x for x in os.listdir(f_name) if x.isdigit()]
     # steps = [100]
     # steps.sort(key=float)
-    steps = [500]
-    print(steps)
+    steps = [int(testNum)]
+    # print(steps)
 
     plots = []
     max_x = -np.inf
@@ -489,25 +494,28 @@ elif mode == 13:  # plot snapshots of steps through simulation
     for step in steps:
 
 
-        f_temp = f_name + str(step)
-        f_temp += '/MSSTracers'
-        out = np.genfromtxt(f_temp, delimiter=',')
+        # f_temp = f_name #+ str(step)
+        # f_temp += 'MSSTracers'
+        # out = np.genfromtxt(f_temp, delimiter=',')
 
-        for tracer in out:
-            tracers.append((tracer[0], tracer[1]))
+        # for tracer in out:
+        #     tracers.append((tracer[0], tracer[1]))
 
-        curr_name = f_name + str(step) + '/poolOut'
+        # curr_name = f_name + str(step) + '/poolOut'
+        curr_name = f_name + 'poolOut'
         print('currName = {0}'.format(curr_name))
         out = np.genfromtxt(curr_name, delimiter=',')
 
-        numObj = len(glob.glob(f_name + str(step) + '/MSSEdges*'))
+        # numObj = len(glob.glob(f_name + str(step) + '/MSSEdges*'))
+        numObj = len(glob.glob(f_name + '/MSSEdges*'))
         # numObj -= 10
 
         x_objs = []
         y_objs = []
 
         for i in range(numObj):
-            mss_edges_f_name = f_name + str(step) + '/MSSNodes{0}'.format(i)
+            # mss_edges_f_name = f_name + str(step) + '/MSSNodes{0}'.format(i)
+            mss_edges_f_name = f_name + 'MSSNodes{0}'.format(i)
 
             out = np.genfromtxt(mss_edges_f_name, delimiter=',')
             x_temp = out[:,0]
@@ -515,23 +523,25 @@ elif mode == 13:  # plot snapshots of steps through simulation
             x_objs = np.concatenate((x_objs, x_temp))
             y_objs = np.concatenate((y_objs, y_temp))
 
-        out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
+        # out = np.genfromtxt(f_name+str(step)+'/out', delimiter=',')
+        out = np.genfromtxt(f_name+'out', delimiter=',')
+
         # out = np.genfromtxt(f_name+str(step)+'/poolVel', delimiter=',')
         # Generate array of indices (for the velocities)
         n = out.shape[0]
         inds = np.arange(out.shape[0])
         np.random.shuffle(inds)
 
-        off = 7#int(n/10)
+        off = 10#int(n/10)
         # off = int(1)
         # # nx = 840
         # # ny = 420
         # nx = 320
-        # ny = 640
-        # nx = 320
-        # ny = 640
-        nx = 640
-        ny = 1280
+        # ny = 160
+        nx = 1880
+        ny = 1040
+        # nx = 640
+        # ny = 1280
         # print(out.shape)
 
         mask = np.arange(nx) % off == 0
@@ -555,7 +565,7 @@ elif mode == 13:  # plot snapshots of steps through simulation
         # u /= np.sqrt(u**2 + v**2)
         # v /= np.sqrt(u**2 + v**2)
 
-        out = np.genfromtxt(f_name+str(step)+'/medialAxis', delimiter=',')
+        out = np.genfromtxt(f_name+'/medialAxis', delimiter=',')
 
         if (out.size == 0) :
             x_med = np.array([])
