@@ -289,6 +289,15 @@ int main(int argc, char **argv) {
     for (int i = 0; i < num_objects; i++) {
         input_file >> objectFunc >> objectType >> u0 >> v0 >> w0;
 
+        double vAdd = 0;
+        double wAdd = 0;
+        if (testName.rfind("Q3", 0) == 0) {
+            vAdd =  (2*((double) rand() / (RAND_MAX))-1)/10.0;
+            wAdd =  (2*((double) rand() / (RAND_MAX))-1)/10.0;
+        }
+
+        cout << "objvel = " << u0 << ", " << v0 + vAdd << "< " << w0 + wAdd << endl;
+
         cout << "objectFunc = " << objectFunc << endl;
         cout << "objectType = " << objectType << endl;
         cout << "objvel = " << u0 << ", " << v0 << "< " << w0 << endl;
@@ -303,7 +312,7 @@ int main(int argc, char **argv) {
             input_file >> paramName;
         }
 
-        SolidObject3D object(u0, v0, w0, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
+        SolidObject3D object(u0, v0+vAdd, w0+wAdd, (SolidObject3D::ObjectType)objectType, shapeFunctions[objectFunc], params);
         shapes.push_back(object);
     }
 

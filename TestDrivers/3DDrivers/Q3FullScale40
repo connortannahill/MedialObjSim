@@ -20,5 +20,24 @@ Q3FullScale40
 1000
 1
 directionalFlowBC
-100
+5
 
+1
+
+bloodCellShapeFun
+1
+0.1
+0
+0
+mass 1
+density 1
+r 1.0825317547305482
+E 40
+eta 0
+a 0.3
+c 0.105
+deg 288
+cx 5
+cy 5
+cz 5
+.

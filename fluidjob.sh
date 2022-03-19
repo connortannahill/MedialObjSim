@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --time=100:00:00
+#SBATCH --time=15:00:00
 #SBATCH --account=def-wan
 #SBATCH --mem=250G
 #SBATCH --cpus-per-task=1
@@ -10,7 +10,7 @@ module load python/3.8.10
 module load scipy-stack
 
 
-args="Q2ManyObject3D 3 1"
+args="Q2ManyObject3D 3"
 # args="objscale.txt"
 echo "Args = $args"
 

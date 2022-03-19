@@ -663,7 +663,7 @@ void Pool2D::detectCollisions() {
 
         // Now rebuild the kdtree for efficient searching.
         kdTree->buildIndex();
-        vector<pair<size_t,double> > ret_matches;
+        vector<pair<uint32_t,double> > ret_matches;
         nanoflann::SearchParams params;
         double SCAL_FAC = 1.5; 
         int nMatches;

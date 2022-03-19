@@ -20,9 +20,25 @@ Q2FullScaleTwo40
 1000
 1
 downDirFlowBC
-100
+5
 
+2
+
+coneShapeFun
 1
+0.0
+0.0
+0.0
+cx 5
+cy 5
+cz 8
+r 1
+mass 1
+density 1.0
+E 10
+eta 0.0
+deg 0
+.
 
 coneShapeFun
 2
@@ -31,8 +47,8 @@ coneShapeFun
 0.0
 cx 5
 cy 5
-cz 5
-r 0.6
+cz 4
+r 2
 mass 1
 density 1.0
 E 10

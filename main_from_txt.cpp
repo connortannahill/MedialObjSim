@@ -113,7 +113,7 @@ void lidDrivenCavityBC(int nx, int ny, double **u, double **v) {
 void directionalFlowBC(int nx, int ny, double **u, double **v) {
     for (int j = 1; j <= ny; j++) {
         // Inflow condition
-        u[j][0] = 0.25;
+        u[j][0] = 0.1;
         //simutils::dmin(t, 1.0)*((-6*simutils::square(y[j-1]) + 6*y[j-1])) + simutils::dmax(1.0 - t, 0);
 
         // Outflow condition
@@ -280,6 +280,8 @@ int main(int argc, char **argv) {
     cout << "bctype = " << boundaryConditionType << endl;
     cout << "tEnd = " << tEnd << endl;
 
+    double h = getH(xa, xb, nx, ya, yb, ny);
+
     // get objects in simulation
     input_file >> num_objects;
     cout << "num_objects " << num_objects << endl;
@@ -296,6 +298,13 @@ int main(int argc, char **argv) {
         input_file >> paramName;
         while (paramName != ".") {
             input_file >> paramValue;
+
+
+            if (paramName.compare("cx") == 0) {
+                paramValue += (h*((double) rand() / (RAND_MAX))-1);
+            } else if (paramName.compare("cy") == 0) {
+                paramValue += (h*((double) rand() / (RAND_MAX))-1);
+            }
             params.addParam(paramName, paramValue);
 
             input_file >> paramName;
@@ -306,7 +315,7 @@ int main(int argc, char **argv) {
         // u0 = initFun(cx, 0, 0);
         // u0 = 0;
         cout << "u0 " << u0 << endl;
-        double velAdd = 0;// (2*((double) rand() / (RAND_MAX))-1)/100.0;
+        double velAdd = (2*((double) rand() / (RAND_MAX))-1)/50.0;
         cout << "v0 " << (v0 + velAdd) << endl;
 
         SolidObject object(u0, v0 + velAdd, (SolidObject::ObjectType)objectType, shapeFunctions[objectFunc], params);
@@ -317,7 +326,7 @@ int main(int argc, char **argv) {
     cout << "Number of objects = " << shapes.size() << endl;
 
     // actually set up simParams
-    double h = getH(xa, xb, nx, ya, yb, ny);
+    // double h = getH(xa, xb, nx, ya, yb, ny);
 
     simParams.setRe(re);
     simParams.setNx(nx);
