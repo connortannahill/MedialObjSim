@@ -1,4 +1,4 @@
-# BloodSim
+# MedialObjSim
 
 Requires:
 - Eigen [https://eigen.tuxfamily.org/dox/GettingStarted.html](https://eigen.tuxfamily.org/dox/GettingStarted.html)
@@ -9,7 +9,7 @@ To build, run `make`
 
 Before running, make sure to create an `output` folder in repo if it doesn't already exist.
 
-To run fluid simulation after building, run generated exe file. Example: 
+To run fluid simulation (in two dimensions) after building, run generated exe file. Example: 
 ```sh
 ./fluidsolver2d.exe <max_steps>
 ```
